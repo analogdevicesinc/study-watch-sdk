@@ -1,0 +1,65 @@
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+Getting started
+===============
+
+Install the whl file
+--------------------
+
+``pip install you-package-name.whl``
+
+Basic Example using USB:
+-----------------
+
+.. code-block:: python
+
+    import time
+    from study_watch import SDK
+
+    # callback function to receive adxl data
+    def callback_adxl(seq, data):
+        for d in data:
+            print("t:{} x:{} y:{} z:{}".format(d.timestamp, d.x, d.y, d.z))
+
+
+    sdk = SDK("COM4")
+    adxl_application = sdk.get_adxl_application(callback_adxl)
+    adxl_application.start_default_stream()
+    time.sleep(10)
+    adxl_application.stop_default_stream()
+
+
+Example using Ble:
+----------------------
+
+.. code-block:: python
+
+    import time
+    from study_watch import SDK
+
+    # callback function to receive adxl data
+    def callback_adxl(seq, data):
+        for d in data:
+            print("t:{} x:{} y:{} z:{}".format(d.timestamp, d.x, d.y, d.z))
+
+
+    sdk = SDK("COM6", is_ble=True)
+    adxl_application = sdk.get_adxl_application(callback_adxl)
+    adxl_application.start_default_stream()
+    time.sleep(10)
+    adxl_application.stop_default_stream()
+
+
+All API modules:
+----------------
+:ref:`modindex`
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
