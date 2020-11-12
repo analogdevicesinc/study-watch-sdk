@@ -1,0 +1,29 @@
+adi\_study\_watch package
+=========================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   adi_study_watch.application
+
+Submodules
+----------
+
+adi\_study\_watch.SDK module
+----------------------------
+
+.. automodule:: adi_study_watch.SDK
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: adi_study_watch
+   :members:
+   :undoc-members:
+   :show-inheritance:

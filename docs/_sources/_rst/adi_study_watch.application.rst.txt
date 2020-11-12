@@ -1,0 +1,109 @@
+adi\_study\_watch.application package
+=====================================
+
+Submodules
+----------
+
+Adpd4000Application module
+--------------------------------------------------------
+
+.. automodule:: adi_study_watch.application.Adpd4000Application
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+AdxlApplication module
+----------------------------------------------------
+
+.. automodule:: adi_study_watch.application.AdxlApplication
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+BcmApplication module
+---------------------------------------------------
+
+.. automodule:: adi_study_watch.application.BcmApplication
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+CommonApplication module
+------------------------------------------------------
+
+.. automodule:: adi_study_watch.application.CommonApplication
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+CommonCallbackApplication module
+--------------------------------------------------------------
+
+.. automodule:: adi_study_watch.application.CommonCallbackApplication
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+EcgApplication module
+---------------------------------------------------
+
+.. automodule:: adi_study_watch.application.EcgApplication
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+EdaApplication module
+---------------------------------------------------
+
+.. automodule:: adi_study_watch.application.EdaApplication
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+FsApplication module
+--------------------------------------------------
+
+.. automodule:: adi_study_watch.application.FsApplication
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PedometerApplication module
+---------------------------------------------------------
+
+.. automodule:: adi_study_watch.application.PedometerApplication
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PmApplication module
+--------------------------------------------------
+
+.. automodule:: adi_study_watch.application.PmApplication
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PpgApplication module
+---------------------------------------------------
+
+.. automodule:: adi_study_watch.application.PpgApplication
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+TemperatureApplication module
+-----------------------------------------------------------
+
+.. automodule:: adi_study_watch.application.TemperatureApplication
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: adi_study_watch.application
+   :members:
+   :undoc-members:
+   :show-inheritance:

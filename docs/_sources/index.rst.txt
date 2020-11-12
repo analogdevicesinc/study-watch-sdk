@@ -11,12 +11,12 @@ Install the whl file
 ``pip install you-package-name.whl``
 
 Basic Example using USB:
------------------
+-------------------------
 
 .. code-block:: python
 
     import time
-    from study_watch import SDK
+    from adi_study_watch import SDK
 
     # callback function to receive adxl data
     def callback_adxl(seq, data):
@@ -37,7 +37,7 @@ Example using Ble:
 .. code-block:: python
 
     import time
-    from study_watch import SDK
+    from adi_study_watch import SDK
 
     # callback function to receive adxl data
     def callback_adxl(seq, data):

@@ -1,7 +1,7 @@
-study_watch
-===========
+adi_study_watch
+===============
 
 .. toctree::
    :maxdepth: 4
 
-   study_watch
+   adi_study_watch
