@@ -25,6 +25,10 @@ https://github.com/analogdevicesinc/study-watch-sdk/blob/main/bin_Firmware/Study
     time.sleep(10)
     adxl_application.stop_default_stream()
     
+    
+**Examples**
+https://github.com/analogdevicesinc/study-watch-sdk/tree/main/samples
+
 **Documentation:**
 https://analogdevicesinc.github.io/study-watch-sdk/
 

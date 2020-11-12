@@ -59,13 +59,14 @@ Example using Ble:
     adxl_application.stop_default_stream()
 
 
+Examples
+----------
+https://github.com/analogdevicesinc/study-watch-sdk/tree/main/samples
+
 
 License
 -----------
 https://github.com/analogdevicesinc/study-watch-sdk/blob/main/LICENSE.pdf
-
-
-
 
 
 All API modules:
