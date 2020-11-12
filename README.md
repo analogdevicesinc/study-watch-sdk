@@ -4,6 +4,10 @@
 
     pip install adi_study_watch-4.0.4-py3-none-any.whl
 
+**Firmware Setup**
+
+https://github.com/analogdevicesinc/study-watch-sdk/blob/main/bin_Firmware/Study_Watch_Firmware_Upgrade_using_Android_App.docx
+
 **Basic Example:**
 
     import time
@@ -20,7 +24,11 @@
     adxl_application.start_default_stream()
     time.sleep(10)
     adxl_application.stop_default_stream()
+    
+**Documentation:**
+https://analogdevicesinc.github.io/study-watch-sdk/
+
+**License**
+https://github.com/analogdevicesinc/study-watch-sdk/blob/main/LICENSE.pdf
 
 
-**Github Repo:**
-https://github.com/analogdevicesinc/study-watch-sdk

@@ -8,7 +8,14 @@ Getting started
 Install the whl file
 --------------------
 
-``pip install you-package-name.whl``
+``pip install adi_study_watch-4.0.4-py3-none-any.whl``
+
+
+Firmware Setup
+-----------------
+Follow the link_ (docx) to setup firmware for the study watch.
+
+.. _link: https://github.com/analogdevicesinc/study-watch-sdk/blob/main/bin_Firmware/Study_Watch_Firmware_Upgrade_using_Android_App.docx
 
 Basic Example using USB:
 -------------------------
@@ -50,6 +57,15 @@ Example using Ble:
     adxl_application.start_default_stream()
     time.sleep(10)
     adxl_application.stop_default_stream()
+
+
+
+License
+-----------
+https://github.com/analogdevicesinc/study-watch-sdk/blob/main/LICENSE.pdf
+
+
+
 
 
 All API modules:
