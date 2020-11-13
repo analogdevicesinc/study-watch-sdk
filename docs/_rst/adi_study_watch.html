@@ -63,8 +63,100 @@
 </ul>
 </div>
 </div>
-<div class="section" id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="status-code-and-its-meaning">
+<h2>Status code and its meaning<a class="headerlink" href="#status-code-and-its-meaning" title="Permalink to this headline">¶</a></h2>
+<p>Common Stream status code:</p>
+<ul class="simple">
+<li><p>0: ‘M2M2_APP_COMMON_STATUS_OK’</p></li>
+<li><p>1: ‘M2M2_APP_COMMON_STATUS_ERROR’</p></li>
+<li><p>2: ‘M2M2_APP_COMMON_STATUS_STREAM_STARTED’</p></li>
+<li><p>3: ‘M2M2_APP_COMMON_STATUS_STREAM_STOPPED’</p></li>
+<li><p>4: ‘M2M2_APP_COMMON_STATUS_STREAM_IN_PROGRESS’</p></li>
+<li><p>5: ‘M2M2_APP_COMMON_STATUS_STREAM_DEACTIVATED’</p></li>
+<li><p>6: ‘M2M2_APP_COMMON_STATUS_STREAM_COUNT_DECREMENT’</p></li>
+<li><p>7: ‘M2M2_APP_COMMON_STATUS_STREAM_NOT_STARTED’</p></li>
+<li><p>8: ‘M2M2_APP_COMMON_STATUS_STREAM_NOT_STOPPED’</p></li>
+<li><p>9: ‘M2M2_APP_COMMON_STATUS_SUBSCRIBER_ADDED’</p></li>
+<li><p>64: ‘M2M2_FILE_SYS_ERR_LOWEST’</p></li>
+<li><p>65: ‘M2M2_FILE_SYS_STATUS_OK’</p></li>
+<li><p>66: ‘M2M2_FILE_SYS_STATUS_ERROR’</p></li>
+<li><p>67: ‘M2M2_FILE_SYS_END_OF_FILE’</p></li>
+<li><p>68: ‘M2M2_FILE_SYS_END_OF_DIR’</p></li>
+<li><p>69: ‘M2M2_FILE_SYS_ERR_INVALID’</p></li>
+<li><p>70: ‘M2M2_FILE_SYS_ERR_ARGS’</p></li>
+<li><p>71: ‘M2M2_FILE_SYS_ERR_FORMAT’</p></li>
+<li><p>72: ‘M2M2_FILE_SYS_ERR_MEMORY_FULL’</p></li>
+<li><p>73: ‘M2M2_FILE_SYS_ERR_LOG_FORCE_STOPPED’</p></li>
+<li><p>74: ‘M2M2_FILE_SYS_ERR_MAX_FILE_COUNT’</p></li>
+<li><p>75: ‘M2M2_FILE_SYS_CONFIG_FILE_FOUND’</p></li>
+<li><p>76: ‘M2M2_FILE_SYS_CONFIG_FILE_NOT_FOUND’</p></li>
+<li><p>255: ‘M2M2_FILE_SYS_ERR_NOT_CHKD’</p></li>
+</ul>
+<p>File status:</p>
+<ul class="simple">
+<li><p>0: ‘M2M2_APP_COMMON_STATUS_OK’</p></li>
+<li><p>1: ‘M2M2_APP_COMMON_STATUS_ERROR’</p></li>
+<li><p>2: ‘M2M2_APP_COMMON_STATUS_INVALID’</p></li>
+<li><p>3: ‘M2M2_APP_COMMON_STATUS_DEVICE_ERROR’</p></li>
+</ul>
+<p>File system:</p>
+<ul class="simple">
+<li><p>0: ‘OPERATION_NOT_SUPPORTED_FOR_THIS_DEVICE’</p></li>
+<li><p>1: ‘UNKNOWN_DEVICE’</p></li>
+<li><p>2: ‘LOAD_CFG_FAILED’</p></li>
+<li><p>3: ‘CLOCK_CALIBRATE_FAILED’</p></li>
+<li><p>4: ‘SET_SLOT_FAILED’</p></li>
+<li><p>5: ‘SUBSCRIBE_FAILED’</p></li>
+<li><p>6: ‘SUBSCRIBED’</p></li>
+<li><p>7: ‘STREAM_START_FAILED’</p></li>
+<li><p>8: ‘STREAM_STARTED’</p></li>
+<li><p>9: ‘STREAM_STOP_FAILED’</p></li>
+<li><p>10: ‘STREAM_STOPPED’</p></li>
+<li><p>11: ‘UNSUBSCRIBE_FAILED’</p></li>
+<li><p>12: ‘UNSUBSCRIBED’</p></li>
+<li><p>13: ‘PPG_LOAD_LCFG_FAILED’</p></li>
+<li><p>14: ‘LCFG_WRITE_FAILED’</p></li>
+<li><p>15: ‘AD7689_START_FAILED’</p></li>
+<li><p>16: ‘AD7689_STOP_FAILED’</p></li>
+<li><p>17: ‘AD5940_START_FAILED’</p></li>
+<li><p>18: ‘AD5940_STOP_FAILED’</p></li>
+<li><p>19: ‘SET_FREQ_FAILED’</p></li>
+<li><p>20: ‘FS_SUBSCRIBE_FAILED’</p></li>
+<li><p>21: ‘FS_UNSUBSCRIBE_FAILED’</p></li>
+<li><p>22: ‘FS_STATUS_ERROR’</p></li>
+<li><p>23: ‘APP_COMMON_ERROR’</p></li>
+<li><p>24: ‘FS_ERR_INVALID’</p></li>
+<li><p>25: ‘FS_ERR_CONFIG_FILE_POSITION’</p></li>
+<li><p>26: ‘FS_ERR_MAX_FILE_COUNT’</p></li>
+<li><p>27: ‘LOGGING_NOT_STARTED’</p></li>
+<li><p>28: ‘LOGGING_STARTED’</p></li>
+<li><p>29: ‘LOGGING_STOPPED’</p></li>
+<li><p>30: ‘FILE_NOT_CLOSED’</p></li>
+<li><p>31: ‘FILE_NOT_OPENED’</p></li>
+<li><p>32: ‘STREAM_IN_PROGRESS’</p></li>
+</ul>
+<p>Battery State:</p>
+<ul class="simple">
+<li><p>1: ‘M2M2_PM_SYS_BAT_STATE_NOT_AVAIL’</p></li>
+<li><p>2: ‘M2M2_PM_SYS_BAT_STATE_NOT_CHARGING’</p></li>
+<li><p>3: ‘M2M2_PM_SYS_BAT_STATE_CHARGING’</p></li>
+<li><p>4: ‘M2M2_PM_SYS_BAT_STATE_COMPLETE’</p></li>
+<li><p>5: ‘M2M2_PM_SYS_BAT_STATE_DETECTION’</p></li>
+<li><p>6: ‘M2M2_PM_SYS_BAT_STATE_CHARGE_ERR’</p></li>
+</ul>
+<p>System Alert:</p>
+<ul class="simple">
+<li><p>1: ‘FILE_SYS_LOG_STOPPED_MEMORY_FULL’</p></li>
+<li><p>2: ‘FILE_SYS_LOG_STOPPED_LOW_BATTERY’</p></li>
+<li><p>3: ‘USER_CONFIG_AUTO_LOGGING_STARTED’</p></li>
+<li><p>4: ‘USER_CONFIG_AUTO_LOGGING_STOPPED’</p></li>
+<li><p>5: ‘USER_CONFIG_AUTO_LOGGING_NOT_STARTED_MEMORY_FULL_ERR’</p></li>
+<li><p>6: ‘USER_CONFIG_AUTO_LOGGING_NOT_STARTED__MAX_FILE_ERR’</p></li>
+<li><p>7: ‘FILE_SYS_LOG_STOPPED_THROUGH_BUTTON_A’</p></li>
+<li><p>8: ‘USER_CONFIG_AUTO_LOGGING_WRIST_OFF_DETECTED’</p></li>
+<li><p>9: ‘USER_CONFIG_AUTO_LOGGING_STOPPED_LOW_BATTERY’</p></li>
+<li><p>10: ‘ADI_SDK_PACKET_TIMED_OUT’</p></li>
+</ul>
 </div>
 <div class="section" id="module-adi_study_watch.SDK">
 <span id="adi-study-watch-sdk-module"></span><h2>adi_study_watch.SDK module<a class="headerlink" href="#module-adi_study_watch.SDK" title="Permalink to this headline">¶</a></h2>
@@ -794,7 +886,7 @@
   <ul>
 <li><a class="reference internal" href="#">adi_study_watch package</a><ul>
 <li><a class="reference internal" href="#subpackages">Subpackages</a></li>
-<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#status-code-and-its-meaning">Status code and its meaning</a></li>
 <li><a class="reference internal" href="#module-adi_study_watch.SDK">adi_study_watch.SDK module</a></li>
 <li><a class="reference internal" href="#module-adi_study_watch">Module contents</a></li>
 </ul>
