@@ -72,7 +72,7 @@ FsApplication module
 
 Note: Starting and Stopping Fs Log
 
-.. code-block:: python
+.. code-block:: python3
    :emphasize-lines: 5,6
 
    from adi_study_watch import SDK
