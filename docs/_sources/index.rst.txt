@@ -1,14 +1,15 @@
+Welcome to ADI Study Watch SDK documentation!
+===============================================
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-Getting started
-===============
 
 Install the whl file
 --------------------
 
-``pip install adi_study_watch-4.0.4-py3-none-any.whl``
+``pip install adi_study_watch``
 
 
 Firmware Setup
@@ -16,6 +17,20 @@ Firmware Setup
 Follow the link_ (docx) to setup firmware for the study watch.
 
 .. _link: https://github.com/analogdevicesinc/study-watch-sdk/blob/main/bin_Firmware/Study_Watch_Firmware_Upgrade_using_Android_App.docx
+
+
+Working with hexadecimal values in python
+------------------------------------------
+
+.. code-block:: python
+
+    >>> val = 13
+    >>> '0x%X' % val # convert int value to hexadecimal
+    # '0xD'
+    >>> hex_val = '0xD'
+    >>> int(hex_val, 16) # convert hexadecimal value to int
+    # 13
+
 
 Basic Example using USB:
 -------------------------
@@ -26,9 +41,9 @@ Basic Example using USB:
     from adi_study_watch import SDK
 
     # callback function to receive adxl data
-    def callback_adxl(seq, data):
-        for d in data:
-            print("t:{} x:{} y:{} z:{}".format(d.timestamp, d.x, d.y, d.z))
+    def callback_adxl(data):
+        for d in data["payload"]["stream_data"]:
+            print(d["timestamp"], d["x"], d["y"], d["z"]))
 
 
     sdk = SDK("COM4")
@@ -41,15 +56,20 @@ Basic Example using USB:
 Example using Ble:
 ----------------------
 
+Connect the BLE with study watch by following the instructions here_ (Windows only).
+
+.. _here: https://github.com/analogdevicesinc/study-watch-sdk/blob/main/docs/how_to_use_study_watch_sdk_over_ble.pdf
+
+
 .. code-block:: python
 
     import time
     from adi_study_watch import SDK
 
     # callback function to receive adxl data
-    def callback_adxl(seq, data):
-        for d in data:
-            print("t:{} x:{} y:{} z:{}".format(d.timestamp, d.x, d.y, d.z))
+    def callback_adxl(data):
+        for d in data["payload"]["stream_data"]:
+            print(d["timestamp"], d["x"], d["y"], d["z"]))
 
 
     sdk = SDK("COM6", is_ble=True)
@@ -58,6 +78,106 @@ Example using Ble:
     time.sleep(10)
     adxl_application.stop_default_stream()
 
+
+How to log and download adxl stream data
+------------------------------------------
+
+.. code-block:: python
+
+    from adi_study_watch import SDK
+    import time
+
+    # SDK setup
+    sdk = SDK("COM4")
+    adxl_application = sdk.get_adxl_application()
+    fs_application = sdk.get_fs_application()
+
+
+    # START LOGGING
+    adxl_application.start_sensor()
+    fs_application.subscribe_stream(fs_application.STREAM_ADXL)
+    fs_application.start_logging()
+    print(fs_application.get_status()["payload"]["status"])
+
+    print("logging...")
+    time.sleep(20)
+
+    # STOP LOGGING
+    adxl_application.stop_sensor()
+    fs_application.unsubscribe_stream(fs_application.STREAM_ADXL)
+    fs_application.stop_logging()
+    print(fs_application.get_status()["payload"]["status"])
+
+    # List all the files available to download.
+    files = fs_application.ls()
+    for x in files:
+        print(x["payload"]["filename"])
+
+    # download data from the watch and save it to a file.
+    fs_application.download_file(files[0]["payload"]["filename"], download_to_file=True, display_progress=True)
+
+
+How to plot adxl data with Matplotlib
+--------------------------------------------
+
+.. code-block:: python
+
+    from adi_study_watch import SDK
+    from matplotlib import pyplot
+    from matplotlib.animation import FuncAnimation
+
+    # callback to store adxl data in array, we are only storing 200 values.
+    def callback_data(data, adxl_time, adxl_x, adxl_y, adxl_z):
+        if len(adxl_time) > 200:
+            del adxl_time[:5]
+            del adxl_x[:5]
+            del adxl_y[:5]
+            del adxl_z[:5]
+
+        for value in data["payload"]["stream_data"]:
+            adxl_time.append(value["timestamp"])
+            adxl_x.append(value["x"])
+            adxl_y.append(value["y"])
+            adxl_z.append(value["z"])
+
+    x_data, y_data, z_data, time = [], [], [], []
+
+    # figure and x,y,z line initiated.
+    figure = pyplot.figure()
+    x_line, = pyplot.plot(time, x_data, '-')
+    y_line, = pyplot.plot(time, y_data, '-')
+    z_line, = pyplot.plot(time, z_data, '-')
+
+    # plot update function
+    def update(frame, plot_time, plot_x_data, plot_y_data, plot_z_data):
+        x_line.set_data(plot_time, plot_x_data)
+        y_line.set_data(plot_time, plot_y_data)
+        z_line.set_data(plot_time, plot_z_data)
+        figure.gca().relim()
+        figure.gca().autoscale_view()
+        return x_line, y_line, z_line
+
+    # SDK setup and sensor start
+    sdk = SDK("COM4")
+    application = sdk.get_adxl_application()
+    # setting callback with some reference list to plot from
+    application.set_callback(callback_data, args=(time, x_data, y_data, z_data))
+
+    # start sensor
+    application.start_sensor()
+    application.subscribe_stream()
+
+    # plot started
+    animation = FuncAnimation(figure, update, interval=10, fargs=(time, x_data, y_data, z_data))
+    pyplot.show()
+
+
+.. image:: plot.png
+
+
+For more detail on *FuncAnimation* visit matplotlib animation api_.
+
+.. _api: https://matplotlib.org/api/animation_api.html
 
 Examples
 ----------
@@ -80,3 +200,10 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+
+
+
+
+
+
+

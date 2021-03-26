@@ -1,0 +1,29 @@
+adi\_study\_watch.core package
+==============================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   adi_study_watch.core.enums
+   adi_study_watch.core.packets
+
+Submodules
+----------
+
+core.packet\_manager module
+---------------------------------------------
+
+.. automodule:: adi_study_watch.core.packet_manager
+   :inherited-members:
+
+
+core.utils module
+-----------------------------------
+
+.. automodule:: adi_study_watch.core.utils
+   :inherited-members:
+
+
