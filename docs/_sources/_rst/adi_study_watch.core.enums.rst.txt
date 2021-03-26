@@ -1,0 +1,99 @@
+adi\_study\_watch.core.enums package
+====================================
+
+ad7156\_enums module
+-------------------------------------------------
+
+.. automodule:: adi_study_watch.core.enums.ad7156_enums
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+adpd\_enums module
+-----------------------------------------------
+
+.. automodule:: adi_study_watch.core.enums.adpd_enums
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+adxl\_enums module
+-----------------------------------------------
+
+.. automodule:: adi_study_watch.core.enums.adxl_enums
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+bcm\_enums module
+----------------------------------------------
+
+.. automodule:: adi_study_watch.core.enums.bcm_enums
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+common\_enums module
+-------------------------------------------------
+
+.. automodule:: adi_study_watch.core.enums.common_enums
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+dcb\_enums module
+----------------------------------------------
+
+.. automodule:: adi_study_watch.core.enums.dcb_enums
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+display\_enums module
+--------------------------------------------------
+
+.. automodule:: adi_study_watch.core.enums.display_enums
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+eda\_enums module
+----------------------------------------------
+
+.. automodule:: adi_study_watch.core.enums.eda_enums
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+fs\_enums module
+---------------------------------------------
+
+.. automodule:: adi_study_watch.core.enums.fs_enums
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pm\_enums module
+---------------------------------------------
+
+.. automodule:: adi_study_watch.core.enums.pm_enums
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+ppg\_enums module
+----------------------------------------------
+
+.. automodule:: adi_study_watch.core.enums.ppg_enums
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+sqi\_enum module
+---------------------------------------------
+
+.. automodule:: adi_study_watch.core.enums.sqi_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

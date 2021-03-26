@@ -1,0 +1,86 @@
+adi\_study\_watch.core.packets package
+======================================
+
+adpd\_packets module
+---------------------------------------------------
+
+.. automodule:: adi_study_watch.core.packets.adpd_packets
+   :inherited-members:
+
+
+adxl\_packets module
+---------------------------------------------------
+
+.. automodule:: adi_study_watch.core.packets.adxl_packets
+   :inherited-members:
+
+
+bcm\_packets module
+--------------------------------------------------
+
+.. automodule:: adi_study_watch.core.packets.bcm_packets
+   :inherited-members:
+
+
+command\_packet module
+-----------------------------------------------------
+
+.. automodule:: adi_study_watch.core.packets.command_packet
+   :inherited-members:
+
+
+common\_packets module
+-----------------------------------------------------
+
+.. automodule:: adi_study_watch.core.packets.common_packets
+   :inherited-members:
+
+
+display\_packets module
+------------------------------------------------------
+
+.. automodule:: adi_study_watch.core.packets.display_packets
+   :inherited-members:
+
+
+eda\_packets module
+--------------------------------------------------
+
+.. automodule:: adi_study_watch.core.packets.eda_packets
+   :inherited-members:
+
+
+fs\_packets module
+-------------------------------------------------
+
+.. automodule:: adi_study_watch.core.packets.fs_packets
+   :inherited-members:
+
+
+pm\_packets module
+-------------------------------------------------
+
+.. automodule:: adi_study_watch.core.packets.pm_packets
+   :inherited-members:
+
+
+ppg\_packets module
+--------------------------------------------------
+
+.. automodule:: adi_study_watch.core.packets.ppg_packets
+   :inherited-members:
+
+
+sqi\_packets module
+--------------------------------------------------
+
+.. automodule:: adi_study_watch.core.packets.sqi_packets
+   :inherited-members:
+
+
+stream\_data\_packets module
+-----------------------------------------------------------
+
+.. automodule:: adi_study_watch.core.packets.stream_data_packets
+   :inherited-members:
+

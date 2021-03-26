@@ -1,0 +1,4 @@
+#ECG_DCB_LCFG
+
+00 00C8  # ECG ODR = 200 Hz, Default f/w ECG ODR = 100 Hz
+

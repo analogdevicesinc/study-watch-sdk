@@ -1,124 +1,106 @@
 adi\_study\_watch.application package
 =====================================
 
-Submodules
-----------
-
-Adpd4000Application module
+ad7156\_application module
 --------------------------------------------------------
 
-.. automodule:: adi_study_watch.application.Adpd4000Application
-   :members:
-   :undoc-members:
-   :show-inheritance:
+.. automodule:: adi_study_watch.application.ad7156_application
+   :inherited-members:
 
-AdxlApplication module
-----------------------------------------------------
-
-.. automodule:: adi_study_watch.application.AdxlApplication
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-BcmApplication module
----------------------------------------------------
-
-.. automodule:: adi_study_watch.application.BcmApplication
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-CommonApplication module
+adpd\_application module
 ------------------------------------------------------
 
-.. automodule:: adi_study_watch.application.CommonApplication
-   :members:
-   :undoc-members:
-   :show-inheritance:
+.. automodule:: adi_study_watch.application.adpd_application
+   :inherited-members:
 
-CommonCallbackApplication module
---------------------------------------------------------------
 
-.. automodule:: adi_study_watch.application.CommonCallbackApplication
-   :members:
-   :undoc-members:
-   :show-inheritance:
+adxl\_application module
+------------------------------------------------------
 
-EcgApplication module
+.. automodule:: adi_study_watch.application.adxl_application
+   :inherited-members:
+
+
+bcm\_application module
+-----------------------------------------------------
+
+.. automodule:: adi_study_watch.application.bcm_application
+   :inherited-members:
+
+
+common\_application module
+--------------------------------------------------------
+
+.. automodule:: adi_study_watch.application.common_application
+   :inherited-members:
+
+
+common\_stream module
 ---------------------------------------------------
 
-.. automodule:: adi_study_watch.application.EcgApplication
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-EdaApplication module
----------------------------------------------------
-
-.. automodule:: adi_study_watch.application.EdaApplication
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-FsApplication module
---------------------------------------------------
-
-.. automodule:: adi_study_watch.application.FsApplication
-   :members:
-   :undoc-members:
-   :show-inheritance:
+.. automodule:: adi_study_watch.application.common_stream
+   :inherited-members:
 
 
+ecg\_application module
+-----------------------------------------------------
 
-Note: Starting and Stopping Fs Log
-
-.. code-block:: python3
-   :emphasize-lines: 5,6
-
-   from adi_study_watch import SDK
-   if __name__ == '__main__':
-      sdk = SDK("COM4")
-      fs_application = sdk.get_fs_application()
-      fs_application.get_application().fs_logStart()
-      fs_application.get_application().fs_logStop()
+.. automodule:: adi_study_watch.application.ecg_application
+   :inherited-members:
 
 
-PedometerApplication module
----------------------------------------------------------
+eda\_application module
+-----------------------------------------------------
 
-.. automodule:: adi_study_watch.application.PedometerApplication
-   :members:
-   :undoc-members:
-   :show-inheritance:
+.. automodule:: adi_study_watch.application.eda_application
+   :inherited-members:
 
-PmApplication module
---------------------------------------------------
 
-.. automodule:: adi_study_watch.application.PmApplication
-   :members:
-   :undoc-members:
-   :show-inheritance:
+fs\_application module
+----------------------------------------------------
 
-PpgApplication module
----------------------------------------------------
+.. automodule:: adi_study_watch.application.fs_application
+   :inherited-members:
 
-.. automodule:: adi_study_watch.application.PpgApplication
-   :members:
-   :undoc-members:
-   :show-inheritance:
 
-TemperatureApplication module
+low\_touch\_application module
+------------------------------------------------------
+
+.. automodule:: adi_study_watch.application.low_touch_application
+   :inherited-members:
+
+pedometer\_application module
 -----------------------------------------------------------
 
-.. automodule:: adi_study_watch.application.TemperatureApplication
-   :members:
-   :undoc-members:
-   :show-inheritance:
+.. automodule:: adi_study_watch.application.pedometer_application
+   :inherited-members:
 
-Module contents
----------------
 
-.. automodule:: adi_study_watch.application
-   :members:
-   :undoc-members:
-   :show-inheritance:
+pm\_application module
+----------------------------------------------------
+
+.. automodule:: adi_study_watch.application.pm_application
+   :inherited-members:
+
+
+ppg\_application module
+-----------------------------------------------------
+
+.. automodule:: adi_study_watch.application.ppg_application
+   :inherited-members:
+
+
+sqi\_application module
+-----------------------------------------------------
+
+.. automodule:: adi_study_watch.application.sqi_application
+   :inherited-members:
+
+
+temperature\_application module
+-------------------------------------------------------------
+
+.. automodule:: adi_study_watch.application.temperature_application
+   :inherited-members:
+
+

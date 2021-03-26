@@ -1,239 +1,278 @@
+
 <!DOCTYPE html>
 
 <html>
-<head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Getting started &#8212; adi_study_watch 4.0.4 documentation</title>
-    <link rel="stylesheet" href="_static/classic.css" type="text/css"/>
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css"/>
-
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to ADI Study Watch SDK documentation! &#8212; ADI Study Watch SDK 4.0.5 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
-
-    <link rel="index" title="Index" href="genindex.html"/>
-    <link rel="search" title="Search" href="search.html"/>
-</head>
-<body>
-<div class="related" role="navigation" aria-label="related navigation">
-    <h3>Navigation</h3>
-    <ul>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
         <li class="right" style="margin-right: 10px">
-            <a href="genindex.html" title="General Index"
-               accesskey="I">index</a></li>
-        <li class="right">
-            <a href="py-modindex.html" title="Python Module Index"
-            >modules</a> |
-        </li>
-        <li class="nav-item nav-item-0"><a href="#">adi_study_watch 4.0.4 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Getting started</a></li>
-    </ul>
-</div>
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">ADI Study Watch SDK 4.0.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Welcome to ADI Study Watch SDK documentation!</a></li> 
+      </ul>
+    </div>  
 
-<div class="document">
-    <div class="documentwrapper">
+    <div class="document">
+      <div class="documentwrapper">
         <div class="bodywrapper">
-            <div class="body" role="main">
-
-                <div class="toctree-wrapper compound">
-                </div>
-                <div class="section" id="getting-started">
-                    <h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a>
-                    </h1>
-                    <div class="section" id="install-the-whl-file">
-                        <h2>Install the whl file<a class="headerlink" href="#install-the-whl-file"
-                                                   title="Permalink to this headline">¶</a></h2>
-                        <p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span>
-                            <span class="pre">adi-study-watch</span></code></p>
-                    </div>
-                    <div class="section" id="firmware-setup">
-                        <h2>Firmware Setup<a class="headerlink" href="#firmware-setup"
-                                             title="Permalink to this headline">¶</a></h2>
-                        <p>Follow the <a class="reference external"
-                                         href="https://github.com/analogdevicesinc/study-watch-sdk/blob/main/bin_Firmware/Study_Watch_Firmware_Upgrade_using_Android_App.docx">link</a>
-                            (docx) to setup firmware for the study watch.</p>
-                    </div>
-                    <div class="section" id="basic-example-using-usb">
-                        <h2>Basic Example using USB:<a class="headerlink" href="#basic-example-using-usb"
-                                                       title="Permalink to this headline">¶</a></h2>
-                        <div class="highlight-python notranslate">
-                            <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span
-                                        class="n">SDK</span>
-
-<span class="c1"># callback function to receive adxl data</span>
-<span class="k">def</span> <span class="nf">callback_adxl</span><span class="p">(</span><span class="n">seq</span><span
-                                        class="p">,</span> <span class="n">data</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span
-                                        class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;t:</span><span
-                                        class="si">{}</span><span class="s2"> x:</span><span class="si">{}</span><span
-                                        class="s2"> y:</span><span class="si">{}</span><span class="s2"> z:</span><span
-                                        class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span
-                                        class="n">format</span><span class="p">(</span><span class="n">d</span><span
-                                        class="o">.</span><span class="n">timestamp</span><span class="p">,</span> <span
-                                        class="n">d</span><span class="o">.</span><span class="n">x</span><span
-                                        class="p">,</span> <span class="n">d</span><span class="o">.</span><span
-                                        class="n">y</span><span class="p">,</span> <span class="n">d</span><span
-                                        class="o">.</span><span class="n">z</span><span class="p">))</span>
-
-
-<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span
-                                        class="p">)</span>
-<span class="n">adxl_application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span
-                                        class="n">get_adxl_application</span><span class="p">(</span><span class="n">callback_adxl</span><span
-                                        class="p">)</span>
-<span class="n">adxl_application</span><span class="o">.</span><span class="n">start_default_stream</span><span
-                                        class="p">()</span>
-<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span
-                                        class="p">)</span>
-<span class="n">adxl_application</span><span class="o">.</span><span class="n">stop_default_stream</span><span
-                                        class="p">()</span>
-</pre>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="section" id="example-using-ble">
-                        <h2>Example using BLE:<a class="headerlink" href="#example-using-ble"
-                                                 title="Permalink to this headline">¶</a></h2>
-                        Connect the BLE with study watch by following the instructions <a
-                            href="https://github.com/analogdevicesinc/study-watch-sdk/blob/main/docs/how_to_use_study_watch_sdk_over_ble.pdf"
-                            target="_blank">here</a> (Windows only).
-                        <div class="highlight-python notranslate">
-                            <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span
-                                        class="n">SDK</span>
+          <div class="body" role="main">
+            
+  <div class="section" id="welcome-to-adi-study-watch-sdk-documentation">
+<h1>Welcome to ADI Study Watch SDK documentation!<a class="headerlink" href="#welcome-to-adi-study-watch-sdk-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="install-the-whl-file">
+<h2>Install the whl file<a class="headerlink" href="#install-the-whl-file" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">adi_study_watch</span></code></p>
+</div>
+<div class="section" id="firmware-setup">
+<h2>Firmware Setup<a class="headerlink" href="#firmware-setup" title="Permalink to this headline">¶</a></h2>
+<p>Follow the <a class="reference external" href="https://github.com/analogdevicesinc/study-watch-sdk/blob/main/bin_Firmware/Study_Watch_Firmware_Upgrade_using_Android_App.docx">link</a> (docx) to setup firmware for the study watch.</p>
+</div>
+<div class="section" id="working-with-hexadecimal-values-in-python">
+<h2>Working with hexadecimal values in python<a class="headerlink" href="#working-with-hexadecimal-values-in-python" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">val</span> <span class="o">=</span> <span class="mi">13</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;0x</span><span class="si">%X</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">val</span> <span class="c1"># convert int value to hexadecimal</span>
+<span class="go"># &#39;0xD&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hex_val</span> <span class="o">=</span> <span class="s1">&#39;0xD&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">int</span><span class="p">(</span><span class="n">hex_val</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span> <span class="c1"># convert hexadecimal value to int</span>
+<span class="go"># 13</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="basic-example-using-usb">
+<h2>Basic Example using USB:<a class="headerlink" href="#basic-example-using-usb" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
 
 <span class="c1"># callback function to receive adxl data</span>
-<span class="k">def</span> <span class="nf">callback_adxl</span><span class="p">(</span><span class="n">seq</span><span
-                                        class="p">,</span> <span class="n">data</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span
-                                        class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;t:</span><span
-                                        class="si">{}</span><span class="s2"> x:</span><span class="si">{}</span><span
-                                        class="s2"> y:</span><span class="si">{}</span><span class="s2"> z:</span><span
-                                        class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span
-                                        class="n">format</span><span class="p">(</span><span class="n">d</span><span
-                                        class="o">.</span><span class="n">timestamp</span><span class="p">,</span> <span
-                                        class="n">d</span><span class="o">.</span><span class="n">x</span><span
-                                        class="p">,</span> <span class="n">d</span><span class="o">.</span><span
-                                        class="n">y</span><span class="p">,</span> <span class="n">d</span><span
-                                        class="o">.</span><span class="n">z</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">callback_adxl</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;stream_data&quot;</span><span class="p">]:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;timestamp&quot;</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;z&quot;</span><span class="p">]))</span>
 
 
-<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM6&quot;</span><span
-                                        class="p">,</span> <span class="n">is_ble</span><span class="o">=</span><span
-                                        class="kc">True</span><span class="p">)</span>
-<span class="n">adxl_application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span
-                                        class="n">get_adxl_application</span><span class="p">(</span><span class="n">callback_adxl</span><span
-                                        class="p">)</span>
-<span class="n">adxl_application</span><span class="o">.</span><span class="n">start_default_stream</span><span
-                                        class="p">()</span>
-<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span
-                                        class="p">)</span>
-<span class="n">adxl_application</span><span class="o">.</span><span class="n">stop_default_stream</span><span
-                                        class="p">()</span>
-</pre>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="section" id="examples">
-                        <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
-                        <p><a class="reference external"
-                              href="https://github.com/analogdevicesinc/study-watch-sdk/tree/main/samples">https://github.com/analogdevicesinc/study-watch-sdk/tree/main/samples</a>
-                        </p>
-                    </div>
-                    <div class="section" id="license">
-                        <h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
-                        <p><a class="reference external"
-                              href="https://github.com/analogdevicesinc/study-watch-sdk/blob/main/LICENSE.pdf">https://github.com/analogdevicesinc/study-watch-sdk/blob/main/LICENSE.pdf</a>
-                        </p>
-                    </div>
-                    <div class="section" id="all-api-modules">
-                        <h2>All API modules:<a class="headerlink" href="#all-api-modules"
-                                               title="Permalink to this headline">¶</a></h2>
-                        <p><a class="reference internal" href="py-modindex.html"><span
-                                class="std std-ref">Module Index</span></a></p>
-                    </div>
-                </div>
-                <div class="section" id="indices-and-tables">
-                    <h1>Indices and tables<a class="headerlink" href="#indices-and-tables"
-                                             title="Permalink to this headline">¶</a></h1>
-                    <ul class="simple">
-                        <li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a>
-                        </p></li>
-                        <li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a>
-                        </p></li>
-                        <li><p><a class="reference internal" href="search.html"><span
-                                class="std std-ref">Search Page</span></a></p></li>
-                    </ul>
-                </div>
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">adxl_application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_adxl_application</span><span class="p">(</span><span class="n">callback_adxl</span><span class="p">)</span>
+<span class="n">adxl_application</span><span class="o">.</span><span class="n">start_default_stream</span><span class="p">()</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">adxl_application</span><span class="o">.</span><span class="n">stop_default_stream</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example-using-ble">
+<h2>Example using Ble:<a class="headerlink" href="#example-using-ble" title="Permalink to this headline">¶</a></h2>
+<p>Connect the BLE with study watch by following the instructions <a class="reference external" href="https://github.com/analogdevicesinc/study-watch-sdk/blob/main/docs/how_to_use_study_watch_sdk_over_ble.pdf">here</a> (Windows only).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="c1"># callback function to receive adxl data</span>
+<span class="k">def</span> <span class="nf">callback_adxl</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;stream_data&quot;</span><span class="p">]:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;timestamp&quot;</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;z&quot;</span><span class="p">]))</span>
 
 
-                <div class="clearer"></div>
-            </div>
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM6&quot;</span><span class="p">,</span> <span class="n">is_ble</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">adxl_application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_adxl_application</span><span class="p">(</span><span class="n">callback_adxl</span><span class="p">)</span>
+<span class="n">adxl_application</span><span class="o">.</span><span class="n">start_default_stream</span><span class="p">()</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">adxl_application</span><span class="o">.</span><span class="n">stop_default_stream</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-to-log-and-download-adxl-stream-data">
+<h2>How to log and download adxl stream data<a class="headerlink" href="#how-to-log-and-download-adxl-stream-data" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="c1"># SDK setup</span>
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">adxl_application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_adxl_application</span><span class="p">()</span>
+<span class="n">fs_application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_fs_application</span><span class="p">()</span>
+
+
+<span class="c1"># START LOGGING</span>
+<span class="n">adxl_application</span><span class="o">.</span><span class="n">start_sensor</span><span class="p">()</span>
+<span class="n">fs_application</span><span class="o">.</span><span class="n">subscribe_stream</span><span class="p">(</span><span class="n">fs_application</span><span class="o">.</span><span class="n">STREAM_ADXL</span><span class="p">)</span>
+<span class="n">fs_application</span><span class="o">.</span><span class="n">start_logging</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fs_application</span><span class="o">.</span><span class="n">get_status</span><span class="p">()[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;status&quot;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;logging...&quot;</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+
+<span class="c1"># STOP LOGGING</span>
+<span class="n">adxl_application</span><span class="o">.</span><span class="n">stop_sensor</span><span class="p">()</span>
+<span class="n">fs_application</span><span class="o">.</span><span class="n">unsubscribe_stream</span><span class="p">(</span><span class="n">fs_application</span><span class="o">.</span><span class="n">STREAM_ADXL</span><span class="p">)</span>
+<span class="n">fs_application</span><span class="o">.</span><span class="n">stop_logging</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fs_application</span><span class="o">.</span><span class="n">get_status</span><span class="p">()[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;status&quot;</span><span class="p">])</span>
+
+<span class="c1"># List all the files available to download.</span>
+<span class="n">files</span> <span class="o">=</span> <span class="n">fs_application</span><span class="o">.</span><span class="n">ls</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;filename&quot;</span><span class="p">])</span>
+
+<span class="c1"># download data from the watch and save it to a file.</span>
+<span class="n">fs_application</span><span class="o">.</span><span class="n">download_file</span><span class="p">(</span><span class="n">files</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;filename&quot;</span><span class="p">],</span> <span class="n">download_to_file</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">display_progress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-to-plot-adxl-data-with-matplotlib">
+<h2>How to plot adxl data with Matplotlib<a class="headerlink" href="#how-to-plot-adxl-data-with-matplotlib" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span>
+<span class="kn">from</span> <span class="nn">matplotlib.animation</span> <span class="kn">import</span> <span class="n">FuncAnimation</span>
+
+<span class="c1"># callback to store adxl data in array, we are only storing 200 values.</span>
+<span class="k">def</span> <span class="nf">callback_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">adxl_time</span><span class="p">,</span> <span class="n">adxl_x</span><span class="p">,</span> <span class="n">adxl_y</span><span class="p">,</span> <span class="n">adxl_z</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">adxl_time</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">200</span><span class="p">:</span>
+        <span class="k">del</span> <span class="n">adxl_time</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+        <span class="k">del</span> <span class="n">adxl_x</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+        <span class="k">del</span> <span class="n">adxl_y</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+        <span class="k">del</span> <span class="n">adxl_z</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;stream_data&quot;</span><span class="p">]:</span>
+        <span class="n">adxl_time</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">[</span><span class="s2">&quot;timestamp&quot;</span><span class="p">])</span>
+        <span class="n">adxl_x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">])</span>
+        <span class="n">adxl_y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">])</span>
+        <span class="n">adxl_z</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">[</span><span class="s2">&quot;z&quot;</span><span class="p">])</span>
+
+<span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">,</span> <span class="n">z_data</span><span class="p">,</span> <span class="n">time</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+
+<span class="c1"># figure and x,y,z line initiated.</span>
+<span class="n">figure</span> <span class="o">=</span> <span class="n">pyplot</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">x_line</span><span class="p">,</span> <span class="o">=</span> <span class="n">pyplot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">x_data</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">y_line</span><span class="p">,</span> <span class="o">=</span> <span class="n">pyplot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">y_data</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">z_line</span><span class="p">,</span> <span class="o">=</span> <span class="n">pyplot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">z_data</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+
+<span class="c1"># plot update function</span>
+<span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">plot_time</span><span class="p">,</span> <span class="n">plot_x_data</span><span class="p">,</span> <span class="n">plot_y_data</span><span class="p">,</span> <span class="n">plot_z_data</span><span class="p">):</span>
+    <span class="n">x_line</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">plot_time</span><span class="p">,</span> <span class="n">plot_x_data</span><span class="p">)</span>
+    <span class="n">y_line</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">plot_time</span><span class="p">,</span> <span class="n">plot_y_data</span><span class="p">)</span>
+    <span class="n">z_line</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">plot_time</span><span class="p">,</span> <span class="n">plot_z_data</span><span class="p">)</span>
+    <span class="n">figure</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">relim</span><span class="p">()</span>
+    <span class="n">figure</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">autoscale_view</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">x_line</span><span class="p">,</span> <span class="n">y_line</span><span class="p">,</span> <span class="n">z_line</span>
+
+<span class="c1"># SDK setup and sensor start</span>
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_adxl_application</span><span class="p">()</span>
+<span class="c1"># setting callback with some reference list to plot from</span>
+<span class="n">application</span><span class="o">.</span><span class="n">set_callback</span><span class="p">(</span><span class="n">callback_data</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">,</span> <span class="n">z_data</span><span class="p">))</span>
+
+<span class="c1"># start sensor</span>
+<span class="n">application</span><span class="o">.</span><span class="n">start_sensor</span><span class="p">()</span>
+<span class="n">application</span><span class="o">.</span><span class="n">subscribe_stream</span><span class="p">()</span>
+
+<span class="c1"># plot started</span>
+<span class="n">animation</span> <span class="o">=</span> <span class="n">FuncAnimation</span><span class="p">(</span><span class="n">figure</span><span class="p">,</span> <span class="n">update</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">fargs</span><span class="o">=</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">,</span> <span class="n">z_data</span><span class="p">))</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="_images/plot.png" src="_images/plot.png" />
+<p>For more detail on <em>FuncAnimation</em> visit matplotlib animation <a class="reference external" href="https://matplotlib.org/api/animation_api.html">api</a>.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/analogdevicesinc/study-watch-sdk/tree/main/samples">https://github.com/analogdevicesinc/study-watch-sdk/tree/main/samples</a></p>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/analogdevicesinc/study-watch-sdk/blob/main/LICENSE.pdf">https://github.com/analogdevicesinc/study-watch-sdk/blob/main/LICENSE.pdf</a></p>
+</div>
+<div class="section" id="all-api-modules">
+<h2>All API modules:<a class="headerlink" href="#all-api-modules" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
         </div>
-    </div>
-    <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-            <h3><a href="#">Table of Contents</a></h3>
-            <ul>
-                <li><a class="reference internal" href="#">Getting started</a>
-                    <ul>
-                        <li><a class="reference internal" href="#install-the-whl-file">Install the whl file</a></li>
-                        <li><a class="reference internal" href="#firmware-setup">Firmware Setup</a></li>
-                        <li><a class="reference internal" href="#basic-example-using-usb">Basic Example using USB:</a>
-                        </li>
-                        <li><a class="reference internal" href="#example-using-ble">Example using Ble:</a></li>
-                        <li><a class="reference internal" href="#examples">Examples</a></li>
-                        <li><a class="reference internal" href="#license">License</a></li>
-                        <li><a class="reference internal" href="#all-api-modules">All API modules:</a></li>
-                    </ul>
-                </li>
-                <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
-            </ul>
+  <h3><a href="#">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Welcome to ADI Study Watch SDK documentation!</a><ul>
+<li><a class="reference internal" href="#install-the-whl-file">Install the whl file</a></li>
+<li><a class="reference internal" href="#firmware-setup">Firmware Setup</a></li>
+<li><a class="reference internal" href="#working-with-hexadecimal-values-in-python">Working with hexadecimal values in python</a></li>
+<li><a class="reference internal" href="#basic-example-using-usb">Basic Example using USB:</a></li>
+<li><a class="reference internal" href="#example-using-ble">Example using Ble:</a></li>
+<li><a class="reference internal" href="#how-to-log-and-download-adxl-stream-data">How to log and download adxl stream data</a></li>
+<li><a class="reference internal" href="#how-to-plot-adxl-data-with-matplotlib">How to plot adxl data with Matplotlib</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+<li><a class="reference internal" href="#license">License</a></li>
+<li><a class="reference internal" href="#all-api-modules">All API modules:</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
 
-            <div role="note" aria-label="source link">
-                <h3>This Page</h3>
-                <ul class="this-page-menu">
-                    <li><a href="_sources/index.rst.txt"
-                           rel="nofollow">Show Source</a></li>
-                </ul>
-            </div>
-            <div id="searchbox" style="display: none" role="search">
-                <h3 id="searchlabel">Quick search</h3>
-                <div class="searchformwrapper">
-                    <form class="search" action="search.html" method="get">
-                        <input type="text" name="q" aria-labelledby="searchlabel"/>
-                        <input type="submit" value="Go"/>
-                    </form>
-                </div>
-            </div>
-            <script>$('#searchbox').show(0);</script>
-        </div>
-    </div>
-    <div class="clearer"></div>
-</div>
-<div class="related" role="navigation" aria-label="related navigation">
-    <h3>Navigation</h3>
-    <ul>
-        <li class="right" style="margin-right: 10px">
-            <a href="genindex.html" title="General Index"
-            >index</a></li>
-        <li class="right">
-            <a href="py-modindex.html" title="Python Module Index"
-            >modules</a> |
-        </li>
-        <li class="nav-item nav-item-0"><a href="#">adi_study_watch 4.0.4 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Getting started</a></li>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
     </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
 </div>
-<div class="footer" role="contentinfo">
-    &#169; Copyright 2020, ADI.
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
-</div>
-</body>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">ADI Study Watch SDK 4.0.5 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Welcome to ADI Study Watch SDK documentation!</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, ADI.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.3.
+    </div>
+  </body>
 </html>

@@ -5,15 +5,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>adi_study_watch package &#8212; adi_study_watch 4.0.4 documentation</title>
-    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <title>adi_study_watch package &#8212; ADI Study Watch SDK 4.0.5 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
     
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" /> 
@@ -27,7 +26,7 @@
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">adi_study_watch 4.0.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">ADI Study Watch SDK 4.0.5 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">adi_study_watch package</a></li> 
       </ul>
     </div>  
@@ -44,834 +43,346 @@
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="adi_study_watch.application.html">adi_study_watch.application package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="adi_study_watch.application.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="adi_study_watch.application.html#module-adi_study_watch.application.Adpd4000Application">Adpd4000Application module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="adi_study_watch.application.html#module-adi_study_watch.application.AdxlApplication">AdxlApplication module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="adi_study_watch.application.html#module-adi_study_watch.application.BcmApplication">BcmApplication module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="adi_study_watch.application.html#module-adi_study_watch.application.CommonApplication">CommonApplication module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="adi_study_watch.application.html#module-adi_study_watch.application.CommonCallbackApplication">CommonCallbackApplication module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="adi_study_watch.application.html#module-adi_study_watch.application.EcgApplication">EcgApplication module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="adi_study_watch.application.html#module-adi_study_watch.application.EdaApplication">EdaApplication module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="adi_study_watch.application.html#module-adi_study_watch.application.FsApplication">FsApplication module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="adi_study_watch.application.html#module-adi_study_watch.application.PedometerApplication">PedometerApplication module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="adi_study_watch.application.html#module-adi_study_watch.application.PmApplication">PmApplication module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="adi_study_watch.application.html#module-adi_study_watch.application.PpgApplication">PpgApplication module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="adi_study_watch.application.html#module-adi_study_watch.application.TemperatureApplication">TemperatureApplication module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="adi_study_watch.application.html#module-adi_study_watch.application">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adi_study_watch.application.html#module-adi_study_watch.application.ad7156_application">ad7156_application module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adi_study_watch.application.html#module-adi_study_watch.application.adpd_application">adpd_application module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adi_study_watch.application.html#module-adi_study_watch.application.adxl_application">adxl_application module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adi_study_watch.application.html#module-adi_study_watch.application.bcm_application">bcm_application module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adi_study_watch.application.html#module-adi_study_watch.application.common_application">common_application module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adi_study_watch.application.html#module-adi_study_watch.application.common_stream">common_stream module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adi_study_watch.application.html#module-adi_study_watch.application.ecg_application">ecg_application module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adi_study_watch.application.html#module-adi_study_watch.application.eda_application">eda_application module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adi_study_watch.application.html#module-adi_study_watch.application.fs_application">fs_application module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adi_study_watch.application.html#module-adi_study_watch.application.low_touch_application">low_touch_application module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adi_study_watch.application.html#module-adi_study_watch.application.pedometer_application">pedometer_application module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adi_study_watch.application.html#module-adi_study_watch.application.pm_application">pm_application module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adi_study_watch.application.html#module-adi_study_watch.application.ppg_application">ppg_application module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adi_study_watch.application.html#module-adi_study_watch.application.sqi_application">sqi_application module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adi_study_watch.application.html#module-adi_study_watch.application.temperature_application">temperature_application module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="adi_study_watch.core.html">adi_study_watch.core package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="adi_study_watch.core.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="adi_study_watch.core.enums.html">adi_study_watch.core.enums package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="adi_study_watch.core.enums.html#module-adi_study_watch.core.enums.ad7156_enums">ad7156_enums module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="adi_study_watch.core.enums.html#module-adi_study_watch.core.enums.adpd_enums">adpd_enums module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="adi_study_watch.core.enums.html#module-adi_study_watch.core.enums.adxl_enums">adxl_enums module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="adi_study_watch.core.enums.html#module-adi_study_watch.core.enums.bcm_enums">bcm_enums module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="adi_study_watch.core.enums.html#module-adi_study_watch.core.enums.common_enums">common_enums module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="adi_study_watch.core.enums.html#module-adi_study_watch.core.enums.dcb_enums">dcb_enums module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="adi_study_watch.core.enums.html#module-adi_study_watch.core.enums.display_enums">display_enums module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="adi_study_watch.core.enums.html#module-adi_study_watch.core.enums.eda_enums">eda_enums module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="adi_study_watch.core.enums.html#module-adi_study_watch.core.enums.fs_enums">fs_enums module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="adi_study_watch.core.enums.html#module-adi_study_watch.core.enums.pm_enums">pm_enums module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="adi_study_watch.core.enums.html#module-adi_study_watch.core.enums.ppg_enums">ppg_enums module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="adi_study_watch.core.enums.html#module-adi_study_watch.core.enums.sqi_enum">sqi_enum module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="adi_study_watch.core.packets.html">adi_study_watch.core.packets package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="adi_study_watch.core.packets.html#module-adi_study_watch.core.packets.adpd_packets">adpd_packets module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="adi_study_watch.core.packets.html#module-adi_study_watch.core.packets.adxl_packets">adxl_packets module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="adi_study_watch.core.packets.html#module-adi_study_watch.core.packets.bcm_packets">bcm_packets module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="adi_study_watch.core.packets.html#module-adi_study_watch.core.packets.command_packet">command_packet module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="adi_study_watch.core.packets.html#module-adi_study_watch.core.packets.common_packets">common_packets module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="adi_study_watch.core.packets.html#module-adi_study_watch.core.packets.display_packets">display_packets module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="adi_study_watch.core.packets.html#module-adi_study_watch.core.packets.eda_packets">eda_packets module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="adi_study_watch.core.packets.html#module-adi_study_watch.core.packets.fs_packets">fs_packets module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="adi_study_watch.core.packets.html#module-adi_study_watch.core.packets.pm_packets">pm_packets module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="adi_study_watch.core.packets.html#module-adi_study_watch.core.packets.ppg_packets">ppg_packets module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="adi_study_watch.core.packets.html#module-adi_study_watch.core.packets.sqi_packets">sqi_packets module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="adi_study_watch.core.packets.html#module-adi_study_watch.core.packets.stream_data_packets">stream_data_packets module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="adi_study_watch.core.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adi_study_watch.core.html#module-adi_study_watch.core.packet_manager">core.packet_manager module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adi_study_watch.core.html#module-adi_study_watch.core.utils">core.utils module</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div class="section" id="status-code-and-its-meaning">
-<h2>Status code and its meaning<a class="headerlink" href="#status-code-and-its-meaning" title="Permalink to this headline">¶</a></h2>
-<p>Common Stream status code:</p>
-<ul class="simple">
-<li><p>0: ‘M2M2_APP_COMMON_STATUS_OK’</p></li>
-<li><p>1: ‘M2M2_APP_COMMON_STATUS_ERROR’</p></li>
-<li><p>2: ‘M2M2_APP_COMMON_STATUS_STREAM_STARTED’</p></li>
-<li><p>3: ‘M2M2_APP_COMMON_STATUS_STREAM_STOPPED’</p></li>
-<li><p>4: ‘M2M2_APP_COMMON_STATUS_STREAM_IN_PROGRESS’</p></li>
-<li><p>5: ‘M2M2_APP_COMMON_STATUS_STREAM_DEACTIVATED’</p></li>
-<li><p>6: ‘M2M2_APP_COMMON_STATUS_STREAM_COUNT_DECREMENT’</p></li>
-<li><p>7: ‘M2M2_APP_COMMON_STATUS_STREAM_NOT_STARTED’</p></li>
-<li><p>8: ‘M2M2_APP_COMMON_STATUS_STREAM_NOT_STOPPED’</p></li>
-<li><p>9: ‘M2M2_APP_COMMON_STATUS_SUBSCRIBER_ADDED’</p></li>
-<li><p>64: ‘M2M2_FILE_SYS_ERR_LOWEST’</p></li>
-<li><p>65: ‘M2M2_FILE_SYS_STATUS_OK’</p></li>
-<li><p>66: ‘M2M2_FILE_SYS_STATUS_ERROR’</p></li>
-<li><p>67: ‘M2M2_FILE_SYS_END_OF_FILE’</p></li>
-<li><p>68: ‘M2M2_FILE_SYS_END_OF_DIR’</p></li>
-<li><p>69: ‘M2M2_FILE_SYS_ERR_INVALID’</p></li>
-<li><p>70: ‘M2M2_FILE_SYS_ERR_ARGS’</p></li>
-<li><p>71: ‘M2M2_FILE_SYS_ERR_FORMAT’</p></li>
-<li><p>72: ‘M2M2_FILE_SYS_ERR_MEMORY_FULL’</p></li>
-<li><p>73: ‘M2M2_FILE_SYS_ERR_LOG_FORCE_STOPPED’</p></li>
-<li><p>74: ‘M2M2_FILE_SYS_ERR_MAX_FILE_COUNT’</p></li>
-<li><p>75: ‘M2M2_FILE_SYS_CONFIG_FILE_FOUND’</p></li>
-<li><p>76: ‘M2M2_FILE_SYS_CONFIG_FILE_NOT_FOUND’</p></li>
-<li><p>255: ‘M2M2_FILE_SYS_ERR_NOT_CHKD’</p></li>
-</ul>
-<p>File status:</p>
-<ul class="simple">
-<li><p>0: ‘M2M2_APP_COMMON_STATUS_OK’</p></li>
-<li><p>1: ‘M2M2_APP_COMMON_STATUS_ERROR’</p></li>
-<li><p>2: ‘M2M2_APP_COMMON_STATUS_INVALID’</p></li>
-<li><p>3: ‘M2M2_APP_COMMON_STATUS_DEVICE_ERROR’</p></li>
-</ul>
-<p>File system:</p>
-<ul class="simple">
-<li><p>0: ‘OPERATION_NOT_SUPPORTED_FOR_THIS_DEVICE’</p></li>
-<li><p>1: ‘UNKNOWN_DEVICE’</p></li>
-<li><p>2: ‘LOAD_CFG_FAILED’</p></li>
-<li><p>3: ‘CLOCK_CALIBRATE_FAILED’</p></li>
-<li><p>4: ‘SET_SLOT_FAILED’</p></li>
-<li><p>5: ‘SUBSCRIBE_FAILED’</p></li>
-<li><p>6: ‘SUBSCRIBED’</p></li>
-<li><p>7: ‘STREAM_START_FAILED’</p></li>
-<li><p>8: ‘STREAM_STARTED’</p></li>
-<li><p>9: ‘STREAM_STOP_FAILED’</p></li>
-<li><p>10: ‘STREAM_STOPPED’</p></li>
-<li><p>11: ‘UNSUBSCRIBE_FAILED’</p></li>
-<li><p>12: ‘UNSUBSCRIBED’</p></li>
-<li><p>13: ‘PPG_LOAD_LCFG_FAILED’</p></li>
-<li><p>14: ‘LCFG_WRITE_FAILED’</p></li>
-<li><p>15: ‘AD7689_START_FAILED’</p></li>
-<li><p>16: ‘AD7689_STOP_FAILED’</p></li>
-<li><p>17: ‘AD5940_START_FAILED’</p></li>
-<li><p>18: ‘AD5940_STOP_FAILED’</p></li>
-<li><p>19: ‘SET_FREQ_FAILED’</p></li>
-<li><p>20: ‘FS_SUBSCRIBE_FAILED’</p></li>
-<li><p>21: ‘FS_UNSUBSCRIBE_FAILED’</p></li>
-<li><p>22: ‘FS_STATUS_ERROR’</p></li>
-<li><p>23: ‘APP_COMMON_ERROR’</p></li>
-<li><p>24: ‘FS_ERR_INVALID’</p></li>
-<li><p>25: ‘FS_ERR_CONFIG_FILE_POSITION’</p></li>
-<li><p>26: ‘FS_ERR_MAX_FILE_COUNT’</p></li>
-<li><p>27: ‘LOGGING_NOT_STARTED’</p></li>
-<li><p>28: ‘LOGGING_STARTED’</p></li>
-<li><p>29: ‘LOGGING_STOPPED’</p></li>
-<li><p>30: ‘FILE_NOT_CLOSED’</p></li>
-<li><p>31: ‘FILE_NOT_OPENED’</p></li>
-<li><p>32: ‘STREAM_IN_PROGRESS’</p></li>
-</ul>
-<p>Battery State:</p>
-<ul class="simple">
-<li><p>1: ‘M2M2_PM_SYS_BAT_STATE_NOT_AVAIL’</p></li>
-<li><p>2: ‘M2M2_PM_SYS_BAT_STATE_NOT_CHARGING’</p></li>
-<li><p>3: ‘M2M2_PM_SYS_BAT_STATE_CHARGING’</p></li>
-<li><p>4: ‘M2M2_PM_SYS_BAT_STATE_COMPLETE’</p></li>
-<li><p>5: ‘M2M2_PM_SYS_BAT_STATE_DETECTION’</p></li>
-<li><p>6: ‘M2M2_PM_SYS_BAT_STATE_CHARGE_ERR’</p></li>
-</ul>
-<p>System Alert:</p>
-<ul class="simple">
-<li><p>1: ‘FILE_SYS_LOG_STOPPED_MEMORY_FULL’</p></li>
-<li><p>2: ‘FILE_SYS_LOG_STOPPED_LOW_BATTERY’</p></li>
-<li><p>3: ‘USER_CONFIG_AUTO_LOGGING_STARTED’</p></li>
-<li><p>4: ‘USER_CONFIG_AUTO_LOGGING_STOPPED’</p></li>
-<li><p>5: ‘USER_CONFIG_AUTO_LOGGING_NOT_STARTED_MEMORY_FULL_ERR’</p></li>
-<li><p>6: ‘USER_CONFIG_AUTO_LOGGING_NOT_STARTED__MAX_FILE_ERR’</p></li>
-<li><p>7: ‘FILE_SYS_LOG_STOPPED_THROUGH_BUTTON_A’</p></li>
-<li><p>8: ‘USER_CONFIG_AUTO_LOGGING_WRIST_OFF_DETECTED’</p></li>
-<li><p>9: ‘USER_CONFIG_AUTO_LOGGING_STOPPED_LOW_BATTERY’</p></li>
-<li><p>10: ‘ADI_SDK_PACKET_TIMED_OUT’</p></li>
-</ul>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-adi_study_watch.SDK">
-<span id="adi-study-watch-sdk-module"></span><h2>adi_study_watch.SDK module<a class="headerlink" href="#module-adi_study_watch.SDK" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-adi_study_watch.sdk">
+<span id="adi-study-watch-sdk-module"></span><h2>adi_study_watch.sdk module<a class="headerlink" href="#module-adi_study_watch.sdk" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
-<dt id="adi_study_watch.SDK.SDK">
-<em class="property">class </em><code class="sig-prename descclassname">adi_study_watch.SDK.</code><code class="sig-name descname">SDK</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">serial_port</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">is_ble</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">baud_rate</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">921600</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.SDK.SDK" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>SDK class</p>
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.AD5940_START_FAILED">
-<code class="sig-name descname">AD5940_START_FAILED</code><em class="property"> = 17</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.AD5940_START_FAILED" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.AD5940_STOP_FAILED">
-<code class="sig-name descname">AD5940_STOP_FAILED</code><em class="property"> = 18</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.AD5940_STOP_FAILED" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.AD7689_START_FAILED">
-<code class="sig-name descname">AD7689_START_FAILED</code><em class="property"> = 15</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.AD7689_START_FAILED" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.AD7689_STOP_FAILED">
-<code class="sig-name descname">AD7689_STOP_FAILED</code><em class="property"> = 16</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.AD7689_STOP_FAILED" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.ADPD107CHESTSTRAP">
-<code class="sig-name descname">ADPD107CHESTSTRAP</code><em class="property"> = 3</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.ADPD107CHESTSTRAP" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.ADPD107WATCH">
-<code class="sig-name descname">ADPD107WATCH</code><em class="property"> = 0</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.ADPD107WATCH" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.ADPD185WATCH">
-<code class="sig-name descname">ADPD185WATCH</code><em class="property"> = 1</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.ADPD185WATCH" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.ADPD188WATCH">
-<code class="sig-name descname">ADPD188WATCH</code><em class="property"> = 2</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.ADPD188WATCH" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.ADPD_SENSOR_INTERRUPT">
-<code class="sig-name descname">ADPD_SENSOR_INTERRUPT</code><em class="property"> = 13</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.ADPD_SENSOR_INTERRUPT" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.ADPD_SENSOR_STREAM1">
-<code class="sig-name descname">ADPD_SENSOR_STREAM1</code><em class="property"> = 1</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.ADPD_SENSOR_STREAM1" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.ADPD_SENSOR_STREAM10">
-<code class="sig-name descname">ADPD_SENSOR_STREAM10</code><em class="property"> = 10</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.ADPD_SENSOR_STREAM10" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.ADPD_SENSOR_STREAM11">
-<code class="sig-name descname">ADPD_SENSOR_STREAM11</code><em class="property"> = 11</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.ADPD_SENSOR_STREAM11" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.ADPD_SENSOR_STREAM12">
-<code class="sig-name descname">ADPD_SENSOR_STREAM12</code><em class="property"> = 12</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.ADPD_SENSOR_STREAM12" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.ADPD_SENSOR_STREAM2">
-<code class="sig-name descname">ADPD_SENSOR_STREAM2</code><em class="property"> = 2</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.ADPD_SENSOR_STREAM2" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.ADPD_SENSOR_STREAM3">
-<code class="sig-name descname">ADPD_SENSOR_STREAM3</code><em class="property"> = 3</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.ADPD_SENSOR_STREAM3" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.ADPD_SENSOR_STREAM4">
-<code class="sig-name descname">ADPD_SENSOR_STREAM4</code><em class="property"> = 4</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.ADPD_SENSOR_STREAM4" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.ADPD_SENSOR_STREAM5">
-<code class="sig-name descname">ADPD_SENSOR_STREAM5</code><em class="property"> = 5</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.ADPD_SENSOR_STREAM5" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.ADPD_SENSOR_STREAM6">
-<code class="sig-name descname">ADPD_SENSOR_STREAM6</code><em class="property"> = 6</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.ADPD_SENSOR_STREAM6" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.ADPD_SENSOR_STREAM7">
-<code class="sig-name descname">ADPD_SENSOR_STREAM7</code><em class="property"> = 7</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.ADPD_SENSOR_STREAM7" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.ADPD_SENSOR_STREAM8">
-<code class="sig-name descname">ADPD_SENSOR_STREAM8</code><em class="property"> = 8</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.ADPD_SENSOR_STREAM8" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.ADPD_SENSOR_STREAM9">
-<code class="sig-name descname">ADPD_SENSOR_STREAM9</code><em class="property"> = 9</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.ADPD_SENSOR_STREAM9" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.APP_COMMON_ERROR">
-<code class="sig-name descname">APP_COMMON_ERROR</code><em class="property"> = 23</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.APP_COMMON_ERROR" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.CLOCK_CALIBRATE_FAILED">
-<code class="sig-name descname">CLOCK_CALIBRATE_FAILED</code><em class="property"> = 3</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.CLOCK_CALIBRATE_FAILED" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.FILE_NOT_CLOSED">
-<code class="sig-name descname">FILE_NOT_CLOSED</code><em class="property"> = 30</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.FILE_NOT_CLOSED" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.FILE_NOT_OPENED">
-<code class="sig-name descname">FILE_NOT_OPENED</code><em class="property"> = 31</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.FILE_NOT_OPENED" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.FILE_SYS_CONFIG_FILE_FOUND">
-<code class="sig-name descname">FILE_SYS_CONFIG_FILE_FOUND</code><em class="property"> = 75</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.FILE_SYS_CONFIG_FILE_FOUND" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.FILE_SYS_CONFIG_FILE_NOT_FOUND">
-<code class="sig-name descname">FILE_SYS_CONFIG_FILE_NOT_FOUND</code><em class="property"> = 76</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.FILE_SYS_CONFIG_FILE_NOT_FOUND" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.FILE_SYS_ERR_CRITICAL_BATTERY_LEVEL">
-<code class="sig-name descname">FILE_SYS_ERR_CRITICAL_BATTERY_LEVEL</code><em class="property"> = 66</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.FILE_SYS_ERR_CRITICAL_BATTERY_LEVEL" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.FILE_SYS_ERR_MAX_FILE_COUNT">
-<code class="sig-name descname">FILE_SYS_ERR_MAX_FILE_COUNT</code><em class="property"> = 74</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.FILE_SYS_ERR_MAX_FILE_COUNT" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.FILE_SYS_ERR_MEMORY_FULL">
-<code class="sig-name descname">FILE_SYS_ERR_MEMORY_FULL</code><em class="property"> = 72</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.FILE_SYS_ERR_MEMORY_FULL" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.FILE_SYS_STREAM_IN_PROGRESS">
-<code class="sig-name descname">FILE_SYS_STREAM_IN_PROGRESS</code><em class="property"> = 4</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.FILE_SYS_STREAM_IN_PROGRESS" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.FILE_SYS_STREAM_NOT_STARTED">
-<code class="sig-name descname">FILE_SYS_STREAM_NOT_STARTED</code><em class="property"> = 7</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.FILE_SYS_STREAM_NOT_STARTED" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.FIRMWARE_TS_PER_MS">
-<code class="sig-name descname">FIRMWARE_TS_PER_MS</code><em class="property"> = 32.0</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.FIRMWARE_TS_PER_MS" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.FS_ERR_CONFIG_FILE_POSITION">
-<code class="sig-name descname">FS_ERR_CONFIG_FILE_POSITION</code><em class="property"> = 25</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.FS_ERR_CONFIG_FILE_POSITION" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.FS_ERR_INVALID">
-<code class="sig-name descname">FS_ERR_INVALID</code><em class="property"> = 24</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.FS_ERR_INVALID" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.FS_ERR_MAX_FILE_COUNT">
-<code class="sig-name descname">FS_ERR_MAX_FILE_COUNT</code><em class="property"> = 26</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.FS_ERR_MAX_FILE_COUNT" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.FS_STATUS_ERROR">
-<code class="sig-name descname">FS_STATUS_ERROR</code><em class="property"> = 22</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.FS_STATUS_ERROR" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.FS_SUBSCRIBE_FAILED">
-<code class="sig-name descname">FS_SUBSCRIBE_FAILED</code><em class="property"> = 20</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.FS_SUBSCRIBE_FAILED" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.FS_UNSUBSCRIBE_FAILED">
-<code class="sig-name descname">FS_UNSUBSCRIBE_FAILED</code><em class="property"> = 21</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.FS_UNSUBSCRIBE_FAILED" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.LCFG_WRITE_FAILED">
-<code class="sig-name descname">LCFG_WRITE_FAILED</code><em class="property"> = 14</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.LCFG_WRITE_FAILED" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.LOAD_CFG_FAILED">
-<code class="sig-name descname">LOAD_CFG_FAILED</code><em class="property"> = 2</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.LOAD_CFG_FAILED" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.LOGGING_NOT_STARTED">
-<code class="sig-name descname">LOGGING_NOT_STARTED</code><em class="property"> = 27</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.LOGGING_NOT_STARTED" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.LOGGING_STARTED">
-<code class="sig-name descname">LOGGING_STARTED</code><em class="property"> = 28</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.LOGGING_STARTED" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.LOGGING_STOPPED">
-<code class="sig-name descname">LOGGING_STOPPED</code><em class="property"> = 29</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.LOGGING_STOPPED" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.M2M2_FILE_SYS_STATUS_ERROR">
-<code class="sig-name descname">M2M2_FILE_SYS_STATUS_ERROR</code><em class="property"> = 66</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.M2M2_FILE_SYS_STATUS_ERROR" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.M2M2_FILE_SYS_STATUS_OK">
-<code class="sig-name descname">M2M2_FILE_SYS_STATUS_OK</code><em class="property"> = 65</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.M2M2_FILE_SYS_STATUS_OK" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.OPERATION_NOT_SUPPORTED_FOR_THIS_DEVICE">
-<code class="sig-name descname">OPERATION_NOT_SUPPORTED_FOR_THIS_DEVICE</code><em class="property"> = 0</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.OPERATION_NOT_SUPPORTED_FOR_THIS_DEVICE" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.OPTICAL_BOARD_103">
-<code class="sig-name descname">OPTICAL_BOARD_103</code><em class="property"> = 5</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.OPTICAL_BOARD_103" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.OPTICAL_BOARD_108">
-<code class="sig-name descname">OPTICAL_BOARD_108</code><em class="property"> = 6</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.OPTICAL_BOARD_108" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.OPTICAL_BOARD_4000">
-<code class="sig-name descname">OPTICAL_BOARD_4000</code><em class="property"> = 7</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.OPTICAL_BOARD_4000" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.OPTICAL_BOARD_4100">
-<code class="sig-name descname">OPTICAL_BOARD_4100</code><em class="property"> = 8</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.OPTICAL_BOARD_4100" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.PM_SYS_STATUS_ENABLE_USER_CONFIG_LOG_FAILED">
-<code class="sig-name descname">PM_SYS_STATUS_ENABLE_USER_CONFIG_LOG_FAILED</code><em class="property"> = 70</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.PM_SYS_STATUS_ENABLE_USER_CONFIG_LOG_FAILED" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.PM_SYS_STATUS_ERROR">
-<code class="sig-name descname">PM_SYS_STATUS_ERROR</code><em class="property"> = 66</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.PM_SYS_STATUS_ERROR" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.PM_SYS_STATUS_OK">
-<code class="sig-name descname">PM_SYS_STATUS_OK</code><em class="property"> = 65</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.PM_SYS_STATUS_OK" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.PM_SYS_STATUS_USER_CONFIG_LOG_ENABLED">
-<code class="sig-name descname">PM_SYS_STATUS_USER_CONFIG_LOG_ENABLED</code><em class="property"> = 71</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.PM_SYS_STATUS_USER_CONFIG_LOG_ENABLED" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.PPG_LOAD_LCFG_FAILED">
-<code class="sig-name descname">PPG_LOAD_LCFG_FAILED</code><em class="property"> = 13</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.PPG_LOAD_LCFG_FAILED" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.RAW_DATA_ADPD_A_4CH_16b">
-<code class="sig-name descname">RAW_DATA_ADPD_A_4CH_16b</code><em class="property"> = 0</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.RAW_DATA_ADPD_A_4CH_16b" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.RAW_DATA_ADPD_A_4CH_32b">
-<code class="sig-name descname">RAW_DATA_ADPD_A_4CH_32b</code><em class="property"> = 1</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.RAW_DATA_ADPD_A_4CH_32b" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.RAW_DATA_ADPD_A_SUM_16b">
-<code class="sig-name descname">RAW_DATA_ADPD_A_SUM_16b</code><em class="property"> = 2</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.RAW_DATA_ADPD_A_SUM_16b" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.RAW_DATA_ADPD_A_SUM_32b">
-<code class="sig-name descname">RAW_DATA_ADPD_A_SUM_32b</code><em class="property"> = 3</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.RAW_DATA_ADPD_A_SUM_32b" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.RAW_DATA_ADPD_B_4CH_16b">
-<code class="sig-name descname">RAW_DATA_ADPD_B_4CH_16b</code><em class="property"> = 8</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.RAW_DATA_ADPD_B_4CH_16b" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.RAW_DATA_ADPD_B_4CH_32b">
-<code class="sig-name descname">RAW_DATA_ADPD_B_4CH_32b</code><em class="property"> = 9</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.RAW_DATA_ADPD_B_4CH_32b" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.RAW_DATA_ADPD_B_SUM_16b">
-<code class="sig-name descname">RAW_DATA_ADPD_B_SUM_16b</code><em class="property"> = 10</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.RAW_DATA_ADPD_B_SUM_16b" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.RAW_DATA_ADPD_B_SUM_32b">
-<code class="sig-name descname">RAW_DATA_ADPD_B_SUM_32b</code><em class="property"> = 11</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.RAW_DATA_ADPD_B_SUM_32b" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.SDK_DATA_STREAM_TIME_LIMIT_SECS">
-<code class="sig-name descname">SDK_DATA_STREAM_TIME_LIMIT_SECS</code><em class="property"> = 10</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.SDK_DATA_STREAM_TIME_LIMIT_SECS" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.SDK_ERR">
-<code class="sig-name descname">SDK_ERR</code><em class="property"> = 1</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.SDK_ERR" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.SDK_ERR_DEVICE_ERR">
-<code class="sig-name descname">SDK_ERR_DEVICE_ERR</code><em class="property"> = 3</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.SDK_ERR_DEVICE_ERR" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.SDK_ERR_INVALID_VALUE">
-<code class="sig-name descname">SDK_ERR_INVALID_VALUE</code><em class="property"> = 2</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.SDK_ERR_INVALID_VALUE" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.SDK_ERR_PACKET_TIMEOUT">
-<code class="sig-name descname">SDK_ERR_PACKET_TIMEOUT</code><em class="property"> = 4</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.SDK_ERR_PACKET_TIMEOUT" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.SDK_OK">
-<code class="sig-name descname">SDK_OK</code><em class="property"> = 0</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.SDK_OK" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.SDK_TIMEOUT">
-<code class="sig-name descname">SDK_TIMEOUT</code><em class="property"> = 0</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.SDK_TIMEOUT" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.SECONDS_IN_MILLIS">
-<code class="sig-name descname">SECONDS_IN_MILLIS</code><em class="property"> = 1000</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.SECONDS_IN_MILLIS" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.SENSORBOARD3">
-<code class="sig-name descname">SENSORBOARD3</code><em class="property"> = 4</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.SENSORBOARD3" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.SET_FREQ_FAILED">
-<code class="sig-name descname">SET_FREQ_FAILED</code><em class="property"> = 19</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.SET_FREQ_FAILED" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.SET_SLOT_FAILED">
-<code class="sig-name descname">SET_SLOT_FAILED</code><em class="property"> = 4</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.SET_SLOT_FAILED" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.STREAM_IN_PROGRESS">
-<code class="sig-name descname">STREAM_IN_PROGRESS</code><em class="property"> = 32</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.STREAM_IN_PROGRESS" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.STREAM_STARTED">
-<code class="sig-name descname">STREAM_STARTED</code><em class="property"> = 8</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.STREAM_STARTED" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.STREAM_START_FAILED">
-<code class="sig-name descname">STREAM_START_FAILED</code><em class="property"> = 7</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.STREAM_START_FAILED" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.STREAM_STOPPED">
-<code class="sig-name descname">STREAM_STOPPED</code><em class="property"> = 10</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.STREAM_STOPPED" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.STREAM_STOP_FAILED">
-<code class="sig-name descname">STREAM_STOP_FAILED</code><em class="property"> = 9</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.STREAM_STOP_FAILED" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.STUDY_WATCH">
-<code class="sig-name descname">STUDY_WATCH</code><em class="property"> = 9</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.STUDY_WATCH" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.SUBSCRIBED">
-<code class="sig-name descname">SUBSCRIBED</code><em class="property"> = 6</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.SUBSCRIBED" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.SUBSCRIBE_FAILED">
-<code class="sig-name descname">SUBSCRIBE_FAILED</code><em class="property"> = 5</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.SUBSCRIBE_FAILED" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.SYS_BAT_STATE_CHARGE_ERR">
-<code class="sig-name descname">SYS_BAT_STATE_CHARGE_ERR</code><em class="property"> = 5</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.SYS_BAT_STATE_CHARGE_ERR" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.SYS_BAT_STATE_CHARGING">
-<code class="sig-name descname">SYS_BAT_STATE_CHARGING</code><em class="property"> = 2</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.SYS_BAT_STATE_CHARGING" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.SYS_BAT_STATE_COMPLETE">
-<code class="sig-name descname">SYS_BAT_STATE_COMPLETE</code><em class="property"> = 3</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.SYS_BAT_STATE_COMPLETE" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.SYS_BAT_STATE_DETECTION">
-<code class="sig-name descname">SYS_BAT_STATE_DETECTION</code><em class="property"> = 4</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.SYS_BAT_STATE_DETECTION" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.SYS_BAT_STATE_NOT_AVAIL">
-<code class="sig-name descname">SYS_BAT_STATE_NOT_AVAIL</code><em class="property"> = 0</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.SYS_BAT_STATE_NOT_AVAIL" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.SYS_BAT_STATE_NOT_CHARGING">
-<code class="sig-name descname">SYS_BAT_STATE_NOT_CHARGING</code><em class="property"> = 1</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.SYS_BAT_STATE_NOT_CHARGING" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.UNKNOWN_DEVICE">
-<code class="sig-name descname">UNKNOWN_DEVICE</code><em class="property"> = 1</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.UNKNOWN_DEVICE" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.UNSUBSCRIBED">
-<code class="sig-name descname">UNSUBSCRIBED</code><em class="property"> = 12</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.UNSUBSCRIBED" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="adi_study_watch.SDK.SDK.UNSUBSCRIBE_FAILED">
-<code class="sig-name descname">UNSUBSCRIBE_FAILED</code><em class="property"> = 11</em><a class="headerlink" href="#adi_study_watch.SDK.SDK.UNSUBSCRIBE_FAILED" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<dt id="adi_study_watch.sdk.SDK">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">adi_study_watch.sdk.</span></code><code class="sig-name descname"><span class="pre">SDK</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">serial_port_address</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_ble</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baud_rate</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">921600</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logging_filename</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threads</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.sdk.SDK" title="Permalink to this definition">¶</a></dt>
+<dd><p>SDK class</p>
 <dl class="py method">
-<dt id="adi_study_watch.SDK.SDK.dispatch">
-<code class="sig-name descname">dispatch</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">byte</span><span class="p">:</span> <span class="n">List<span class="p">[</span>int<span class="p">]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.SDK.SDK.dispatch" title="Permalink to this definition">¶</a></dt>
-<dd><p>dispatch bytes</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="adi_study_watch.SDK.SDK.dispatch_fs">
-<code class="sig-name descname">dispatch_fs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">byte</span><span class="p">:</span> <span class="n">List<span class="p">[</span>int<span class="p">]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.SDK.SDK.dispatch_fs" title="Permalink to this definition">¶</a></dt>
-<dd><p>dispatch fs</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="adi_study_watch.SDK.SDK.dispatch_fs_system_alert">
-<code class="sig-name descname">dispatch_fs_system_alert</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">byte</span><span class="p">:</span> <span class="n">List<span class="p">[</span>int<span class="p">]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.SDK.SDK.dispatch_fs_system_alert" title="Permalink to this definition">¶</a></dt>
-<dd><p>dispatch fs system alert</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="adi_study_watch.SDK.SDK.dispatch_pm">
-<code class="sig-name descname">dispatch_pm</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">byte</span><span class="p">:</span> <span class="n">List<span class="p">[</span>int<span class="p">]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.SDK.SDK.dispatch_pm" title="Permalink to this definition">¶</a></dt>
-<dd><p>dispatch PM bytes</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="adi_study_watch.SDK.SDK.get_address">
-<code class="sig-name descname">get_address</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.SDK.SDK.get_address" title="Permalink to this definition">¶</a></dt>
-<dd><p>returns address</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="adi_study_watch.SDK.SDK.get_adpd4000_application">
-<code class="sig-name descname">get_adpd4000_application</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">callback_function</span><span class="p">:</span> <span class="n">Callable<span class="p">[</span><span class="p">[</span>int<span class="p">, </span>Any<span class="p">]</span><span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.SDK.SDK.get_adpd4000_application" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates an adpd400 application object</p>
+<dt id="adi_study_watch.sdk.SDK.get_ad7156_application">
+<code class="sig-name descname"><span class="pre">get_ad7156_application</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.sdk.SDK.get_ad7156_application" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a ad7156 application object</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>callback_function</strong> (<em>Callable</em><em>[</em><em>[</em><em>int</em><em>, </em><em>Any</em><em>]</em><em>, </em><em>None</em><em>]</em>) – callback function for adpd4000 streams</p>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>a AD7156 Application</p>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>an Adpd4000 Application</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="adi_study_watch.application.html#adi_study_watch.application.Adpd4000Application.Adpd4000Application" title="adi_study_watch.application.Adpd4000Application.Adpd4000Application">Adpd4000Application</a></p>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="adi_study_watch.application.html#adi_study_watch.application.ad7156_application.AD7156Application" title="adi_study_watch.application.ad7156_application.AD7156Application">AD7156Application</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="adi_study_watch.SDK.SDK.get_adxl_application">
-<code class="sig-name descname">get_adxl_application</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">callback_function</span><span class="p">:</span> <span class="n">Callable<span class="p">[</span><span class="p">[</span>int<span class="p">, </span>Any<span class="p">]</span><span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.SDK.SDK.get_adxl_application" title="Permalink to this definition">¶</a></dt>
+<dt id="adi_study_watch.sdk.SDK.get_adpd_application">
+<code class="sig-name descname"><span class="pre">get_adpd_application</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">callback_function_default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.sdk.SDK.get_adpd_application" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an adpd application object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>callback_function_default</strong> (<em>Callable</em>) – callback function for all adpd slot stream.</p></li>
+<li><p><strong>args</strong> – optional arguments that will be passed back with the callback.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>an Adpd Application</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="adi_study_watch.application.html#adi_study_watch.application.adpd_application.ADPDApplication" title="adi_study_watch.application.adpd_application.ADPDApplication">ADPDApplication</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="adi_study_watch.sdk.SDK.get_adxl_application">
+<code class="sig-name descname"><span class="pre">get_adxl_application</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">callback_function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.sdk.SDK.get_adxl_application" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates an adxl application object</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>callback_function</strong> (<em>Callable</em><em>[</em><em>[</em><em>int</em><em>, </em><em>Any</em><em>]</em><em>, </em><em>None</em><em>]</em>) – callback function for adxl stream</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>callback_function</strong> (<em>Callable</em>) – callback function for adxl stream</p></li>
+<li><p><strong>args</strong> – optional arguments that will be passed back with the callback.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>an Adxl Application</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="adi_study_watch.application.html#adi_study_watch.application.AdxlApplication.AdxlApplication" title="adi_study_watch.application.AdxlApplication.AdxlApplication">AdxlApplication</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="adi_study_watch.application.html#adi_study_watch.application.adxl_application.ADXLApplication" title="adi_study_watch.application.adxl_application.ADXLApplication">ADXLApplication</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="adi_study_watch.SDK.SDK.get_bcm_application">
-<code class="sig-name descname">get_bcm_application</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">callback_function</span><span class="p">:</span> <span class="n">Callable<span class="p">[</span><span class="p">[</span>int<span class="p">, </span>Any<span class="p">]</span><span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.SDK.SDK.get_bcm_application" title="Permalink to this definition">¶</a></dt>
+<dt id="adi_study_watch.sdk.SDK.get_available_ports">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">get_available_ports</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><a class="headerlink" href="#adi_study_watch.sdk.SDK.get_available_ports" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns the list of tuple (port, description, hardware_id) of available ports.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="adi_study_watch.sdk.SDK.get_bcm_application">
+<code class="sig-name descname"><span class="pre">get_bcm_application</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">callback_function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.sdk.SDK.get_bcm_application" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a bcm application object</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>callback_function</strong> (<em>Callable</em><em>[</em><em>[</em><em>int</em><em>, </em><em>Any</em><em>]</em><em>, </em><em>None</em><em>]</em>) – callback function for bcm stream</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>callback_function</strong> (<em>Callable</em>) – callback function for bcm stream</p></li>
+<li><p><strong>args</strong> – optional arguments that will be passed back with the callback.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>a bcm Application</p>
+<dd class="field-even"><p>a BCM Application</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="adi_study_watch.application.html#adi_study_watch.application.BcmApplication.BcmApplication" title="adi_study_watch.application.BcmApplication.BcmApplication">BcmApplication</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="adi_study_watch.application.html#adi_study_watch.application.bcm_application.BCMApplication" title="adi_study_watch.application.bcm_application.BCMApplication">BCMApplication</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="adi_study_watch.SDK.SDK.get_device_id">
-<code class="sig-name descname">get_device_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.SDK.SDK.get_device_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>returns current device id</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="adi_study_watch.SDK.SDK.get_ecg_application">
-<code class="sig-name descname">get_ecg_application</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">callback_function</span><span class="p">:</span> <span class="n">Callable<span class="p">[</span><span class="p">[</span>int<span class="p">, </span>Any<span class="p">]</span><span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.SDK.SDK.get_ecg_application" title="Permalink to this definition">¶</a></dt>
+<dt id="adi_study_watch.sdk.SDK.get_ecg_application">
+<code class="sig-name descname"><span class="pre">get_ecg_application</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">callback_function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.sdk.SDK.get_ecg_application" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates an ecg application object</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>callback_function</strong> (<em>Callable</em><em>[</em><em>[</em><em>int</em><em>, </em><em>Any</em><em>]</em><em>, </em><em>None</em><em>]</em>) – callback function for ecg stream</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>callback_function</strong> (<em>Callable</em>) – callback function for ecg stream</p></li>
+<li><p><strong>args</strong> – optional arguments that will be passed back with the callback.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>an ecg Application</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="adi_study_watch.application.html#adi_study_watch.application.EcgApplication.EcgApplication" title="adi_study_watch.application.EcgApplication.EcgApplication">EcgApplication</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="adi_study_watch.application.html#adi_study_watch.application.ecg_application.ECGApplication" title="adi_study_watch.application.ecg_application.ECGApplication">ECGApplication</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="adi_study_watch.SDK.SDK.get_eda_application">
-<code class="sig-name descname">get_eda_application</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">callback_function</span><span class="p">:</span> <span class="n">Callable<span class="p">[</span><span class="p">[</span>int<span class="p">, </span>Any<span class="p">]</span><span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.SDK.SDK.get_eda_application" title="Permalink to this definition">¶</a></dt>
+<dt id="adi_study_watch.sdk.SDK.get_eda_application">
+<code class="sig-name descname"><span class="pre">get_eda_application</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">callback_function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.sdk.SDK.get_eda_application" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates an eda application object</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>callback_function</strong> (<em>Callable</em><em>[</em><em>[</em><em>int</em><em>, </em><em>Any</em><em>]</em><em>, </em><em>None</em><em>]</em>) – callback function for eda stream</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>callback_function</strong> (<em>Callable</em>) – callback function for eda stream</p></li>
+<li><p><strong>args</strong> – optional arguments that will be passed back with the callback.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>an eda Application</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="adi_study_watch.application.html#adi_study_watch.application.EdaApplication.EdaApplication" title="adi_study_watch.application.EdaApplication.EdaApplication">EdaApplication</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="adi_study_watch.application.html#adi_study_watch.application.eda_application.EDAApplication" title="adi_study_watch.application.eda_application.EDAApplication">EDAApplication</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="adi_study_watch.SDK.SDK.get_fs_application">
-<code class="sig-name descname">get_fs_application</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.SDK.SDK.get_fs_application" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates a fs application object</p>
+<dt id="adi_study_watch.sdk.SDK.get_fs_application">
+<code class="sig-name descname"><span class="pre">get_fs_application</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.sdk.SDK.get_fs_application" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an fs application object</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>a fs Application</p>
+<dd class="field-odd"><p>an fs Application</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="adi_study_watch.application.html#adi_study_watch.application.FsApplication.FsApplication" title="adi_study_watch.application.FsApplication.FsApplication">FsApplication</a></p>
+<dd class="field-even"><p><a class="reference internal" href="adi_study_watch.application.html#adi_study_watch.application.fs_application.FSApplication" title="adi_study_watch.application.fs_application.FSApplication">FSApplication</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="adi_study_watch.SDK.SDK.get_pedometer_application">
-<code class="sig-name descname">get_pedometer_application</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">callback_function</span><span class="p">:</span> <span class="n">Callable<span class="p">[</span><span class="p">[</span>int<span class="p">, </span>Any<span class="p">]</span><span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.SDK.SDK.get_pedometer_application" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates a pedometer application object</p>
+<dt id="adi_study_watch.sdk.SDK.get_low_touch_application">
+<code class="sig-name descname"><span class="pre">get_low_touch_application</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.sdk.SDK.get_low_touch_application" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a low touch application object</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>callback_function</strong> (<em>Callable</em><em>[</em><em>[</em><em>int</em><em>, </em><em>Any</em><em>]</em><em>, </em><em>None</em><em>]</em>) – callback function for pedometer stream</p>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>a LowTouch Application</p>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>a pedometer Application</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="adi_study_watch.application.html#adi_study_watch.application.PedometerApplication.PedometerApplication" title="adi_study_watch.application.PedometerApplication.PedometerApplication">PedometerApplication</a></p>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="adi_study_watch.application.html#adi_study_watch.application.low_touch_application.LowTouchApplication" title="adi_study_watch.application.low_touch_application.LowTouchApplication">LowTouchApplication</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="adi_study_watch.SDK.SDK.get_pm_application">
-<code class="sig-name descname">get_pm_application</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">callback_function</span><span class="p">:</span> <span class="n">Callable<span class="p">[</span><span class="p">[</span>Any<span class="p">]</span><span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.SDK.SDK.get_pm_application" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates a pm application object</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>callback_function</strong> (<em>Callable</em><em>[</em><em>[</em><em>Any</em><em>]</em><em>, </em><em>None</em><em>]</em>) – callback function for pm stream</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>a pm Application</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="adi_study_watch.application.html#adi_study_watch.application.PmApplication.PmApplication" title="adi_study_watch.application.PmApplication.PmApplication">PmApplication</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="adi_study_watch.SDK.SDK.get_ppg_application">
-<code class="sig-name descname">get_ppg_application</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">callback_function_ppg</span><span class="p">:</span> <span class="n">Callable<span class="p">[</span><span class="p">[</span>int<span class="p">, </span>Any<span class="p">]</span><span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">callback_function_syncppg</span><span class="p">:</span> <span class="n">Callable<span class="p">[</span><span class="p">[</span>int<span class="p">, </span>Any<span class="p">]</span><span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.SDK.SDK.get_ppg_application" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates a ppg application object</p>
+<dt id="adi_study_watch.sdk.SDK.get_pedometer_application">
+<code class="sig-name descname"><span class="pre">get_pedometer_application</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">callback_function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.sdk.SDK.get_pedometer_application" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an pedometer application object</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>callback_function_ppg</strong> (<em>Callable</em><em>[</em><em>[</em><em>int</em><em>, </em><em>Any</em><em>]</em><em>, </em><em>None</em><em>]</em>) – callback function for ppg stream</p></li>
-<li><p><strong>callback_function_syncppg</strong> (<em>Callable</em><em>[</em><em>[</em><em>int</em><em>, </em><em>Any</em><em>]</em><em>, </em><em>None</em><em>]</em>) – callback function for syncppg stream</p></li>
+<li><p><strong>callback_function</strong> (<em>Callable</em>) – callback function for pedometer stream</p></li>
+<li><p><strong>args</strong> – optional arguments that will be passed back with the callback.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>a ppg Application</p>
+<dd class="field-even"><p>an pedometer Application</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="adi_study_watch.application.html#adi_study_watch.application.PpgApplication.PpgApplication" title="adi_study_watch.application.PpgApplication.PpgApplication">PpgApplication</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="adi_study_watch.application.html#adi_study_watch.application.pedometer_application.PedometerApplication" title="adi_study_watch.application.pedometer_application.PedometerApplication">PedometerApplication</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="adi_study_watch.SDK.SDK.get_stream_address">
-<code class="sig-name descname">get_stream_address</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.SDK.SDK.get_stream_address" title="Permalink to this definition">¶</a></dt>
-<dd><p>returns stream address</p>
+<dt id="adi_study_watch.sdk.SDK.get_pm_application">
+<code class="sig-name descname"><span class="pre">get_pm_application</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.sdk.SDK.get_pm_application" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an pm application object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>an pm Application</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="adi_study_watch.application.html#adi_study_watch.application.pm_application.PMApplication" title="adi_study_watch.application.pm_application.PMApplication">PMApplication</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="adi_study_watch.SDK.SDK.get_temperature_application">
-<code class="sig-name descname">get_temperature_application</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">callback_function</span><span class="p">:</span> <span class="n">Callable<span class="p">[</span><span class="p">[</span>int<span class="p">, </span>Any<span class="p">]</span><span class="p">, </span>None<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.SDK.SDK.get_temperature_application" title="Permalink to this definition">¶</a></dt>
+<dt id="adi_study_watch.sdk.SDK.get_ppg_application">
+<code class="sig-name descname"><span class="pre">get_ppg_application</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">callback_ppg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback_syncppg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args_ppg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args_syncppg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.sdk.SDK.get_ppg_application" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an ppg application object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>callback_ppg</strong> (<em>Callable</em>) – callback function for ppg stream.</p></li>
+<li><p><strong>callback_syncppg</strong> (<em>Callable</em>) – callback function for sync ppg stream.</p></li>
+<li><p><strong>args_ppg</strong> – optional arguments that will be passed back with ppg callback.</p></li>
+<li><p><strong>args_syncppg</strong> – optional arguments that will be passed back with sync ppg callback.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>an Ppg Application</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="adi_study_watch.application.html#adi_study_watch.application.ppg_application.PPGApplication" title="adi_study_watch.application.ppg_application.PPGApplication">PPGApplication</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="adi_study_watch.sdk.SDK.get_sqi_application">
+<code class="sig-name descname"><span class="pre">get_sqi_application</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">callback_function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.sdk.SDK.get_sqi_application" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a sqi application object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>callback_function</strong> (<em>Callable</em>) – callback function for sqi stream</p></li>
+<li><p><strong>args</strong> – optional arguments that will be passed back with the callback.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a SQI Application</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="adi_study_watch.application.html#adi_study_watch.application.sqi_application.SQIApplication" title="adi_study_watch.application.sqi_application.SQIApplication">SQIApplication</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="adi_study_watch.sdk.SDK.get_temperature_application">
+<code class="sig-name descname"><span class="pre">get_temperature_application</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">callback_function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.sdk.SDK.get_temperature_application" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a temperature application object</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>callback_function</strong> (<em>Callable</em><em>[</em><em>[</em><em>int</em><em>, </em><em>Any</em><em>]</em><em>, </em><em>None</em><em>]</em>) – callback function for temperature stream</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>callback_function</strong> (<em>Callable</em>) – callback function for temperature stream</p></li>
+<li><p><strong>args</strong> – optional arguments that will be passed back with the callback.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>an temperature Application</p>
+<dd class="field-even"><p>a Temperature Application</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="adi_study_watch.application.html#adi_study_watch.application.TemperatureApplication.TemperatureApplication" title="adi_study_watch.application.TemperatureApplication.TemperatureApplication">TemperatureApplication</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="adi_study_watch.application.html#adi_study_watch.application.temperature_application.TemperatureApplication" title="adi_study_watch.application.temperature_application.TemperatureApplication">TemperatureApplication</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="adi_study_watch.SDK.SDK.get_version">
-<code class="sig-name descname">get_version</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.SDK.SDK.get_version" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a string describing the version of the SDK.</p>
+<dt id="adi_study_watch.sdk.SDK.get_test_application">
+<code class="sig-name descname"><span class="pre">get_test_application</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key_test_callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cap_sense_callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.sdk.SDK.get_test_application" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a test application object, used for internal firmware testing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>a Test Application</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>TestApplication</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="adi_study_watch.SDK.SDK.get_watch">
-<code class="sig-name descname">get_watch</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.SDK.SDK.get_watch" title="Permalink to this definition">¶</a></dt>
-<dd><p>returns current watch object</p>
+<dt id="adi_study_watch.sdk.SDK.quit">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">quit</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.sdk.SDK.quit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Closes serial port</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="adi_study_watch.SDK.SDK.quit">
-<code class="sig-name descname">quit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.SDK.SDK.quit" title="Permalink to this definition">¶</a></dt>
-<dd><p>Closes receive thread and serial port</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="adi_study_watch.SDK.SDK.set_n_th_bit">
-<code class="sig-name descname">set_n_th_bit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">val</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">n</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">bit</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.SDK.SDK.set_n_th_bit" title="Permalink to this definition">¶</a></dt>
-<dd><p>function to set the n’th bit, bit - 0/1</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="adi_study_watch.SDK.SDK.system_alert_call">
-<code class="sig-name descname">system_alert_call</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">alert_message</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.SDK.SDK.system_alert_call" title="Permalink to this definition">¶</a></dt>
-<dd><p>Call physical callback sys_alert_method with the system error message</p>
+<dt id="adi_study_watch.sdk.SDK.unsubscribe_all_streams">
+<code class="sig-name descname"><span class="pre">unsubscribe_all_streams</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.sdk.SDK.unsubscribe_all_streams" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unsubscribe from all application streams</p>
 </dd></dl>
 
 </dd></dl>
 
-</div>
-<div class="section" id="module-adi_study_watch">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-adi_study_watch" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -886,9 +397,8 @@
   <ul>
 <li><a class="reference internal" href="#">adi_study_watch package</a><ul>
 <li><a class="reference internal" href="#subpackages">Subpackages</a></li>
-<li><a class="reference internal" href="#status-code-and-its-meaning">Status code and its meaning</a></li>
-<li><a class="reference internal" href="#module-adi_study_watch.SDK">adi_study_watch.SDK module</a></li>
-<li><a class="reference internal" href="#module-adi_study_watch">Module contents</a></li>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-adi_study_watch.sdk">adi_study_watch.sdk module</a></li>
 </ul>
 </li>
 </ul>
@@ -923,13 +433,13 @@
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">adi_study_watch 4.0.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">ADI Study Watch SDK 4.0.5 documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">adi_study_watch package</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2020, ADI.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.3.
     </div>
   </body>
 </html>
