@@ -68,7 +68,7 @@ the sensor status is shown below. Almost all method in an application returns re
     adxl_application.stop_sensor()
 
 **All streams packet structure :**
-https://analogdevicesinc.github.io/study-watch-sdk/adi_study_watch.core.packets.html#module-adi_study_watch.core.packets.stream_data_packets
+https://analogdevicesinc.github.io/study-watch-sdk/_rst/adi_study_watch.core.packets.html#module-adi_study_watch.core.packets.stream_data_packets
 
 **Documentation :**
 https://analogdevicesinc.github.io/study-watch-sdk/
