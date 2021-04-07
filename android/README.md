@@ -86,15 +86,15 @@ You can resolve above error by granting location permission. [Read here : https:
     }
 
 
-#### Example 1: Streaming EDA sensor data LINK.
+#### Example 1: Streaming EDA sensor data [https://github.com/analogdevicesinc/study-watch-sdk/blob/main/android/AndroidSamples/app/src/main/java/com/analog/androidsamples/EDAExample.java].
 
-#### Example 2: Taking input from internal storage file LINK.
+#### Example 2: Taking input from internal storage file [https://github.com/analogdevicesinc/study-watch-sdk/blob/main/android/AndroidSamples/app/src/main/java/com/analog/androidsamples/InputFromInternalStorage.java].
 
-#### Example 3: Running SDK commands in ExecutorService LINK.
+#### Example 3: Running SDK commands in ExecutorService [https://github.com/analogdevicesinc/study-watch-sdk/blob/main/android/AndroidSamples/app/src/main/java/com/analog/androidsamples/UsingExecutorService.java].
 
 
 **Documentation :**
-https://analogdevicesinc.github.io/study-watch-sdk/
+https://analogdevicesinc.github.io/study-watch-sdk/android
 
 
 **License :**
