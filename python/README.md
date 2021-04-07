@@ -4,9 +4,9 @@
 The adi-study-watch provides an object-oriented interface for interacting with ADI's VSM study watch platform.
 
 **Installation**
-
-    pip install adi-study-watch
-
+```
+pip install adi-study-watch
+```
 **Description**
 
 A user application can use the SDK to receive complete packets of bytes over a physical interface (USB or BLE) and
@@ -22,50 +22,54 @@ https://github.com/analogdevicesinc/study-watch-sdk/blob/main/bin_Firmware/Study
 **Getting started with SDK**
 
 Import the adi-study-watch module into your application code
-
-    from adi_study_watch import SDK
-
+```python
+from adi_study_watch import SDK
+```
 Instantiate the SDK object by passing the com port number
-
-    sdk = SDK('COM28')
-
+```python
+sdk = SDK('COM28')
+```
 The application objects can be instantiated from the sdk object. In order to instantiate an application object, we'll
 have to pass a call-back function as an input argument which can be used to retrieve the data from the application
 object. Define a callback function as displayed below.
-
-    def adxl_cb(data):
-        print(data)
-
+```python
+def adxl_cb(data):
+    print(data)
+```
 Once the call-back function is defined, you can instantiate the application object as shown below.
-
-    adxl_app = sdk.get_adxl_application()
-    adxl_app.set_callback(adxl_cb)
-
+```python
+adxl_app = sdk.get_adxl_application()
+adxl_app.set_callback(adxl_cb)
+```
 Each application object has various methods that can be called by referring to the application. An example of retrieving
 the sensor status is shown below. Almost all method in an application returns result in a dict.
 
-    packet = adxl_app.get_sensor_status() # returns dict
-    print(packet)
+```python
+packet = adxl_app.get_sensor_status() # returns dict
+print(packet)
+```
 
 **Basic Example:**
 
-    import time
-    from adi_study_watch import SDK
-    
-    # callback function to receive adxl data
-    def callback_adxl(data):
-        for d in data["payload"]["stream_data"]:
-            print(d["timestamp"], d["x"], d["y"], d["z"]))
+```python
+import time
+from adi_study_watch import SDK
+
+# callback function to receive adxl data
+def callback_adxl(data):
+    for d in data["payload"]["stream_data"]:
+        print(d["timestamp"], d["x"], d["y"], d["z"]))
 
 
-    sdk = SDK("COM4")
-    adxl_application = sdk.get_adxl_application()
-    adxl_application.set_callback(callback_adxl)
-    adxl_application.start_sensor()
-    adxl_application.subscribe_stream()
-    time.sleep(10)
-    adxl_application.unsubscribe_stream()
-    adxl_application.stop_sensor()
+sdk = SDK("COM4")
+adxl_application = sdk.get_adxl_application()
+adxl_application.set_callback(callback_adxl)
+adxl_application.start_sensor()
+adxl_application.subscribe_stream()
+time.sleep(10)
+adxl_application.unsubscribe_stream()
+adxl_application.stop_sensor()
+```
 
 **All streams packet structure :**
 https://analogdevicesinc.github.io/study-watch-sdk/python/_rst/adi_study_watch.core.packets.html#module-adi_study_watch.core.packets.stream_data_packets
