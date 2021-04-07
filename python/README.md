@@ -1,4 +1,4 @@
-# ADI Study Watch
+# Study Watch Python SDK
 [![PyPI version fury.io](https://badge.fury.io/py/adi-study-watch.svg)](https://pypi.python.org/pypi/adi-study-watch/) [![PyPI pyversions](https://img.shields.io/pypi/pyversions/adi-study-watch.svg)](https://pypi.python.org/pypi/adi-study-watch/)
 
 The adi-study-watch provides an object-oriented interface for interacting with ADI's VSM study watch platform.

@@ -1,5 +1,5 @@
 
-#Study watch android sdk
+# Study Watch Android SDK
 
 Add sdk in app `build.gradle`
 
