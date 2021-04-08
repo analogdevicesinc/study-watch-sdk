@@ -14,9 +14,9 @@ Install the whl file
 
 Firmware Setup
 -----------------
-Follow the link_ (docx) to setup firmware for the study watch.
+Follow the link_ (pdf) to setup firmware for the study watch.
 
-.. _link: https://github.com/analogdevicesinc/study-watch-sdk/blob/main/bin_Firmware/Study_Watch_Firmware_Upgrade_using_Android_App.docx
+.. _link: https://github.com/analogdevicesinc/study-watch-sdk/blob/main/firmware/Study_Watch_Firmware_Upgrade.pdf
 
 
 Working with hexadecimal values in python
