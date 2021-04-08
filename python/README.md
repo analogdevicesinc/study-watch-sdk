@@ -18,7 +18,7 @@ interact with that application. A brief guide on using the SDK and few examples 
 
 **Firmware Setup**
 
-https://github.com/analogdevicesinc/study-watch-sdk/blob/main/bin_Firmware/Study_Watch_Firmware_Upgrade_using_Android_App.docx
+https://github.com/analogdevicesinc/study-watch-sdk/blob/main/firmware/Study_Watch_Firmware_Upgrade.pdf
 
 **Getting started with SDK**
 
