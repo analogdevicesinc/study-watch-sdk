@@ -181,12 +181,12 @@ For more detail on *FuncAnimation* visit matplotlib animation api_.
 
 Examples
 ----------
-https://github.com/analogdevicesinc/study-watch-sdk/tree/main/samples
+https://github.com/analogdevicesinc/study-watch-sdk/tree/main/python/samples
 
 
 License
 -----------
-https://github.com/analogdevicesinc/study-watch-sdk/blob/main/LICENSE.pdf
+https://github.com/analogdevicesinc/study-watch-sdk/blob/main/python/LICENSE.pdf
 
 
 All API modules:

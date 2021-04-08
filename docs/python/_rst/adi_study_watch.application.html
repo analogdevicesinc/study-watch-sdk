@@ -4429,6 +4429,37 @@ dictionary containing addresses and values.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="adi_study_watch.application.fs_application.FSApplication.stream_file">
+<code class="sig-name descname"><span class="pre">stream_file</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_stream_callback</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#adi_study_watch.application.fs_application.FSApplication.stream_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Download specified file from the device.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – filename to download, use ls() to obtain list of all files.</p></li>
+<li><p><strong>file_stream_callback</strong> (<em>Callable</em>) – callback for streaming file</p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="k">def</span> <span class="nf">file_callback</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">total_size</span><span class="p">,</span> <span class="n">stream_progress</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="hll">    <span class="c1"># [{&#39;header&#39;: {&#39;source&#39;: &lt;Stream.FS: [&#39;0xC6&#39;, &#39;0x1&#39;]&gt;, .. , &#39;crc16&#39;: 18166}}]</span>
+</span>
+
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_fs_application</span><span class="p">()</span>
+<span class="c1"># alternately yo can use download_file if you don&#39;t want to stream file content</span>
+<span class="n">application</span><span class="o">.</span><span class="n">stream_file</span><span class="p">(</span><span class="s2">&quot;1216471B.LOG&quot;</span><span class="p">,</span> <span class="n">file_callback</span><span class="p">)</span>
+
+<span class="c1"># wait for stream to finish</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
 <dt id="adi_study_watch.application.fs_application.FSApplication.subscribe_stream">
 <code class="sig-name descname"><span class="pre">subscribe_stream</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="adi_study_watch.core.enums.html#adi_study_watch.core.enums.common_enums.Stream" title="adi_study_watch.core.enums.common_enums.Stream"><span class="pre">adi_study_watch.core.enums.common_enums.Stream</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><a class="headerlink" href="#adi_study_watch.application.fs_application.FSApplication.subscribe_stream" title="Permalink to this definition">¶</a></dt>
 <dd><p>Subscribe to the specified stream.</p>
@@ -5234,7 +5265,7 @@ and returns a response packet as dictionary containing addresses and values.</p>
 
 <dl class="py method">
 <dt id="adi_study_watch.application.pm_application.PMApplication.set_datetime">
-<code class="sig-name descname"><span class="pre">set_datetime</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">date_time</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">datetime.datetime</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">datetime.datetime(2021,</span> <span class="pre">3,</span> <span class="pre">26,</span> <span class="pre">17,</span> <span class="pre">49,</span> <span class="pre">30,</span> <span class="pre">970187)</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><a class="headerlink" href="#adi_study_watch.application.pm_application.PMApplication.set_datetime" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">set_datetime</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">date_time</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">datetime.datetime</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">datetime.datetime(2021,</span> <span class="pre">4,</span> <span class="pre">8,</span> <span class="pre">12,</span> <span class="pre">18,</span> <span class="pre">11,</span> <span class="pre">407691)</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><a class="headerlink" href="#adi_study_watch.application.pm_application.PMApplication.set_datetime" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set specified datetime to device.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
