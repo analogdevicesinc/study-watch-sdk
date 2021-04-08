@@ -4,7 +4,8 @@
 The adi-study-watch provides an object-oriented interface for interacting with ADI's VSM study watch platform.
 
 **Installation**
-```
+
+```python
 pip install adi-study-watch
 ```
 **Description**
@@ -81,7 +82,7 @@ https://analogdevicesinc.github.io/study-watch-sdk/python
 https://github.com/analogdevicesinc/study-watch-sdk/tree/main/python/samples
 
 **License :**
-https://github.com/analogdevicesinc/study-watch-sdk/blob/main/LICENSE.pdf
+https://github.com/analogdevicesinc/study-watch-sdk/blob/main/python/LICENSE.pdf
 
 
 **Changelog 4.0.5 :**

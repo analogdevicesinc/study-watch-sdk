@@ -104,9 +104,12 @@ https://analogdevicesinc.github.io/study-watch-sdk/android
 
 
 **License :**
-https://github.com/analogdevicesinc/study-watch-sdk/blob/main/LICENSE.pdf
+https://github.com/analogdevicesinc/study-watch-sdk/blob/main/android/LICENSE.pdf
 
 
+## Firmware Setup
+
+To set up firmware for the study watch follow the pdf (https://github.com/analogdevicesinc/study-watch-sdk/blob/main/firmware/Study_Watch_Firmware_Upgrade.pdf)
 
 
 
