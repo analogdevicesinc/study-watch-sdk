@@ -1,0 +1,7 @@
+com.analog.study_watch_sdk
+com.analog.study_watch_sdk.application
+com.analog.study_watch_sdk.core
+com.analog.study_watch_sdk.core.enums
+com.analog.study_watch_sdk.core.packets
+com.analog.study_watch_sdk.core.packets.stream
+com.analog.study_watch_sdk.interfaces
