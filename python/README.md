@@ -84,5 +84,8 @@ https://github.com/analogdevicesinc/study-watch-sdk/tree/main/python/samples
 https://github.com/analogdevicesinc/study-watch-sdk/blob/main/LICENSE.pdf
 
 
-**Migrate from 4.0.4 to 4.0.5 :**
-https://github.com/analogdevicesinc/study-watch-sdk/blob/main/python/changelog.txt
+**Changelog 4.0.5 :**
+https://github.com/analogdevicesinc/study-watch-sdk/blob/main/python/changelog_4_0_5.txt
+
+**Changelog 4.0.6 :**
+https://github.com/analogdevicesinc/study-watch-sdk/blob/main/python/changelog_4_0_6.txt

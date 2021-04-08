@@ -1,6 +1,10 @@
 
 # Study Watch Android SDK
 
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.analogdevicesinc/study_watch_sdk/badge.svg)](https://search.maven.org/artifact/com.github.analogdevicesinc/study_watch_sdk/1.0.5/aar)  
+
+### `minSdkVersion 19`
+
 Add sdk in app `build.gradle`
 
 ```java
@@ -9,10 +13,10 @@ implementation 'com.github.analogdevicesinc:study_watch_sdk:1.0.4'
 
 Permissions required to enable BLE, add the permission below in `AndroidManifest.xml`
 ```java
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+<uses-permission android:name="android.permission.BLUETOOTH" />
+<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 ```
 
 ## Getting started with sdk
