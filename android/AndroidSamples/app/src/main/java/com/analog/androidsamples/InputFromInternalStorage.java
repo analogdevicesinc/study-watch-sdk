@@ -74,11 +74,11 @@ public class InputFromInternalStorage extends AppCompatActivity {
             }
         });
 
-        // Using button click to send EDA sensor start and stop after 30 sec.
+        // Using button click to write device configuration for adxl.
         button.setOnClickListener(v -> {
             // Get ADXL application from SDK
             ADXLApplication adxl = watchSdk.getADXLApplication();
-            // callback to receive data packets from EDA stream
+            // file to read.
             File file = new File(Environment.getExternalStorageDirectory(), "Test/adxl.dcfg");
             Log.d(TAG, "File Exist :: " + file.exists());
             Log.d(TAG, "File read permission :: " + file.canRead());

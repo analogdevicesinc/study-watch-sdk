@@ -60,7 +60,7 @@ public class UsingExecutorService extends AppCompatActivity {
             }
         });
 
-        // Using button click to send EDA sensor start and stop after 30 sec.
+        // Using button click to run adxl get sensor status in executorService.
         button.setOnClickListener(v -> {
             // Get ADXL application from SDK
             ADXLApplication adxl = watchSdk.getADXLApplication();
