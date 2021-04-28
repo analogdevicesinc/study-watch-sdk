@@ -6,17 +6,21 @@ All notable changes to python SDK will be documented in this file.
 ## [v4.0.7] - Apr 28, 2021
 
 ###Modified methods signature
+
 ####PM
 - set_datetime take no default value.
 
 ## [v4.0.6] - Apr 08, 2021
 
 ###New methods
+
 ####FS
 - stream_file
 
 ## [v4.0.5] - Mar 26, 2021
+
 ###New methods
+
 ####AD7156
 - delete_device_configuration_block
 - load_configuration
