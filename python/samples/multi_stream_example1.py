@@ -36,8 +36,9 @@
 # POSSIBILITY OF SUCH DAMAGE.
 # ******************************************************************************
 
-from adi_study_watch import SDK
 import time
+
+from adi_study_watch import SDK
 
 
 def callback_ecg_data(data):
@@ -88,10 +89,6 @@ if __name__ == "__main__":
 
     # setting ECG ODR to 250Hz
     ecg_application.write_library_configuration([[0x0, 0xFA]])
-    # setting ADPD ODR to 100Hz
-    adpd_application.write_register([[0xD, 0x2710]])
-    # setting ADXL ODR to 50Hz
-    adpd_application.write_register([[0x2C, 0x9A]])
 
     # adpd config:
     adpd_application.load_configuration(adpd_application.DEVICE_G_R_IR_B)
@@ -99,11 +96,17 @@ if __name__ == "__main__":
     adpd_application.enable_agc([adpd_application.LED_GREEN, adpd_application.LED_RED, adpd_application.LED_IR,
                                  adpd_application.LED_BLUE])
 
+    # setting ADPD ODR to 100Hz
+    adpd_application.write_register([[0xD, 0x2710]])
+
     # starting sensors
     ecg_application.start_sensor()
     adpd_application.start_sensor()
     adxl_application.start_sensor()
     temp_application.start_sensor()
+
+    # setting ADXL ODR to 50Hz -- ADXL Loads DCB when Start Sensor is done, if no DCB it will load Default Config
+    adxl_application.write_register([[0x2C, 0x9A]])
 
     # subscribing streams
     ecg_application.subscribe_stream()

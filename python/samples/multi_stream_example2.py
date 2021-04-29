@@ -36,10 +36,11 @@
 # POSSIBILITY OF SUCH DAMAGE.
 # ******************************************************************************
 
-from adi_study_watch import SDK
-
 import time
 import math
+
+from adi_study_watch import SDK
+
 
 
 def callback_eda_data(data):
@@ -103,12 +104,8 @@ if __name__ == "__main__":
     adxl_application.set_callback(callback_adxl_data)
     temp_application.set_callback(callback_temp_data)
 
-    # setting ECG ODR to 30Hz
+    # setting EDA ODR to 30Hz
     eda_application.write_library_configuration([[0x0, 0x1E]])
-    # setting ADPD ODR to 100Hz
-    adpd_application.write_register([[0xD, 0x2710]])
-    # setting ADXL ODR to 100Hz
-    adpd_application.write_register([[0x2C, 0x9B]])
 
     # adpd config:
     adpd_application.load_configuration(adpd_application.DEVICE_G_R_IR_B)
@@ -116,11 +113,17 @@ if __name__ == "__main__":
     adpd_application.enable_agc([adpd_application.LED_GREEN, adpd_application.LED_RED, adpd_application.LED_IR,
                                  adpd_application.LED_BLUE])
 
+    # setting ADPD ODR to 100Hz
+    adpd_application.write_register([[0xD, 0x2710]])
+
     # starting sensors
     eda_application.start_sensor()
     adpd_application.start_sensor()
     adxl_application.start_sensor()
     temp_application.start_sensor()
+
+    # setting ADXL ODR to 100Hz -- ADXL Loads DCB when Start Sensor is done, if no DCB it will load Default Config
+    adxl_application.write_register([[0x2C, 0x9B]])
 
     # subscribing streams
     eda_application.subscribe_stream()
