@@ -1,0 +1,3 @@
+update:
+
+1. Added stream_file command in fs_application.
