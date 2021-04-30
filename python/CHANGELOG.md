@@ -3,25 +3,25 @@
 All notable changes to python SDK will be documented in this file.
 
 
-## [v4.0.7] - Apr 28, 2021
+## [v4.0.7] - Apr 29, 2021
 
-###Modified methods signature
+### Modified methods signature
 
-####PM
+#### PM
 - set_datetime take no default value.
 
 ## [v4.0.6] - Apr 08, 2021
 
-###New methods
+### New methods
 
-####FS
+#### FS
 - stream_file
 
 ## [v4.0.5] - Mar 26, 2021
 
-###New methods
+### New methods
 
-####AD7156
+#### AD7156
 - delete_device_configuration_block
 - load_configuration
 - read_device_configuration_block
@@ -31,7 +31,7 @@ All notable changes to python SDK will be documented in this file.
 - write_device_configuration_block_from_file
 - write_register
 
-####ADPD
+#### ADPD
 - write_library_configuration
 - pause
 - resume
@@ -43,20 +43,20 @@ All notable changes to python SDK will be documented in this file.
 - get_agc_status
 
 
-####ADXL
+#### ADXL
 - get_supported_devices
 
 
-####BCM
+#### BCM
 - get_supported_dft_windows
 - get_supported_hs_resistor_tia_ids
 
-####EDA
+#### EDA
 - calibrate_resistor_tia
 - get_supported_scales
 - get_supported_dft_windows
 
-####PM
+#### PM
 - device_configuration_block_status
 - enable_touch_sensor
 - disable_touch_sensor
@@ -68,10 +68,10 @@ All notable changes to python SDK will be documented in this file.
 - read_register
 - write_register
 
-####PPG
+#### PPG
 - get_supported_lcfg_ids
 
-####SQI
+#### SQI
 - get_supported_slots
 - set_slot
 - get_sensor_status
@@ -84,19 +84,19 @@ All notable changes to python SDK will be documented in this file.
 - subscribe_stream
 - unsubscribe_stream
 
-####Temperature
+#### Temperature
 - get_device_configuration
 
-####FS
+#### FS
 - get_supported_streams
 - abort_logging
 - start_logging
 - stop_logging
 
 
-###Modified methods names
+### Modified methods names
 
-####ADPD
+#### ADPD
 - create_dcfg -> create_device_configuration
 - dcb_delete_config -> delete_device_configuration_block
 - agc_ctrl -> disable_agc, enable_agc
@@ -116,7 +116,7 @@ All notable changes to python SDK will be documented in this file.
 - write_dcb_config -> write_device_configuration_block
 - write_dcb_config_file -> write_device_configuration_block_from_file
 
-####ADXL
+#### ADXL
 - load_cfg -> load_configuration
 - get_stream_status -> get_sensor_status
 - get_dcfg -> get_device_configuration
@@ -130,7 +130,7 @@ All notable changes to python SDK will be documented in this file.
 - write_dcb_config -> write_device_configuration_block
 - write_dcb_config_file -> write_device_configuration_block_from_file
 
-####BCM
+#### BCM
 - set_dft_num -> set_discrete_fourier_transformation
 - set_hsrtia_cal -> calibrate_hs_resistor_tia
 - lcfg_read -> read_library_configuration
@@ -140,7 +140,7 @@ All notable changes to python SDK will be documented in this file.
 - set_stream_decimation_factor -> set_decimation_factor
 - get_stream_decimation_factor -> get_decimation_factor
 
-####ECG
+#### ECG
 - lcfg_read -> read_library_configuration
 - lcfg_write -> write_library_configuration
 - get_stream_status -> get_sensor_status
@@ -154,7 +154,7 @@ All notable changes to python SDK will be documented in this file.
 - dcb_set_lcfg -> write_dcb_to_lcfg
 - get_algo_vendor_version -> get_version
 
-####EDA
+#### EDA
 - lcfg_read -> read_library_configuration
 - lcfg_write -> write_library_configuration
 - get_stream_status -> get_sensor_status
@@ -169,17 +169,17 @@ All notable changes to python SDK will be documented in this file.
 - set_dft_num -> set_discrete_fourier_transformation
 - dynamic_scaling -> enable_dynamic_scaling, disable_dynamic_scaling
 
-####Pedometer
+#### Pedometer
 - get_stream_status -> get_sensor_status
 - set_stream_callback -> set_callback
 
-####PM
+#### PM
 - enter_bootloader -> enter_boot_loader_mode
 - get_date_time -> get_datetime
 - set_date_time -> set_datetime
 - set_stream_callback -> set_callback
 
-####PPG
+#### PPG
 - lcfg_read -> read_library_configuration
 - lcfg_write -> write_library_configuration
 - get_stream_status -> get_sensor_status
@@ -195,13 +195,13 @@ All notable changes to python SDK will be documented in this file.
 - set_ppg_stream_callback -> set_ppg_callback
 - set_syncppg_stream_callback -> set_syncppg_callback
 
-####Temperature
+#### Temperature
 - get_stream_status -> get_sensor_status
 - set_stream_callback -> set_callback
 - set_stream_decimation_factor -> set_decimation_factor
 - get_stream_decimation_factor -> get_decimation_factor
 
-####FS
+#### FS
 - fs_status -> get_status
 - fs_subscribe -> subscribe_stream
 - fs_unsubscribe -> unsubscribe_stream
@@ -218,25 +218,25 @@ All notable changes to python SDK will be documented in this file.
 - fs_mount -> mount
 
 
-###Removed methods names
+### Removed methods names
 
-####ADPD
+#### ADPD
 - clear_stream_impedance_list_buffer
 - get_stream_address
 - stream_dispatch
 - agc_info  # moved to test application
 
-####FS
+#### FS
 - fs_config_write
 - fs_refhr
 - stream_dispatch
 - fs_get_number_of_bad_blocks # moved to test application
 
-####Pedometer
+#### Pedometer
 - clear_stream_impedance_list_buffer
 - stream_dispatch
 
-####PM
+#### PM
 - clear_stream_impedance_list_buffer
 - set_usb_power
 - enable_or_disable_thermistor_state_change
@@ -247,12 +247,12 @@ All notable changes to python SDK will be documented in this file.
 - cap_sense_test  # moved to test application
 - ping  # moved to test application
 
-####PPG
+#### PPG
 - clear_stream_impedance_list_buffer
 - stream_dispatch
 - get_last_state # moved to test application
 
-####Temperature
+#### Temperature
 - clear_stream_impedance_list_buffer
 - stream_dispatch
 - get_version

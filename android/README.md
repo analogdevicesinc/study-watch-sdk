@@ -8,7 +8,7 @@
 Add sdk in app `build.gradle`
 
 ```java
-implementation 'com.github.analogdevicesinc:study_watch_sdk:1.0.4'
+implementation 'com.github.analogdevicesinc:study_watch_sdk:4.0.7'
 ```
 
 Permissions required to enable BLE, add the permission below in `AndroidManifest.xml`
@@ -98,13 +98,15 @@ if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LO
 
 #### Example 3: Running SDK commands in ExecutorService [https://github.com/analogdevicesinc/study-watch-sdk/blob/main/android/AndroidSamples/app/src/main/java/com/analog/androidsamples/UsingExecutorService.java].
 
+#### Example 4: Streaming ADPD sensor data [https://github.com/analogdevicesinc/study-watch-sdk/blob/main/android/AndroidSamples/app/src/main/java/com/analog/androidsamples/ADPDStreamExample.java].
+
 
 **Documentation :**
 https://analogdevicesinc.github.io/study-watch-sdk/android
 
 
 **License :**
-https://github.com/analogdevicesinc/study-watch-sdk/blob/main/android/LICENSE.pdf
+https://github.com/analogdevicesinc/study-watch-sdk/blob/main/LICENSE
 
 
 ## Firmware Setup
