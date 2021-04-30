@@ -22,7 +22,7 @@ import java.util.concurrent.Executors;
 
 public class UsingExecutorService extends AppCompatActivity {
 
-    private static final String TAG = EDAExample.class.getSimpleName();
+    private static final String TAG = UsingExecutorService.class.getSimpleName();
     SDK watchSdk; // sdk reference variable
 
     @Override

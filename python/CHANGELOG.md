@@ -8,7 +8,7 @@ All notable changes to python SDK will be documented in this file.
 ### Modified methods signature
 
 #### PM
-- set_datetime take no default value.
+- set_datetime takes no default value.
 
 ## [v4.0.6] - Apr 08, 2021
 

@@ -24,7 +24,7 @@ import java.io.IOException;
 
 public class InputFromInternalStorage extends AppCompatActivity {
 
-    private static final String TAG = EDAExample.class.getSimpleName();
+    private static final String TAG = InputFromInternalStorage.class.getSimpleName();
     SDK watchSdk; // sdk reference variable
 
     @Override
