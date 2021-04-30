@@ -82,11 +82,8 @@ https://analogdevicesinc.github.io/study-watch-sdk/python
 https://github.com/analogdevicesinc/study-watch-sdk/tree/main/python/samples
 
 **License :**
-https://github.com/analogdevicesinc/study-watch-sdk/blob/main/python/LICENSE.pdf
+https://github.com/analogdevicesinc/study-watch-sdk/blob/main/LICENSE
 
+**Changelog**
+https://github.com/analogdevicesinc/study-watch-sdk/blob/main/python/CHANGELOG.md
 
-**Changelog 4.0.5 :**
-https://github.com/analogdevicesinc/study-watch-sdk/blob/main/python/changelog_4_0_5.txt
-
-**Changelog 4.0.6 :**
-https://github.com/analogdevicesinc/study-watch-sdk/blob/main/python/changelog_4_0_6.txt
