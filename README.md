@@ -14,3 +14,13 @@ https://github.com/analogdevicesinc/study-watch-sdk/blob/main/python
 https://github.com/analogdevicesinc/study-watch-sdk/blob/main/android
 
 
+
+## Directory Structure:
+
+    .
+    └── study-watch-sdk/
+        ├── android          # Contains android samples.
+        ├── docs             # Contains SDK docs.
+        ├── firmware         # Contains firmware zip and setup process.
+        ├── python           # Contains python samples and change logs.
+        └── utils            # Contains BLE setup for study watch.
