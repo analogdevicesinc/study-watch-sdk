@@ -108,10 +108,18 @@ if __name__ == "__main__":
     eda_application.write_library_configuration([[0x0, 0x1E]])
 
     # adpd config:
-    adpd_application.load_configuration(adpd_application.DEVICE_G_R_IR_B)
+    adpd_application.create_device_configuration([
+        [adpd_application.SLOT_D, adpd_application.APP_TEMPERATURE_THERMISTOR],
+        [adpd_application.SLOT_E, adpd_application.APP_TEMPERATURE_RESISTOR],
+        [adpd_application.SLOT_F, adpd_application.APP_ADPD_GREEN],
+        [adpd_application.SLOT_G, adpd_application.APP_ADPD_RED],
+        [adpd_application.SLOT_H, adpd_application.APP_ADPD_INFRARED],
+        [adpd_application.SLOT_I, adpd_application.APP_ADPD_BLUE],
+    ])
+    adpd_application.load_configuration(adpd_application.DEVICE_GREEN)
     adpd_application.calibrate_clock(adpd_application.CLOCK_1M_AND_32M)
-    adpd_application.enable_agc([adpd_application.LED_GREEN, adpd_application.LED_RED, adpd_application.LED_IR,
-                                 adpd_application.LED_BLUE])
+    adpd_application.enable_agc([adpd_application.LED_GREEN, adpd_application.LED_RED,
+                                 adpd_application.LED_IR, adpd_application.LED_BLUE])
 
     # setting ADPD ODR to 100Hz
     adpd_application.write_register([[0xD, 0x2710]])
