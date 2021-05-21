@@ -40,35 +40,6 @@ import time
 
 from adi_study_watch import SDK
 
-
-def callback_ecg_data(data):
-    print(f"ECG:: {data}")
-
-
-def callback_slot_f_data(data):
-    print(f"SLOT F:: {data}")
-
-
-def callback_slot_g_data(data):
-    print(f"SLOT G:: {data}")
-
-
-def callback_slot_h_data(data):
-    print(f"SLOT H:: {data}")
-
-
-def callback_slot_i_data(data):
-    print(f"SLOT I:: {data}")
-
-
-def callback_adxl_data(data):
-    print(f"ADXL:: {data}")
-
-
-def callback_temp_data(data):
-    print(f"TEMP:: {data}")
-
-
 if __name__ == "__main__":
     sdk = SDK("COM4")
     # sdk = SDK("COM6", is_ble=True) # for BLE
@@ -77,16 +48,8 @@ if __name__ == "__main__":
     adpd_application = sdk.get_adpd_application()
     adxl_application = sdk.get_adxl_application()
     temp_application = sdk.get_temperature_application()
+    fs_application = sdk.get_fs_application()
     pm_application = sdk.get_pm_application()
-
-    # assigning callbacks
-    ecg_application.set_callback(callback_ecg_data)
-    adpd_application.set_callback(callback_slot_f_data, stream=adpd_application.STREAM_ADPD6)
-    adpd_application.set_callback(callback_slot_g_data, stream=adpd_application.STREAM_ADPD7)
-    adpd_application.set_callback(callback_slot_h_data, stream=adpd_application.STREAM_ADPD8)
-    adpd_application.set_callback(callback_slot_i_data, stream=adpd_application.STREAM_ADPD9)
-    adxl_application.set_callback(callback_adxl_data)
-    temp_application.set_callback(callback_temp_data)
 
     # setting ECG ODR to 250Hz
     ecg_application.write_library_configuration([[0x0, 0xFA]])
@@ -122,28 +85,34 @@ if __name__ == "__main__":
     adxl_application.write_register([[0x2C, 0x9A]])
 
     # subscribing streams
-    ecg_application.subscribe_stream()
-    adpd_application.subscribe_stream(adpd_application.STREAM_ADPD6)
-    adpd_application.subscribe_stream(adpd_application.STREAM_ADPD7)
-    adpd_application.subscribe_stream(adpd_application.STREAM_ADPD8)
-    adpd_application.subscribe_stream(adpd_application.STREAM_ADPD9)
-    adxl_application.subscribe_stream()
-    temp_application.subscribe_stream()
+    fs_application.subscribe_stream(fs_application.STREAM_ECG)
+    fs_application.subscribe_stream(fs_application.STREAM_ADPD6)
+    fs_application.subscribe_stream(fs_application.STREAM_ADPD7)
+    fs_application.subscribe_stream(fs_application.STREAM_ADPD8)
+    fs_application.subscribe_stream(fs_application.STREAM_ADPD9)
+    fs_application.subscribe_stream(fs_application.STREAM_ADXL)
+    fs_application.subscribe_stream(fs_application.STREAM_TEMPERATURE)
+
+    # logging started
+    fs_application.start_logging()
 
     # sleep for 10 sec
     time.sleep(10)
 
     # unsubscribing streams
-    ecg_application.unsubscribe_stream()
-    adpd_application.unsubscribe_stream(adpd_application.STREAM_ADPD6)
-    adpd_application.unsubscribe_stream(adpd_application.STREAM_ADPD7)
-    adpd_application.unsubscribe_stream(adpd_application.STREAM_ADPD8)
-    adpd_application.unsubscribe_stream(adpd_application.STREAM_ADPD9)
-    adxl_application.unsubscribe_stream()
-    temp_application.unsubscribe_stream()
+    fs_application.unsubscribe_stream(fs_application.STREAM_ECG)
+    fs_application.unsubscribe_stream(fs_application.STREAM_ADPD6)
+    fs_application.unsubscribe_stream(fs_application.STREAM_ADPD7)
+    fs_application.unsubscribe_stream(fs_application.STREAM_ADPD8)
+    fs_application.unsubscribe_stream(fs_application.STREAM_ADPD9)
+    fs_application.unsubscribe_stream(fs_application.STREAM_ADXL)
+    fs_application.unsubscribe_stream(fs_application.STREAM_TEMPERATURE)
 
     # stop sensors
     ecg_application.stop_sensor()
     adpd_application.stop_sensor()
     adxl_application.stop_sensor()
     temp_application.stop_sensor()
+
+    # stop logging
+    fs_application.stop_logging()

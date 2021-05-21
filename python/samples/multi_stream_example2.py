@@ -94,6 +94,7 @@ if __name__ == "__main__":
     adpd_application = sdk.get_adpd_application()
     adxl_application = sdk.get_adxl_application()
     temp_application = sdk.get_temperature_application()
+    pm_application = sdk.get_pm_application()
 
     # assigning callbacks
     eda_application.set_callback(callback_eda_data)
@@ -117,7 +118,11 @@ if __name__ == "__main__":
         [adpd_application.SLOT_I, adpd_application.APP_ADPD_BLUE],
     ])
     adpd_application.load_configuration(adpd_application.DEVICE_GREEN)
-    adpd_application.calibrate_clock(adpd_application.CLOCK_1M_AND_32M)
+    # checking for DVT2 board
+    if pm_application.get_chip_id(pm_application.CHIP_ADPD4K)["payload"]["chip_id"] == 0xc0:
+        adpd_application.calibrate_clock(adpd_application.CLOCK_1M_AND_32M)
+    else:
+        adpd_application.calibrate_clock(adpd_application.CLOCK_1M)
     adpd_application.enable_agc([adpd_application.LED_GREEN, adpd_application.LED_RED,
                                  adpd_application.LED_IR, adpd_application.LED_BLUE])
 
