@@ -1,0 +1,100 @@
+#UseCase3 DCB - ADPD + ECG: ADPD@100Hz, ADXL@50Hz, ECG@250Hz, Temp@1Hz
+
+#Make edits for each application within the blocks with tag name of the DCB enclosed within <> and </>
+#Eg: ADPD DCB is kept within <ADPD_DCB> and </ADPD_DCB>
+
+#Template DCB with configurations for ADPD4100 provided below.
+#Refer to ADPD4100 data sheet and edit the configurations, as required.
+
+<ADPD_DCB>
+# ADPD DCB - Includes ADPD & Temp
+0009 0097
+0007 8FFF
+000B 02F6
+000C 0012
+000D 2710 #100Hz
+000E 0000
+000F 0006
+0014 8000
+0020 2222
+0021 0000
+0022 0003
+0023 0302
+0024 0001
+0010 0500 # Slots A-F Enabled
+01A0 4000
+01A1 40DA
+01A2 0005
+01A3 5002
+01A4 03D2
+01A5 0005 #SlotF with 1A Green Led
+01A6 0000
+01A7 0140
+01A8 0000 
+01A9 0210 
+01AA 0003 
+01AB 0210 
+01AC 0100 
+01AD 0099 
+01AE 0000 
+01AF 0000 
+01B0 0004
+#Slot D Temperature Thermistor
+0160 0000   
+0161 40DA   
+0162 0010   
+0163 5A40   
+0164 0281   
+0165 0000 
+0166 0000 
+#0167 0101 
+0168 0000  
+#0169 0419 
+016A 0003  
+016B 01F3  
+016C 0210  
+0170 0004  
+#Slot E Temp. calibration resistor
+0180 0000 
+0181 40DA 
+0182 0030 
+0183 5A40 
+0184 0281 
+0185 0000 
+0186 0000 
+#0187 0101
+0188 0000    
+#0189 0419  
+018A 0003   
+018B 01F3   
+018C 0210   
+0190 0004    
+#Set the signal and dark sample data size of the slots from A to C to zero
+0110 0000 
+0130 0000
+0150 0000
+</ADPD_DCB>
+
+<ADXL_DCB>
+# ADXL DCB
+20 00
+21 00
+22 00
+23 00
+24 00
+25 00
+26 00
+27 00
+28 02
+29 0B
+2A 84
+2B 80
+2C 92 #50Hz
+2D 10
+2E 00
+</ADXL_DCB>
+
+<ECG_DCB>
+#ECG_DCB_LCFG
+00 00FA  # ECG ODR = 250 Hz
+</ECG_DCB>
