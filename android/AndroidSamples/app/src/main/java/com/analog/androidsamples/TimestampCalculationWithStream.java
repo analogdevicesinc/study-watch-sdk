@@ -19,15 +19,18 @@ import com.analog.study_watch_sdk.core.packets.DateTimePacket;
 import com.analog.study_watch_sdk.core.packets.stream.ADXLDataPacket;
 import com.analog.study_watch_sdk.interfaces.StudyWatchCallback;
 
-import java.text.DecimalFormat;
+import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.TimeZone;
+
+import static java.lang.Math.abs;
 
 public class TimestampCalculationWithStream extends AppCompatActivity {
 
     SDK watchSdk;
     private static final String TAG = TimestampCalculationWithStream.class.getSimpleName();
     double refTime;
+    double lastTimestamp = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +68,25 @@ public class TimestampCalculationWithStream extends AppCompatActivity {
             // Get applications from SDK
             PMApplication pmApp = watchSdk.getPMApplication();
             ADXLApplication adxlApp = watchSdk.getADXLApplication();
+
+            adxlApp.setCallback(adxlDataPacket -> {
+                for (ADXLDataPacket.Payload.StreamData streamData : adxlDataPacket.payload.streamData) {
+                    // obtaining the change in timestamp
+                    double timestamp = streamData.getTimestamp();
+                    double change = abs(timestamp - lastTimestamp);
+                    change = change / 32768.0;
+                    if (lastTimestamp != 0) {
+                        refTime += (change * 1000); // adding the change with reftime
+                    }
+                    lastTimestamp = timestamp;
+                    Timestamp obj = new Timestamp((long) refTime);
+                    Log.d(TAG, "Stream Data (Timestamp, X, Y, Z) :: " + obj.toString() + ", " +
+                            streamData.getX() + ", " + streamData.getY() + ", " + streamData.getZ());
+                }
+            });
+
             // converting datetime to timestamp
+            pmApp.setDatetime(Calendar.getInstance()); // setting datetime so that system time and watch time are in sync
             DateTimePacket packet = pmApp.getDatetime();
             Log.d(TAG, "datetime :: " + packet);
             Calendar date = Calendar.getInstance();
@@ -80,28 +101,16 @@ public class TimestampCalculationWithStream extends AppCompatActivity {
             date.setTimeZone(tz);
             // reference time for the watch, to be obtained before starting the stream
             refTime = date.getTimeInMillis();
-            // this is just for formatting double value, (disabling scientific notation)
-            DecimalFormat df = new DecimalFormat("#");
-            df.setMaximumFractionDigits(10);
-            Log.d(TAG, "TIME IN MS :: " + df.format(refTime));
+            Log.d(TAG, "TIME IN MS :: " + (long) refTime);
 
-            adxlApp.setCallback(adxlDataPacket -> {
-                for (ADXLDataPacket.Payload.StreamData streamData : adxlDataPacket.payload.streamData) {
-                    // obtaining the change in timestamp
-                    double timestamp = streamData.getTimestamp() / (32768 * 1000.0);
-                    // adding the change with reftime
-                    timestamp = refTime + timestamp;
-                    refTime = timestamp;
-                    Log.d(TAG, "Stream Data (Timestamp, X, Y, Z) :: " + df.format(timestamp) + ", " +
-                            streamData.getX() + ", " + streamData.getY() + ", " + streamData.getZ());
-                }
-            });
             // start sensor
             adxlApp.startSensor();
+            // 0x9B - 100Hz, 0x9A - 50Hz
+            adxlApp.writeRegister(new long[][]{{0x2C, 0x9B}});
             adxlApp.subscribeStream();
             // sleep
             try {
-                Thread.sleep(10000);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
