@@ -3,7 +3,9 @@ package com.analog.androidsamples;
 import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.widget.Button;
 
@@ -13,24 +15,20 @@ import androidx.core.content.ContextCompat;
 
 import com.analog.study_watch_sdk.StudyWatch;
 import com.analog.study_watch_sdk.application.ADXLApplication;
-import com.analog.study_watch_sdk.application.PMApplication;
 import com.analog.study_watch_sdk.core.SDK;
-import com.analog.study_watch_sdk.core.packets.DateTimePacket;
 import com.analog.study_watch_sdk.core.packets.stream.ADXLDataPacket;
 import com.analog.study_watch_sdk.interfaces.StudyWatchCallback;
 
-import java.sql.Timestamp;
-import java.util.Calendar;
-import java.util.TimeZone;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
-import static java.lang.Math.abs;
-
-public class TimestampCalculationWithStream extends AppCompatActivity {
+public class ADXLCSVExample extends AppCompatActivity {
 
     SDK watchSdk;
-    private static final String TAG = TimestampCalculationWithStream.class.getSimpleName();
-    double refTime;
-    double lastTimestamp = 0;
+    BufferedWriter bw = null;
+    private static final String TAG = ADXLCSVExample.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +38,21 @@ public class TimestampCalculationWithStream extends AppCompatActivity {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
         }
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+        }
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+        }
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.MANAGE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.MANAGE_EXTERNAL_STORAGE}, 1);
+            }
+        }
+
 
         BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (!mBluetoothAdapter.isEnabled()) {
@@ -65,58 +78,47 @@ public class TimestampCalculationWithStream extends AppCompatActivity {
         });
 
         button.setOnClickListener(v -> {
+            // init for csv
+            File file = new File(Environment.getExternalStorageDirectory(), "Test/adxl1.csv");
+            try {
+                bw = new BufferedWriter(new FileWriter(file));
+                // Header for CSV file HERE ::
+                bw.write("Timestamp, X, Y, Z\n");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             // Get applications from SDK
-            PMApplication pmApp = watchSdk.getPMApplication();
             ADXLApplication adxlApp = watchSdk.getADXLApplication();
-
             adxlApp.setCallback(adxlDataPacket -> {
                 for (ADXLDataPacket.Payload.StreamData streamData : adxlDataPacket.payload.streamData) {
-                    // obtaining the change in timestamp
-                    double timestamp = streamData.getTimestamp();
-                    double change = abs(timestamp - lastTimestamp);
-                    change = change / 32768.0;
-                    if (lastTimestamp != 0) {
-                        refTime += (change * 1000); // adding the change with reftime
+                    try {
+                        // Writing to CSV
+                        bw.write(streamData.getTimestamp() + ", " + streamData.getX() + ", " + streamData.getY() + ", " + streamData.getZ() + "\n");
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
-                    lastTimestamp = timestamp;
-                    Timestamp obj = new Timestamp((long) refTime);
-                    Log.d(TAG, "Stream Data (Timestamp, X, Y, Z) :: " + obj.toString() + ", " +
-                            streamData.getX() + ", " + streamData.getY() + ", " + streamData.getZ());
                 }
             });
-
-            // converting datetime to timestamp
-            pmApp.setDatetime(Calendar.getInstance()); // setting datetime so that system time and watch time are in sync
-            DateTimePacket packet = pmApp.getDatetime();
-            Log.d(TAG, "datetime :: " + packet);
-            Calendar date = Calendar.getInstance();
-            date.set(Calendar.HOUR_OF_DAY, packet.payload.getHour());
-            date.set(Calendar.MINUTE, packet.payload.getMinute());
-            date.set(Calendar.SECOND, packet.payload.getSecond());
-            date.set(Calendar.YEAR, packet.payload.getYear());
-            date.set(Calendar.MONTH, packet.payload.getMonth() - 1); // from 1 index to 0 index base.
-            date.set(Calendar.DAY_OF_MONTH, packet.payload.getDay());
-            TimeZone tz = TimeZone.getDefault();
-            tz.setRawOffset((int) (packet.payload.getTzSec() * 1000));
-            date.setTimeZone(tz);
-            // reference time for the watch, to be obtained before starting the stream
-            refTime = date.getTimeInMillis();
-            Log.d(TAG, "TIME IN MS :: " + (long) refTime);
-
             // start sensor
             adxlApp.startSensor();
-            // 0x9B - 100Hz, 0x9A - 50Hz
-            adxlApp.writeRegister(new long[][]{{0x2C, 0x9B}});
+            // 50Hz
+            adxlApp.writeRegister(new long[][]{{0x2c, 0x9A}});
             adxlApp.subscribeStream();
             // sleep
             try {
-                Thread.sleep(2000);
+                Thread.sleep(10000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             // stop sensor
             adxlApp.unsubscribeStream();
             adxlApp.stopSensor();
+            // csv close
+            try {
+                bw.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
         });
 

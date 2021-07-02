@@ -8,7 +8,7 @@
 Add sdk in app `build.gradle`
 
 ```java
-implementation 'com.github.analogdevicesinc:study_watch_sdk:4.0.7'
+implementation 'com.github.analogdevicesinc:study_watch_sdk:4.0.8'
 ```
 
 Permissions required to enable BLE, add the permission below in `AndroidManifest.xml`
@@ -92,13 +92,8 @@ if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LO
 }
 ```
 
-#### Example 1: Streaming EDA sensor data [https://github.com/analogdevicesinc/study-watch-sdk/blob/main/android/AndroidSamples/app/src/main/java/com/analog/androidsamples/EDAExample.java].
-
-#### Example 2: Taking input from internal storage file [https://github.com/analogdevicesinc/study-watch-sdk/blob/main/android/AndroidSamples/app/src/main/java/com/analog/androidsamples/InputFromInternalStorage.java].
-
-#### Example 3: Running SDK commands in ExecutorService [https://github.com/analogdevicesinc/study-watch-sdk/blob/main/android/AndroidSamples/app/src/main/java/com/analog/androidsamples/UsingExecutorService.java].
-
-#### Example 4: Streaming ADPD sensor data [https://github.com/analogdevicesinc/study-watch-sdk/blob/main/android/AndroidSamples/app/src/main/java/com/analog/androidsamples/ADPDStreamExample.java].
+**Examples :**
+https://github.com/analogdevicesinc/study-watch-sdk/blob/main/android/AndroidSamples/app/src/main/java/com/analog/androidsamples/
 
 
 **Documentation :**
@@ -107,6 +102,10 @@ https://analogdevicesinc.github.io/study-watch-sdk/android
 
 **License :**
 https://github.com/analogdevicesinc/study-watch-sdk/blob/main/LICENSE
+
+**Changelog**
+https://github.com/analogdevicesinc/study-watch-sdk/blob/main/android/CHANGELOG.md
+
 
 
 ## Firmware Setup

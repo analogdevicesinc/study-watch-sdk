@@ -12,10 +12,10 @@ import com.analog.study_watch_sdk.core.SDK;
 import com.analog.study_watch_sdk.core.enums.ADPDLed;
 import com.analog.study_watch_sdk.interfaces.StudyWatchCallback;
 
-public class ADPDStreamExample extends AppCompatActivity {
+public class ADPDStreamsExample extends AppCompatActivity {
 
     SDK watchSdk;
-    private static final String TAG = ADPDStreamExample.class.getSimpleName();
+    private static final String TAG = ADPDStreamsExample.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,7 @@ public class ADPDStreamExample extends AppCompatActivity {
             adpd.setCallback(adpdDataPacket -> {
                 Log.d(TAG, "STREAM_ADPD6 :: " + adpdDataPacket);
 //                ADPD data parsed from stream
-                long[] adpdData = adpdDataPacket.payload.getAdpdData();
+                long[] adpdData = adpdDataPacket.payload.getSignalData();
 //                D/ADPDStreamExample: STREAM_ADPD6 :: Header: {source=<Stream.ADPD6: [0xC2, 0x16]>, destination=<Application.APP_BLE: [0xC8, 0x08]>, length=0x2C, checksum=0x00}, Payload{command=<CommonCommand.STREAM_DATA: [0x28]>, status=<CommonStatus.OK: [0x00]>, sequenceNumber=504, dataType=4, adpdData=[408961, 408958, 409004, 409011, 409051, 409049]}
             }, adpd.STREAM_ADPD6);
             adpd.setCallback(adpdDataPacket -> {
