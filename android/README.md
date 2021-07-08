@@ -1,7 +1,7 @@
 
 # Study Watch Android SDK
 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.analogdevicesinc/study_watch_sdk/badge.svg)](https://search.maven.org/artifact/com.github.analogdevicesinc/study_watch_sdk/1.0.5/aar)  
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.analogdevicesinc/study_watch_sdk/badge.svg)](https://search.maven.org/artifact/com.github.analogdevicesinc/study_watch_sdk/4.0.8/aar)  
 
 ### `minSdkVersion 19`
 
