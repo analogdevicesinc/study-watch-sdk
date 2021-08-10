@@ -36,77 +36,11 @@
 # POSSIBILITY OF SUCH DAMAGE.
 # ******************************************************************************
 
-import time
-
 from adi_study_watch import SDK
 
+if __name__ == '__main__':
+    # joins multiple csv to single csv.
+    SDK.join_csv("adpd6.csv", "adpd7.csv", "adpd8.csv", "adpd9.csv")
 
-def callback_data(data):
-    sequence_number = data["payload"]["sequence_number"]
-    for stream_data in data["payload"]["stream_data"]:
-        dt_object = datetime.fromtimestamp(stream_data['timestamp'] / 1000)  # convert timestamp from ms to sec.
-        print(f"seq :{sequence_number} timestamp: {dt_object} x,y,z :: ({stream_data['x']}, "
-              f"{stream_data['y']}, {stream_data['z']})")
-
-
-if __name__ == "__main__":
-    sdk = SDK("COM4")
-    application = sdk.get_adxl_application()
-    application.set_callback(callback_data)
-
-    # quickstart adxl stream
-    application.start_sensor()
-    application.enable_csv_logging("adxl.csv")
-    application.subscribe_stream()
-    time.sleep(10)
-    application.unsubscribe_stream()
-    application.disable_csv_logging()
-    application.stop_sensor()
-
-    # get supported devices
-    packet = application.get_supported_devices()
-    print(packet)
-
-    # load cfg
-    packet = application.load_configuration(application.DEVICE_362)
-    print(packet)
-
-    # get decimation factor
-    packet = application.get_decimation_factor()
-    print(packet)
-
-    # set decimation factor
-    packet = application.set_decimation_factor(1)
-    print(packet)
-
-    # read register values
-    packet = application.read_register([0x20, 0x21, 0x22])
-    print(packet)
-
-    # write register values
-    packet = application.write_register([[0x20, 0x1], [0x21, 0x2], [0x2E, 0x3]])
-    print(packet)
-
-    # get dcfg
-    packet = application.get_device_configuration()
-    print(packet)
-
-    # get sensor status
-    packet = application.get_sensor_status()
-    print(packet)
-
-    # read dcb
-    packet = application.read_device_configuration_block()
-    print(packet)
-
-    # write dcb
-    packet = application.write_device_configuration_block([[0x20, 2], [0x21, 0x1]])
-    print(packet)
-
-    # write dcb from file
-    packet = application.write_device_configuration_block_from_file("dcb_cfg/adxl_dcb.dcfg")
-    print(packet)
-
-    # delete dcb
-    packet = application.delete_device_configuration_block()
-    print(packet)
+    # convert M2M2 log to CSV
+    SDK.convert_log_to_csv("12104AD0.LOG")

@@ -53,12 +53,18 @@ if __name__ == "__main__":
     # quick start pedometer stream
     adxl_application.start_sensor()
     ped_application.start_sensor()
+    ped_application.enable_csv_logging("ped.csv")
     ped_application.subscribe_stream()
     time.sleep(10)
     ped_application.unsubscribe_stream()
+    ped_application.disable_csv_logging()
     ped_application.stop_sensor()
     adxl_application.stop_sensor()
 
     # get sensor status
     packet = ped_application.get_sensor_status()
+    print(packet)
+
+    # algo version
+    packet = ped_application.get_algo_version()
     print(packet)

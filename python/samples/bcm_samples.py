@@ -37,12 +37,25 @@
 # ******************************************************************************
 
 import time
+import math
 
 from adi_study_watch import SDK
 
 
 def callback_data(data):
-    print(data)
+    for value in data["payload"]["stream_data"]:
+        bcm_real = value["real"]
+        bcm_imaginary = value["imaginary"]
+        if bcm_real == 0:
+            bcm_real = 1
+        if bcm_imaginary == 0:
+            bcm_imaginary = 1
+        impedance_img = bcm_imaginary
+        impedance_real = bcm_real
+        real_and_img = float(impedance_real * impedance_real + impedance_img * impedance_img)
+        impedance_magnitude = math.sqrt(real_and_img)
+        impedance_phase = math.atan2(impedance_img, impedance_real)
+        print(value["timestamp"], data["payload"]["sequence_number"], impedance_magnitude, impedance_phase)
 
 
 if __name__ == "__main__":
@@ -52,9 +65,11 @@ if __name__ == "__main__":
     # quick start bcm
     application.write_library_configuration([[0x0, 0x4]])
     application.start_sensor()
+    application.enable_csv_logging("bcm.csv")
     application.subscribe_stream()
     time.sleep(10)
     application.unsubscribe_stream()
+    application.disable_csv_logging()
     application.stop_sensor()
 
     # get sensor status

@@ -38,6 +38,12 @@
 
 from adi_study_watch import SDK
 
+
+def stream_file(data, total_size, progress):
+    print(data)
+    print(total_size, progress)
+
+
 if __name__ == "__main__":
     sdk = SDK("COM4")
     application = sdk.get_fs_application()
@@ -49,17 +55,30 @@ if __name__ == "__main__":
     # download file
     application.download_file("03124671.LOG", download_to_file=True, display_progress=True)
 
-    # delete config file
-    packet = application.delete_config_file()
-    print(packet)
+    # convert log file to csv
+    SDK.convert_log_to_csv("512190CB.LOG")
 
+    # stream file
+    application.stream_file("80A1BE7E.LOG", stream_file)
+    # time.sleep(20)  # wait for stream to finish
+
+    # Write config file for LT application
     # enable config log
     packet = application.enable_config_log()
     print(packet)
 
+    # write cfg
+    pkt = application.write_config_file("gen_blk_dcb.lcfg")
+    print(pkt)
+
     # disable config log
     packet = application.disable_config_log()
     print(packet)
+
+    # delete config file
+    packet = application.delete_config_file()
+    print(packet)
+    # LT config file commands end.
 
     # format
     packet = application.format()
