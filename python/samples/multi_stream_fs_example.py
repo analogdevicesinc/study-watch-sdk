@@ -75,15 +75,6 @@ if __name__ == "__main__":
     # setting ADPD ODR to 100Hz
     adpd_application.write_register([[0xD, 0x2710]])
 
-    # starting sensors
-    ecg_application.start_sensor()
-    adpd_application.start_sensor()
-    adxl_application.start_sensor()
-    temp_application.start_sensor()
-
-    # setting ADXL ODR to 50Hz -- ADXL Loads DCB when Start Sensor is done, if no DCB it will load Default Config
-    adxl_application.write_register([[0x2C, 0x9A]])
-
     # subscribing streams
     fs_application.subscribe_stream(fs_application.STREAM_ECG)
     fs_application.subscribe_stream(fs_application.STREAM_ADPD6)
@@ -93,11 +84,26 @@ if __name__ == "__main__":
     fs_application.subscribe_stream(fs_application.STREAM_ADXL)
     fs_application.subscribe_stream(fs_application.STREAM_TEMPERATURE)
 
+    # starting sensors
+    ecg_application.start_sensor()
+    adpd_application.start_sensor()
+    adxl_application.start_sensor()
+    temp_application.start_sensor()
+
+    # setting ADXL ODR to 50Hz -- ADXL Loads DCB when Start Sensor is done, if no DCB it will load Default Config
+    adxl_application.write_register([[0x2C, 0x9A]])
+
     # logging started
     fs_application.start_logging()
 
     # sleep for 10 sec
     time.sleep(10)
+
+    # stop sensors
+    ecg_application.stop_sensor()
+    adpd_application.stop_sensor()
+    adxl_application.stop_sensor()
+    temp_application.stop_sensor()
 
     # unsubscribing streams
     fs_application.unsubscribe_stream(fs_application.STREAM_ECG)
@@ -107,12 +113,6 @@ if __name__ == "__main__":
     fs_application.unsubscribe_stream(fs_application.STREAM_ADPD9)
     fs_application.unsubscribe_stream(fs_application.STREAM_ADXL)
     fs_application.unsubscribe_stream(fs_application.STREAM_TEMPERATURE)
-
-    # stop sensors
-    ecg_application.stop_sensor()
-    adpd_application.stop_sensor()
-    adxl_application.stop_sensor()
-    temp_application.stop_sensor()
 
     # stop logging
     fs_application.stop_logging()

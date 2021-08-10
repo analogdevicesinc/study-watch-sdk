@@ -193,6 +193,3 @@ if __name__ == "__main__":
     # set external stream sampling frequency
     packet = application.set_external_stream_sampling_frequency(50)
     print(packet)
-
-    # upload csv file for external stream data
-    application.set_external_stream_data("12104AD0_ADPDAppStream_SlotFChannel2.csv", 6, 2, display_progress=True)
