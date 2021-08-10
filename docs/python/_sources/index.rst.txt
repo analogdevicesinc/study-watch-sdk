@@ -38,19 +38,31 @@ Basic Example using USB:
 .. code-block:: python
 
     import time
+    from datetime import datetime
     from adi_study_watch import SDK
 
     # callback function to receive adxl data
-    def callback_adxl(data):
-        for d in data["payload"]["stream_data"]:
-            print(d["timestamp"], d["x"], d["y"], d["z"]))
+    def callback_data(data):
+        sequence_number = data["payload"]["sequence_number"]
+        for stream_data in data["payload"]["stream_data"]:
+            dt_object = datetime.fromtimestamp(stream_data['timestamp'] / 1000)  # convert timestamp from ms to sec.
+            print(f"seq :{sequence_number} timestamp: {dt_object} x,y,z :: ({stream_data['x']}, "
+                  f"{stream_data['y']}, {stream_data['z']})")
 
 
-    sdk = SDK("COM4")
-    adxl_application = sdk.get_adxl_application(callback_adxl)
-    adxl_application.start_default_stream()
-    time.sleep(10)
-    adxl_application.stop_default_stream()
+    if __name__ == "__main__":
+        sdk = SDK("COM4")
+        application = sdk.get_adxl_application()
+        application.set_callback(callback_data)
+
+        # quickstart adxl stream
+        application.start_sensor()
+        application.enable_csv_logging("adxl.csv") # logging adxl data to csv file
+        application.subscribe_stream()
+        time.sleep(10)
+        application.unsubscribe_stream()
+        application.disable_csv_logging()
+        application.stop_sensor()
 
 
 Example using Ble:
@@ -64,22 +76,35 @@ Connect the BLE with study watch by following the instructions here_ (Windows on
 .. code-block:: python
 
     import time
+    from datetime import datetime
     from adi_study_watch import SDK
 
     # callback function to receive adxl data
-    def callback_adxl(data):
-        for d in data["payload"]["stream_data"]:
-            print(d["timestamp"], d["x"], d["y"], d["z"]))
+    def callback_data(data):
+        sequence_number = data["payload"]["sequence_number"]
+        for stream_data in data["payload"]["stream_data"]:
+            dt_object = datetime.fromtimestamp(stream_data['timestamp'] / 1000)  # convert timestamp from ms to sec.
+            print(f"seq :{sequence_number} timestamp: {dt_object} x,y,z :: ({stream_data['x']}, "
+                  f"{stream_data['y']}, {stream_data['z']})")
 
 
-    sdk = SDK("COM6", is_ble=True)
-    adxl_application = sdk.get_adxl_application(callback_adxl)
-    adxl_application.start_default_stream()
-    time.sleep(10)
-    adxl_application.stop_default_stream()
+    if __name__ == "__main__":
+        sdk = SDK("COM6", is_ble=True)
+        application = sdk.get_adxl_application()
+        application.set_callback(callback_data)
+
+        # quickstart adxl stream
+        application.start_sensor()
+        application.enable_csv_logging("adxl.csv") # logging adxl data to csv file
+        application.subscribe_stream()
+        time.sleep(10)
+        application.unsubscribe_stream()
+        application.disable_csv_logging()
+        application.stop_sensor()
 
 
-How to log and download adxl stream data
+
+How to log and download adxl stream data.
 ------------------------------------------
 
 .. code-block:: python
@@ -117,7 +142,7 @@ How to log and download adxl stream data
     fs_application.download_file(files[0]["payload"]["filename"], download_to_file=True, display_progress=True)
 
 
-How to plot adxl data with Matplotlib
+How to plot adxl data with Matplotlib.
 --------------------------------------------
 
 .. code-block:: python

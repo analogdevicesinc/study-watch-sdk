@@ -2,6 +2,47 @@
 
 All notable changes to python SDK will be documented in this file.
 
+## [v4.0.8] - Aug 10, 2021
+
+- All timestamps in every data stream are changed from ticks to unix epoc.
+
+#### PPG, SQI, PED, ECG
+- get_algo_version method added.
+- get_version method added.
+
+#### TEMP
+- Change in temperature stream: renamed temperature1 to skin_temperature and temperature2 to impedance.
+
+#### FS
+- write_config_file method added.
+
+#### ADPD
+- get_agc_status method removed.
+- Change in ADPD stream data: renamed adpdData to singnalData and Darkdata.
+- get_sensor_status requires stream as parameter.
+- read_device_configuration_block returns array.
+
+
+#### EDA
+- dynamic_scaling scales updated.
+
+#### SDK
+- connect and disconnect method added.
+- convert_log_to_csv method added.
+- join_csv method added.
+
+#### PM
+- device_configuration_block_status packet update: renamed wrist_detect_block to low_touch_block and added bcm_block.
+- set_datetime bug fix for negative timezone issue.
+- DCB read/write/delete methods added.
+
+#### BCM
+- DCB read/write/delete methods added.
+
+#### LT_APP
+- enable_command_logging  method added.
+- disable_command_logging  method added.
+
 
 ## [v4.0.7] - Apr 29, 2021
 

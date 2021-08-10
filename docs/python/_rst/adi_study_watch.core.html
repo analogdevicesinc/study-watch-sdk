@@ -82,8 +82,20 @@
 <span id="core-packet-manager-module"></span><h2>core.packet_manager module<a class="headerlink" href="#module-adi_study_watch.core.packet_manager" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="adi_study_watch.core.packet_manager.PacketManager">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">adi_study_watch.core.packet_manager.</span></code><code class="sig-name descname"><span class="pre">PacketManager</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">serial_object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number_of_process_threads</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.core.packet_manager.PacketManager" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">adi_study_watch.core.packet_manager.</span></code><code class="sig-name descname"><span class="pre">PacketManager</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">serial_object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.core.packet_manager.PacketManager" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="py method">
+<dt id="adi_study_watch.core.packet_manager.PacketManager.close">
+<code class="sig-name descname"><span class="pre">close</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.core.packet_manager.PacketManager.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Closes serial port</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="adi_study_watch.core.packet_manager.PacketManager.process_file">
+<code class="sig-name descname"><span class="pre">process_file</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.core.packet_manager.PacketManager.process_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads packet from file and store it in file queue.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="adi_study_watch.core.packet_manager.PacketManager.process_queue">
 <code class="sig-name descname"><span class="pre">process_queue</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.core.packet_manager.PacketManager.process_queue" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reads the packet from queue and send to relevant callback function.</p>

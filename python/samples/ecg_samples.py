@@ -47,14 +47,18 @@ def callback_data(data):
 
 if __name__ == "__main__":
     sdk = SDK("COM4")
-    application = sdk.get_ecg_application(callback_data)
+    application = sdk.get_ecg_application()
+    # application.set_callback(callback_data)
 
     # quickstart ECG stream
-    application.write_library_configuration([[0x0, 0x100]])
+    application.write_library_configuration([[0x0, 1000]])
+    application.write_library_configuration([[0x3, 0]])
     application.start_sensor()
+    application.enable_csv_logging("ecg.csv")
     application.subscribe_stream()
-    time.sleep(10)
+    time.sleep(20)
     application.unsubscribe_stream()
+    application.disable_csv_logging()
     application.stop_sensor()
 
     # get decimation factor
@@ -95,4 +99,8 @@ if __name__ == "__main__":
 
     # get version
     packet = application.get_version()
+    print(packet)
+
+    # algo version
+    packet = application.get_algo_version()
     print(packet)

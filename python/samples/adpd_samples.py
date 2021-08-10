@@ -55,9 +55,11 @@ if __name__ == "__main__":
     application.calibrate_clock(application.CLOCK_1M_AND_32M)
     application.enable_agc([application.LED_GREEN])
     application.start_sensor()
+    application.enable_csv_logging("adpd6.csv", stream=application.STREAM_ADPD6)
     application.subscribe_stream(application.STREAM_ADPD6)
     time.sleep(10)
     application.unsubscribe_stream(application.STREAM_ADPD6)
+    application.disable_csv_logging(stream=application.STREAM_ADPD6)
     application.stop_sensor()
 
     # get version
@@ -193,4 +195,4 @@ if __name__ == "__main__":
     print(packet)
 
     # upload csv file for external stream data
-    application.set_external_stream_data("AppStream_SlotFChannel2.csv", 6, 2, display_progress=True)
+    application.set_external_stream_data("12104AD0_ADPDAppStream_SlotFChannel2.csv", 6, 2, display_progress=True)

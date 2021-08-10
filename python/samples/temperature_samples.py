@@ -56,9 +56,11 @@ if __name__ == "__main__":
          [adpd_application.SLOT_E, adpd_application.APP_TEMPERATURE_RESISTOR]])
     adpd_application.load_configuration(adpd_application.DEVICE_GREEN)
     temp_application.start_sensor()
+    temp_application.enable_csv_logging("temp.csv")
     temp_application.subscribe_stream()
     time.sleep(10)
     temp_application.unsubscribe_stream()
+    temp_application.disable_csv_logging()
     temp_application.stop_sensor()
 
     # get sensor status

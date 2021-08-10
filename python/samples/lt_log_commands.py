@@ -40,73 +40,24 @@ import time
 
 from adi_study_watch import SDK
 
-
-def callback_data(data):
-    sequence_number = data["payload"]["sequence_number"]
-    for stream_data in data["payload"]["stream_data"]:
-        dt_object = datetime.fromtimestamp(stream_data['timestamp'] / 1000)  # convert timestamp from ms to sec.
-        print(f"seq :{sequence_number} timestamp: {dt_object} x,y,z :: ({stream_data['x']}, "
-              f"{stream_data['y']}, {stream_data['z']})")
-
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     sdk = SDK("COM4")
-    application = sdk.get_adxl_application()
-    application.set_callback(callback_data)
+    adxl_app = sdk.get_adxl_application()
+    fs_app = sdk.get_fs_application()
+    lt_app = sdk.get_low_touch_application()
+    # start section of the log file.
+    lt_app.enable_command_logging(lt_app.START_COMMAND)
+    adxl_app.start_sensor()
+    adxl_app.write_register([[0x2C, 0x9A]])  # 50 Hz
+    fs_app.subscribe_stream(stream=fs_app.STREAM_ADXL)
+    fs_app.start_logging()
+    lt_app.disable_command_logging(lt_app.START_COMMAND)
 
-    # quickstart adxl stream
-    application.start_sensor()
-    application.enable_csv_logging("adxl.csv")
-    application.subscribe_stream()
-    time.sleep(10)
-    application.unsubscribe_stream()
-    application.disable_csv_logging()
-    application.stop_sensor()
+    time.sleep(1)
 
-    # get supported devices
-    packet = application.get_supported_devices()
-    print(packet)
-
-    # load cfg
-    packet = application.load_configuration(application.DEVICE_362)
-    print(packet)
-
-    # get decimation factor
-    packet = application.get_decimation_factor()
-    print(packet)
-
-    # set decimation factor
-    packet = application.set_decimation_factor(1)
-    print(packet)
-
-    # read register values
-    packet = application.read_register([0x20, 0x21, 0x22])
-    print(packet)
-
-    # write register values
-    packet = application.write_register([[0x20, 0x1], [0x21, 0x2], [0x2E, 0x3]])
-    print(packet)
-
-    # get dcfg
-    packet = application.get_device_configuration()
-    print(packet)
-
-    # get sensor status
-    packet = application.get_sensor_status()
-    print(packet)
-
-    # read dcb
-    packet = application.read_device_configuration_block()
-    print(packet)
-
-    # write dcb
-    packet = application.write_device_configuration_block([[0x20, 2], [0x21, 0x1]])
-    print(packet)
-
-    # write dcb from file
-    packet = application.write_device_configuration_block_from_file("dcb_cfg/adxl_dcb.dcfg")
-    print(packet)
-
-    # delete dcb
-    packet = application.delete_device_configuration_block()
-    print(packet)
+    # stop section of the log file.
+    lt_app.enable_command_logging(lt_app.STOP_COMMAND)
+    adxl_app.stop_sensor()
+    fs_app.unsubscribe_stream(stream=fs_app.STREAM_ADXL)
+    fs_app.stop_logging()
+    lt_app.disable_command_logging(lt_app.STOP_COMMAND)

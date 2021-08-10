@@ -59,9 +59,13 @@ if __name__ == "__main__":
     adpd_application.calibrate_clock(adpd_application.CLOCK_1M_AND_32M)
     application.set_library_configuration(application.LCFG_ID_ADPD4000)
     application.start_sensor()
+    application.enable_csv_logging("ppg.csv", stream=application.PPG)
+    application.enable_csv_logging("syncppg.csv", stream=application.SYNC_PPG)
     application.subscribe_stream()
     time.sleep(10)
     application.unsubscribe_stream()
+    application.disable_csv_logging(stream=application.PPG)
+    application.disable_csv_logging(stream=application.SYNC_PPG)
     application.stop_sensor()
 
     # get sensor status
@@ -98,4 +102,8 @@ if __name__ == "__main__":
 
     # set lcfg
     packet = application.set_library_configuration(application.LCFG_ID_ADPD4000)
+    print(packet)
+
+    # algo version
+    packet = application.get_algo_version()
     print(packet)

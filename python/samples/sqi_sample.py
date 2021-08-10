@@ -62,16 +62,18 @@ if __name__ == "__main__":
 
     sqi_application.set_slot(sqi_application.SLOT_F)
     sqi_application.start_sensor()
-    sqi_application.subscribe_stream()
 
     adpd_application.enable_agc([adpd_application.LED_GREEN])
     adpd_application.start_sensor()
+    sqi_application.enable_csv_logging("sqi.csv")
+    sqi_application.subscribe_stream()
     adpd_application.subscribe_stream(stream=adpd_application.STREAM_ADPD6)
     time.sleep(20)
-    sqi_application.stop_sensor()
     sqi_application.unsubscribe_stream()
-    adpd_application.stop_sensor()
     adpd_application.unsubscribe_stream(stream=adpd_application.STREAM_ADPD6)
+    sqi_application.disable_csv_logging()
+    sqi_application.stop_sensor()
+    adpd_application.stop_sensor()
 
     # get sensor status
     packet = sqi_application.get_sensor_status()
@@ -79,3 +81,7 @@ if __name__ == "__main__":
 
     # get supported slots
     print(sqi_application.get_supported_slots())
+
+    # algo version
+    packet = sqi_application.get_algo_version()
+    print(packet)
