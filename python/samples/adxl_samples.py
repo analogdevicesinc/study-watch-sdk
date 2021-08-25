@@ -42,7 +42,11 @@ from adi_study_watch import SDK
 
 
 def callback_data(data):
-    print(data)
+    sequence_number = data["payload"]["sequence_number"]
+    for stream_data in data["payload"]["stream_data"]:
+        dt_object = datetime.fromtimestamp(stream_data['timestamp'] / 1000)  # convert timestamp from ms to sec.
+        print(f"seq :{sequence_number} timestamp: {dt_object} x,y,z :: ({stream_data['x']}, "
+              f"{stream_data['y']}, {stream_data['z']})")
 
 
 if __name__ == "__main__":
@@ -52,9 +56,11 @@ if __name__ == "__main__":
 
     # quickstart adxl stream
     application.start_sensor()
+    application.enable_csv_logging("adxl.csv")
     application.subscribe_stream()
     time.sleep(10)
     application.unsubscribe_stream()
+    application.disable_csv_logging()
     application.stop_sensor()
 
     # get supported devices

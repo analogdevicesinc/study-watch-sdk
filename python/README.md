@@ -1,5 +1,4 @@
 # Study Watch Python SDK
-[![PyPI version fury.io](https://badge.fury.io/py/adi-study-watch.svg)](https://pypi.python.org/pypi/adi-study-watch/) [![PyPI pyversions](https://img.shields.io/pypi/pyversions/adi-study-watch.svg)](https://pypi.python.org/pypi/adi-study-watch/)
 
 The adi-study-watch provides an object-oriented interface for interacting with ADI's VSM study watch platform.
 
@@ -54,22 +53,31 @@ print(packet)
 
 ```python
 import time
+from datetime import datetime
 from adi_study_watch import SDK
 
 # callback function to receive adxl data
-def callback_adxl(data):
-    for d in data["payload"]["stream_data"]:
-        print(d["timestamp"], d["x"], d["y"], d["z"]))
+def callback_data(data):
+    sequence_number = data["payload"]["sequence_number"]
+    for stream_data in data["payload"]["stream_data"]:
+        dt_object = datetime.fromtimestamp(stream_data['timestamp'] / 1000)  # convert timestamp from ms to sec.
+        print(f"seq :{sequence_number} timestamp: {dt_object} x,y,z :: ({stream_data['x']}, "
+              f"{stream_data['y']}, {stream_data['z']})")
 
 
-sdk = SDK("COM4")
-adxl_application = sdk.get_adxl_application()
-adxl_application.set_callback(callback_adxl)
-adxl_application.start_sensor()
-adxl_application.subscribe_stream()
-time.sleep(10)
-adxl_application.unsubscribe_stream()
-adxl_application.stop_sensor()
+if __name__ == "__main__":
+    sdk = SDK("COM4")
+    application = sdk.get_adxl_application()
+    application.set_callback(callback_data)
+
+    # quickstart adxl stream
+    application.start_sensor()
+    application.enable_csv_logging("adxl.csv") # logging adxl data to csv file
+    application.subscribe_stream()
+    time.sleep(10)
+    application.unsubscribe_stream()
+    application.disable_csv_logging()
+    application.stop_sensor()
 ```
 
 **All streams packet structure :**

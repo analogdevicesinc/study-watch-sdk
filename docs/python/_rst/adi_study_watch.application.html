@@ -437,6 +437,30 @@ and returns a response packet as dictionary containing addresses and values.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="adi_study_watch.application.adpd_application.ADPDApplication.disable_csv_logging">
+<code class="sig-name descname"><span class="pre">disable_csv_logging</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">stream:</span> <span class="pre">adi_study_watch.core.enums.common_enums.Stream</span> <span class="pre">=</span> <span class="pre">&lt;Stream.ADPD6:</span> <span class="pre">['0xC2'</span></em>, <em class="sig-param"><span class="pre">'0x16']&gt;</span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#adi_study_watch.application.adpd_application.ADPDApplication.disable_csv_logging" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stops logging stream data into CSV.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>stream</strong> – ADPD Stream.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A response packet as dictionary.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Dict</p>
+</dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_adpd_application</span><span class="p">()</span>
+<span class="hll"><span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">disable_csv_logging</span><span class="p">(</span><span class="n">stream</span><span class="o">=</span><span class="n">application</span><span class="o">.</span><span class="n">STREAM_ADPD6</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
 <dt id="adi_study_watch.application.adpd_application.ADPDApplication.disable_slot">
 <code class="sig-name descname"><span class="pre">disable_slot</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">slot_num</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="adi_study_watch.core.enums.html#adi_study_watch.core.enums.adpd_enums.ADPDSlot" title="adi_study_watch.core.enums.adpd_enums.ADPDSlot"><span class="pre">adi_study_watch.core.enums.adpd_enums.ADPDSlot</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><a class="headerlink" href="#adi_study_watch.application.adpd_application.ADPDApplication.disable_slot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Disable Specified ADPD Slot.</p>
@@ -495,6 +519,34 @@ and returns a response packet as dictionary containing addresses and values.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="adi_study_watch.application.adpd_application.ADPDApplication.enable_csv_logging">
+<code class="sig-name descname"><span class="pre">enable_csv_logging</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">filename</span></em>, <em class="sig-param"><span class="pre">header=None</span></em>, <em class="sig-param"><span class="pre">stream:</span> <span class="pre">adi_study_watch.core.enums.common_enums.Stream</span> <span class="pre">=</span> <span class="pre">&lt;Stream.ADPD6:</span> <span class="pre">['0xC2'</span></em>, <em class="sig-param"><span class="pre">'0x16']&gt;</span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#adi_study_watch.application.adpd_application.ADPDApplication.enable_csv_logging" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start logging stream data into CSV.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> – Name of the CSV file.</p></li>
+<li><p><strong>header</strong> – Header list of the CSV file.</p></li>
+<li><p><strong>stream</strong> – ADPD Stream.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A response packet as dictionary.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Dict</p>
+</dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_adpd_application</span><span class="p">()</span>
+<span class="hll"><span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">enable_csv_logging</span><span class="p">(</span><span class="s2">&quot;adpd6.csv&quot;</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="n">application</span><span class="o">.</span><span class="n">STREAM_ADPD6</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
 <dt id="adi_study_watch.application.adpd_application.ADPDApplication.enable_slot">
 <code class="sig-name descname"><span class="pre">enable_slot</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">slot_num</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="adi_study_watch.core.enums.html#adi_study_watch.core.enums.adpd_enums.ADPDSlot" title="adi_study_watch.core.enums.adpd_enums.ADPDSlot"><span class="pre">adi_study_watch.core.enums.adpd_enums.ADPDSlot</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><a class="headerlink" href="#adi_study_watch.application.adpd_application.ADPDApplication.enable_slot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Enable Specified ADPD Slot.</p>
@@ -519,37 +571,6 @@ and returns a response packet as dictionary containing addresses and values.</p>
 <span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">enable_slot</span><span class="p">(</span><span class="n">application</span><span class="o">.</span><span class="n">SLOT_A</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;slot_num&quot;</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;slot_enabled&quot;</span><span class="p">])</span>
 <span class="c1"># ADPDSlot.SLOT_A  True</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="py method">
-<dt id="adi_study_watch.application.adpd_application.ADPDApplication.get_agc_status">
-<code class="sig-name descname"><span class="pre">get_agc_status</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">led_index</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="adi_study_watch.core.enums.html#adi_study_watch.core.enums.adpd_enums.ADPDLed" title="adi_study_watch.core.enums.adpd_enums.ADPDLed"><span class="pre">adi_study_watch.core.enums.adpd_enums.ADPDLed</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><a class="headerlink" href="#adi_study_watch.application.adpd_application.ADPDApplication.get_agc_status" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns AGC status of specified led index.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>led_index</strong> (<a class="reference internal" href="adi_study_watch.core.enums.html#adi_study_watch.core.enums.adpd_enums.ADPDLed" title="adi_study_watch.core.enums.adpd_enums.ADPDLed"><em>ADPDLed</em></a>) – led_index to obtain status, use get_supported_led_ids() to list all supported led ID.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A response packet as dictionary.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>Dict</p>
-</dd>
-</dl>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
-
-<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
-<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_adpd_application</span><span class="p">()</span>
-<span class="hll"><span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">get_supported_led_ids</span><span class="p">()</span>
-</span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="c1"># [&lt;ADPDLed.LED_GREEN: [&#39;0x0&#39;]&gt;, &lt;ADPDLed.LED_RED: [&#39;0x1&#39;]&gt;, ... , &lt;ADPDLed.LED_BLUE: [&#39;0x3&#39;]&gt;]</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">get_agc_status</span><span class="p">(</span><span class="n">application</span><span class="o">.</span><span class="n">LED_GREEN</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;agc_type&quot;</span><span class="p">])</span>
-<span class="c1"># ADPDLed.LED_GREEN</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;agc_status&quot;</span><span class="p">])</span>
-<span class="c1"># True</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -630,7 +651,7 @@ and returns a response packet as dictionary containing addresses and values.</p>
 
 <dl class="py method">
 <dt id="adi_study_watch.application.adpd_application.ADPDApplication.get_sensor_status">
-<code class="sig-name descname"><span class="pre">get_sensor_status</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><a class="headerlink" href="#adi_study_watch.application.adpd_application.ADPDApplication.get_sensor_status" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_sensor_status</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">stream=&lt;Stream.ADPD6:</span> <span class="pre">['0xC2'</span></em>, <em class="sig-param"><span class="pre">'0x16']&gt;</span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><a class="headerlink" href="#adi_study_watch.application.adpd_application.ADPDApplication.get_sensor_status" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns packet with number of subscribers and number of sensor start request registered.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -644,7 +665,7 @@ and returns a response packet as dictionary containing addresses and values.</p>
 
 <span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
 <span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_adpd_application</span><span class="p">()</span>
-<span class="hll"><span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">get_sensor_status</span><span class="p">()</span>
+<span class="hll"><span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">get_sensor_status</span><span class="p">(</span><span class="n">application</span><span class="o">.</span><span class="n">STREAM_ADPD6</span><span class="p">)</span>
 </span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;num_subscribers&quot;</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;num_start_registered&quot;</span><span class="p">])</span>
 <span class="c1"># 0 0</span>
 </pre></div>
@@ -798,7 +819,7 @@ and returns a response packet as dictionary containing addresses and values.</p>
 <span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_adpd_application</span><span class="p">()</span>
 <span class="hll"><span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">get_supported_led_ids</span><span class="p">()</span>
 </span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="c1"># [&lt;ADPDLed.LED_MWL: [&#39;0x0&#39;]&gt;, &lt;ADPDLed.LED_GREEN: [&#39;0x1&#39;]&gt;, ... , &lt;ADPDLed.LED_BLUE: [&#39;0x4&#39;]&gt;]</span>
+<span class="c1"># [&lt;ADPDLed.LED_GREEN: [&#39;0x1&#39;]&gt;, ... , &lt;ADPDLed.LED_BLUE: [&#39;0x4&#39;]&gt;, &lt;ADPDLed.LED_MWL: [&#39;0x0&#39;]&gt;]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -934,14 +955,14 @@ and returns a response packet as dictionary containing addresses and values.</p>
 
 <dl class="py method">
 <dt id="adi_study_watch.application.adpd_application.ADPDApplication.read_device_configuration_block">
-<code class="sig-name descname"><span class="pre">read_device_configuration_block</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><a class="headerlink" href="#adi_study_watch.application.adpd_application.ADPDApplication.read_device_configuration_block" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">read_device_configuration_block</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="p"><span class="pre">[</span></span><span class="pre">typing.Dict</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#adi_study_watch.application.adpd_application.ADPDApplication.read_device_configuration_block" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns entire device configuration block.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>A response packet as dictionary.</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>Dict</p>
+<dd class="field-even"><p>[Dict]</p>
 </dd>
 </dl>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
@@ -1437,7 +1458,7 @@ and returns a response packet as dictionary containing addresses and values.</p>
 
 <dl class="py method">
 <dt id="adi_study_watch.application.adpd_application.ADPDApplication.write_device_configuration_block">
-<code class="sig-name descname"><span class="pre">write_device_configuration_block</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">addresses_values</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><a class="headerlink" href="#adi_study_watch.application.adpd_application.ADPDApplication.write_device_configuration_block" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">write_device_configuration_block</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">addresses_values</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="p"><span class="pre">[</span></span><span class="pre">typing.Dict</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#adi_study_watch.application.adpd_application.ADPDApplication.write_device_configuration_block" title="Permalink to this definition">¶</a></dt>
 <dd><p>Writes the device configuration block values of specified addresses.
 This function takes a list of addresses and values to write, and returns a response packet as
 dictionary containing addresses and values.</p>
@@ -1449,7 +1470,7 @@ dictionary containing addresses and values.</p>
 <dd class="field-even"><p>A response packet as dictionary.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>Dict</p>
+<dd class="field-odd"><p>[Dict]</p>
 </dd>
 </dl>
 <table class="colwidths-given docutils align-default">
@@ -1481,7 +1502,7 @@ dictionary containing addresses and values.</p>
 
 <dl class="py method">
 <dt id="adi_study_watch.application.adpd_application.ADPDApplication.write_device_configuration_block_from_file">
-<code class="sig-name descname"><span class="pre">write_device_configuration_block_from_file</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><a class="headerlink" href="#adi_study_watch.application.adpd_application.ADPDApplication.write_device_configuration_block_from_file" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">write_device_configuration_block_from_file</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="p"><span class="pre">[</span></span><span class="pre">typing.Dict</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#adi_study_watch.application.adpd_application.ADPDApplication.write_device_configuration_block_from_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Writes the device configuration block values of specified addresses from file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1491,7 +1512,7 @@ dictionary containing addresses and values.</p>
 <dd class="field-even"><p>A response packet as dictionary.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>Dict</p>
+<dd class="field-odd"><p>[Dict]</p>
 </dd>
 </dl>
 <table class="colwidths-given docutils align-default">
@@ -1636,6 +1657,54 @@ and returns a response packet as dictionary containing addresses and values.</p>
 <span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
 <span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_adxl_application</span><span class="p">()</span>
 <span class="hll"><span class="n">application</span><span class="o">.</span><span class="n">delete_device_configuration_block</span><span class="p">()</span>
+</span></pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="adi_study_watch.application.adxl_application.ADXLApplication.disable_csv_logging">
+<code class="sig-name descname"><span class="pre">disable_csv_logging</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#adi_study_watch.application.adxl_application.ADXLApplication.disable_csv_logging" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stops logging stream data into CSV.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A response packet as dictionary.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_adxl_application</span><span class="p">()</span>
+<span class="hll"><span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">disable_csv_logging</span><span class="p">()</span>
+</span></pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="adi_study_watch.application.adxl_application.ADXLApplication.enable_csv_logging">
+<code class="sig-name descname"><span class="pre">enable_csv_logging</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#adi_study_watch.application.adxl_application.ADXLApplication.enable_csv_logging" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start logging stream data into CSV.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> – Name of the CSV file.</p></li>
+<li><p><strong>header</strong> – Header list of the CSV file.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A response packet as dictionary.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Dict</p>
+</dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_adxl_application</span><span class="p">()</span>
+<span class="hll"><span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">enable_csv_logging</span><span class="p">(</span><span class="s2">&quot;adxl.csv&quot;</span><span class="p">)</span>
 </span></pre></div>
 </div>
 </dd></dl>
@@ -2232,6 +2301,75 @@ and returns a response packet as dictionary containing addresses and values.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="adi_study_watch.application.bcm_application.BCMApplication.delete_device_configuration_block">
+<code class="sig-name descname"><span class="pre">delete_device_configuration_block</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><a class="headerlink" href="#adi_study_watch.application.bcm_application.BCMApplication.delete_device_configuration_block" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes BCM Device configuration block.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A response packet as dictionary.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_bcm_application</span><span class="p">()</span>
+<span class="hll"><span class="n">application</span><span class="o">.</span><span class="n">delete_device_configuration_block</span><span class="p">()</span>
+</span></pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="adi_study_watch.application.bcm_application.BCMApplication.disable_csv_logging">
+<code class="sig-name descname"><span class="pre">disable_csv_logging</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#adi_study_watch.application.bcm_application.BCMApplication.disable_csv_logging" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stops logging stream data into CSV.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A response packet as dictionary.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_bcm_application</span><span class="p">()</span>
+<span class="hll"><span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">disable_csv_logging</span><span class="p">()</span>
+</span></pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="adi_study_watch.application.bcm_application.BCMApplication.enable_csv_logging">
+<code class="sig-name descname"><span class="pre">enable_csv_logging</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#adi_study_watch.application.bcm_application.BCMApplication.enable_csv_logging" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start logging stream data into CSV.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> – Name of the CSV file.</p></li>
+<li><p><strong>header</strong> – Header list of the CSV file.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A response packet as dictionary.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Dict</p>
+</dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_bcm_application</span><span class="p">()</span>
+<span class="hll"><span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">enable_csv_logging</span><span class="p">(</span><span class="s2">&quot;bcm.csv&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
 <dt id="adi_study_watch.application.bcm_application.BCMApplication.get_sensor_status">
 <code class="sig-name descname"><span class="pre">get_sensor_status</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><a class="headerlink" href="#adi_study_watch.application.bcm_application.BCMApplication.get_sensor_status" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns packet with number of subscribers and number of sensor start request registered.</p>
@@ -2301,6 +2439,29 @@ and returns a response packet as dictionary containing addresses and values.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="adi_study_watch.application.bcm_application.BCMApplication.read_device_configuration_block">
+<code class="sig-name descname"><span class="pre">read_device_configuration_block</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><a class="headerlink" href="#adi_study_watch.application.bcm_application.BCMApplication.read_device_configuration_block" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns entire device configuration block.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A response packet as dictionary.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_bcm_application</span><span class="p">()</span>
+<span class="hll"><span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">read_device_configuration_block</span><span class="p">()</span>
+</span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;dcb_data&quot;</span><span class="p">])</span>
+<span class="c1"># []</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
 <dt id="adi_study_watch.application.bcm_application.BCMApplication.read_library_configuration">
 <code class="sig-name descname"><span class="pre">read_library_configuration</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fields</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><a class="headerlink" href="#adi_study_watch.application.bcm_application.BCMApplication.read_library_configuration" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reads library configuration from specified field values.</p>
@@ -2327,7 +2488,7 @@ and returns a response packet as dictionary containing addresses and values.</p>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>0x00</p></td>
-<td><p>0x03</p></td>
+<td><p>0x04</p></td>
 </tr>
 </tbody>
 </table>
@@ -2563,6 +2724,113 @@ and returns a response packet as dictionary containing addresses and values.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="adi_study_watch.application.bcm_application.BCMApplication.write_dcb_to_lcfg">
+<code class="sig-name descname"><span class="pre">write_dcb_to_lcfg</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><a class="headerlink" href="#adi_study_watch.application.bcm_application.BCMApplication.write_dcb_to_lcfg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes Device configuration block data to library configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A response packet as dictionary.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_bcm_application</span><span class="p">()</span>
+<span class="hll"><span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">write_dcb_to_lcfg</span><span class="p">()</span>
+</span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;status&quot;</span><span class="p">])</span>
+<span class="c1"># CommonStatus.OK</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="adi_study_watch.application.bcm_application.BCMApplication.write_device_configuration_block">
+<code class="sig-name descname"><span class="pre">write_device_configuration_block</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">addresses_values</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><a class="headerlink" href="#adi_study_watch.application.bcm_application.BCMApplication.write_device_configuration_block" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes the device configuration block values of specified addresses.
+This function takes a list of addresses and values to write, and returns a response packet as
+dictionary containing addresses and values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>addresses_values</strong> (<em>List</em><em>[</em><em>List</em><em>[</em><em>int</em><em>]</em><em>]</em>) – List of addresses and values to write.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A response packet as dictionary.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Dict</p>
+</dd>
+</dl>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Address Lower Limit</p></th>
+<th class="head"><p>Address Upper Limit</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0x00</p></td>
+<td><p>0x04</p></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_bcm_application</span><span class="p">()</span>
+<span class="hll"><span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">write_device_configuration_block</span><span class="p">([[</span><span class="mh">0x0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mh">0x1</span><span class="p">,</span> <span class="mh">0x1</span><span class="p">]])</span>
+</span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;num_ops&quot;</span><span class="p">])</span>
+<span class="c1"># 2</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="adi_study_watch.application.bcm_application.BCMApplication.write_device_configuration_block_from_file">
+<code class="sig-name descname"><span class="pre">write_device_configuration_block_from_file</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><a class="headerlink" href="#adi_study_watch.application.bcm_application.BCMApplication.write_device_configuration_block_from_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes the device configuration block values of specified addresses from file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> – dcb filename</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A response packet as dictionary.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Dict</p>
+</dd>
+</dl>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Address Lower Limit</p></th>
+<th class="head"><p>Address Upper Limit</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0x00</p></td>
+<td><p>0x04</p></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_bcm_application</span><span class="p">()</span>
+<span class="hll"><span class="n">application</span><span class="o">.</span><span class="n">write_device_configuration_block_from_file</span><span class="p">(</span><span class="s2">&quot;bcm_dcb.dcfg&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
 <dt id="adi_study_watch.application.bcm_application.BCMApplication.write_library_configuration">
 <code class="sig-name descname"><span class="pre">write_library_configuration</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fields_values</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><a class="headerlink" href="#adi_study_watch.application.bcm_application.BCMApplication.write_library_configuration" title="Permalink to this definition">¶</a></dt>
 <dd><p>Writes library configuration from List of fields and values.</p>
@@ -2589,7 +2857,7 @@ and returns a response packet as dictionary containing addresses and values.</p>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>0x00</p></td>
-<td><p>0x03</p></td>
+<td><p>0x04</p></td>
 </tr>
 </tbody>
 </table>
@@ -2733,6 +3001,85 @@ and returns a response packet as dictionary containing addresses and values.</p>
 <span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_ecg_application</span><span class="p">()</span>
 <span class="hll"><span class="n">application</span><span class="o">.</span><span class="n">delete_device_configuration_block</span><span class="p">()</span>
 </span></pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="adi_study_watch.application.ecg_application.ECGApplication.disable_csv_logging">
+<code class="sig-name descname"><span class="pre">disable_csv_logging</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#adi_study_watch.application.ecg_application.ECGApplication.disable_csv_logging" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stops logging stream data into CSV.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A response packet as dictionary.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_ecg_application</span><span class="p">()</span>
+<span class="hll"><span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">disable_csv_logging</span><span class="p">()</span>
+</span></pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="adi_study_watch.application.ecg_application.ECGApplication.enable_csv_logging">
+<code class="sig-name descname"><span class="pre">enable_csv_logging</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#adi_study_watch.application.ecg_application.ECGApplication.enable_csv_logging" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start logging stream data into CSV.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> – Name of the CSV file.</p></li>
+<li><p><strong>header</strong> – Header list of the CSV file.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A response packet as dictionary.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Dict</p>
+</dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_ecg_application</span><span class="p">()</span>
+<span class="hll"><span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">enable_csv_logging</span><span class="p">(</span><span class="s2">&quot;ecg.csv&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="adi_study_watch.application.ecg_application.ECGApplication.get_algo_version">
+<code class="sig-name descname"><span class="pre">get_algo_version</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><a class="headerlink" href="#adi_study_watch.application.ecg_application.ECGApplication.get_algo_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns ECG version info.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A response packet as dictionary.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_ecg_application</span><span class="p">()</span>
+<span class="hll"><span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">get_algo_version</span><span class="p">()</span>
+</span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;major_version&quot;</span><span class="p">])</span>
+<span class="c1"># 3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;minor_version&quot;</span><span class="p">])</span>
+<span class="c1"># 4</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;patch_version&quot;</span><span class="p">])</span>
+<span class="c1"># 3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;version_string&quot;</span><span class="p">])</span>
+<span class="c1"># ECG_App</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;build_version&quot;</span><span class="p">])</span>
+<span class="c1"># TEST ECG_VERSION STRING</span>
+</pre></div>
 </div>
 </dd></dl>
 
@@ -3244,7 +3591,7 @@ dictionary containing addresses and values.</p>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>0x00</p></td>
-<td><p>0x02</p></td>
+<td><p>0x03</p></td>
 </tr>
 </tbody>
 </table>
@@ -3345,6 +3692,27 @@ dictionary containing addresses and values.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="adi_study_watch.application.eda_application.EDAApplication.disable_csv_logging">
+<code class="sig-name descname"><span class="pre">disable_csv_logging</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#adi_study_watch.application.eda_application.EDAApplication.disable_csv_logging" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stops logging stream data into CSV.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A response packet as dictionary.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_eda_application</span><span class="p">()</span>
+<span class="hll"><span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">disable_csv_logging</span><span class="p">()</span>
+</span></pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
 <dt id="adi_study_watch.application.eda_application.EDAApplication.disable_dynamic_scaling">
 <code class="sig-name descname"><span class="pre">disable_dynamic_scaling</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><a class="headerlink" href="#adi_study_watch.application.eda_application.EDAApplication.disable_dynamic_scaling" title="Permalink to this definition">¶</a></dt>
 <dd><p>Disables Dynamic scaling.</p>
@@ -3361,6 +3729,33 @@ dictionary containing addresses and values.</p>
 <span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
 <span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_eda_application</span><span class="p">()</span>
 <span class="hll"><span class="n">application</span><span class="o">.</span><span class="n">disable_dynamic_scaling</span><span class="p">()</span>
+</span></pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="adi_study_watch.application.eda_application.EDAApplication.enable_csv_logging">
+<code class="sig-name descname"><span class="pre">enable_csv_logging</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#adi_study_watch.application.eda_application.EDAApplication.enable_csv_logging" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start logging stream data into CSV.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> – Name of the CSV file.</p></li>
+<li><p><strong>header</strong> – Header list of the CSV file.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A response packet as dictionary.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Dict</p>
+</dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_eda_application</span><span class="p">()</span>
+<span class="hll"><span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">enable_csv_logging</span><span class="p">(</span><span class="s2">&quot;eda.csv&quot;</span><span class="p">)</span>
 </span></pre></div>
 </div>
 </dd></dl>
@@ -4431,7 +4826,7 @@ dictionary containing addresses and values.</p>
 <dl class="py method">
 <dt id="adi_study_watch.application.fs_application.FSApplication.stream_file">
 <code class="sig-name descname"><span class="pre">stream_file</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_stream_callback</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#adi_study_watch.application.fs_application.FSApplication.stream_file" title="Permalink to this definition">¶</a></dt>
-<dd><p>Download specified file from the device.</p>
+<dd><p>Stream specified file from the device.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -4540,6 +4935,30 @@ dictionary containing addresses and values.</p>
 </div>
 </dd></dl>
 
+<dl class="py method">
+<dt id="adi_study_watch.application.fs_application.FSApplication.write_config_file">
+<code class="sig-name descname"><span class="pre">write_config_file</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="p"><span class="pre">[</span></span><span class="pre">typing.Dict</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#adi_study_watch.application.fs_application.FSApplication.write_config_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes user config file into FS.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> – file to write.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A response packet as dictionary.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[Dict]</p>
+</dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_fs_application</span><span class="p">()</span>
+<span class="hll"><span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">write_config_file</span><span class="p">(</span><span class="s2">&quot;config.lcfg&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -4555,6 +4974,78 @@ dictionary containing addresses and values.</p>
 <span class="hll"><span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_low_touch_application</span><span class="p">()</span>
 </span></pre></div>
 </div>
+<dl class="py method">
+<dt id="adi_study_watch.application.low_touch_application.LowTouchApplication.delete_device_configuration_block">
+<code class="sig-name descname"><span class="pre">delete_device_configuration_block</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><a class="headerlink" href="#adi_study_watch.application.low_touch_application.LowTouchApplication.delete_device_configuration_block" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes ADPD Device configuration block.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A response packet as dictionary.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_low_touch_application</span><span class="p">()</span>
+<span class="hll"><span class="n">application</span><span class="o">.</span><span class="n">delete_device_configuration_block</span><span class="p">()</span>
+</span></pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="adi_study_watch.application.low_touch_application.LowTouchApplication.disable_command_logging">
+<code class="sig-name descname"><span class="pre">disable_command_logging</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command_type</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">adi_study_watch.core.enums.low_touch_enum.CommandType</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'commands.LOG'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.application.low_touch_application.LowTouchApplication.disable_command_logging" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stops recording SDK commands to a file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>command_type</strong> – Start or Stop command recording.</p></li>
+<li><p><strong>filename</strong> – Name of the file to store commands.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A response packet as dictionary.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Dict</p>
+</dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_low_touch_application</span><span class="p">()</span>
+<span class="hll"><span class="n">application</span><span class="o">.</span><span class="n">disable_command_logging</span><span class="p">(</span><span class="n">application</span><span class="o">.</span><span class="n">START</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="adi_study_watch.application.low_touch_application.LowTouchApplication.enable_command_logging">
+<code class="sig-name descname"><span class="pre">enable_command_logging</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command_type</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">adi_study_watch.core.enums.low_touch_enum.CommandType</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.application.low_touch_application.LowTouchApplication.enable_command_logging" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts recording SDK commands to a file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>command_type</strong> – Start or Stop command recording.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A response packet as dictionary.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Dict</p>
+</dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_low_touch_application</span><span class="p">()</span>
+<span class="hll"><span class="n">application</span><span class="o">.</span><span class="n">enable_command_logging</span><span class="p">(</span><span class="n">application</span><span class="o">.</span><span class="n">START</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</dd></dl>
+
 <dl class="py method">
 <dt id="adi_study_watch.application.low_touch_application.LowTouchApplication.read_ch2_cap">
 <code class="sig-name descname"><span class="pre">read_ch2_cap</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><a class="headerlink" href="#adi_study_watch.application.low_touch_application.LowTouchApplication.read_ch2_cap" title="Permalink to this definition">¶</a></dt>
@@ -4574,6 +5065,31 @@ dictionary containing addresses and values.</p>
 <span class="hll"><span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">read_ch2_cap</span><span class="p">()</span>
 </span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;cap_value&quot;</span><span class="p">])</span>
 <span class="c1"># 0</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="adi_study_watch.application.low_touch_application.LowTouchApplication.read_device_configuration_block">
+<code class="sig-name descname"><span class="pre">read_device_configuration_block</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">readable_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="p"><span class="pre">[</span></span><span class="pre">typing.Dict</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#adi_study_watch.application.low_touch_application.LowTouchApplication.read_device_configuration_block" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns entire device configuration block.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>readable_format</strong> – Converts binary result into readable commands.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A response packet as dictionary.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[Dict]</p>
+</dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_low_touch_application</span><span class="p">()</span>
+<span class="hll"><span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">read_device_configuration_block</span><span class="p">()</span>
+</span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;dcb_data&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -4605,7 +5121,7 @@ dictionary containing addresses and values.</p>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>0x00</p></td>
-<td><p>0x03</p></td>
+<td><p>0x04</p></td>
 </tr>
 </tbody>
 </table>
@@ -4642,6 +5158,30 @@ dictionary containing addresses and values.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="adi_study_watch.application.low_touch_application.LowTouchApplication.write_device_configuration_block_from_file">
+<code class="sig-name descname"><span class="pre">write_device_configuration_block_from_file</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="p"><span class="pre">[</span></span><span class="pre">typing.Dict</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#adi_study_watch.application.low_touch_application.LowTouchApplication.write_device_configuration_block_from_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes the device configuration block values from specified binary file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> – binary filename</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A response packet as dictionary.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[Dict]</p>
+</dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_low_touch_application</span><span class="p">()</span>
+<span class="hll"><span class="n">application</span><span class="o">.</span><span class="n">write_device_configuration_block_from_file</span><span class="p">(</span><span class="s2">&quot;lt_dcb.dcb&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
 <dt id="adi_study_watch.application.low_touch_application.LowTouchApplication.write_library_configuration">
 <code class="sig-name descname"><span class="pre">write_library_configuration</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fields_values</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><a class="headerlink" href="#adi_study_watch.application.low_touch_application.LowTouchApplication.write_library_configuration" title="Permalink to this definition">¶</a></dt>
 <dd><p>Writes library configuration from List of fields and values.</p>
@@ -4668,7 +5208,7 @@ dictionary containing addresses and values.</p>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>0x00</p></td>
-<td><p>0x03</p></td>
+<td><p>0x04</p></td>
 </tr>
 </tbody>
 </table>
@@ -4699,6 +5239,85 @@ dictionary containing addresses and values.</p>
 </span></pre></div>
 </div>
 <dl class="py method">
+<dt id="adi_study_watch.application.pedometer_application.PedometerApplication.disable_csv_logging">
+<code class="sig-name descname"><span class="pre">disable_csv_logging</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#adi_study_watch.application.pedometer_application.PedometerApplication.disable_csv_logging" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stops logging stream data into CSV.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A response packet as dictionary.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_pedometer_application</span><span class="p">()</span>
+<span class="hll"><span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">disable_csv_logging</span><span class="p">()</span>
+</span></pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="adi_study_watch.application.pedometer_application.PedometerApplication.enable_csv_logging">
+<code class="sig-name descname"><span class="pre">enable_csv_logging</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#adi_study_watch.application.pedometer_application.PedometerApplication.enable_csv_logging" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start logging stream data into CSV.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> – Name of the CSV file.</p></li>
+<li><p><strong>header</strong> – Header list of the CSV file.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A response packet as dictionary.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Dict</p>
+</dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_pedometer_application</span><span class="p">()</span>
+<span class="hll"><span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">enable_csv_logging</span><span class="p">(</span><span class="s2">&quot;ped.csv&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="adi_study_watch.application.pedometer_application.PedometerApplication.get_algo_version">
+<code class="sig-name descname"><span class="pre">get_algo_version</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><a class="headerlink" href="#adi_study_watch.application.pedometer_application.PedometerApplication.get_algo_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns Pedometer version info.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A response packet as dictionary.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_pedometer_application</span><span class="p">()</span>
+<span class="hll"><span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">get_algo_version</span><span class="p">()</span>
+</span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;major_version&quot;</span><span class="p">])</span>
+<span class="c1"># 3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;minor_version&quot;</span><span class="p">])</span>
+<span class="c1"># 4</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;patch_version&quot;</span><span class="p">])</span>
+<span class="c1"># 3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;version_string&quot;</span><span class="p">])</span>
+<span class="c1"># ECG_App</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;build_version&quot;</span><span class="p">])</span>
+<span class="c1"># TEST ECG_VERSION STRING</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
 <dt id="adi_study_watch.application.pedometer_application.PedometerApplication.get_sensor_status">
 <code class="sig-name descname"><span class="pre">get_sensor_status</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><a class="headerlink" href="#adi_study_watch.application.pedometer_application.PedometerApplication.get_sensor_status" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns packet with number of subscribers and number of sensor start request registered.</p>
@@ -4717,6 +5336,37 @@ dictionary containing addresses and values.</p>
 <span class="hll"><span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">get_sensor_status</span><span class="p">()</span>
 </span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;num_subscribers&quot;</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;num_start_registered&quot;</span><span class="p">])</span>
 <span class="c1"># 0 0</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="adi_study_watch.application.pedometer_application.PedometerApplication.get_version">
+<code class="sig-name descname"><span class="pre">get_version</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><a class="headerlink" href="#adi_study_watch.application.pedometer_application.PedometerApplication.get_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns Pedometer version info.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A response packet as dictionary.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_pedometer_application</span><span class="p">()</span>
+<span class="hll"><span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">get_version</span><span class="p">()</span>
+</span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;major_version&quot;</span><span class="p">])</span>
+<span class="c1"># 3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;minor_version&quot;</span><span class="p">])</span>
+<span class="c1"># 4</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;patch_version&quot;</span><span class="p">])</span>
+<span class="c1"># 3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;version_string&quot;</span><span class="p">])</span>
+<span class="c1"># ECG_App</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;build_version&quot;</span><span class="p">])</span>
+<span class="c1"># TEST ECG_VERSION STRING</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -4926,6 +5576,27 @@ dictionary containing addresses and values.</p>
 <span class="hll"><span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_pm_application</span><span class="p">()</span>
 </span></pre></div>
 </div>
+<dl class="py method">
+<dt id="adi_study_watch.application.pm_application.PMApplication.delete_device_configuration_block">
+<code class="sig-name descname"><span class="pre">delete_device_configuration_block</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><a class="headerlink" href="#adi_study_watch.application.pm_application.PMApplication.delete_device_configuration_block" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes AD7156 Device configuration block.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A response packet as dictionary.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_pm_application</span><span class="p">()</span>
+<span class="hll"><span class="n">application</span><span class="o">.</span><span class="n">delete_device_configuration_block</span><span class="p">()</span>
+</span></pre></div>
+</div>
+</dd></dl>
+
 <dl class="py method">
 <dt id="adi_study_watch.application.pm_application.PMApplication.device_configuration_block_status">
 <code class="sig-name descname"><span class="pre">device_configuration_block_status</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><a class="headerlink" href="#adi_study_watch.application.pm_application.PMApplication.device_configuration_block_status" title="Permalink to this definition">¶</a></dt>
@@ -5221,6 +5892,29 @@ dictionary containing addresses and values.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="adi_study_watch.application.pm_application.PMApplication.read_device_configuration_block">
+<code class="sig-name descname"><span class="pre">read_device_configuration_block</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><a class="headerlink" href="#adi_study_watch.application.pm_application.PMApplication.read_device_configuration_block" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns entire device configuration block.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A response packet as dictionary.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_pm_application</span><span class="p">()</span>
+<span class="hll"><span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">read_device_configuration_block</span><span class="p">()</span>
+</span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;dcb_data&quot;</span><span class="p">])</span>
+<span class="c1"># []</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
 <dt id="adi_study_watch.application.pm_application.PMApplication.read_register">
 <code class="sig-name descname"><span class="pre">read_register</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">addresses</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><a class="headerlink" href="#adi_study_watch.application.pm_application.PMApplication.read_register" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reads the register values of specified addresses. This function takes a list of addresses to read,
@@ -5359,6 +6053,58 @@ and returns a response packet as dictionary containing addresses and values.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="adi_study_watch.application.pm_application.PMApplication.write_device_configuration_block">
+<code class="sig-name descname"><span class="pre">write_device_configuration_block</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">addresses_values</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><a class="headerlink" href="#adi_study_watch.application.pm_application.PMApplication.write_device_configuration_block" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes the device configuration block values of specified addresses.
+This function takes a list of addresses and values to write, and returns a response packet as
+dictionary containing addresses and values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>addresses_values</strong> (<em>List</em><em>[</em><em>List</em><em>[</em><em>int</em><em>]</em><em>]</em>) – List of addresses and values to write.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A response packet as dictionary.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Dict</p>
+</dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_pm_application</span><span class="p">()</span>
+<span class="hll"><span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">write_device_configuration_block</span><span class="p">([[</span><span class="mh">0x2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mh">0x1</span><span class="p">,</span> <span class="mh">0x1</span><span class="p">]])</span>
+</span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;size&quot;</span><span class="p">])</span>
+<span class="c1"># 2</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="adi_study_watch.application.pm_application.PMApplication.write_device_configuration_block_from_file">
+<code class="sig-name descname"><span class="pre">write_device_configuration_block_from_file</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><a class="headerlink" href="#adi_study_watch.application.pm_application.PMApplication.write_device_configuration_block_from_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes the device configuration block values of specified addresses from file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> – dcb filename</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A response packet as dictionary.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Dict</p>
+</dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_pm_application</span><span class="p">()</span>
+<span class="hll"><span class="n">application</span><span class="o">.</span><span class="n">write_device_configuration_block_from_file</span><span class="p">(</span><span class="s2">&quot;pm_dcb.dcfg&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
 <dt id="adi_study_watch.application.pm_application.PMApplication.write_register">
 <code class="sig-name descname"><span class="pre">write_register</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">addresses_values</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><a class="headerlink" href="#adi_study_watch.application.pm_application.PMApplication.write_register" title="Permalink to this definition">¶</a></dt>
 <dd><p>Writes the register values of specified addresses. This function takes a list of addresses and values to write,
@@ -5435,6 +6181,89 @@ and returns a response packet as dictionary containing addresses and values.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="adi_study_watch.application.ppg_application.PPGApplication.disable_csv_logging">
+<code class="sig-name descname"><span class="pre">disable_csv_logging</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">stream:</span> <span class="pre">adi_study_watch.core.enums.common_enums.Stream</span> <span class="pre">=</span> <span class="pre">&lt;Stream.PPG:</span> <span class="pre">['0xC4'</span></em>, <em class="sig-param"><span class="pre">'0x00']&gt;</span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#adi_study_watch.application.ppg_application.PPGApplication.disable_csv_logging" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stops logging stream data into CSV.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>stream</strong> – PPG or SYNC_PPG stream.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A response packet as dictionary.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Dict</p>
+</dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_ppg_application</span><span class="p">()</span>
+<span class="hll"><span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">disable_csv_logging</span><span class="p">(</span><span class="n">stream</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">PPG</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="adi_study_watch.application.ppg_application.PPGApplication.enable_csv_logging">
+<code class="sig-name descname"><span class="pre">enable_csv_logging</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">filename</span></em>, <em class="sig-param"><span class="pre">header=None</span></em>, <em class="sig-param"><span class="pre">stream:</span> <span class="pre">adi_study_watch.core.enums.common_enums.Stream</span> <span class="pre">=</span> <span class="pre">&lt;Stream.PPG:</span> <span class="pre">['0xC4'</span></em>, <em class="sig-param"><span class="pre">'0x00']&gt;</span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#adi_study_watch.application.ppg_application.PPGApplication.enable_csv_logging" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start logging stream data into CSV.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> – Name of the CSV file.</p></li>
+<li><p><strong>header</strong> – Header list of the CSV file.</p></li>
+<li><p><strong>stream</strong> – PPG or SYNC_PPG stream.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A response packet as dictionary.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Dict</p>
+</dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_ppg_application</span><span class="p">()</span>
+<span class="hll"><span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">enable_csv_logging</span><span class="p">(</span><span class="s2">&quot;ppg.csv&quot;</span><span class="p">,</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">PPG</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="adi_study_watch.application.ppg_application.PPGApplication.get_algo_version">
+<code class="sig-name descname"><span class="pre">get_algo_version</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><a class="headerlink" href="#adi_study_watch.application.ppg_application.PPGApplication.get_algo_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns PPG version info.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A response packet as dictionary.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_ppg_application</span><span class="p">()</span>
+<span class="hll"><span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">get_algo_version</span><span class="p">()</span>
+</span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;major_version&quot;</span><span class="p">])</span>
+<span class="c1"># 3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;minor_version&quot;</span><span class="p">])</span>
+<span class="c1"># 4</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;patch_version&quot;</span><span class="p">])</span>
+<span class="c1"># 3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;version_string&quot;</span><span class="p">])</span>
+<span class="c1"># ECG_App</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;build_version&quot;</span><span class="p">])</span>
+<span class="c1"># TEST ECG_VERSION STRING</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
 <dt id="adi_study_watch.application.ppg_application.PPGApplication.get_library_configuration">
 <code class="sig-name descname"><span class="pre">get_library_configuration</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><a class="headerlink" href="#adi_study_watch.application.ppg_application.PPGApplication.get_library_configuration" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns entire library configuration PPG.</p>
@@ -5499,6 +6328,51 @@ and returns a response packet as dictionary containing addresses and values.</p>
 <span class="hll"><span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">get_supported_lcfg_ids</span><span class="p">()</span>
 </span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="c1"># [&lt;PPGLcfgId.LCFG_ID_ADPD107: [&#39;0x6B&#39;]&gt;, ... , &lt;PPGLcfgId.LCFG_ID_ADPD4000: [&#39;0x28&#39;]&gt;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="adi_study_watch.application.ppg_application.PPGApplication.get_supported_streams">
+<code class="sig-name descname"><span class="pre">get_supported_streams</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="adi_study_watch.core.enums.html#adi_study_watch.core.enums.common_enums.Stream" title="adi_study_watch.core.enums.common_enums.Stream"><span class="pre">adi_study_watch.core.enums.common_enums.Stream</span></a><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#adi_study_watch.application.ppg_application.PPGApplication.get_supported_streams" title="Permalink to this definition">¶</a></dt>
+<dd><p>List all supported streams for PPG.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Array of stream ID enums.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[<a class="reference internal" href="adi_study_watch.core.enums.html#adi_study_watch.core.enums.common_enums.Stream" title="adi_study_watch.core.enums.common_enums.Stream">Stream</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="adi_study_watch.application.ppg_application.PPGApplication.get_version">
+<code class="sig-name descname"><span class="pre">get_version</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><a class="headerlink" href="#adi_study_watch.application.ppg_application.PPGApplication.get_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns PPG version info.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A response packet as dictionary.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_ppg_application</span><span class="p">()</span>
+<span class="hll"><span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">get_version</span><span class="p">()</span>
+</span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;major_version&quot;</span><span class="p">])</span>
+<span class="c1"># 3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;minor_version&quot;</span><span class="p">])</span>
+<span class="c1"># 4</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;patch_version&quot;</span><span class="p">])</span>
+<span class="c1"># 3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;version_string&quot;</span><span class="p">])</span>
+<span class="c1"># ECG_App</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;build_version&quot;</span><span class="p">])</span>
+<span class="c1"># TEST ECG_VERSION STRING</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -5988,6 +6862,85 @@ dictionary containing addresses and values.</p>
 </span></pre></div>
 </div>
 <dl class="py method">
+<dt id="adi_study_watch.application.sqi_application.SQIApplication.disable_csv_logging">
+<code class="sig-name descname"><span class="pre">disable_csv_logging</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#adi_study_watch.application.sqi_application.SQIApplication.disable_csv_logging" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stops logging stream data into CSV.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A response packet as dictionary.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_sqi_application</span><span class="p">()</span>
+<span class="hll"><span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">disable_csv_logging</span><span class="p">()</span>
+</span></pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="adi_study_watch.application.sqi_application.SQIApplication.enable_csv_logging">
+<code class="sig-name descname"><span class="pre">enable_csv_logging</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#adi_study_watch.application.sqi_application.SQIApplication.enable_csv_logging" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start logging stream data into CSV.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> – Name of the CSV file.</p></li>
+<li><p><strong>header</strong> – Header list of the CSV file.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A response packet as dictionary.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Dict</p>
+</dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_sqi_application</span><span class="p">()</span>
+<span class="hll"><span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">enable_csv_logging</span><span class="p">(</span><span class="s2">&quot;sqi.csv&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="adi_study_watch.application.sqi_application.SQIApplication.get_algo_version">
+<code class="sig-name descname"><span class="pre">get_algo_version</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><a class="headerlink" href="#adi_study_watch.application.sqi_application.SQIApplication.get_algo_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns SQI version info.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A response packet as dictionary.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_sqi_application</span><span class="p">()</span>
+<span class="hll"><span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">get_algo_version</span><span class="p">()</span>
+</span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;major_version&quot;</span><span class="p">])</span>
+<span class="c1"># 3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;minor_version&quot;</span><span class="p">])</span>
+<span class="c1"># 4</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;patch_version&quot;</span><span class="p">])</span>
+<span class="c1"># 3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;version_string&quot;</span><span class="p">])</span>
+<span class="c1"># ECG_App</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;build_version&quot;</span><span class="p">])</span>
+<span class="c1"># TEST ECG_VERSION STRING</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
 <dt id="adi_study_watch.application.sqi_application.SQIApplication.get_sensor_status">
 <code class="sig-name descname"><span class="pre">get_sensor_status</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><a class="headerlink" href="#adi_study_watch.application.sqi_application.SQIApplication.get_sensor_status" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns packet with number of subscribers and number of sensor start request registered.</p>
@@ -6029,6 +6982,37 @@ dictionary containing addresses and values.</p>
 <span class="hll"><span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">get_supported_slots</span><span class="p">()</span>
 </span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="c1"># [&lt;SQISlot.SLOT_F: [&#39;0x6&#39;, &#39;0x0&#39;]&gt;, ... , &lt;SQISlot.SLOT_I: [&#39;0x9&#39;, &#39;0x0&#39;]&gt;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="adi_study_watch.application.sqi_application.SQIApplication.get_version">
+<code class="sig-name descname"><span class="pre">get_version</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><a class="headerlink" href="#adi_study_watch.application.sqi_application.SQIApplication.get_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns SQI version info.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A response packet as dictionary.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_sqi_application</span><span class="p">()</span>
+<span class="hll"><span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">get_version</span><span class="p">()</span>
+</span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;major_version&quot;</span><span class="p">])</span>
+<span class="c1"># 3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;minor_version&quot;</span><span class="p">])</span>
+<span class="c1"># 4</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;patch_version&quot;</span><span class="p">])</span>
+<span class="c1"># 3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;version_string&quot;</span><span class="p">])</span>
+<span class="c1"># ECG_App</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;build_version&quot;</span><span class="p">])</span>
+<span class="c1"># TEST ECG_VERSION STRING</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -6267,6 +7251,54 @@ dictionary containing addresses and values.</p>
 <span class="hll"><span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_temperature_application</span><span class="p">()</span>
 </span></pre></div>
 </div>
+<dl class="py method">
+<dt id="adi_study_watch.application.temperature_application.TemperatureApplication.disable_csv_logging">
+<code class="sig-name descname"><span class="pre">disable_csv_logging</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#adi_study_watch.application.temperature_application.TemperatureApplication.disable_csv_logging" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stops logging stream data into CSV.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A response packet as dictionary.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_temperature_application</span><span class="p">()</span>
+<span class="hll"><span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">disable_csv_logging</span><span class="p">()</span>
+</span></pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="adi_study_watch.application.temperature_application.TemperatureApplication.enable_csv_logging">
+<code class="sig-name descname"><span class="pre">enable_csv_logging</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#adi_study_watch.application.temperature_application.TemperatureApplication.enable_csv_logging" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start logging stream data into CSV.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> – Name of the CSV file.</p></li>
+<li><p><strong>header</strong> – Header list of the CSV file.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A response packet as dictionary.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Dict</p>
+</dd>
+</dl>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
+
+<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_temperature_application</span><span class="p">()</span>
+<span class="hll"><span class="n">x</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">enable_csv_logging</span><span class="p">(</span><span class="s2">&quot;temp.csv&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</dd></dl>
+
 <dl class="py method">
 <dt id="adi_study_watch.application.temperature_application.TemperatureApplication.get_device_configuration">
 <code class="sig-name descname"><span class="pre">get_device_configuration</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#adi_study_watch.application.temperature_application.TemperatureApplication.get_device_configuration" title="Permalink to this definition">¶</a></dt>

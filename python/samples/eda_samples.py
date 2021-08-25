@@ -37,12 +37,23 @@
 # ******************************************************************************
 
 import time
+import math
 
 from adi_study_watch import SDK
 
 
 def callback_data(data):
-    print(data)
+    for value in data["payload"]["stream_data"]:
+        eda_real = value["real_data"]
+        eda_imaginary = value["imaginary_data"]
+        if eda_real == 0:
+            eda_real = 1
+        impedance_img = eda_imaginary * 1000.0
+        impedance_real = eda_real * 1000.0
+        real_and_img = float(impedance_real * impedance_real + impedance_img * impedance_img)
+        impedance_module = math.sqrt(real_and_img)
+        impedance_phase = math.atan2(impedance_img, impedance_real)
+        print(value["timestamp"], data["payload"]["sequence_number"], impedance_module, impedance_phase)
 
 
 if __name__ == "__main__":
@@ -52,9 +63,11 @@ if __name__ == "__main__":
     # quickstart EDA stream
     application.write_library_configuration([[0x0, 0x4]])
     application.start_sensor()
+    application.enable_csv_logging("eda.csv")
     application.subscribe_stream()
     time.sleep(10)
     application.unsubscribe_stream()
+    application.disable_csv_logging()
     application.stop_sensor()
 
     # get decimation factor

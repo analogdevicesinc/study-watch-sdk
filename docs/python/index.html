@@ -62,19 +62,31 @@
 <div class="section" id="basic-example-using-usb">
 <h2>Basic Example using USB:<a class="headerlink" href="#basic-example-using-usb" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
 
 <span class="c1"># callback function to receive adxl data</span>
-<span class="k">def</span> <span class="nf">callback_adxl</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;stream_data&quot;</span><span class="p">]:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;timestamp&quot;</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;z&quot;</span><span class="p">]))</span>
+<span class="k">def</span> <span class="nf">callback_data</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">sequence_number</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;sequence_number&quot;</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">stream_data</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;stream_data&quot;</span><span class="p">]:</span>
+        <span class="n">dt_object</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">stream_data</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span>  <span class="c1"># convert timestamp from ms to sec.</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;seq :</span><span class="si">{</span><span class="n">sequence_number</span><span class="si">}</span><span class="s2"> timestamp: </span><span class="si">{</span><span class="n">dt_object</span><span class="si">}</span><span class="s2"> x,y,z :: (</span><span class="si">{</span><span class="n">stream_data</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, &quot;</span>
+              <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">stream_data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">stream_data</span><span class="p">[</span><span class="s1">&#39;z&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
 
 
-<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
-<span class="n">adxl_application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_adxl_application</span><span class="p">(</span><span class="n">callback_adxl</span><span class="p">)</span>
-<span class="n">adxl_application</span><span class="o">.</span><span class="n">start_default_stream</span><span class="p">()</span>
-<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">adxl_application</span><span class="o">.</span><span class="n">stop_default_stream</span><span class="p">()</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM4&quot;</span><span class="p">)</span>
+    <span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_adxl_application</span><span class="p">()</span>
+    <span class="n">application</span><span class="o">.</span><span class="n">set_callback</span><span class="p">(</span><span class="n">callback_data</span><span class="p">)</span>
+
+    <span class="c1"># quickstart adxl stream</span>
+    <span class="n">application</span><span class="o">.</span><span class="n">start_sensor</span><span class="p">()</span>
+    <span class="n">application</span><span class="o">.</span><span class="n">enable_csv_logging</span><span class="p">(</span><span class="s2">&quot;adxl.csv&quot;</span><span class="p">)</span> <span class="c1"># logging adxl data to csv file</span>
+    <span class="n">application</span><span class="o">.</span><span class="n">subscribe_stream</span><span class="p">()</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">application</span><span class="o">.</span><span class="n">unsubscribe_stream</span><span class="p">()</span>
+    <span class="n">application</span><span class="o">.</span><span class="n">disable_csv_logging</span><span class="p">()</span>
+    <span class="n">application</span><span class="o">.</span><span class="n">stop_sensor</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -82,24 +94,36 @@
 <h2>Example using Ble:<a class="headerlink" href="#example-using-ble" title="Permalink to this headline">¶</a></h2>
 <p>Connect the BLE with study watch by following the instructions <a class="reference external" href="https://github.com/analogdevicesinc/study-watch-sdk/blob/main/docs/how_to_use_study_watch_sdk_over_ble.pdf">here</a> (Windows only).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
 
 <span class="c1"># callback function to receive adxl data</span>
-<span class="k">def</span> <span class="nf">callback_adxl</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;stream_data&quot;</span><span class="p">]:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">&quot;timestamp&quot;</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;z&quot;</span><span class="p">]))</span>
+<span class="k">def</span> <span class="nf">callback_data</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">sequence_number</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;sequence_number&quot;</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">stream_data</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;payload&quot;</span><span class="p">][</span><span class="s2">&quot;stream_data&quot;</span><span class="p">]:</span>
+        <span class="n">dt_object</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">stream_data</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span>  <span class="c1"># convert timestamp from ms to sec.</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;seq :</span><span class="si">{</span><span class="n">sequence_number</span><span class="si">}</span><span class="s2"> timestamp: </span><span class="si">{</span><span class="n">dt_object</span><span class="si">}</span><span class="s2"> x,y,z :: (</span><span class="si">{</span><span class="n">stream_data</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, &quot;</span>
+              <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">stream_data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">stream_data</span><span class="p">[</span><span class="s1">&#39;z&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
 
 
-<span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM6&quot;</span><span class="p">,</span> <span class="n">is_ble</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">adxl_application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_adxl_application</span><span class="p">(</span><span class="n">callback_adxl</span><span class="p">)</span>
-<span class="n">adxl_application</span><span class="o">.</span><span class="n">start_default_stream</span><span class="p">()</span>
-<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">adxl_application</span><span class="o">.</span><span class="n">stop_default_stream</span><span class="p">()</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">sdk</span> <span class="o">=</span> <span class="n">SDK</span><span class="p">(</span><span class="s2">&quot;COM6&quot;</span><span class="p">,</span> <span class="n">is_ble</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">application</span> <span class="o">=</span> <span class="n">sdk</span><span class="o">.</span><span class="n">get_adxl_application</span><span class="p">()</span>
+    <span class="n">application</span><span class="o">.</span><span class="n">set_callback</span><span class="p">(</span><span class="n">callback_data</span><span class="p">)</span>
+
+    <span class="c1"># quickstart adxl stream</span>
+    <span class="n">application</span><span class="o">.</span><span class="n">start_sensor</span><span class="p">()</span>
+    <span class="n">application</span><span class="o">.</span><span class="n">enable_csv_logging</span><span class="p">(</span><span class="s2">&quot;adxl.csv&quot;</span><span class="p">)</span> <span class="c1"># logging adxl data to csv file</span>
+    <span class="n">application</span><span class="o">.</span><span class="n">subscribe_stream</span><span class="p">()</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">application</span><span class="o">.</span><span class="n">unsubscribe_stream</span><span class="p">()</span>
+    <span class="n">application</span><span class="o">.</span><span class="n">disable_csv_logging</span><span class="p">()</span>
+    <span class="n">application</span><span class="o">.</span><span class="n">stop_sensor</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="how-to-log-and-download-adxl-stream-data">
-<h2>How to log and download adxl stream data<a class="headerlink" href="#how-to-log-and-download-adxl-stream-data" title="Permalink to this headline">¶</a></h2>
+<h2>How to log and download adxl stream data.<a class="headerlink" href="#how-to-log-and-download-adxl-stream-data" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
 <span class="kn">import</span> <span class="nn">time</span>
 
@@ -135,7 +159,7 @@
 </div>
 </div>
 <div class="section" id="how-to-plot-adxl-data-with-matplotlib">
-<h2>How to plot adxl data with Matplotlib<a class="headerlink" href="#how-to-plot-adxl-data-with-matplotlib" title="Permalink to this headline">¶</a></h2>
+<h2>How to plot adxl data with Matplotlib.<a class="headerlink" href="#how-to-plot-adxl-data-with-matplotlib" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">adi_study_watch</span> <span class="kn">import</span> <span class="n">SDK</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span>
 <span class="kn">from</span> <span class="nn">matplotlib.animation</span> <span class="kn">import</span> <span class="n">FuncAnimation</span>
@@ -226,8 +250,8 @@
 <li><a class="reference internal" href="#working-with-hexadecimal-values-in-python">Working with hexadecimal values in python</a></li>
 <li><a class="reference internal" href="#basic-example-using-usb">Basic Example using USB:</a></li>
 <li><a class="reference internal" href="#example-using-ble">Example using Ble:</a></li>
-<li><a class="reference internal" href="#how-to-log-and-download-adxl-stream-data">How to log and download adxl stream data</a></li>
-<li><a class="reference internal" href="#how-to-plot-adxl-data-with-matplotlib">How to plot adxl data with Matplotlib</a></li>
+<li><a class="reference internal" href="#how-to-log-and-download-adxl-stream-data">How to log and download adxl stream data.</a></li>
+<li><a class="reference internal" href="#how-to-plot-adxl-data-with-matplotlib">How to plot adxl data with Matplotlib.</a></li>
 <li><a class="reference internal" href="#examples">Examples</a></li>
 <li><a class="reference internal" href="#license">License</a></li>
 <li><a class="reference internal" href="#all-api-modules">All API modules:</a></li>
