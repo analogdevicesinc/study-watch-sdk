@@ -63,6 +63,16 @@ if __name__ == "__main__":
     adxl_app = sdk.get_adxl_application()
     adpd_app = sdk.get_adpd_application()
     temp_app = sdk.get_temperature_application()
+    pm_application = sdk.get_pm_application()
+    adpd_dcfg = None
+    adxl_dcfg = None
+
+    if pm_application.get_chip_id(pm_application.CHIP_ADPD4K)["payload"]["chip_id"] == 0xc0:
+        adpd_dcfg = "dcb_cfg/DVT1_MV_UC1_ADPD_dcb.dcfg"
+        adxl_dcfg = "dcb_cfg/DVT1_MV_UC1_ADXL_dcb.dcfg"
+    else:
+        adpd_dcfg = "dcb_cfg/DVT2_MV_UC1_ADPD_dcb.dcfg"
+        adxl_dcfg = "dcb_cfg/DVT2_MV_UC1_ADXL_dcb.dcfg"
 
     adxl_app.set_callback(adxl_callback)
     adpd_app.set_callback(adpd_callback)
@@ -70,11 +80,11 @@ if __name__ == "__main__":
 
     adpd_app.delete_device_configuration_block()
     # loading dcb
-    adpd_app.write_device_configuration_block_from_file("dcb_cfg/adpd_g_dcb_500hz.dcfg")
+    adpd_app.write_device_configuration_block_from_file(adpd_dcfg)
     adpd_app.load_configuration(adpd_app.DEVICE_GREEN)
 
     adxl_app.delete_device_configuration_block()
-    adxl_app.write_device_configuration_block_from_file("dcb_cfg/adxl_dcb.dcfg")
+    adxl_app.write_device_configuration_block_from_file(adxl_dcfg)
 
     # starting sensors
     adxl_app.start_sensor()

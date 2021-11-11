@@ -1,6 +1,13 @@
 adi\_study\_watch.core.packets package
 ======================================
 
+ad7156\_packets module
+---------------------------------------------------
+
+.. automodule:: adi_study_watch.core.packets.ad7156_packets
+   :inherited-members:
+
+
 adpd\_packets module
 ---------------------------------------------------
 
@@ -15,10 +22,10 @@ adxl\_packets module
    :inherited-members:
 
 
-bcm\_packets module
+bia\_packets module
 --------------------------------------------------
 
-.. automodule:: adi_study_watch.core.packets.bcm_packets
+.. automodule:: adi_study_watch.core.packets.bia_packets
    :inherited-members:
 
 
@@ -42,6 +49,12 @@ display\_packets module
 .. automodule:: adi_study_watch.core.packets.display_packets
    :inherited-members:
 
+ecg\_packets module
+------------------------------------------------------
+
+.. automodule:: adi_study_watch.core.packets.ecg_packets
+   :inherited-members:
+
 
 eda\_packets module
 --------------------------------------------------
@@ -54,6 +67,12 @@ fs\_packets module
 -------------------------------------------------
 
 .. automodule:: adi_study_watch.core.packets.fs_packets
+   :inherited-members:
+
+low\_touch\_packets module
+-------------------------------------------------
+
+.. automodule:: adi_study_watch.core.packets.low_touch_packets
    :inherited-members:
 
 
@@ -84,3 +103,14 @@ stream\_data\_packets module
 .. automodule:: adi_study_watch.core.packets.stream_data_packets
    :inherited-members:
 
+temperature\_packets module
+--------------------------------------------------
+
+.. automodule:: adi_study_watch.core.packets.temperature_packets
+   :inherited-members:
+
+user0\_packets module
+--------------------------------------------------
+
+.. automodule:: adi_study_watch.core.packets.user0_packets
+   :inherited-members:

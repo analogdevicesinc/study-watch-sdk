@@ -69,6 +69,17 @@ if __name__ == "__main__":
     ecg_app = sdk.get_ecg_application()
     ppg_app = sdk.get_ppg_application()
     temp_app = sdk.get_temperature_application()
+    pm_application = sdk.get_pm_application()
+
+    adpd_dcfg = None
+    adxl_dcfg = None
+
+    if pm_application.get_chip_id(pm_application.CHIP_ADPD4K)["payload"]["chip_id"] == 0xc0:
+        adpd_dcfg = "dcb_cfg/DVT1_MV_UC4_ADPD_dcb.dcfg"
+        adxl_dcfg = "dcb_cfg/DVT1_MV_UC4_ADXL_dcb.dcfg"
+    else:
+        adpd_dcfg = "dcb_cfg/DVT2_MV_UC4_ADPD_dcb.dcfg"
+        adxl_dcfg = "dcb_cfg/DVT2_MV_UC4_ADXL_dcb.dcfg"
 
     temp_app.set_callback(temp_callback)
     ecg_app.set_callback(ecg_callback)
@@ -77,12 +88,12 @@ if __name__ == "__main__":
 
     adpd_app.delete_device_configuration_block()
     # loading dcb
-    adpd_app.write_device_configuration_block_from_file("dcb_cfg/adpd_qa_dcb.dcfg")
+    adpd_app.write_device_configuration_block_from_file(adpd_dcfg)
     adpd_app.load_configuration(adpd_app.DEVICE_GREEN)
     ppg_app.set_library_configuration(ppg_app.LCFG_ID_ADPD4000)
 
     adxl_app.delete_device_configuration_block()
-    adxl_app.write_device_configuration_block_from_file("dcb_cfg/adxl_dcb.dcfg")
+    adxl_app.write_device_configuration_block_from_file(adxl_dcfg)
 
     ecg_app.delete_device_configuration_block()
     ecg_app.write_library_configuration([[0x0, 0x3E8]])  # 1000 ODR

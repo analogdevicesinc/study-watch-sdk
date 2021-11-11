@@ -45,7 +45,7 @@ if __name__ == '__main__':
 
     lt_app.delete_device_configuration_block()
 
-    lt_app.write_device_configuration_block_from_file("gen_blk_dcb.lcfg")
+    lt_app.write_device_configuration_block_from_file("dcb_cfg/gen_blk_dcb.lcfg")
 
     pkt = lt_app.read_device_configuration_block(readable_format=True)
     print(pkt)

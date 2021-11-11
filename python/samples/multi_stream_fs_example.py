@@ -36,6 +36,8 @@
 # POSSIBILITY OF SUCH DAMAGE.
 # ******************************************************************************
 
+# ECG + every wavelength of the optical sensor (F,G,H,I) + Acc + Temp.
+
 import time
 
 from adi_study_watch import SDK
@@ -54,21 +56,15 @@ if __name__ == "__main__":
     # setting ECG ODR to 250Hz
     ecg_application.write_library_configuration([[0x0, 0xFA]])
 
-    # adpd config:
-    adpd_application.create_device_configuration([
-        [adpd_application.SLOT_D, adpd_application.APP_TEMPERATURE_THERMISTOR],
-        [adpd_application.SLOT_E, adpd_application.APP_TEMPERATURE_RESISTOR],
-        [adpd_application.SLOT_F, adpd_application.APP_ADPD_GREEN],
-        [adpd_application.SLOT_G, adpd_application.APP_ADPD_RED],
-        [adpd_application.SLOT_H, adpd_application.APP_ADPD_INFRARED],
-        [adpd_application.SLOT_I, adpd_application.APP_ADPD_BLUE],
-    ])
-    adpd_application.load_configuration(adpd_application.DEVICE_GREEN)
     # checking for DVT2 board
     if pm_application.get_chip_id(pm_application.CHIP_ADPD4K)["payload"]["chip_id"] == 0xc0:
+        adpd_application.write_device_configuration_block_from_file("dcb_cfg/DVT1_TEMP+4LED.dcfg")
         adpd_application.calibrate_clock(adpd_application.CLOCK_1M_AND_32M)
     else:
+        adpd_application.write_device_configuration_block_from_file("dcb_cfg/DVT2_TEMP+4LED.dcfg")
         adpd_application.calibrate_clock(adpd_application.CLOCK_1M)
+    adpd_application.load_configuration(adpd_application.DEVICE_GREEN)
+
     adpd_application.enable_agc([adpd_application.LED_GREEN, adpd_application.LED_RED,
                                  adpd_application.LED_IR, adpd_application.LED_BLUE])
 

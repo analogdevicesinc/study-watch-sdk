@@ -70,6 +70,17 @@ if __name__ == "__main__":
     # getting all required application from SDK
     adxl_app = sdk.get_adxl_application()
     adpd_app = sdk.get_adpd_application()
+    pm_application = sdk.get_pm_application()
+
+    adpd_dcfg = None
+    adxl_dcfg = None
+
+    if pm_application.get_chip_id(pm_application.CHIP_ADPD4K)["payload"]["chip_id"] == 0xc0:
+        adpd_dcfg = "dcb_cfg/DVT1_MV_UC5_ADPD_dcb.dcfg"
+        adxl_dcfg = "dcb_cfg/DVT1_MV_UC5_ADXL_dcb.dcfg"
+    else:
+        adpd_dcfg = "dcb_cfg/DVT2_MV_UC5_ADPD_dcb.dcfg"
+        adxl_dcfg = "dcb_cfg/DVT2_MV_UC5_ADXL_dcb.dcfg"
 
     adxl_app.set_callback(adxl_callback)
     adpd_app.set_callback(adpd6_callback, stream=adpd_app.STREAM_ADPD6)
@@ -79,11 +90,11 @@ if __name__ == "__main__":
 
     adpd_app.delete_device_configuration_block()
     # loading dcb
-    adpd_app.write_device_configuration_block_from_file("dcb_cfg/adpd_multi_led_dcb.dcfg")
+    adpd_app.write_device_configuration_block_from_file(adpd_dcfg)
     adpd_app.load_configuration(adpd_app.DEVICE_GREEN)
 
     adxl_app.delete_device_configuration_block()
-    adxl_app.write_device_configuration_block_from_file("dcb_cfg/adxl_dcb.dcfg")
+    adxl_app.write_device_configuration_block_from_file(adxl_dcfg)
 
     adpd_app.enable_agc([adpd_app.LED_GREEN, adpd_app.LED_RED, adpd_app.LED_IR, adpd_app.LED_BLUE])
     adpd_app.write_register([[0xD, 0x2710]])  # 100 ODR

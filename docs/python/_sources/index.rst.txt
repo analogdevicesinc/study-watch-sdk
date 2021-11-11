@@ -68,11 +68,6 @@ Basic Example using USB:
 Example using Ble:
 ----------------------
 
-Connect the BLE with study watch by following the instructions here_ (Windows only).
-
-.. _here: https://github.com/analogdevicesinc/study-watch-sdk/blob/main/docs/how_to_use_study_watch_sdk_over_ble.pdf
-
-
 .. code-block:: python
 
     import time
@@ -89,7 +84,7 @@ Connect the BLE with study watch by following the instructions here_ (Windows on
 
 
     if __name__ == "__main__":
-        sdk = SDK("COM6", is_ble=True)
+        sdk = SDK("COM6", mac_address="C5-05-CA-F1-67-D5") # watch MAC address.
         application = sdk.get_adxl_application()
         application.set_callback(callback_data)
 

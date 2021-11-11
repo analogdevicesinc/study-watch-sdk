@@ -48,7 +48,7 @@ def callback_data(data):
 if __name__ == "__main__":
     sdk = SDK("COM4")
     application = sdk.get_ecg_application()
-    # application.set_callback(callback_data)
+    application.set_callback(callback_data)
 
     # quickstart ECG stream
     application.write_library_configuration([[0x0, 1000]])

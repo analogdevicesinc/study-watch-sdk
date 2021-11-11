@@ -36,8 +36,8 @@
 # POSSIBILITY OF SUCH DAMAGE.
 # ******************************************************************************
 
-import time
 import math
+import time
 
 from adi_study_watch import SDK
 
@@ -50,8 +50,8 @@ def callback_data(data):
             bcm_real = 1
         if bcm_imaginary == 0:
             bcm_imaginary = 1
-        impedance_img = bcm_imaginary
-        impedance_real = bcm_real
+        impedance_img = bcm_imaginary / 1000
+        impedance_real = bcm_real / 1000
         real_and_img = float(impedance_real * impedance_real + impedance_img * impedance_img)
         impedance_magnitude = math.sqrt(real_and_img)
         impedance_phase = math.atan2(impedance_img, impedance_real)
@@ -60,12 +60,13 @@ def callback_data(data):
 
 if __name__ == "__main__":
     sdk = SDK("COM4")
-    application = sdk.get_bcm_application(callback_data)
+    application = sdk.get_bia_application()
+    application.set_callback(callback_data)
 
     # quick start bcm
     application.write_library_configuration([[0x0, 0x4]])
     application.start_sensor()
-    application.enable_csv_logging("bcm.csv")
+    application.enable_csv_logging("bia.csv")
     application.subscribe_stream()
     time.sleep(10)
     application.unsubscribe_stream()

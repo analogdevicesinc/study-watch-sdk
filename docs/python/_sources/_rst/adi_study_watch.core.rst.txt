@@ -13,6 +13,13 @@ Subpackages
 Submodules
 ----------
 
+core.ble\_manager module
+---------------------------------------------
+
+.. automodule:: adi_study_watch.core.ble_manager
+   :inherited-members:
+
+
 core.packet\_manager module
 ---------------------------------------------
 

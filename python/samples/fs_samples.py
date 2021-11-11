@@ -35,6 +35,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 # ******************************************************************************
+import time
 
 from adi_study_watch import SDK
 
@@ -113,7 +114,7 @@ if __name__ == "__main__":
     print(packet)
 
     # download file chunk
-    packet = application.download_file_chunk("12104AD0.LOG", 0, 50)
+    packet = application.download_file_chunk("12104AD0.LOG", 0, 0, 0, 1)
     print(packet)
 
     # get file count
