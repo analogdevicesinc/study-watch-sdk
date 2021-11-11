@@ -47,7 +47,8 @@ def callback_data(data):
 
 if __name__ == "__main__":
     sdk = SDK("COM4")
-    ped_application = sdk.get_pedometer_application(callback_data)
+    ped_application = sdk.get_pedometer_application()
+    ped_application.set_callback(callback_data)
     adxl_application = sdk.get_adxl_application()
 
     # quick start pedometer stream

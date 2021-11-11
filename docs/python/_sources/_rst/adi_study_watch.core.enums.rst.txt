@@ -25,10 +25,19 @@ adxl\_enums module
    :undoc-members:
    :show-inheritance:
 
-bcm\_enums module
+bia\_enums module
 ----------------------------------------------
 
-.. automodule:: adi_study_watch.core.enums.bcm_enums
+.. automodule:: adi_study_watch.core.enums.bia_enums
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+board\_enums module
+----------------------------------------------
+
+.. automodule:: adi_study_watch.core.enums.board_enums
    :members:
    :undoc-members:
    :show-inheritance:
@@ -57,6 +66,14 @@ display\_enums module
    :undoc-members:
    :show-inheritance:
 
+ecg\_enums module
+--------------------------------------------------
+
+.. automodule:: adi_study_watch.core.enums.ecg_enums
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 eda\_enums module
 ----------------------------------------------
 
@@ -69,6 +86,23 @@ fs\_enums module
 ---------------------------------------------
 
 .. automodule:: adi_study_watch.core.enums.fs_enums
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+low\_touch\_enums module
+---------------------------------------------
+
+.. automodule:: adi_study_watch.core.enums.low_touch_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+pedometer\_enums module
+---------------------------------------------
+
+.. automodule:: adi_study_watch.core.enums.pedometer_enums
    :members:
    :undoc-members:
    :show-inheritance:
@@ -93,6 +127,15 @@ sqi\_enum module
 ---------------------------------------------
 
 .. automodule:: adi_study_watch.core.enums.sqi_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+user0\_enum module
+---------------------------------------------
+
+.. automodule:: adi_study_watch.core.enums.user0_enums
    :members:
    :undoc-members:
    :show-inheritance:

@@ -36,17 +36,18 @@
 # POSSIBILITY OF SUCH DAMAGE.
 # ******************************************************************************
 
-import time
+# Impedance + every wavelength of the optical sensor (F,G,H,I) + Acc + Temp.
+
 import math
+import time
 
 from adi_study_watch import SDK
 
 
-
 def callback_eda_data(data):
     for value in data["payload"]["stream_data"]:
-        eda_real = value["real_data"]
-        eda_imaginary = value["imaginary_data"]
+        eda_real = value["real"]
+        eda_imaginary = value["imaginary"]
         if eda_real == 0:
             eda_real = 1
         impedance_real = eda_real * 1000
@@ -108,21 +109,15 @@ if __name__ == "__main__":
     # setting EDA ODR to 30Hz
     eda_application.write_library_configuration([[0x0, 0x1E]])
 
-    # adpd config:
-    adpd_application.create_device_configuration([
-        [adpd_application.SLOT_D, adpd_application.APP_TEMPERATURE_THERMISTOR],
-        [adpd_application.SLOT_E, adpd_application.APP_TEMPERATURE_RESISTOR],
-        [adpd_application.SLOT_F, adpd_application.APP_ADPD_GREEN],
-        [adpd_application.SLOT_G, adpd_application.APP_ADPD_RED],
-        [adpd_application.SLOT_H, adpd_application.APP_ADPD_INFRARED],
-        [adpd_application.SLOT_I, adpd_application.APP_ADPD_BLUE],
-    ])
-    adpd_application.load_configuration(adpd_application.DEVICE_GREEN)
     # checking for DVT2 board
     if pm_application.get_chip_id(pm_application.CHIP_ADPD4K)["payload"]["chip_id"] == 0xc0:
+        adpd_application.write_device_configuration_block_from_file("dcb_cfg/DVT1_TEMP+4LED.dcfg")
         adpd_application.calibrate_clock(adpd_application.CLOCK_1M_AND_32M)
     else:
+        adpd_application.write_device_configuration_block_from_file("dcb_cfg/DVT2_TEMP+4LED.dcfg")
         adpd_application.calibrate_clock(adpd_application.CLOCK_1M)
+    adpd_application.load_configuration(adpd_application.DEVICE_GREEN)
+
     adpd_application.enable_agc([adpd_application.LED_GREEN, adpd_application.LED_RED,
                                  adpd_application.LED_IR, adpd_application.LED_BLUE])
 
@@ -140,6 +135,11 @@ if __name__ == "__main__":
 
     # subscribing streams
     eda_application.subscribe_stream()
+    adpd_application.enable_csv_logging("adpd6.csv", stream=adpd_application.STREAM_ADPD6)
+    adpd_application.enable_csv_logging("adpd7.csv", stream=adpd_application.STREAM_ADPD7)
+    adpd_application.enable_csv_logging("adpd8.csv", stream=adpd_application.STREAM_ADPD8)
+    adpd_application.enable_csv_logging("adpd9.csv", stream=adpd_application.STREAM_ADPD9)
+
     adpd_application.subscribe_stream(adpd_application.STREAM_ADPD6)
     adpd_application.subscribe_stream(adpd_application.STREAM_ADPD7)
     adpd_application.subscribe_stream(adpd_application.STREAM_ADPD8)
@@ -158,6 +158,11 @@ if __name__ == "__main__":
     adpd_application.unsubscribe_stream(adpd_application.STREAM_ADPD9)
     adxl_application.unsubscribe_stream()
     temp_application.unsubscribe_stream()
+
+    adpd_application.disable_csv_logging(stream=adpd_application.STREAM_ADPD6)
+    adpd_application.disable_csv_logging(stream=adpd_application.STREAM_ADPD7)
+    adpd_application.disable_csv_logging(stream=adpd_application.STREAM_ADPD8)
+    adpd_application.disable_csv_logging(stream=adpd_application.STREAM_ADPD9)
 
     # stop sensors
     eda_application.stop_sensor()

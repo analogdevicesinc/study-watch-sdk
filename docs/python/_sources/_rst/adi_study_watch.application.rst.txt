@@ -21,10 +21,10 @@ adxl\_application module
    :inherited-members:
 
 
-bcm\_application module
+bia\_application module
 -----------------------------------------------------
 
-.. automodule:: adi_study_watch.application.bcm_application
+.. automodule:: adi_study_watch.application.bia_application
    :inherited-members:
 
 
@@ -101,6 +101,13 @@ temperature\_application module
 -------------------------------------------------------------
 
 .. automodule:: adi_study_watch.application.temperature_application
+   :inherited-members:
+
+
+user0\_application module
+-------------------------------------------------------------
+
+.. automodule:: adi_study_watch.application.user0_application
    :inherited-members:
 
 

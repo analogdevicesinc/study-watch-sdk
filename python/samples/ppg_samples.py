@@ -49,23 +49,47 @@ def callback_syncppg(data):
     print(data)
 
 
+def callback_d_agc(data):
+    print(data)
+
+
+def callback_hrv(data):
+    print(data)
+
+
 if __name__ == "__main__":
     sdk = SDK("COM4")
-    application = sdk.get_ppg_application(callback_ppg, callback_syncppg)
+    application = sdk.get_ppg_application()
+    application.set_callback(callback_ppg, stream=application.STREAM_PPG)
+    application.set_callback(callback_syncppg, stream=application.STREAM_SYNC_PPG)
+    application.set_callback(callback_d_agc, stream=application.STREAM_DYNAMIC_AGC)
+    application.set_callback(callback_hrv, stream=application.STREAM_HRV)
     adpd_application = sdk.get_adpd_application()
 
     # quickstart ppg
     adpd_application.load_configuration(adpd_application.DEVICE_GREEN)
+    adpd_application.enable_agc([adpd_application.LED_GREEN])
     adpd_application.calibrate_clock(adpd_application.CLOCK_1M_AND_32M)
     application.set_library_configuration(application.LCFG_ID_ADPD4000)
+    application.write_library_configuration([[0x4, 0x1210]])
     application.start_sensor()
-    application.enable_csv_logging("ppg.csv", stream=application.PPG)
-    application.enable_csv_logging("syncppg.csv", stream=application.SYNC_PPG)
-    application.subscribe_stream()
+    application.enable_csv_logging("ppg.csv", stream=application.STREAM_PPG)
+    application.enable_csv_logging("syncppg.csv", stream=application.STREAM_SYNC_PPG)
+    application.enable_csv_logging("dynamic_agc.csv", stream=application.STREAM_DYNAMIC_AGC)
+    application.enable_csv_logging("hrv.csv", stream=application.STREAM_HRV)
+    application.subscribe_stream(stream=application.STREAM_PPG)
+    application.subscribe_stream(stream=application.STREAM_SYNC_PPG)
+    application.subscribe_stream(stream=application.STREAM_DYNAMIC_AGC)
+    application.subscribe_stream(stream=application.STREAM_HRV)
     time.sleep(10)
-    application.unsubscribe_stream()
-    application.disable_csv_logging(stream=application.PPG)
-    application.disable_csv_logging(stream=application.SYNC_PPG)
+    application.unsubscribe_stream(stream=application.STREAM_PPG)
+    application.unsubscribe_stream(stream=application.STREAM_SYNC_PPG)
+    application.unsubscribe_stream(stream=application.STREAM_DYNAMIC_AGC)
+    application.unsubscribe_stream(stream=application.STREAM_HRV)
+    application.disable_csv_logging(stream=application.STREAM_PPG)
+    application.disable_csv_logging(stream=application.STREAM_SYNC_PPG)
+    application.disable_csv_logging(stream=application.STREAM_DYNAMIC_AGC)
+    application.disable_csv_logging(stream=application.STREAM_HRV)
     application.stop_sensor()
 
     # get sensor status

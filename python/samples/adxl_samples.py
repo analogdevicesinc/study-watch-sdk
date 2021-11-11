@@ -37,6 +37,7 @@
 # ******************************************************************************
 
 import time
+from datetime import datetime
 
 from adi_study_watch import SDK
 
@@ -51,6 +52,7 @@ def callback_data(data):
 
 if __name__ == "__main__":
     sdk = SDK("COM4")
+    # sdk = SDK("COM6", mac_address="D5-67-F1-CA-05-C5")
     application = sdk.get_adxl_application()
     application.set_callback(callback_data)
 

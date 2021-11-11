@@ -35,35 +35,30 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 # ******************************************************************************
+import time
+import datetime
 
 from adi_study_watch import SDK
+
+
+def battery_callback(data):
+    print(data)
+
 
 if __name__ == "__main__":
     sdk = SDK("COM4")
     application = sdk.get_pm_application()
 
-    # get version
-    packet = application.get_version()
-    print(packet)
-
-    # get mcu version
-    packet = application.get_mcu_version()
-    print(packet)
-
-    # get system info
-    packet = application.get_system_info()
-    print(packet)
-
-    # read register
-    packet = application.read_register([0x20, 0x36])
-    print(packet)
-
-    # write register
-    packet = application.write_register([[0x20, 2], [0x36, 3]])
-    print(packet)
+    # battery stream
+    application.set_callback(battery_callback, stream=application.STREAM_BATTERY)
+    application.subscribe_stream(application.STREAM_BATTERY)
+    application.enable_csv_logging("battery.csv")
+    time.sleep(10)
+    application.unsubscribe_stream()
+    application.disable_csv_logging()
 
     # set datetime
-    packet = application.set_datetime()
+    packet = application.set_datetime(datetime.datetime.now())
     print(packet)
 
     # get datetime

@@ -47,13 +47,12 @@ def callback_data(data):
 
 if __name__ == "__main__":
     sdk = SDK("COM4")
-    temp_application = sdk.get_temperature_application(callback_data)
+    temp_application = sdk.get_temperature_application()
+    temp_application.set_callback(callback_data)
     adpd_application = sdk.get_adpd_application()
 
     # start and stop stream
-    adpd_application.create_device_configuration(
-        [[adpd_application.SLOT_D, adpd_application.APP_TEMPERATURE_THERMISTOR],
-         [adpd_application.SLOT_E, adpd_application.APP_TEMPERATURE_RESISTOR]])
+    adpd_application.delete_device_configuration_block()
     adpd_application.load_configuration(adpd_application.DEVICE_GREEN)
     temp_application.start_sensor()
     temp_application.enable_csv_logging("temp.csv")
@@ -64,5 +63,35 @@ if __name__ == "__main__":
     temp_application.stop_sensor()
 
     # get sensor status
-    packet = temp_application.get_sensor_status()
+    packet = temp_application.get_sensor_status(temp_application.STREAM_TEMPERATURE2)
+    print(packet)
+
+    # DCB
+    packet = temp_application.write_device_configuration_block_from_file("dcb_cfg/temperature_lcfg_dcb.lcfg")
+    for x in packet:
+        print(x)
+    packet = temp_application.delete_device_configuration_block()
+    print(packet)
+    packet = temp_application.read_device_configuration_block()
+    for x in packet:
+        print(x)
+
+    # DCB to lcfg
+    packet = temp_application.write_dcb_to_lcfg()
+    print(packet)
+
+    # LCFG Read
+    packet = temp_application.read_library_configuration(0)
+    print(packet)
+    packet = temp_application.read_library_configuration(1)
+    print(packet)
+    packet = temp_application.read_library_configuration(2)
+    print(packet)
+
+    # LCFG Write
+    packet = temp_application.write_library_configuration(0, 10)
+    print(packet)
+    packet = temp_application.write_library_configuration(1, 11)
+    print(packet)
+    packet = temp_application.write_library_configuration(2, "dcb_cfg/temperature_lcfg_C.lcfg")
     print(packet)

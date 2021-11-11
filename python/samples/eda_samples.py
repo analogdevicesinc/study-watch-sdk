@@ -36,16 +36,16 @@
 # POSSIBILITY OF SUCH DAMAGE.
 # ******************************************************************************
 
-import time
 import math
+import time
 
 from adi_study_watch import SDK
 
 
 def callback_data(data):
     for value in data["payload"]["stream_data"]:
-        eda_real = value["real_data"]
-        eda_imaginary = value["imaginary_data"]
+        eda_real = value["real"]
+        eda_imaginary = value["imaginary"]
         if eda_real == 0:
             eda_real = 1
         impedance_img = eda_imaginary * 1000.0
@@ -58,10 +58,11 @@ def callback_data(data):
 
 if __name__ == "__main__":
     sdk = SDK("COM4")
-    application = sdk.get_eda_application(callback_data)
+    application = sdk.get_eda_application()
+    application.set_callback(callback_data)
 
     # quickstart EDA stream
-    application.write_library_configuration([[0x0, 0x4]])
+    application.write_library_configuration([[0x0, 0x4], [0x02, 0x02]])
     application.start_sensor()
     application.enable_csv_logging("eda.csv")
     application.subscribe_stream()
@@ -69,6 +70,14 @@ if __name__ == "__main__":
     application.unsubscribe_stream()
     application.disable_csv_logging()
     application.stop_sensor()
+
+    # changing ODR 8Hz
+    packet = application.write_library_configuration([[0x0, 0x8], [0x02, 0x02]])
+    print(packet)
+
+    # changing ODR greater than 16
+    packet = application.write_library_configuration([[0x0, 0x30], [0x02, 0x01]])
+    print(packet)
 
     # get decimation factor
     packet = application.get_decimation_factor()
@@ -126,4 +135,10 @@ if __name__ == "__main__":
     # calibrate rtia
     packet = application.calibrate_resistor_tia(application.SCALE_RESISTOR_100K, application.SCALE_RESISTOR_512K,
                                                 application.SCALE_RESISTOR_100K)
+    print(packet)
+
+    packet = application.set_baseline_impedance(25000.5, 25000.5, 25000.5, 25000.5, 19900)
+    print(packet)
+
+    packet = application.reset_baseline_impedance()
     print(packet)

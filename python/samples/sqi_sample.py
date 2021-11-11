@@ -51,7 +51,8 @@ def sqi_callback_data(data):
 
 if __name__ == "__main__":
     sdk = SDK("COM4")
-    sqi_application = sdk.get_sqi_application(sqi_callback_data)
+    sqi_application = sdk.get_sqi_application()
+    sqi_application.set_callback(sqi_callback_data)
     adpd_application = sdk.get_adpd_application()
     adpd_application.set_callback(adpd_callback_data, stream=adpd_application.STREAM_ADPD6)
 
