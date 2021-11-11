@@ -1,0 +1,138 @@
+#temperature_lcfg_dcb
+
+<TEMP_DCB>
+00 00000001	# Sampling Period in Seconds
+01 00000E1C	# Slots Selected; 0x0E1C = 0000 1110 0001 1100 = (---- LKJI HGFE DCBA) => slots C,D,E,J,K,L are selected for thermistors; slot E is reserved for calibration resistor and must be enabled
+</TEMP_DCB>
+
+#Temperature-Impedance LUT values must be updated between the tags <TEMP_SLOTX_DCB> and </TEMP_SLOTX_DCB> for the slot-X(X can be C,D,J,K,L)
+#Slot E is reserved for cal-resistor and hence no LUT is required
+#look up table contains the impedance values of thermistor at temperatures ranging from 0 to 100 degree Celsius in steps of 5 degree change
+
+#Temperature-Impedance LUT values for thermistor connected to slot C
+<TEMP_SLOTC_DCB> 
+00 00056D10	# Impedance of thermistor connected to slot C at 0 degree Celsius
+01 000425B8	# Impedance of thermistor connected to slot C at 5 degree Celsius
+02 000331F8	# Impedance of thermistor connected to slot C at 10 degree Celsius
+03 00027AC4	# Impedance of thermistor connected to slot C at 15 degree Celsius
+04 0001F018	# Impedance of thermistor connected to slot C at 20 degree Celsius
+05 000186A0	# Impedance of thermistor connected to slot C at 25 degree Celsius
+06 0001357E	# Impedance of thermistor connected to slot C at 30 degree Celsius
+07 0000F6CC	# Impedance of thermistor connected to slot C at 35 degree Celsius
+08 0000C5F8	# Impedance of thermistor connected to slot C at 40 degree Celsius
+09 00009FC4	# Impedance of thermistor connected to slot C at 45 degree Celsius
+0A 000081A6	# Impedance of thermistor connected to slot C at 50 degree Celsius
+0B 000069D2	# Impedance of thermistor connected to slot C at 55 degree Celsius
+0C 000056CC	# Impedance of thermistor connected to slot C at 60 degree Celsius
+0D 00004790	# Impedance of thermistor connected to slot C at 65 degree Celsius
+0E 00003B4C	# Impedance of thermistor connected to slot C at 70 degree Celsius
+0F 00003160	# Impedance of thermistor connected to slot C at 75 degree Celsius
+10 00002954	# Impedance of thermistor connected to slot C at 80 degree Celsius
+11 000022B7	# Impedance of thermistor connected to slot C at 85 degree Celsius
+12 00001D4C	# Impedance of thermistor connected to slot C at 90 degree Celsius
+13 000018D5	# Impedance of thermistor connected to slot C at 95 degree Celsius
+14 00001522	# Impedance of thermistor connected to slot C at 100 degree Celsius
+</TEMP_SLOTC_DCB>
+
+#Temperature-Imepdance LUT values for thermistor connected to slot D
+<TEMP_SLOTD_DCB> 
+00 00056D10	# Impedance of thermistor connected to slot D at 0 degree Celsius
+01 000425B8	# Impedance of thermistor connected to slot D at 5 degree Celsius
+02 000331F8	# Impedance of thermistor connected to slot D at 10 degree Celsius
+03 00027AC4	# Impedance of thermistor connected to slot D at 15 degree Celsius
+04 0001F018	# Impedance of thermistor connected to slot D at 20 degree Celsius
+05 000186A0	# Impedance of thermistor connected to slot D at 25 degree Celsius
+06 0001357E	# Impedance of thermistor connected to slot D at 30 degree Celsius
+07 0000F6CC	# Impedance of thermistor connected to slot D at 35 degree Celsius
+08 0000C5F8	# Impedance of thermistor connected to slot D at 40 degree Celsius
+09 00009FC4	# Impedance of thermistor connected to slot D at 45 degree Celsius
+0A 000081A6	# Impedance of thermistor connected to slot D at 50 degree Celsius
+0B 000069D2	# Impedance of thermistor connected to slot D at 55 degree Celsius
+0C 000056CC	# Impedance of thermistor connected to slot D at 60 degree Celsius
+0D 00004790	# Impedance of thermistor connected to slot D at 65 degree Celsius
+0E 00003B4C	# Impedance of thermistor connected to slot D at 70 degree Celsius
+0F 00003160	# Impedance of thermistor connected to slot D at 75 degree Celsius
+10 00002954	# Impedance of thermistor connected to slot D at 80 degree Celsius
+11 000022B7	# Impedance of thermistor connected to slot D at 85 degree Celsius
+12 00001D4C	# Impedance of thermistor connected to slot D at 90 degree Celsius
+13 000018D5	# Impedance of thermistor connected to slot D at 95 degree Celsius
+14 00001522	# Impedance of thermistor connected to slot D at 100 degree Celsius
+</TEMP_SLOTD_DCB>
+
+#Temperature-Imepdance LUT values for thermistor connected to slot J
+<TEMP_SLOTJ_DCB> 
+00 00056D10	# Impedance of thermistor connected to slot J at 0 degree Celsius
+01 000425B8	# Impedance of thermistor connected to slot J at 5 degree Celsius
+02 000331F8	# Impedance of thermistor connected to slot J at 10 degree Celsius
+03 00027AC4	# Impedance of thermistor connected to slot J at 15 degree Celsius
+04 0001F018	# Impedance of thermistor connected to slot J at 20 degree Celsius
+05 000186A0	# Impedance of thermistor connected to slot J at 25 degree Celsius
+06 0001357E	# Impedance of thermistor connected to slot J at 30 degree Celsius
+07 0000F6CC	# Impedance of thermistor connected to slot J at 35 degree Celsius
+08 0000C5F8	# Impedance of thermistor connected to slot J at 40 degree Celsius
+09 00009FC4	# Impedance of thermistor connected to slot J at 45 degree Celsius
+0A 000081A6	# Impedance of thermistor connected to slot J at 50 degree Celsius
+0B 000069D2	# Impedance of thermistor connected to slot J at 55 degree Celsius
+0C 000056CC	# Impedance of thermistor connected to slot J at 60 degree Celsius
+0D 00004790	# Impedance of thermistor connected to slot J at 65 degree Celsius
+0E 00003B4C	# Impedance of thermistor connected to slot J at 70 degree Celsius
+0F 00003160	# Impedance of thermistor connected to slot J at 75 degree Celsius
+10 00002954	# Impedance of thermistor connected to slot J at 80 degree Celsius
+11 000022B7	# Impedance of thermistor connected to slot J at 85 degree Celsius
+12 00001D4C	# Impedance of thermistor connected to slot J at 90 degree Celsius
+13 000018D5	# Impedance of thermistor connected to slot J at 95 degree Celsius
+14 00001522	# Impedance of thermistor connected to slot J at 100 degree Celsius
+</TEMP_SLOTJ_DCB> 
+
+#Temperature-Imepdance LUT values for thermistor connected to slot K
+<TEMP_SLOTK_DCB> 
+00 00056D10	# Impedance of thermistor connected to slot K at 0 degree Celsius
+01 000425B8	# Impedance of thermistor connected to slot K at 5 degree Celsius
+02 000331F8	# Impedance of thermistor connected to slot K at 10 degree Celsius
+03 00027AC4	# Impedance of thermistor connected to slot K at 15 degree Celsius
+04 0001F018	# Impedance of thermistor connected to slot K at 20 degree Celsius
+05 000186A0	# Impedance of thermistor connected to slot K at 25 degree Celsius
+06 0001357E	# Impedance of thermistor connected to slot K at 30 degree Celsius
+07 0000F6CC	# Impedance of thermistor connected to slot K at 35 degree Celsius
+08 0000C5F8	# Impedance of thermistor connected to slot K at 40 degree Celsius
+09 00009FC4	# Impedance of thermistor connected to slot K at 45 degree Celsius
+0A 000081A6	# Impedance of thermistor connected to slot K at 50 degree Celsius
+0B 000069D2	# Impedance of thermistor connected to slot K at 55 degree Celsius
+0C 000056CC	# Impedance of thermistor connected to slot K at 60 degree Celsius
+0D 00004790	# Impedance of thermistor connected to slot K at 65 degree Celsius
+0E 00003B4C	# Impedance of thermistor connected to slot K at 70 degree Celsius
+0F 00003160	# Impedance of thermistor connected to slot K at 75 degree Celsius
+10 00002954	# Impedance of thermistor connected to slot K at 80 degree Celsius
+11 000022B7	# Impedance of thermistor connected to slot K at 85 degree Celsius
+12 00001D4C	# Impedance of thermistor connected to slot K at 90 degree Celsius
+13 000018D5	# Impedance of thermistor connected to slot K at 95 degree Celsius
+14 00001522	# Impedance of thermistor connected to slot K at 100 degree Celsius
+</TEMP_SLOTK_DCB> 
+
+#Temperature-Imepdance LUT values for thermistor connected to slot L
+<TEMP_SLOTL_DCB> 
+00 00056D10	# Impedance of thermistor connected to slot L at 0 degree Celsius
+01 000425B8	# Impedance of thermistor connected to slot L at 5 degree Celsius
+02 000331F8	# Impedance of thermistor connected to slot L at 10 degree Celsius
+03 00027AC4	# Impedance of thermistor connected to slot L at 15 degree Celsius
+04 0001F018	# Impedance of thermistor connected to slot L at 20 degree Celsius
+05 000186A0	# Impedance of thermistor connected to slot L at 25 degree Celsius
+06 0001357E	# Impedance of thermistor connected to slot L at 30 degree Celsius
+07 0000F6CC	# Impedance of thermistor connected to slot L at 35 degree Celsius
+08 0000C5F8	# Impedance of thermistor connected to slot L at 40 degree Celsius
+09 00009FC4	# Impedance of thermistor connected to slot L at 45 degree Celsius
+0A 000081A6	# Impedance of thermistor connected to slot L at 50 degree Celsius
+0B 000069D2	# Impedance of thermistor connected to slot L at 55 degree Celsius
+0C 000056CC	# Impedance of thermistor connected to slot L at 60 degree Celsius
+0D 00004790	# Impedance of thermistor connected to slot L at 65 degree Celsius
+0E 00003B4C	# Impedance of thermistor connected to slot L at 70 degree Celsius
+0F 00003160	# Impedance of thermistor connected to slot L at 75 degree Celsius
+10 00002954	# Impedance of thermistor connected to slot L at 80 degree Celsius
+11 000022B7	# Impedance of thermistor connected to slot L at 85 degree Celsius
+12 00001D4C	# Impedance of thermistor connected to slot L at 90 degree Celsius
+13 000018D5	# Impedance of thermistor connected to slot L at 95 degree Celsius
+14 00001522	# Impedance of thermistor connected to slot L at 100 degree Celsius
+</TEMP_SLOTL_DCB> 
+
+
+

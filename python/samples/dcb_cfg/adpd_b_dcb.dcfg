@@ -1,0 +1,43 @@
+#Blue LED Config
+0009 0097
+0007 8FFE
+000B 02F6
+000C 0012
+000D 4E20
+000E 0000
+000F 0006
+0014 8000
+0020 2222
+0021 0000
+0022 0003
+0023 0302
+0024 0001
+
+##/*Configuration for Time slot I*/
+0010 0800 # Enable slots till I
+0200 4000 #//CH2 enable
+0201 41DA #
+0202 0005 #
+0203 5002 #
+0204 E3C0 #//TIA GAIN, CH1 = CH2 = 200k
+0205 0000 #
+0206 0500 #//Blue 4A
+0207 0140 #
+0208 0000 #// PERIOD_I
+0209 0210 #// LED_PULSE_I
+020A 0003 #// INTEG_SETUP_I
+020B 1010 #// INTEG_OS_I
+020C 0100 #// MOD_PULSE_I
+020D 0099 #// PATTERN_I Reset value, chop -++-
+020E 0000 #
+020F 0000 #
+0210 0004 # // DATA_FORMAT_I
+0212 0000 # // DECIMATE_I
+0010 0800 #/* Enable slot I for bLUE LED data*/
+
+##/* Set the signal and dark sample data size of the slots from A to E to zero*/
+0110 0000
+0130 0000
+0150 0000
+0170 0000
+0190 0000

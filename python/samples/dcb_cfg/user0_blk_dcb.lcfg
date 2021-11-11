@@ -1,0 +1,45 @@
+#user0_blk_dcb.lcfg
+##
+#Each row correspond to lcfg index
+#Add to a lcfg index, value as mentioned by the bytes allocated
+##
+00000042    #hex value; USER0_CONFIG_LCFG_AGC_UP_TH = 0x0             #Upper limit of LED light intensity for Static AGC - 1byte, Setting range: 1-127, Increment: 1, Unit: LSB
+00000001    #hex value; USER0_CONFIG_LCFG_AGC_LOW_TH = 0x1            #Lower limit of LED light intensity for Static AGC - 1byte, Setting range: 1-127, Increment: 1, Unit: LSB
+0000003C    #hex value; USER0_CONFIG_LCFG_ADV_TIMEOUT_MONITOR = 0x2   #Elapsed time from the start of advertising after finishing PPG,
+                                                                      #EDA, body temperature, and acceleration measurement during
+                                                                      #intermittent operation to the time out - 2byte, Setting range: 10-300, Increment: 10, Unit: second */
+00000022    #hex value; USER0_CONFIG_LCFG_HW_ID = 0x3                 #Unique identification number assigned to each wristband - 2byte, Setting range: 00-99, Increment: 1, Unit: NA
+0000270F    #hex value; USER0_CONFIG_LCFG_EXP_ID = 0x4                #Patient-specific identification number assigned to each case - 2byte, Setting range: 0000-9999, Increment: 1, Unit: NA
+00000012    #hex value; USER0_CONFIG_LCFG_ADXL_START_TIME = 0x5       #Start Time to measure ADXL - 2byte, Setting range: 1-60, Increment: 1, Unit: second
+0000003C    #hex value; USER0_CONFIG_LCFG_ADXL_TON = 0x6              #TON  Time to measure ADXL - 2byte, Setting range: 1-60, Increment: 1, Unit: second
+00000000    #hex value; USER0_CONFIG_LCFG_ADXL_TOFF = 0x7             #TOFF Time to measure ADXL - 2byte, Setting range: 1-60, Increment: 1, Unit: second
+00000001    #hex value; USER0_CONFIG_LCFG_TEMP_START_TIME = 0x8       #Start Time to measure skin temperature - 2byte, Setting range: 1-60, Increment: 1, Unit: second
+0000000A    #hex value; USER0_CONFIG_LCFG_TEMP_TON = 0x9              #TON  Time to measure skin temperature - 2byte, Setting range: 1-60, Increment: 1, Unit: second
+00000000    #hex value; USER0_CONFIG_LCFG_TEMP_TOFF = 0xA             #TOFF Time to measure skin temperature - 2byte, Setting range: 1-60, Increment: 1, Unit: second
+00000012    #hex value; USER0_CONFIG_LCFG_ADPD_START_TIME = 0xB       #Start Time to measure ADPD - 2byte, Setting range: 1-60, Increment: 1, Unit: second
+0000003C    #hex value; USER0_CONFIG_LCFG_ADPD_TON = 0xC              #TON  Time to measure ADPD - 2byte, Setting range: 1-60, Increment: 1, Unit: second
+00000000    #hex value; USER0_CONFIG_LCFG_ADPD_TOFF = 0xD             #TOFF Time to measure ADPD - 2byte, Setting range: 1-60, Increment: 1, Unit: second
+0000000B    #hex value; USER0_CONFIG_LCFG_EDA_START_TIME = 0xE       #Start Time to measure EDA temperature - 2byte, Setting range: 1-60, Increment: 1, Unit: second
+00000043    #hex value; USER0_CONFIG_LCFG_EDA_TON = 0xF              #TON  Time to measure EDA temperature - 2byte, Setting range: 1-60, Increment: 1, Unit: second
+00000000    #hex value; USER0_CONFIG_LCFG_EDA_TOFF = 0x10            #TOFF Time to measure EDA temperature - 2byte, Setting range: 1-60, Increment: 1, Unit: second
+0000000F    #hex value; USER0_CONFIG_LCFG_SLEEP_MIN = 0x11             #Sleep time of intermittent operation - 2byte, Setting range: 1-180, Increment: 1, Unit: minute
+000249F0    #hex value; USER0_CONFIG_LCFG_SIGNAL_THRESHOLD = 0x12      #AD threshold for determining light intensity and TIA gain with static AGC - 4byte, Setting range: 1-(2^(14-1)*127), Increment: 1, Unit: LSB
+
+##########################
+#EDA_Start_delay = 6 secs - this is the eda application inherent start delay
+#Some considerations for making Temp as block1 log, EDA, ADPD, ADXL as block2 log for intermittent operation:
+# -USER0_CONFIG_LCFG_EDA_START_TIME = USER0_CONFIG_LCFG_TEMP_START_TIME + USER0_CONFIG_LCFG_TEMP_TON
+# -USER0_CONFIG_LCFG_EDA_TON = EDA tON required + EDA_Start_delay + 1
+# 
+# -USER0_CONFIG_LCFG_ADPD_START_TIME = USER0_CONFIG_LCFG_TEMP_START_TIME + USER0_CONFIG_LCFG_TEMP_TON + EDA_Start_delay + 1
+# -USER0_CONFIG_LCFG_ADPD_TON = ADPD tON required
+#
+# -Same as ADPD for ADXL
+#
+#Eg 1: if temp.start_time = 1, temp.tON=10
+#eda.start_time is to be after temp, eda.tON required=20sec, then USER0_CONFIG_LCFG_EDA_START_TIME = 11, USER0_CONFIG_LCFG_EDA_TON = 27
+#adpd.start_time is to be after temp, adpd.tON required=20sec, then USER0_CONFIG_LCFG_ADPD_START_TIME = 18, USER0_CONFIG_LCFG_ADPD_TON = 20
+#Eg 2: if temp.start_time = 1, temp.tON=10
+#eda.start_time is to be after temp,  eda.tON required=60sec, then USER0_CONFIG_LCFG_EDA_START_TIME = 11, USER0_CONFIG_LCFG_EDA_TON = 67
+#adpd.start_time is to be after temp, adpd.tON required=60sec, then USER0_CONFIG_LCFG_ADPD_START_TIME = 18, USER0_CONFIG_LCFG_ADPD_TON = 60
+##########################
