@@ -62,7 +62,8 @@ if __name__ == "__main__":
     application.set_callback(callback_data)
 
     # quickstart EDA stream
-    application.write_library_configuration([[0x0, 0x4], [0x02, 0x02]])
+    application.write_library_configuration([[0x0, 0x4]])
+    application.write_library_configuration([[0x02, 0x02]])
     application.start_sensor()
     application.enable_csv_logging("eda.csv")
     application.subscribe_stream()
@@ -72,12 +73,12 @@ if __name__ == "__main__":
     application.stop_sensor()
 
     # changing ODR 8Hz
-    packet = application.write_library_configuration([[0x0, 0x8], [0x02, 0x02]])
-    print(packet)
+    application.write_library_configuration([[0x0, 0x8]])
+    application.write_library_configuration([[0x02, 0x02]])
 
     # changing ODR greater than 16
-    packet = application.write_library_configuration([[0x0, 0x30], [0x02, 0x01]])
-    print(packet)
+    application.write_library_configuration([[0x0, 0x30]])
+    application.write_library_configuration([[0x02, 0x01]])
 
     # get decimation factor
     packet = application.get_decimation_factor()
