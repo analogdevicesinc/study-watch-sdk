@@ -1,14 +1,14 @@
 
 # Study Watch Android SDK
 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.analogdevicesinc/study_watch_sdk/badge.svg)](https://search.maven.org/artifact/com.github.analogdevicesinc/study_watch_sdk/4.0.8/aar)  
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.analogdevicesinc/study_watch_sdk/badge.svg)](https://search.maven.org/artifact/com.github.analogdevicesinc/study_watch_sdk/4.1.0/aar)  
 
 ### `minSdkVersion 19`
 
 Add sdk in app `build.gradle`
 
 ```java
-implementation 'com.github.analogdevicesinc:study_watch_sdk:4.0.8'
+implementation 'com.github.analogdevicesinc:study_watch_sdk:4.1.0'
 ```
 
 Permissions required to enable BLE, add the permission below in `AndroidManifest.xml`
