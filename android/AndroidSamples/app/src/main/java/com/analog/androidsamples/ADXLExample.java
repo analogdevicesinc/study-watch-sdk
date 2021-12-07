@@ -19,6 +19,9 @@ import com.analog.study_watch_sdk.interfaces.StudyWatchCallback;
 
 import java.sql.Timestamp;
 
+/**
+ * Quickstart for ADXL stream.
+ */
 public class ADXLExample extends AppCompatActivity {
 
     SDK watchSdk;
@@ -40,7 +43,7 @@ public class ADXLExample extends AppCompatActivity {
         final Button button = findViewById(R.id.button);
         button.setEnabled(false);
         // connect to study watch with its mac address.
-        StudyWatch.connectBLE("C5:05:CA:F1:67:D5", getApplicationContext(), new StudyWatchCallback() {
+        StudyWatch.connectBLE("D5:67:F1:CA:05:C5", getApplicationContext(), new StudyWatchCallback() {
             @Override
             public void onSuccess(SDK sdk) {
                 Log.d(TAG, "onSuccess: SDK Ready");
@@ -70,7 +73,7 @@ public class ADXLExample extends AppCompatActivity {
             // start sensor
             adxlApp.startSensor();
             // 50Hz
-            adxlApp.writeRegister(new long[][]{{0x2c, 0x9A}});
+            adxlApp.writeRegister(new int[][]{{0x2c, 0x9A}});
             adxlApp.subscribeStream();
             // sleep
             try {

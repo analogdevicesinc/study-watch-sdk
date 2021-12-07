@@ -16,18 +16,16 @@ import androidx.core.content.ContextCompat;
 import com.analog.study_watch_sdk.StudyWatch;
 import com.analog.study_watch_sdk.application.ADXLApplication;
 import com.analog.study_watch_sdk.core.SDK;
-import com.analog.study_watch_sdk.core.packets.stream.ADXLDataPacket;
 import com.analog.study_watch_sdk.interfaces.StudyWatchCallback;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 
+/**
+ * Quickstart for CSV logging.
+ */
 public class ADXLCSVExample extends AppCompatActivity {
 
     SDK watchSdk;
-    BufferedWriter bw = null;
     private static final String TAG = ADXLCSVExample.class.getSimpleName();
 
     @Override
@@ -61,7 +59,7 @@ public class ADXLCSVExample extends AppCompatActivity {
         final Button button = findViewById(R.id.button);
         button.setEnabled(false);
         // connect to study watch with its mac address.
-        StudyWatch.connectBLE("C5:05:CA:F1:67:D5", getApplicationContext(), new StudyWatchCallback() {
+        StudyWatch.connectBLE("D5:67:F1:CA:05:C5", getApplicationContext(), new StudyWatchCallback() {
             @Override
             public void onSuccess(SDK sdk) {
                 Log.d(TAG, "onSuccess: SDK Ready");
@@ -80,29 +78,13 @@ public class ADXLCSVExample extends AppCompatActivity {
         button.setOnClickListener(v -> {
             // init for csv
             File file = new File(Environment.getExternalStorageDirectory(), "Test/adxl1.csv");
-            try {
-                bw = new BufferedWriter(new FileWriter(file));
-                // Header for CSV file HERE ::
-                bw.write("Timestamp, X, Y, Z\n");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
             // Get applications from SDK
             ADXLApplication adxlApp = watchSdk.getADXLApplication();
-            adxlApp.setCallback(adxlDataPacket -> {
-                for (ADXLDataPacket.Payload.StreamData streamData : adxlDataPacket.payload.streamData) {
-                    try {
-                        // Writing to CSV
-                        bw.write(streamData.getTimestamp() + ", " + streamData.getX() + ", " + streamData.getY() + ", " + streamData.getZ() + "\n");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
             // start sensor
             adxlApp.startSensor();
-            // 50Hz
-            adxlApp.writeRegister(new long[][]{{0x2c, 0x9A}});
+            adxlApp.enableCSVLogging(file);
+            adxlApp.writeRegister(new int[][]{{0x2c, 0x9A}}); // 50Hz
             adxlApp.subscribeStream();
             // sleep
             try {
@@ -112,13 +94,10 @@ public class ADXLCSVExample extends AppCompatActivity {
             }
             // stop sensor
             adxlApp.unsubscribeStream();
+            adxlApp.disableCSVLogging();
             adxlApp.stopSensor();
-            // csv close
-            try {
-                bw.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
+            Log.d(TAG, " Total Packet lost During streaming :: " + adxlApp.getPacketLostCount());
 
         });
 

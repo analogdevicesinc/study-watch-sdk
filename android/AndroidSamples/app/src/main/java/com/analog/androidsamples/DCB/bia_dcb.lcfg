@@ -1,0 +1,18 @@
+00 00000014 # for checking DCB, ODR here is 30 Hz to differentiate DCB value from f/w value . Default f/w BIA ODR = 20 Hz
+01 00000000 # ADC PGA gain is default, options are 0 for ADC gain 1,1 for ADC gain 1.5,2 for ADC gain 2,3 for ADC gain 4,4 for ADC gain 9
+02 00000000 # power modulation, 0 or 1, 0 for low power , 1 for high power
+03 0000C350 # Sine frequency 50,000
+04 0000000B # DFTNUM_8192 = 11 is default
+05 00000014 # Output data rate of FFM output, Default f/w BCM FFM data rate parameter for algorithm = 20
+06 00000001 # BCM Algorithm enable = 1, which enables BCM Algorithm
+07 000000A1 # Height here is 161 Cms, Default f/w BCM Height parameter for algorithm = 160 Cms
+08 0000003E # Weight here is 62Kgs, Default f/w BCM Weight parameter for algorithm = 60 Kgs
+09 0000001D # Age here is 29 years, Default f/w BCM age parameter for algorithm = 30 Years
+0A 3EC12B80 # Coefficient zero = 0.377285, Default f/w BCM coeff zero of algorithm = 0.377285;
+0B BDE631F9 # Coefficient one = -0.1124, Default f/w BCM coeff one of algorithm = -0.1124;
+0C 3F050FA6 # Coefficient two = 0.51977, Default f/w BCM coeff two of algorithm = 0.51977;
+0D BD3FF045 # Coefficient three = -0.04686, Default f/w BCM coeff three of algorithm = -0.04686;
+0E 39A73F75 # Coefficient four = 0.000319, Default f/w BCM coeff four of algorithm = 0.000319;
+0F 3CB1465F # Coefficient five = 0.02164, Default f/w BCM coeff five of algorithm = 0.02164;
+10 B8D1B717 # Coefficient six = -0.0001, Default f/w BCM coeff six of algorithm = -0.0001;
+11 C22BF8D5 # Coefficient seven = -42.9923, Default f/w BCM coeff seven of algorithm = -42.9923;

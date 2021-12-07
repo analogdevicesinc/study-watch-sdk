@@ -14,12 +14,16 @@ import androidx.core.content.ContextCompat;
 import com.analog.study_watch_sdk.StudyWatch;
 import com.analog.study_watch_sdk.application.ADXLApplication;
 import com.analog.study_watch_sdk.core.SDK;
-import com.analog.study_watch_sdk.core.packets.StreamStatusPacket;
+import com.analog.study_watch_sdk.core.packets.common.StreamStatusPacket;
 import com.analog.study_watch_sdk.interfaces.StudyWatchCallback;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * Example show how to run SDK API in executorService, We recommend to use API calls in separate
+ * thread so it doesn't cause any issue with main UI thread.
+ */
 public class UsingExecutorService extends AppCompatActivity {
 
     private static final String TAG = UsingExecutorService.class.getSimpleName();

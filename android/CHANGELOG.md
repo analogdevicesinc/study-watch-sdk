@@ -2,6 +2,28 @@
 
 All notable changes to Android SDK will be documented in this file.
 
+## [v4.1.0] - Dec 7, 2021
+# Temperature Application
+# STREAM_TEMPERATURE enum replaced with STREAM_TEMPERATURE4
+# multi slot temp (Now temperature application has 12 slots for temperature. Example)
+callbacks updated
+file_download
+log_convert
+get_packet lost count
+ad7156 sensor, sub, plot, csv_log, fs_sub
+inbuilt CSV logging
+HRV, AGC and ADP stream added.
+
+Packets updated:
+DCBPacket - split into application respective packets ADPDDCBPacket, ADXLDCBPacket, BIADCBPacket, PPGDCBPacket etc.
+DCFGPacket - split into application respective packets ADXLDCFGPacket, ADPDDCFGPacket etc.
+RegisterPacket - split into application respective packets ADPDRegisterReadPacket, ADPDRegisterWritePacket, ADXLRegisterReadPacket, ADXLRegisterWritePacket etc.
+LibraryConfigReadWritePacket - split into application respective packets BIALibraryConfigPacket, ADPDLibraryConfigPacket, PPGLibraryConfigPacket etc.
+DFTPacket - split into application respective packets EDADFTPacket, ADPDLibraryConfigPacket, PPGLibraryConfigPacket etc.
+
+Datatype change:
+Data Type for all packets are made similar to firmware C data types to reduce SDK memory footprint.
+
 ## [v4.0.8] - Jul 2, 2021
 
 ### New application LT (Low Touch) added.

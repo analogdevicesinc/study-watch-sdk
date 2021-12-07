@@ -17,6 +17,9 @@ import com.analog.study_watch_sdk.application.PedometerApplication;
 import com.analog.study_watch_sdk.core.SDK;
 import com.analog.study_watch_sdk.interfaces.StudyWatchCallback;
 
+/**
+ * Quickstart for Pedometer stream.
+ */
 public class PedometerExample extends AppCompatActivity {
 
     SDK watchSdk;
@@ -38,7 +41,7 @@ public class PedometerExample extends AppCompatActivity {
         final Button button = findViewById(R.id.button);
         button.setEnabled(false);
         // connect to study watch with its mac address.
-        StudyWatch.connectBLE("C5:05:CA:F1:67:D5", getApplicationContext(), new StudyWatchCallback() {
+        StudyWatch.connectBLE("D5:67:F1:CA:05:C5", getApplicationContext(), new StudyWatchCallback() {
             @Override
             public void onSuccess(SDK sdk) {
                 Log.d(TAG, "onSuccess: SDK Ready");

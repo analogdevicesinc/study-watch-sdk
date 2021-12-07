@@ -4,6 +4,7 @@ import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.widget.Button;
 
@@ -19,8 +20,14 @@ import com.analog.study_watch_sdk.application.FSApplication;
 import com.analog.study_watch_sdk.application.PMApplication;
 import com.analog.study_watch_sdk.application.TemperatureApplication;
 import com.analog.study_watch_sdk.core.SDK;
-import com.analog.study_watch_sdk.interfaces.SlotApp;
 import com.analog.study_watch_sdk.interfaces.StudyWatchCallback;
+
+import java.io.File;
+import java.io.IOException;
+
+/**
+ * Example show how to log MultiStreamExample1 streams into firmware filesystem.
+ */
 
 public class MultiStreamWithFSLoggingExample extends AppCompatActivity {
 
@@ -43,7 +50,7 @@ public class MultiStreamWithFSLoggingExample extends AppCompatActivity {
         final Button button = findViewById(R.id.button);
         button.setEnabled(false);
         // connect to study watch with its mac address.
-        StudyWatch.connectBLE("C5:05:CA:F1:67:D5", getApplicationContext(), new StudyWatchCallback() {
+        StudyWatch.connectBLE("D5:67:F1:CA:05:C5", getApplicationContext(), new StudyWatchCallback() {
             @Override
             public void onSuccess(SDK sdk) {
                 Log.d(TAG, "onSuccess: SDK Ready");
@@ -70,25 +77,32 @@ public class MultiStreamWithFSLoggingExample extends AppCompatActivity {
             FSApplication fsAPP = watchSdk.getFSApplication();
 
             //setting ECG ODR to 250Hz
-            ecgApp.writeLibraryConfiguration(new long[][]{{0x0, 0xFA}});
+            ecgApp.writeLibraryConfiguration(new int[][]{{0x0, 0xFA}});
 
             // adpd config
-            adpdApp.createDeviceConfiguration(new SlotApp[][]{
-                    {adpdApp.SLOT_D, adpdApp.APP_TEMPERATURE_THERMISTOR},
-                    {adpdApp.SLOT_E, adpdApp.APP_TEMPERATURE_RESISTOR},
-                    {adpdApp.SLOT_F, adpdApp.APP_ADPD_GREEN},
-                    {adpdApp.SLOT_G, adpdApp.APP_ADPD_RED},
-                    {adpdApp.SLOT_H, adpdApp.APP_ADPD_INFRARED},
-                    {adpdApp.SLOT_I, adpdApp.APP_ADPD_BLUE},
-            });
-            adpdApp.loadConfiguration(adpdApp.DEVICE_GREEN);
-            // checking for DVT2 board
-            if (pmAPP.getChipID(pmAPP.CHIP_ADPD4K).payload.getChipID() == 0xc0)
-                adpdApp.calibrateClock(adpdApp.CLOCK_1M_AND_32M);
-            else
-                adpdApp.calibrateClock(adpdApp.CLOCK_1M);
+            File dvt1DCB = new File(Environment.getExternalStorageDirectory(), "dcb_cfg/DVT1_TEMP+4LED.dcfg");
+            File dvt2DCB = new File(Environment.getExternalStorageDirectory(), "dcb_cfg/DVT2_TEMP+4LED.dcfg");
 
-            adpdApp.writeRegister(new long[][]{{0xD, 0x2710}});
+            // checking for DVT2 board
+            if (pmAPP.getChipID(pmAPP.CHIP_ADPD4K).payload.getChipID() == 0xc0) {
+                try {
+                    adpdApp.writeDeviceConfigurationBlockFromFile(dvt1DCB);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                adpdApp.calibrateClock(adpdApp.CLOCK_1M_AND_32M);
+            } else {
+                try {
+                    adpdApp.writeDeviceConfigurationBlockFromFile(dvt2DCB);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                adpdApp.calibrateClock(adpdApp.CLOCK_1M);
+            }
+
+            adpdApp.loadConfiguration(adpdApp.DEVICE_GREEN);
+
+            adpdApp.writeRegister(new int[][]{{0xD, 0x2710}});
 
             // senors
             ecgApp.startSensor();
@@ -97,7 +111,7 @@ public class MultiStreamWithFSLoggingExample extends AppCompatActivity {
             tempApp.startSensor();
 
             //setting ADXL ODR to 50Hz -- ADXL Loads DCB when Start Sensor is done, if no DCB it will load Default Config
-            adxlApp.writeRegister(new long[][]{{0x2c, 0x9A}});
+            adxlApp.writeRegister(new int[][]{{0x2c, 0x9A}});
 
             // subs
             fsAPP.subscribeStream(fsAPP.STREAM_ECG);
@@ -106,7 +120,7 @@ public class MultiStreamWithFSLoggingExample extends AppCompatActivity {
             fsAPP.subscribeStream(fsAPP.STREAM_ADPD8);
             fsAPP.subscribeStream(fsAPP.STREAM_ADPD9);
             fsAPP.subscribeStream(fsAPP.STREAM_ADXL);
-            fsAPP.subscribeStream(fsAPP.STREAM_TEMPERATURE);
+            fsAPP.subscribeStream(fsAPP.STREAM_TEMPERATURE4);
 
             // logging started
             fsAPP.startLogging();
@@ -124,7 +138,7 @@ public class MultiStreamWithFSLoggingExample extends AppCompatActivity {
             fsAPP.unsubscribeStream(fsAPP.STREAM_ADPD8);
             fsAPP.unsubscribeStream(fsAPP.STREAM_ADPD9);
             fsAPP.unsubscribeStream(fsAPP.STREAM_ADXL);
-            fsAPP.unsubscribeStream(fsAPP.STREAM_TEMPERATURE);
+            fsAPP.unsubscribeStream(fsAPP.STREAM_TEMPERATURE4);
 
             ecgApp.stopSensor();
             adpdApp.stopSensor();

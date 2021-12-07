@@ -15,9 +15,11 @@ import com.analog.study_watch_sdk.StudyWatch;
 import com.analog.study_watch_sdk.application.ADPDApplication;
 import com.analog.study_watch_sdk.application.TemperatureApplication;
 import com.analog.study_watch_sdk.core.SDK;
-import com.analog.study_watch_sdk.interfaces.SlotApp;
 import com.analog.study_watch_sdk.interfaces.StudyWatchCallback;
 
+/**
+ * Quickstart for Temperature stream.
+ */
 public class TemperatureExample extends AppCompatActivity {
 
     SDK watchSdk;
@@ -39,7 +41,7 @@ public class TemperatureExample extends AppCompatActivity {
         final Button button = findViewById(R.id.button);
         button.setEnabled(false);
         // connect to study watch with its mac address.
-        StudyWatch.connectBLE("C5:05:CA:F1:67:D5", getApplicationContext(), new StudyWatchCallback() {
+        StudyWatch.connectBLE("D5:67:F1:CA:05:C5", getApplicationContext(), new StudyWatchCallback() {
             @Override
             public void onSuccess(SDK sdk) {
                 Log.d(TAG, "onSuccess: SDK Ready");
@@ -57,27 +59,28 @@ public class TemperatureExample extends AppCompatActivity {
 
         button.setOnClickListener(v -> {
             // Get applications from SDK
-            ADPDApplication adpdApp = watchSdk.getADPDApplication();
             TemperatureApplication tempApp = watchSdk.getTemperatureApplication();
-
-            tempApp.setCallback(temperatureDataPacket -> Log.d(TAG, "TEMP: " + temperatureDataPacket));
-
-            adpdApp.createDeviceConfiguration(new SlotApp[][]{
-                    {adpdApp.SLOT_D, adpdApp.APP_TEMPERATURE_THERMISTOR},
-                    {adpdApp.SLOT_E, adpdApp.APP_TEMPERATURE_RESISTOR},
-            });
+            ADPDApplication adpdApp = watchSdk.getADPDApplication();
+            adpdApp.deleteDeviceConfigurationBlock();
+            tempApp.deleteDeviceConfigurationBlock();
             adpdApp.loadConfiguration(adpdApp.DEVICE_GREEN);
+            tempApp.setCallback(temperatureDataPacket -> {
+                Log.d(TAG, "TEMP: " + temperatureDataPacket);
+            }, tempApp.STREAM_TEMPERATURE4);
             tempApp.startSensor();
-            tempApp.subscribeStream();
+            tempApp.subscribeStream(tempApp.STREAM_TEMPERATURE4);
 
             try {
-                Thread.sleep(1000);
+                Thread.sleep(10000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 
-            tempApp.unsubscribeStream();
+            tempApp.unsubscribeStream(tempApp.STREAM_TEMPERATURE4);
             tempApp.stopSensor();
+
+            Log.d(TAG, " Total Packet lost During streaming :: " +
+                    tempApp.getPacketLostCount(tempApp.STREAM_TEMPERATURE4));
 
         });
 

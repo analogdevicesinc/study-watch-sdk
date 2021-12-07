@@ -18,6 +18,9 @@ import com.analog.study_watch_sdk.interfaces.StudyWatchCallback;
 
 import java.util.Calendar;
 
+/**
+ * General example for PM.
+ */
 public class PMExample extends AppCompatActivity {
 
     SDK watchSdk;
@@ -39,7 +42,7 @@ public class PMExample extends AppCompatActivity {
         final Button button = findViewById(R.id.button);
         button.setEnabled(false);
         // connect to study watch with its mac address.
-        StudyWatch.connectBLE("C5:05:CA:F1:67:D5", getApplicationContext(), new StudyWatchCallback() {
+        StudyWatch.connectBLE("D5:67:F1:CA:05:C5", getApplicationContext(), new StudyWatchCallback() {
             @Override
             public void onSuccess(SDK sdk) {
                 Log.d(TAG, "onSuccess: SDK Ready");
@@ -59,10 +62,8 @@ public class PMExample extends AppCompatActivity {
             // Get applications from SDK
             PMApplication pmApp = watchSdk.getPMApplication();
 
-            Log.d(TAG, "packet: " + pmApp.writeDeviceConfigurationBlock(new long[][]{{0x1, 0x1}}));
+            Log.d(TAG, "packet: " + pmApp.writeDeviceConfigurationBlock(new int[][]{{0x1, 0x1}}));
             Log.d(TAG, "packet: " + pmApp.readDeviceConfigurationBlock());
-
-
             Log.d(TAG, "packet: " + pmApp.getVersion());
             Log.d(TAG, "packet: " + pmApp.getMcuVersion());
             Log.d(TAG, "packet: " + pmApp.getSystemInfo());

@@ -4,6 +4,7 @@ import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.widget.Button;
 
@@ -19,11 +20,17 @@ import com.analog.study_watch_sdk.application.PMApplication;
 import com.analog.study_watch_sdk.application.TemperatureApplication;
 import com.analog.study_watch_sdk.core.SDK;
 import com.analog.study_watch_sdk.core.packets.stream.EDADataPacket;
-import com.analog.study_watch_sdk.interfaces.SlotApp;
+import com.analog.study_watch_sdk.interfaces.ADPDCallback;
 import com.analog.study_watch_sdk.interfaces.StudyWatchCallback;
 
+import java.io.File;
+import java.io.IOException;
+
+/**
+ * Example show how to run Impedance + every wavelength of the optical sensor (F,G,H,I) + ADXL + Temperature.
+ */
+
 public class MultiStreamExample2 extends AppCompatActivity {
-    // Impedance + every wavelength of the optical sensor (F,G,H,I) + Acc + Temp.
     SDK watchSdk;
     private static final String TAG = MultiStreamExample2.class.getSimpleName();
 
@@ -43,7 +50,7 @@ public class MultiStreamExample2 extends AppCompatActivity {
         final Button button = findViewById(R.id.button);
         button.setEnabled(false);
         // connect to study watch with its mac address.
-        StudyWatch.connectBLE("C5:05:CA:F1:67:D5", getApplicationContext(), new StudyWatchCallback() {
+        StudyWatch.connectBLE("D5:67:F1:CA:05:C5", getApplicationContext(), new StudyWatchCallback() {
             @Override
             public void onSuccess(SDK sdk) {
                 Log.d(TAG, "onSuccess: SDK Ready");
@@ -70,8 +77,8 @@ public class MultiStreamExample2 extends AppCompatActivity {
             // callbacks
             edaApp.setCallback(edaDataPacket -> {
                 for (EDADataPacket.Payload.StreamData streamData : edaDataPacket.payload.getStreamData()) {
-                    long edaReal = streamData.getRealData();
-                    long edaImaginary = streamData.getImaginaryData();
+                    long edaReal = streamData.getReal();
+                    long edaImaginary = streamData.getImaginary();
                     if (edaReal == 0)
                         edaReal = 1;
                     double impedanceImg = edaImaginary * 1000.0;
@@ -79,38 +86,45 @@ public class MultiStreamExample2 extends AppCompatActivity {
                     double realAndImg = (impedanceReal * impedanceReal + impedanceImg * impedanceImg);
                     double impedanceMagnitude = Math.sqrt(realAndImg);
                     double impedancePhase = Math.atan2(impedanceImg, impedanceReal);
-                    Log.d(TAG, " BCM (Timestamp, sequence number, impedanceMagnitude, impedancePhase) :: " +
+                    Log.d(TAG, " EDA (Timestamp, sequence number, impedanceMagnitude, impedancePhase) :: " +
                             streamData.getTimestamp() + " , " + edaDataPacket.payload.getSequenceNumber() + " , " +
                             impedanceMagnitude + " , " + impedancePhase);
                 }
             });
-            adpdApp.setCallback(adpdDataPacket -> Log.d(TAG, "ADPD6: " + adpdDataPacket), adpdApp.STREAM_ADPD6);
-            adpdApp.setCallback(adpdDataPacket -> Log.d(TAG, "ADPD7: " + adpdDataPacket), adpdApp.STREAM_ADPD7);
-            adpdApp.setCallback(adpdDataPacket -> Log.d(TAG, "ADPD8: " + adpdDataPacket), adpdApp.STREAM_ADPD8);
-            adpdApp.setCallback(adpdDataPacket -> Log.d(TAG, "ADPD9: " + adpdDataPacket), adpdApp.STREAM_ADPD9);
+            adpdApp.setCallback((ADPDCallback) adpdDataPacket -> Log.d(TAG, "ADPD6: " + adpdDataPacket), adpdApp.STREAM_ADPD6);
+            adpdApp.setCallback((ADPDCallback) adpdDataPacket -> Log.d(TAG, "ADPD7: " + adpdDataPacket), adpdApp.STREAM_ADPD7);
+            adpdApp.setCallback((ADPDCallback) adpdDataPacket -> Log.d(TAG, "ADPD8: " + adpdDataPacket), adpdApp.STREAM_ADPD8);
+            adpdApp.setCallback((ADPDCallback) adpdDataPacket -> Log.d(TAG, "ADPD9: " + adpdDataPacket), adpdApp.STREAM_ADPD9);
             adxlApp.setCallback(adxlDataPacket -> Log.d(TAG, "ADXL: " + adxlDataPacket));
-            tempApp.setCallback(temperatureDataPacket -> Log.d(TAG, "TEMP: " + temperatureDataPacket));
+            tempApp.setCallback(temperatureDataPacket -> Log.d(TAG, "TEMP: " + temperatureDataPacket), tempApp.STREAM_TEMPERATURE4);
 
             //setting EDA ODR to 30HZ
-            edaApp.writeLibraryConfiguration(new long[][]{{0x0, 0x1E}});
+            edaApp.writeLibraryConfiguration(new int[][]{{0x0, 0x1E}});
 
             // adpd config
-            adpdApp.createDeviceConfiguration(new SlotApp[][]{
-                    {adpdApp.SLOT_D, adpdApp.APP_TEMPERATURE_THERMISTOR},
-                    {adpdApp.SLOT_E, adpdApp.APP_TEMPERATURE_RESISTOR},
-                    {adpdApp.SLOT_F, adpdApp.APP_ADPD_GREEN},
-                    {adpdApp.SLOT_G, adpdApp.APP_ADPD_RED},
-                    {adpdApp.SLOT_H, adpdApp.APP_ADPD_INFRARED},
-                    {adpdApp.SLOT_I, adpdApp.APP_ADPD_BLUE},
-            });
-            adpdApp.loadConfiguration(adpdApp.DEVICE_GREEN);
-            // checking for DVT2 board
-            if (pmAPP.getChipID(pmAPP.CHIP_ADPD4K).payload.getChipID() == 0xc0)
-                adpdApp.calibrateClock(adpdApp.CLOCK_1M_AND_32M);
-            else
-                adpdApp.calibrateClock(adpdApp.CLOCK_1M);
+            File dvt1DCB = new File(Environment.getExternalStorageDirectory(), "dcb_cfg/DVT1_TEMP+4LED.dcfg");
+            File dvt2DCB = new File(Environment.getExternalStorageDirectory(), "dcb_cfg/DVT2_TEMP+4LED.dcfg");
 
-            adpdApp.writeRegister(new long[][]{{0xD, 0x2710}});
+            // checking for DVT2 board
+            if (pmAPP.getChipID(pmAPP.CHIP_ADPD4K).payload.getChipID() == 0xc0) {
+                try {
+                    adpdApp.writeDeviceConfigurationBlockFromFile(dvt1DCB);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                adpdApp.calibrateClock(adpdApp.CLOCK_1M_AND_32M);
+            } else {
+                try {
+                    adpdApp.writeDeviceConfigurationBlockFromFile(dvt2DCB);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                adpdApp.calibrateClock(adpdApp.CLOCK_1M);
+            }
+
+            adpdApp.loadConfiguration(adpdApp.DEVICE_GREEN);
+
+            adpdApp.writeRegister(new int[][]{{0xD, 0x2710}});
 
             // senors
             edaApp.startSensor();
@@ -119,7 +133,7 @@ public class MultiStreamExample2 extends AppCompatActivity {
             tempApp.startSensor();
 
             //setting ADXL ODR to 50Hz -- ADXL Loads DCB when Start Sensor is done, if no DCB it will load Default Config
-            adxlApp.writeRegister(new long[][]{{0x2c, 0x9A}});
+            adxlApp.writeRegister(new int[][]{{0x2c, 0x9A}});
 
             // subs
             edaApp.subscribeStream();
@@ -128,7 +142,7 @@ public class MultiStreamExample2 extends AppCompatActivity {
             adpdApp.subscribeStream(adpdApp.STREAM_ADPD8);
             adpdApp.subscribeStream(adpdApp.STREAM_ADPD9);
             adxlApp.subscribeStream();
-            tempApp.subscribeStream();
+            tempApp.subscribeStream(tempApp.STREAM_TEMPERATURE4);
 
             // wait
             try {
@@ -143,7 +157,7 @@ public class MultiStreamExample2 extends AppCompatActivity {
             adpdApp.unsubscribeStream(adpdApp.STREAM_ADPD8);
             adpdApp.unsubscribeStream(adpdApp.STREAM_ADPD9);
             adxlApp.unsubscribeStream();
-            tempApp.unsubscribeStream();
+            tempApp.unsubscribeStream(tempApp.STREAM_TEMPERATURE4);
 
             edaApp.stopSensor();
             adpdApp.stopSensor();

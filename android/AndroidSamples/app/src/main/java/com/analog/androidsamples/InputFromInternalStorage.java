@@ -16,12 +16,15 @@ import androidx.core.content.ContextCompat;
 import com.analog.study_watch_sdk.StudyWatch;
 import com.analog.study_watch_sdk.application.ADXLApplication;
 import com.analog.study_watch_sdk.core.SDK;
-import com.analog.study_watch_sdk.core.packets.DCBPacket;
+import com.analog.study_watch_sdk.core.packets.adxl.ADXLDCBPacket;
 import com.analog.study_watch_sdk.interfaces.StudyWatchCallback;
 
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Example show how to take input file from internal storage and load it in DCB.
+ */
 public class InputFromInternalStorage extends AppCompatActivity {
 
     private static final String TAG = InputFromInternalStorage.class.getSimpleName();
@@ -44,8 +47,15 @@ public class InputFromInternalStorage extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
         }
 
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+        }
+
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.MANAGE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+//                Use the code below to ask for ALL files permission.
+//                Intent intent = new Intent(ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION, Uri.parse("package:" + BuildConfig.APPLICATION_ID));
+//                startActivity(intent);
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.MANAGE_EXTERNAL_STORAGE}, 1);
             }
         }
@@ -58,7 +68,7 @@ public class InputFromInternalStorage extends AppCompatActivity {
         final Button button = findViewById(R.id.button);
         button.setEnabled(false);
         // connect to study watch with its mac address.
-        StudyWatch.connectBLE("C5:05:CA:F1:67:D5", getApplicationContext(), new StudyWatchCallback() {
+        StudyWatch.connectBLE("D5:67:F1:CA:05:C5", getApplicationContext(), new StudyWatchCallback() {
             @Override
             public void onSuccess(SDK sdk) {
                 Log.d(TAG, "onSuccess: SDK Ready");
@@ -83,7 +93,7 @@ public class InputFromInternalStorage extends AppCompatActivity {
             Log.d(TAG, "File Exist :: " + file.exists());
             Log.d(TAG, "File read permission :: " + file.canRead());
             try {
-                DCBPacket packet = adxl.writeDeviceConfigurationBlockFromFile(file);
+                ADXLDCBPacket packet = adxl.writeDeviceConfigurationBlockFromFile(file);
                 Log.d(TAG, String.valueOf(packet));
 
             } catch (IOException e) {
