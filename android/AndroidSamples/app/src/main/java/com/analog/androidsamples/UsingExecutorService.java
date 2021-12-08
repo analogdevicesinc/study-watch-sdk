@@ -3,6 +3,7 @@ package com.analog.androidsamples;
 import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -14,12 +15,16 @@ import androidx.core.content.ContextCompat;
 import com.analog.study_watch_sdk.StudyWatch;
 import com.analog.study_watch_sdk.application.ADXLApplication;
 import com.analog.study_watch_sdk.core.SDK;
-import com.analog.study_watch_sdk.core.packets.StreamStatusPacket;
+import com.analog.study_watch_sdk.core.packets.common.StreamStatusPacket;
 import com.analog.study_watch_sdk.interfaces.StudyWatchCallback;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * Example show how to run SDK API in executorService, We recommend to use API calls in separate
+ * thread so it doesn't cause any issue with main UI thread.
+ */
 public class UsingExecutorService extends AppCompatActivity {
 
     private static final String TAG = UsingExecutorService.class.getSimpleName();
@@ -32,6 +37,12 @@ public class UsingExecutorService extends AppCompatActivity {
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
+        }
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_BACKGROUND_LOCATION}, 1);
+            }
         }
 
         BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();

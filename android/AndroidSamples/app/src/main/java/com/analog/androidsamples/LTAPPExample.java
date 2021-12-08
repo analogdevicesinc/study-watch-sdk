@@ -16,13 +16,15 @@ import androidx.core.content.ContextCompat;
 import com.analog.study_watch_sdk.StudyWatch;
 import com.analog.study_watch_sdk.application.LTApplication;
 import com.analog.study_watch_sdk.core.SDK;
-import com.analog.study_watch_sdk.core.packets.DCBPacket;
-import com.analog.study_watch_sdk.core.packets.LTDCBPacket;
+import com.analog.study_watch_sdk.core.packets.low_touch.LTDCBPacket;
 import com.analog.study_watch_sdk.interfaces.StudyWatchCallback;
 
 import java.io.File;
 import java.util.Arrays;
 
+/**
+ * LT APP examples.
+ */
 public class LTAPPExample extends AppCompatActivity {
 
     SDK watchSdk;
@@ -35,6 +37,12 @@ public class LTAPPExample extends AppCompatActivity {
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
+        }
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_BACKGROUND_LOCATION}, 1);
+            }
         }
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -54,7 +62,7 @@ public class LTAPPExample extends AppCompatActivity {
         final Button button = findViewById(R.id.button);
         button.setEnabled(false);
         // connect to study watch with its mac address.
-        StudyWatch.connectBLE("C5:05:CA:F1:67:D5", getApplicationContext(), new StudyWatchCallback() {
+        StudyWatch.connectBLE("D5:67:F1:CA:05:C5", getApplicationContext(), new StudyWatchCallback() {
             @Override
             public void onSuccess(SDK sdk) {
                 Log.d(TAG, "onSuccess: SDK Ready");
@@ -75,7 +83,7 @@ public class LTAPPExample extends AppCompatActivity {
             LTApplication ltAPP = watchSdk.getLTApplication();
             File file = new File(Environment.getExternalStorageDirectory(), "Test/gen_blk_dcb.lcfg");
 
-            DCBPacket packet1 = ltAPP.deleteDeviceConfigurationBlock();
+            LTDCBPacket packet1 = ltAPP.deleteDeviceConfigurationBlock();
             Log.d(TAG, "onCreate: " + packet1);
             try {
                 LTDCBPacket[] packet = ltAPP.writeDeviceConfigurationBlockFromFile(file);
@@ -87,8 +95,8 @@ public class LTAPPExample extends AppCompatActivity {
             LTDCBPacket[] packet2 = ltAPP.readDeviceConfigurationBlock();
             Log.d(TAG, "onCreate: " + Arrays.toString(packet2));
 
-            Log.d(TAG, "onCreate: " + ltAPP.writeLibraryConfiguration(new long[][]{{0x0, 0x1}}));
-            Log.d(TAG, "onCreate: " + ltAPP.readLibraryConfiguration(new long[]{0x0}));
+            Log.d(TAG, "onCreate: " + ltAPP.writeLibraryConfiguration(new int[][]{{0x0, 0x1}}));
+            Log.d(TAG, "onCreate: " + ltAPP.readLibraryConfiguration(new int[]{0x0}));
             Log.d(TAG, "onCreate: " + ltAPP.readCH2Cap());
         });
 

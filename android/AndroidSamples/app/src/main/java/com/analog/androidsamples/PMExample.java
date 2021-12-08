@@ -3,6 +3,7 @@ package com.analog.androidsamples;
 import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -18,6 +19,9 @@ import com.analog.study_watch_sdk.interfaces.StudyWatchCallback;
 
 import java.util.Calendar;
 
+/**
+ * General example for PM.
+ */
 public class PMExample extends AppCompatActivity {
 
     SDK watchSdk;
@@ -32,6 +36,12 @@ public class PMExample extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
         }
 
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_BACKGROUND_LOCATION}, 1);
+            }
+        }
+
         BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (!mBluetoothAdapter.isEnabled()) {
             mBluetoothAdapter.enable();
@@ -39,7 +49,7 @@ public class PMExample extends AppCompatActivity {
         final Button button = findViewById(R.id.button);
         button.setEnabled(false);
         // connect to study watch with its mac address.
-        StudyWatch.connectBLE("C5:05:CA:F1:67:D5", getApplicationContext(), new StudyWatchCallback() {
+        StudyWatch.connectBLE("D5:67:F1:CA:05:C5", getApplicationContext(), new StudyWatchCallback() {
             @Override
             public void onSuccess(SDK sdk) {
                 Log.d(TAG, "onSuccess: SDK Ready");
@@ -59,10 +69,8 @@ public class PMExample extends AppCompatActivity {
             // Get applications from SDK
             PMApplication pmApp = watchSdk.getPMApplication();
 
-            Log.d(TAG, "packet: " + pmApp.writeDeviceConfigurationBlock(new long[][]{{0x1, 0x1}}));
+            Log.d(TAG, "packet: " + pmApp.writeDeviceConfigurationBlock(new int[][]{{0x1, 0x1}}));
             Log.d(TAG, "packet: " + pmApp.readDeviceConfigurationBlock());
-
-
             Log.d(TAG, "packet: " + pmApp.getVersion());
             Log.d(TAG, "packet: " + pmApp.getMcuVersion());
             Log.d(TAG, "packet: " + pmApp.getSystemInfo());

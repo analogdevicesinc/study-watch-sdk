@@ -3,6 +3,7 @@ package com.analog.androidsamples;
 import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -17,6 +18,9 @@ import com.analog.study_watch_sdk.core.SDK;
 import com.analog.study_watch_sdk.core.packets.stream.EDADataPacket;
 import com.analog.study_watch_sdk.interfaces.StudyWatchCallback;
 
+/**
+ * Quickstart for EDA stream.
+ */
 public class EDAExample extends AppCompatActivity {
 
     SDK watchSdk;
@@ -31,6 +35,12 @@ public class EDAExample extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
         }
 
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_BACKGROUND_LOCATION}, 1);
+            }
+        }
+
         BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (!mBluetoothAdapter.isEnabled()) {
             mBluetoothAdapter.enable();
@@ -38,7 +48,7 @@ public class EDAExample extends AppCompatActivity {
         final Button button = findViewById(R.id.button);
         button.setEnabled(false);
         // connect to study watch with its mac address.
-        StudyWatch.connectBLE("C5:05:CA:F1:67:D5", getApplicationContext(), new StudyWatchCallback() {
+        StudyWatch.connectBLE("D5:67:F1:CA:05:C5", getApplicationContext(), new StudyWatchCallback() {
             @Override
             public void onSuccess(SDK sdk) {
                 Log.d(TAG, "onSuccess: SDK Ready");
@@ -60,8 +70,8 @@ public class EDAExample extends AppCompatActivity {
 
             edaApp.setCallback(edaDataPacket -> {
                 for (EDADataPacket.Payload.StreamData streamData : edaDataPacket.payload.getStreamData()) {
-                    long edaReal = streamData.getRealData();
-                    long edaImaginary = streamData.getImaginaryData();
+                    long edaReal = streamData.getReal();
+                    long edaImaginary = streamData.getImaginary();
                     if (edaReal == 0)
                         edaReal = 1;
                     double impedanceImg = edaImaginary * 1000.0;
@@ -75,7 +85,7 @@ public class EDAExample extends AppCompatActivity {
                 }
             });
             //config
-            edaApp.writeLibraryConfiguration(new long[][]{{0x0, 0x4}});
+            edaApp.writeLibraryConfiguration(new int[][]{{0x0, 0x4}});
             // start sensor
             edaApp.startSensor();
             edaApp.subscribeStream();

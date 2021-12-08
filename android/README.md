@@ -1,23 +1,30 @@
-
 # Study Watch Android SDK
 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.analogdevicesinc/study_watch_sdk/badge.svg)](https://search.maven.org/artifact/com.github.analogdevicesinc/study_watch_sdk/4.0.8/aar)  
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.analogdevicesinc/study_watch_sdk/badge.svg)](https://search.maven.org/artifact/com.github.analogdevicesinc/study_watch_sdk/4.1.0/aar)
 
 ### `minSdkVersion 19`
 
 Add sdk in app `build.gradle`
 
 ```java
-implementation 'com.github.analogdevicesinc:study_watch_sdk:4.0.8'
+implementation 'com.github.analogdevicesinc:study_watch_sdk:4.1.0'
 ```
 
 Permissions required to enable BLE, add the permission below in `AndroidManifest.xml`
+
 ```java
 <uses-permission android:name="android.permission.BLUETOOTH" />
 <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 ```
+
+**ACCESS_BACKGROUND_LOCATION** is required for android 11 and above.
+
+Location service needs to be enabled for android 11 and
+above [Example](https://github.com/analogdevicesinc/study-watch-sdk/blob/main/android/AndroidSamples/app/src/main/java/com/analog/androidsamples/ADXLExample.java)
+.
 
 ## Getting started with sdk
 
@@ -39,9 +46,11 @@ StudyWatch.connectBLE("C5:05:CA:F1:67:D5", getApplicationContext(), new StudyWat
     }
 });
 ```
+
 Step 2 : Once you are connected to the study and obtained the sdk instance you can now start streaming data.
 
 Here we will show how to start EDA sensor, steam data and close it after 30 sec.
+
 ```java
 button.setOnClickListener(v -> {
     // Get EDA application from SDK
@@ -72,33 +81,40 @@ button.setOnClickListener(v -> {
     eda.unsubscribeStream();
 });
 ```
+
 ### Error Messages:
 
 ###### 1 - Bluetooth is not enabled.
 
 You can resolve above error by enabling bluetooth.
+
 ```java
 BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 if (!mBluetoothAdapter.isEnabled()) {
     mBluetoothAdapter.enable();
 }
 ```
+
 ###### 2 - Location permission not granted.
 
-You can resolve above error by granting location permission. [Read here : https://developer.android.com/guide/topics/connectivity/bluetooth]
+You can resolve above error by granting location
+permission. [Read here : https://developer.android.com/guide/topics/connectivity/bluetooth]
+
 ```java
 if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) { 
     ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
 }
 ```
 
+###### 3 - Location permission in Android 11 and above.
+
+[ADXLExample](https://github.com/analogdevicesinc/study-watch-sdk/blob/main/android/AndroidSamples/app/src/main/java/com/analog/androidsamples/ADXLExample.java)
+
 **Examples :**
 https://github.com/analogdevicesinc/study-watch-sdk/blob/main/android/AndroidSamples/app/src/main/java/com/analog/androidsamples/
 
-
 **Documentation :**
 https://analogdevicesinc.github.io/study-watch-sdk/android
-
 
 **License :**
 https://github.com/analogdevicesinc/study-watch-sdk/blob/main/LICENSE
@@ -106,11 +122,10 @@ https://github.com/analogdevicesinc/study-watch-sdk/blob/main/LICENSE
 **Changelog**
 https://github.com/analogdevicesinc/study-watch-sdk/blob/main/android/CHANGELOG.md
 
-
-
 ## Firmware Setup
 
-To set up firmware for the study watch follow the pdf (https://github.com/analogdevicesinc/study-watch-sdk/blob/main/firmware/Study_Watch_Firmware_Upgrade.pdf)
+To set up firmware for the study watch follow the
+pdf (https://github.com/analogdevicesinc/study-watch-sdk/blob/main/firmware/Study_Watch_Firmware_Upgrade.pdf)
 
 
 

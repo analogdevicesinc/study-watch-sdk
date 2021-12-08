@@ -1,0 +1,22 @@
+#Temperature-Impedance LUT values for thermistor connected to slot C
+00 00056C10 # Impedance of thermistor connected to slot C at 0 degree Celsius
+01 000425B8 # Impedance of thermistor connected to slot C at 5 degree Celsius
+02 000331F8 # Impedance of thermistor connected to slot C at 10 degree Celsius
+03 00027AC4 # Impedance of thermistor connected to slot C at 15 degree Celsius
+04 0001F018 # Impedance of thermistor connected to slot C at 20 degree Celsius
+05 000186A0 # Impedance of thermistor connected to slot C at 25 degree Celsius
+06 0001357E # Impedance of thermistor connected to slot C at 30 degree Celsius
+07 0000F6CC # Impedance of thermistor connected to slot C at 35 degree Celsius
+08 0000C5F8 # Impedance of thermistor connected to slot C at 40 degree Celsius
+09 00009FC4 # Impedance of thermistor connected to slot C at 45 degree Celsius
+0A 000081A6 # Impedance of thermistor connected to slot C at 50 degree Celsius
+0B 000069D2 # Impedance of thermistor connected to slot C at 55 degree Celsius
+0C 000056CC # Impedance of thermistor connected to slot C at 60 degree Celsius
+0D 00004790 # Impedance of thermistor connected to slot C at 65 degree Celsius
+0E 00003B4C # Impedance of thermistor connected to slot C at 70 degree Celsius
+0F 00003160 # Impedance of thermistor connected to slot C at 75 degree Celsius
+10 00002954 # Impedance of thermistor connected to slot C at 80 degree Celsius
+11 000022B7 # Impedance of thermistor connected to slot C at 85 degree Celsius
+12 00001D4C # Impedance of thermistor connected to slot C at 90 degree Celsius
+13 000018D5 # Impedance of thermistor connected to slot C at 95 degree Celsius
+14 00001522 # Impedance of thermistor connected to slot C at 100 degree Celsius

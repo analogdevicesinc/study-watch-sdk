@@ -3,6 +3,7 @@ package com.analog.androidsamples;
 import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -15,9 +16,13 @@ import com.analog.study_watch_sdk.StudyWatch;
 import com.analog.study_watch_sdk.application.ADPDApplication;
 import com.analog.study_watch_sdk.application.SQIApplication;
 import com.analog.study_watch_sdk.core.SDK;
-import com.analog.study_watch_sdk.core.enums.ADPDLed;
+import com.analog.study_watch_sdk.core.enums.adpd.ADPDLed;
+import com.analog.study_watch_sdk.interfaces.ADPDCallback;
 import com.analog.study_watch_sdk.interfaces.StudyWatchCallback;
 
+/**
+ * Quickstart for SQI stream.
+ */
 public class SQIExample extends AppCompatActivity {
 
     SDK watchSdk;
@@ -32,6 +37,12 @@ public class SQIExample extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
         }
 
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_BACKGROUND_LOCATION}, 1);
+            }
+        }
+
         BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (!mBluetoothAdapter.isEnabled()) {
             mBluetoothAdapter.enable();
@@ -39,7 +50,7 @@ public class SQIExample extends AppCompatActivity {
         final Button button = findViewById(R.id.button);
         button.setEnabled(false);
         // connect to study watch with its mac address.
-        StudyWatch.connectBLE("C5:05:CA:F1:67:D5", getApplicationContext(), new StudyWatchCallback() {
+        StudyWatch.connectBLE("D5:67:F1:CA:05:C5", getApplicationContext(), new StudyWatchCallback() {
             @Override
             public void onSuccess(SDK sdk) {
                 Log.d(TAG, "onSuccess: SDK Ready");
@@ -61,10 +72,10 @@ public class SQIExample extends AppCompatActivity {
             ADPDApplication adpdApp = watchSdk.getADPDApplication();
 
             sqiApp.setCallback(sqiDataPacket -> Log.d(TAG, "SQI: " + sqiDataPacket));
-            adpdApp.setCallback(adpdDataPacket -> Log.d(TAG, "ADPD6: " + adpdDataPacket), adpdApp.STREAM_ADPD6);
+            adpdApp.setCallback((ADPDCallback) adpdDataPacket -> Log.d(TAG, "ADPD6: " + adpdDataPacket), adpdApp.STREAM_ADPD6);
 
             adpdApp.loadConfiguration(adpdApp.DEVICE_GREEN);
-            adpdApp.writeRegister(new long[][]{{0x0D, 0x2710}});
+            adpdApp.writeRegister(new int[][]{{0x0D, 0x2710}});
             // if DVT2 watch then adpdApp.CLOCK_1M
             adpdApp.calibrateClock(adpdApp.CLOCK_1M_AND_32M);
             sqiApp.setSlot(sqiApp.SLOT_F);

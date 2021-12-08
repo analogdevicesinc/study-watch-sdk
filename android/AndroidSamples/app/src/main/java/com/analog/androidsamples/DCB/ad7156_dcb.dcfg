@@ -1,0 +1,10 @@
+#ad7156_dcfg
+09 19 #CH1 sensitivity
+0A 66 #CH1 timeout, changed from default f/w dcfg which is 56
+0B CB #CH1 setup
+
+0C 06 #CH2 sensitivity
+0D 96 #CH2 timeout
+0E CB #CH2 setup
+
+0F 19 #Config
