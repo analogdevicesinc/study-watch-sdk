@@ -67,7 +67,7 @@ public class ADXLExample extends AppCompatActivity {
             }
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            statusCheck();
+            statusCheck(); // checking for location permission.
         }
         BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (!mBluetoothAdapter.isEnabled()) {
