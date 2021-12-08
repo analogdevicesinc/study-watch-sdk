@@ -96,6 +96,11 @@ public class FSExample extends AppCompatActivity {
                     // Don't hold the process here, keep this callback lightweight
                     // Don't perform any large computation here.
                     // Just store values in some variable or queue and release the callback
+                    // EVENTS :
+                    // fsAPP.DOWNLOAD_EVENT
+                    // fsAPP.CRC_CHECK_EVENT
+                    // fsAPP.SEQUENCE_CHECK_EVENT
+                    // fsAPP.JOIN_FILE_EVENT
                     Log.d(TAG, "callback: " + event + ", " + totalSize + ", " + currentSize);
                 });
             } catch (Exception e) {
