@@ -22,7 +22,9 @@ Permissions required to enable BLE, add the permission below in `AndroidManifest
 
 **ACCESS_BACKGROUND_LOCATION** is required for android 11 and above.
 
-Location service needs to be enabled for android 11 and above [Example](https://github.com/analogdevicesinc/study-watch-sdk/blob/main/android/AndroidSamples/app/src/main/java/com/analog/androidsamples/ADXLExample.java).
+Location service needs to be enabled for android 11 and
+above [Example](https://github.com/analogdevicesinc/study-watch-sdk/blob/main/android/AndroidSamples/app/src/main/java/com/analog/androidsamples/ADXLExample.java)
+.
 
 ## Getting started with sdk
 
@@ -103,6 +105,10 @@ if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LO
     ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
 }
 ```
+
+###### 3 - Location permission in Android 11 and above.
+
+[ADXLExample](https://github.com/analogdevicesinc/study-watch-sdk/blob/main/android/AndroidSamples/app/src/main/java/com/analog/androidsamples/ADXLExample.java)
 
 **Examples :**
 https://github.com/analogdevicesinc/study-watch-sdk/blob/main/android/AndroidSamples/app/src/main/java/com/analog/androidsamples/
