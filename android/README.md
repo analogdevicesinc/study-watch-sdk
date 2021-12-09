@@ -106,9 +106,7 @@ if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LO
 }
 ```
 
-###### 3 - Location permission in Android 11 and above.
-
-[ADXLExample](https://github.com/analogdevicesinc/study-watch-sdk/blob/main/android/AndroidSamples/app/src/main/java/com/analog/androidsamples/ADXLExample.java)
+###### 3 - Location permission in Android 11 and above. [ADXLExample](https://github.com/analogdevicesinc/study-watch-sdk/blob/main/android/AndroidSamples/app/src/main/java/com/analog/androidsamples/ADXLExample.java)
 
 **Examples :**
 https://github.com/analogdevicesinc/study-watch-sdk/blob/main/android/AndroidSamples/app/src/main/java/com/analog/androidsamples/

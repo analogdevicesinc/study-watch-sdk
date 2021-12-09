@@ -38,10 +38,9 @@ All notable changes to Android SDK will be documented in this file.
 ### Packets updated:
 
 - DCBPacket - split into application respective packets ADPDDCBPacket, ADXLDCBPacket, BIADCBPacket, PPGDCBPacket etc.
-- DCFGPacket - split into application respective packets ADXLDCFGPacket, ADPDDCFGPacket etc. RegisterPacket - split into
-- application respective packets ADPDRegisterReadPacket, ADPDRegisterWritePacket, ADXLRegisterReadPacket,
-- ADXLRegisterWritePacket etc. LibraryConfigReadWritePacket - split into application respective packets
-- BIALibraryConfigPacket, ADPDLibraryConfigPacket, PPGLibraryConfigPacket etc.
+- DCFGPacket - split into application respective packets ADXLDCFGPacket, ADPDDCFGPacket etc. 
+- RegisterPacket - split into - application respective packets ADPDRegisterReadPacket, ADPDRegisterWritePacket, ADXLRegisterReadPacket, ADXLRegisterWritePacket etc. 
+- LibraryConfigReadWritePacket - split into application respective packets BIALibraryConfigPacket, ADPDLibraryConfigPacket, PPGLibraryConfigPacket etc.
 - DFTPacket - split into application respective packets EDADFTPacket, BIADFTPacket etc.
 
 ### Datatype change:
