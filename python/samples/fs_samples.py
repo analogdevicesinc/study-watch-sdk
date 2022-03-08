@@ -45,6 +45,10 @@ def stream_file(data, total_size, progress):
     print(total_size, progress)
 
 
+def stream_progress_file(event_type, total_size, progress):
+    print(event_type, total_size, progress)
+
+
 if __name__ == "__main__":
     sdk = SDK("COM4")
     application = sdk.get_fs_application()
@@ -53,8 +57,12 @@ if __name__ == "__main__":
     packet = application.get_supported_streams()
     print(packet)
 
-    # download file
+    # download file without progress callback
     application.download_file("03124671.LOG", download_to_file=True, display_progress=True)
+
+    # download file with progress callback
+    application.download_file("B1320595.LOG", download_to_file=True,
+                              display_progress=True, progress_callback=stream_progress_file)
 
     # convert log file to csv
     SDK.convert_log_to_csv("512190CB.LOG")
@@ -130,5 +138,5 @@ if __name__ == "__main__":
     print(packet)
 
     # inject key value
-    packet = application.inject_key_value_pair(4562)
+    packet = application.inject_key_value_pair("4562")
     print(packet)

@@ -2,6 +2,102 @@
 
 All notable changes to python SDK will be documented in this file.
 
+## [v4.2.0] - Mar 08, 2022
+
+#### Updates:
+
+- File download over BLE (Added).
+- Support for Linux OS (Added).
+- Multi slot Temperature application (Modified).
+- Alarms callback API (Added).
+- sync_date_time and check_version option added in SDK.
+- file_download algo optimized.
+- file_download V2 added (for system with low ram/resources).
+- Built-in BLE connection retry added during SDK connect.
+- In log conversion CSV file renamed from temp.csv to temperature1.csv, temperature2.csv ... etc (now temperature supports 12 slots)
+- freq_index column added in BIA csv logging.
+- packet_loss count API added for all Applications.
+
+#### PM
+
+- write_uicr_customer_registers (Added)
+- read_uicr_customer_registers (Added)
+- enable_sync_timer (Added)
+- start_sync_timer (Added)
+- stop_sync_timer (Added)
+- disable_sync_timer (Added)
+- get_top_touch_status (Added)
+- disable_top_touch (Added)
+- enable_top_touch (Added)
+- device_configuration_block_status (Updated)
+
+#### ADPD
+
+- enable_saturation_check (Added)
+- disable_saturation_check (Added)
+
+#### BIA
+
+- write_library_configuration (Updated)
+- write_device_configuration_block_from_file (Updated)
+- read_device_configuration_block (Updated)
+- delete_device_configuration_block (Updated)
+- get_device_configuration (Added)
+- load_device_configuration (Added)
+- set_device_configuration (Added)
+
+#### EDA
+
+- write_device_configuration_block_from_file (Input type changed, Example )
+- read_device_configuration_block (Updated)
+- delete_device_configuration_block (Updated)
+- get_device_configuration (Added)
+- load_device_configuration (Added)
+- set_device_configuration (Added)
+- delete_rtia_calibration_table (Added)
+- get_fds_rtia_calibration_table (Added)
+- get_ram_rtia_calibration_table (Added)
+- get_baseline_impedance (Added)
+
+#### AD7156
+
+- start_sensor (Added)
+- subscribe_stream (Added)
+- enable_csv_logging (Added)
+- disable_csv_logging (Added) 
+- unsubscribe_stream (Added)
+- stop_sensor (Added)
+
+
+#### FS
+
+- download_file (updated)
+- download_file_v2 (Added)
+
+#### Temperature
+
+- set_callback (new accepts stream)
+- subscribe_stream (new accepts stream)
+- enable_csv_logging (new accepts stream)
+- unsubscribe_stream (new accepts stream)
+- disable_csv_logging (new accepts stream)
+
+
+
+#### Packet Structure Changes
+
+- ConfigFilePacket:
+    - length key renamed to size.
+- DCBStatusPacket:
+    - bcm_block key renamed to bia_block.
+    - eda_block key renamed to eda_lcfg_block.
+    - bia_lcfg_block (new key)
+    - bia_dcfg_block (new key)
+    - eda_dcfg_block (new key)
+- General change in DCB packets for all Application:
+    - DCB response packet now have dcb_block_index key (new key)
+
+
 ## [v4.1.0] - Nov 10, 2021
 
 #### New Features:

@@ -1,0 +1,139 @@
+# ADPD DCB - Includes ADPD & Temp
+0009 0097
+0007 8FFF
+000B 02F6
+000C 0012
+000D 07D0 #500Hz
+000E 0000
+000F 0006
+0014 8000
+0020 2222
+0021 0010
+0022 0003
+0023 0302
+0024 0001
+0010 0B00 # Slots A-L Enabled
+01A0 4000
+01A1 41DA
+01A2 0005
+01A3 5002
+01A4 E3D2
+01A5 0005 #SlotF with 1A Green Led
+01A6 0000
+01A7 0140
+01A8 0000
+01A9 0210
+01AA 0003
+01AB 1010
+01AC 0100
+01AD 0099
+01AE 0000
+01AF 0000
+01B0 0004
+
+##/*Configuration for Time slot C- Temperature Thermistor*/
+0140 0000 #  /*INPUT_RESISTOR set ot 500 ohm*/
+0141 41DA #  /*pre conditioning period of 8us, TIA+INT+BPF+ADC signal path selected for Slot A */
+0142 0010 #  /*IN3 connected to CH1 of slot A*/
+0143 5A4F #  /*Pre condition with TIA V_ref,VC2_pulse changes between active state and alternate state, VC2_Active = V-ref and VC2_alternate = V_ref + 250mV*/
+0144 E281 #   /* R_int = 400K, R_tia_c h1 = 100k, TIA_Vref = 0.8855  V, Vref_pulse = 0.8855 V; No v-ref pulsing */
+0145 0000 #
+0146 0000 #
+0147 0101 #  /*single pulse and single repetition is used*/
+0148 0000 #  /*MOD_TYPE set to mode 0; normal mode*/
+##0149 0419 #   /*LED pulse width and offset*/
+014A 0003 #  /*Integrator clock width set to 3us*/
+014B 130F #   /*Integrator offset set to 15.595us*/
+014C 0210 #  /*Modulation pulse width set to 2us, with offset of 16us*/
+014E 0000 #  /*ADC CH1 offset set to 0*/
+014F 0000 #  /*ADC CH2 offset set to 0*/
+0150 0004 #  /* signal size Data format set to 0 bytes by default*/
+
+#Slot D Temperature Thermistor
+0160 0000
+0161 41DA
+0162 0010
+0163 5A4F
+0164 E281
+0165 0000
+0166 0000
+#0167 0101
+0168 0000
+#0169 0419
+016A 0003
+016B 130F
+016C 0210
+0170 0004
+#Slot E Temp. calibration resistor
+0180 0000
+0181 41DA
+0182 0030
+0183 5A4F
+0184 E281
+0185 0000
+0186 0000
+#0187 0101
+0188 0000
+#0189 0419
+018A 0003
+018B 130F
+018C 0210
+0190 0004
+
+##/*Configuration for Time slot J- Temperature Thermistor*/
+0220 0000 #  /*INPUT_RESISTOR set ot 500 ohm*/
+0221 41DA #  /*pre conditioning period of 8us, TIA+INT+BPF+ADC signal path selected for Slot A */
+0222 0010 #  /*IN3 connected to CH1 of slot A*/
+0223 5A4F #  /*Pre condition with TIA V_ref,VC2_pulse changes between active state and alternate state, VC2_Active = V-ref and VC2_alternate = V_ref + 250mV*/
+0224 E281 #   /* R_int = 400K, R_tia_c h1 = 100k, TIA_Vref = 0.8855  V, Vref_pulse = 0.8855 V; No v-ref pulsing */
+0225 0000 #
+0226 0000 #
+0227 0101 #  /*single pulse and single repetition is used*/
+0228 0000 #  /*MOD_TYPE set to mode 0; normal mode*/
+##0229 0419 #   /*LED pulse width and offset*/
+022A 0003 #  /*Integrator clock width set to 3us*/
+022B 130F #   /*Integrator offset set to 15.595us*/
+022C 0210 #  /*Modulation pulse width set to 2us, with offset of 16us*/
+022E 0000 #  /*ADC CH1 offset set to 0*/
+022F 0000 #  /*ADC CH2 offset set to 0*/
+0230 0004 #  /* signal size Data format set to 0 bytes by default*/
+
+##/*Configuration for Time slot K- Temperature Thermistor*/
+0240 0000 #  /*INPUT_RESISTOR set ot 500 ohm*/
+0241 41DA #  /*pre conditioning period of 8us, TIA+INT+BPF+ADC signal path selected for Slot A */
+0242 0010 #  /*IN3 connected to CH1 of slot A*/
+0243 5A4F #  /*Pre condition with TIA V_ref,VC2_pulse changes between active state and alternate state, VC2_Active = V-ref and VC2_alternate = V_ref + 250mV*/
+0244 E281 #   /* R_int = 400K, R_tia_c h1 = 100k, TIA_Vref = 0.8855  V, Vref_pulse = 0.8855 V; No v-ref pulsing */
+0245 0000 #
+0246 0000 #
+0247 0101 #  /*single pulse and single repetition is used*/
+0248 0000 #  /*MOD_TYPE set to mode 0; normal mode*/
+##0249 0419 #   /*LED pulse width and offset*/
+024A 0003 #  /*Integrator clock width set to 3us*/
+024B 130F #   /*Integrator offset set to 15.595us*/
+024C 0210 #  /*Modulation pulse width set to 2us, with offset of 16us*/
+024E 0000 #  /*ADC CH1 offset set to 0*/
+024F 0000 #  /*ADC CH2 offset set to 0*/
+0250 0004 #  /* signal size Data format set to 0 bytes by default*/
+
+##/*Configuration for Time slot L- Temperature Thermistor*/
+0260 0000 #  /*INPUT_RESISTOR set ot 500 ohm*/
+0261 41DA #  /*pre conditioning period of 8us, TIA+INT+BPF+ADC signal path selected for Slot A */
+0262 0010 #  /*IN3 connected to CH1 of slot A*/
+0263 5A4F #  /*Pre condition with TIA V_ref,VC2_pulse changes between active state and alternate state, VC2_Active = V-ref and VC2_alternate = V_ref + 250mV*/
+0264 E281 #   /* R_int = 400K, R_tia_c h1 = 100k, TIA_Vref = 0.8855  V, Vref_pulse = 0.8855 V; No v-ref pulsing */
+0265 0000 #
+0266 0000 #
+0267 0101 #  /*single pulse and single repetition is used*/
+0268 0000 #  /*MOD_TYPE set to mode 0; normal mode*/
+##0269 0419 #   /*LED pulse width and offset*/
+026A 0003 #  /*Integrator clock width set to 3us*/
+026B 130F #   /*Integrator offset set to 15.595us*/
+026C 0210 #  /*Modulation pulse width set to 2us, with offset of 16us*/
+026E 0000 #  /*ADC CH1 offset set to 0*/
+026F 0000 #  /*ADC CH2 offset set to 0*/
+0270 0004 #  /* signal size Data format set to 0 bytes by default*/
+
+##/* Set the signal and dark sample data size of the slots from A to C to zero*/
+0110 0000 
+0130 0000

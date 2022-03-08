@@ -78,7 +78,7 @@ if __name__ == "__main__":
     fs_application.subscribe_stream(fs_application.STREAM_ADPD8)
     fs_application.subscribe_stream(fs_application.STREAM_ADPD9)
     fs_application.subscribe_stream(fs_application.STREAM_ADXL)
-    fs_application.subscribe_stream(fs_application.STREAM_TEMPERATURE)
+    fs_application.subscribe_stream(fs_application.STREAM_TEMPERATURE4)
 
     # starting sensors
     ecg_application.start_sensor()
@@ -108,7 +108,7 @@ if __name__ == "__main__":
     fs_application.unsubscribe_stream(fs_application.STREAM_ADPD8)
     fs_application.unsubscribe_stream(fs_application.STREAM_ADPD9)
     fs_application.unsubscribe_stream(fs_application.STREAM_ADXL)
-    fs_application.unsubscribe_stream(fs_application.STREAM_TEMPERATURE)
+    fs_application.unsubscribe_stream(fs_application.STREAM_TEMPERATURE4)
 
     # stop logging
     fs_application.stop_logging()

@@ -64,22 +64,7 @@ if __name__ == "__main__":
     application.unsubscribe_stream()
     application.disable_csv_logging()
     application.stop_sensor()
-
-    # get supported devices
-    packet = application.get_supported_devices()
-    print(packet)
-
-    # load cfg
-    packet = application.load_configuration(application.DEVICE_362)
-    print(packet)
-
-    # get decimation factor
-    packet = application.get_decimation_factor()
-    print(packet)
-
-    # set decimation factor
-    packet = application.set_decimation_factor(1)
-    print(packet)
+    print(application.get_packet_lost_count())  # prints total packets lost during streaming
 
     # read register values
     packet = application.read_register([0x20, 0x21, 0x22])

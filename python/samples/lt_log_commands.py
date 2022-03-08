@@ -45,6 +45,12 @@ if __name__ == '__main__':
     adxl_app = sdk.get_adxl_application()
     fs_app = sdk.get_fs_application()
     lt_app = sdk.get_low_touch_application()
+
+    # setting timeout to 0
+    adxl_app.set_timeout(0)
+    fs_app.set_timeout(0)
+    lt_app.set_timeout(0)
+
     # start section of the log file.
     lt_app.enable_command_logging(lt_app.START_COMMAND)
     adxl_app.start_sensor()
@@ -60,4 +66,9 @@ if __name__ == '__main__':
     adxl_app.stop_sensor()
     fs_app.unsubscribe_stream(stream=fs_app.STREAM_ADXL)
     fs_app.stop_logging()
-    lt_app.disable_command_logging(lt_app.STOP_COMMAND)
+    lt_app.disable_command_logging(lt_app.STOP_COMMAND, filename="test_file.log")
+
+    # resetting timeout to 0
+    adxl_app.set_timeout(10)
+    fs_app.set_timeout(10)
+    lt_app.set_timeout(10)
