@@ -134,6 +134,11 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
+        <activity android:name=".UseCaseC">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
         <activity android:name=".User0Example">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
