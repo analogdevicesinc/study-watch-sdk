@@ -35,12 +35,26 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 # ******************************************************************************
+import time
 
 from adi_study_watch import SDK
+
+
+def callback(data):
+    print(data)
+
 
 if __name__ == "__main__":
     sdk = SDK("COM4")
     application = sdk.get_ad7156_application()
+    application.set_callback(callback)
+    application.start_sensor()
+    application.subscribe_stream()
+    application.enable_csv_logging("ad7156.csv")
+    time.sleep(10)
+    application.disable_csv_logging()
+    application.unsubscribe_stream()
+    application.stop_sensor()
 
     # reads register
     packet = application.read_register([0x10, 0x11, 0x12])

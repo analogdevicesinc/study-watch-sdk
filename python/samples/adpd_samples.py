@@ -46,7 +46,7 @@ def callback_data(data):
 
 
 if __name__ == "__main__":
-    sdk = SDK("COM4")
+    sdk = SDK("COM8")
     application = sdk.get_adpd_application()
     application.set_callback(callback_data, stream=application.STREAM_ADPD6)
 
@@ -61,67 +61,8 @@ if __name__ == "__main__":
     application.unsubscribe_stream(application.STREAM_ADPD6)
     application.disable_csv_logging(stream=application.STREAM_ADPD6)
     application.stop_sensor()
-
-    # get version
-    packet = application.get_version()
-    print(packet)
-
-    # get supported clocks
-    packet = application.get_supported_clocks()
-    print(packet)
-
-    # get supported devices
-    y = application.get_supported_devices()
-    print(y)
-
-    # get supported slots
-    packet = application.get_supported_slots()
-    print(packet)
-
-    # get supported app_ids
-    packet = application.get_supported_app_id()
-    print(packet)
-
-    # create dcfg
-    packet = application.create_device_configuration([[application.SLOT_A, application.APP_ECG],
-                                                      [application.SLOT_B, application.APP_ADPD_GREEN]])
-    print(packet)
-
-    # get dcfg
-    packet = application.get_device_configuration()
-    print(packet)
-
-    # load cfg
-    packet = application.load_configuration(application.DEVICE_GREEN)
-    print(packet)
-
-    # calibrate clock
-    packet = application.calibrate_clock(application.CLOCK_1M_AND_32M)
-    print(packet)
-
-    # disable agc
-    packet = application.disable_agc([application.LED_MWL, application.LED_GREEN])
-    print(packet)
-
-    # enable agc
-    packet = application.enable_agc([application.LED_GREEN])
-    print(packet)
-
-    # get slot
-    packet = application.get_slot(application.SLOT_F)
-    print(packet)
-
-    # set slot
-    packet = application.set_slot(application.SLOT_F, True, 1, 1)
-    print(packet)
-
-    # get slot status
-    packet = application.get_slot_status(application.SLOT_F)
-    print(packet)
-
-    # enable slot
-    packet = application.enable_slot(application.SLOT_F)
-    print(packet)
+    print(application.get_packet_lost_count(application.STREAM_ADPD6))
+    # prints total packets lost during streaming for two channels [ch1, ch2]
 
     # disable slot
     packet = application.disable_slot(application.SLOT_F)
@@ -192,4 +133,11 @@ if __name__ == "__main__":
 
     # set external stream sampling frequency
     packet = application.set_external_stream_sampling_frequency(50)
+    print(packet)
+
+    # saturation Check
+    packet = application.enable_saturation_check([application.SLOT_F, application.SLOT_G, application.SLOT_H])
+    print(packet)
+
+    packet = application.disable_saturation_check([application.SLOT_F, application.SLOT_G, application.SLOT_H])
     print(packet)

@@ -2,4 +2,5 @@
 
 00 0019	# for checking DCB, ODR here is 25 Hz to differentiate DCB value from f/w value . Default f/w EDA ODR = 4 Hz
 02 0001	# DFTNUM_8 = 1
+03 0000 # EDA REDO RTIA CALIBRATION = FALSE
 

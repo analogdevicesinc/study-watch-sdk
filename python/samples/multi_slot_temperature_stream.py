@@ -41,67 +41,62 @@ import time
 from adi_study_watch import SDK
 
 
-def callback_ppg(data):
+def callback_data3(data):
     print(data)
 
 
-def callback_syncppg(data):
+def callback_data4(data):
     print(data)
 
 
-def callback_s_agc(data):
+def callback_data10(data):
     print(data)
 
 
-def callback_d_agc(data):
+def callback_data11(data):
     print(data)
 
 
-def callback_hrv(data):
+def callback_data12(data):
     print(data)
 
 
 if __name__ == "__main__":
     sdk = SDK("COM4")
-    application = sdk.get_ppg_application()
-    application.set_callback(callback_ppg, stream=application.STREAM_PPG)
-    application.set_callback(callback_syncppg, stream=application.STREAM_SYNC_PPG)
-    application.set_callback(callback_d_agc, stream=application.STREAM_DYNAMIC_AGC)
-    application.set_callback(callback_hrv, stream=application.STREAM_HRV)
+    temp_application = sdk.get_temperature_application()
+    temp_application.set_callback(callback_data3, stream=temp_application.STREAM_TEMPERATURE3)
+    temp_application.set_callback(callback_data4, stream=temp_application.STREAM_TEMPERATURE4)
+    temp_application.set_callback(callback_data10, stream=temp_application.STREAM_TEMPERATURE10)
+    temp_application.set_callback(callback_data11, stream=temp_application.STREAM_TEMPERATURE11)
+    temp_application.set_callback(callback_data12, stream=temp_application.STREAM_TEMPERATURE12)
     adpd_application = sdk.get_adpd_application()
 
-    # quickstart ppg
+    temp_application.write_device_configuration_block_from_file("dcb_cfg/temperature_lcfg_dcb.lcfg")
+    adpd_application.write_device_configuration_block_from_file("dcb_cfg/temperature_adpd_dcb.dcfg")
+
+    # start and stop stream
     adpd_application.load_configuration(adpd_application.DEVICE_GREEN)
-    adpd_application.enable_agc([adpd_application.LED_GREEN])
-    adpd_application.calibrate_clock(adpd_application.CLOCK_1M_AND_32M)
-    application.set_library_configuration(application.LCFG_ID_ADPD4000)
-    application.write_library_configuration([[0x4, 0x1210]])
-    application.start_sensor()
-    application.enable_csv_logging("ppg.csv", stream=application.STREAM_PPG)
-    application.enable_csv_logging("syncppg.csv", stream=application.STREAM_SYNC_PPG)
-    application.enable_csv_logging("dynamic_agc.csv", stream=application.STREAM_DYNAMIC_AGC)
-    application.enable_csv_logging("hrv.csv", stream=application.STREAM_HRV)
-    application.subscribe_stream(stream=application.STREAM_PPG)
-    application.subscribe_stream(stream=application.STREAM_SYNC_PPG)
-    application.subscribe_stream(stream=application.STREAM_DYNAMIC_AGC)
-    application.subscribe_stream(stream=application.STREAM_HRV)
+    temp_application.start_sensor()
+    temp_application.subscribe_stream()
+
+    temp_application.subscribe_stream(temp_application.STREAM_TEMPERATURE4)
+    temp_application.subscribe_stream(temp_application.STREAM_TEMPERATURE10)
+    temp_application.subscribe_stream(temp_application.STREAM_TEMPERATURE11)
+    temp_application.subscribe_stream(temp_application.STREAM_TEMPERATURE12)
+    temp_application.enable_csv_logging("temp3.csv", stream=temp_application.STREAM_TEMPERATURE3)
+    temp_application.enable_csv_logging("temp.csv", stream=temp_application.STREAM_TEMPERATURE4)
+    temp_application.enable_csv_logging("temp10.csv", stream=temp_application.STREAM_TEMPERATURE10)
+    temp_application.enable_csv_logging("temp11.csv", stream=temp_application.STREAM_TEMPERATURE11)
+    temp_application.enable_csv_logging("temp12.csv", stream=temp_application.STREAM_TEMPERATURE12)
     time.sleep(10)
-    application.unsubscribe_stream(stream=application.STREAM_PPG)
-    application.unsubscribe_stream(stream=application.STREAM_SYNC_PPG)
-    application.unsubscribe_stream(stream=application.STREAM_DYNAMIC_AGC)
-    application.unsubscribe_stream(stream=application.STREAM_HRV)
-    application.disable_csv_logging(stream=application.STREAM_PPG)
-    application.disable_csv_logging(stream=application.STREAM_SYNC_PPG)
-    application.disable_csv_logging(stream=application.STREAM_DYNAMIC_AGC)
-    application.disable_csv_logging(stream=application.STREAM_HRV)
-    application.stop_sensor()
-    print(application.get_packet_lost_count(application.STREAM_PPG))  # prints total packets lost during streaming
-    print(application.get_packet_lost_count(application.STREAM_SYNC_PPG))  # prints total packets lost during streaming
-
-    # set lcfg
-    packet = application.set_library_configuration(application.LCFG_ID_ADPD4000)
-    print(packet)
-
-    # algo version
-    packet = application.get_algo_version()
-    print(packet)
+    temp_application.unsubscribe_stream(temp_application.STREAM_TEMPERATURE3)
+    temp_application.unsubscribe_stream(temp_application.STREAM_TEMPERATURE4)
+    temp_application.unsubscribe_stream(temp_application.STREAM_TEMPERATURE10)
+    temp_application.unsubscribe_stream(temp_application.STREAM_TEMPERATURE11)
+    temp_application.unsubscribe_stream(temp_application.STREAM_TEMPERATURE12)
+    temp_application.disable_csv_logging(temp_application.STREAM_TEMPERATURE3)
+    temp_application.disable_csv_logging(temp_application.STREAM_TEMPERATURE4)
+    temp_application.disable_csv_logging(temp_application.STREAM_TEMPERATURE10)
+    temp_application.disable_csv_logging(temp_application.STREAM_TEMPERATURE11)
+    temp_application.disable_csv_logging(temp_application.STREAM_TEMPERATURE12)
+    temp_application.stop_sensor()

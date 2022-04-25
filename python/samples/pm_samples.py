@@ -46,7 +46,7 @@ def battery_callback(data):
 
 
 if __name__ == "__main__":
-    sdk = SDK("COM4")
+    sdk = SDK("COM8")
     application = sdk.get_pm_application()
 
     # battery stream
@@ -93,14 +93,20 @@ if __name__ == "__main__":
     # packet = application.enter_boot_loader_mode()
     # print(packet)
 
-    # get low touch status
-    packet = application.get_low_touch_status()
+    packet = application.write_uicr_customer_registers("2022-02-15")
     print(packet)
 
-    # get supported chips
-    packet = application.get_supported_chips()
+    packet = application.read_uicr_customer_registers()
     print(packet)
 
-    # get battery info
-    packet = application.get_battery_info()
+    packet = application.enable_sync_timer()
+    print(packet)
+
+    packet = application.start_sync_timer()
+    print(packet)
+
+    packet = application.stop_sync_timer()
+    print(packet)
+
+    packet = application.disable_sync_timer()
     print(packet)

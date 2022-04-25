@@ -63,7 +63,7 @@ if __name__ == "__main__":
     application = sdk.get_bia_application()
     application.set_callback(callback_data)
 
-    # quick start bcm
+    # quick start bia
     application.write_library_configuration([[0x0, 0x4]])
     application.start_sensor()
     application.enable_csv_logging("bia.csv")
@@ -77,26 +77,31 @@ if __name__ == "__main__":
     packet = application.get_sensor_status()
     print(packet)
 
-    # read lcfg
-    packet = application.read_library_configuration([0x0])
-    print(packet)
-
     # write lcfg
-    packet = application.write_library_configuration([[0x0, 1]])
+    packet = application.write_library_configuration([[0x0B, 0xBDE631F9]])
     print(packet)
 
-    # calibrate high speed resistor
-    packet = application.calibrate_hs_resistor_tia(application.RESISTOR_1K)
+    # read lcfg
+    packet = application.read_library_configuration([0x0B])
     print(packet)
 
-    # set DFT
-    packet = application.set_discrete_fourier_transformation(application.DFT_WINDOW_16384)
+    # link to use above conversion of float to hexadecimal is found in link:
+    # https://babbage.cs.qc.cuny.edu/IEEE-754.old/Decimal.html
+    # please find the information about IEEE 754 Single Precision floating format
+    # https://en.wikipedia.org/wiki/IEEE_754
+    # IEEE conversion is valid from indices 0x0A to 0x11
+    # code below shows how to convert hex to decimal
+    import struct
+
+    result = list(struct.pack("f", 5.0))
+    result1 = struct.unpack("L", bytes(result))[0]
+    print('0x%02X' % result1)
+
+    packet = application.write_device_configuration_block_from_file("dcb_cfg/bia_dcb.lcfg", application.BIA_LCFG_BLOCK)
     print(packet)
 
-    # get all supported DFT window
-    packet = application.get_supported_dft_windows()
+    packet = application.read_device_configuration_block(application.BIA_LCFG_BLOCK)
     print(packet)
 
-    # get supported calibrate high speed resistor ids
-    packet = application.get_supported_hs_resistor_tia_ids()
+    packet = application.delete_device_configuration_block(application.BIA_LCFG_BLOCK)
     print(packet)

@@ -1,0 +1,42 @@
+## ADP5360 Register Config for RJD2450 battery ##
+02 86 #Charger VBUS ILIM; [7:5]VADPICHG(0b100), [3]VSYSTEM(0b0), [2:0]ILIM(0b110)
+03 9E #Charger Termination Setting; [7:2]VTRM(0b100111), [1:0]ITRK_DEAD(0b10)
+04 49 #Charger Current Setting; [7:5]IEND(0b010), [4:0]ICHG(0b01001)
+05 3F #Charge Voltage Threshold; [7]DIS_RCH(0b0), [6:5]VRCH(0b01), [4:3]VTRK_DEAD(0b11), [2:0]VWEAK(0b111)
+06 05 #Charger Timer Setting; [3]EN_TEND(0b0), [2]EN_CHG_TIMER(0b1), [1:0]CHG_TMR_PERIOD(0b01)
+07 EF #Charger Function Setting; [7]EN_JEITA(0b1), [6]ILIM_JEITA_COOL(0b1), [4]OFF_ISOFET(0b0), [3]EN_LDO(0b1), [2]EN_EOC(0b1), [1]EN_ADPICHG(0b1), [0]EN_CHG(0b1)
+0A 01 #Battery Thermistor Control; [7:6]ITHR(0b00), [0]EN_THR(0b1)
+0B 5A #THERMISTOR_60C; [7:0]TEMP_LOW_60, Voltage Threshold(V) = (TEMP_LOW_60 x 0.002) V = 0.18V
+0C 93 #THERMISTOR_45C; [7:0]TEMP_LOW_45, Voltage Threshold(V) = (TEMP_LOW_45 x 0.002) V = 0.29V
+0D 6B #THERMISTOR_10C; [7:0]TEMP_LOW_10, Voltage Threshold(V) = (TEMP_LOW_10 x 0.01) V = 1.07V
+0E A3 #THERMISTOR_0C; [7:0]TEMP_LOW_0, Voltage Threshold(V) = (TEMP_LOW_0 x 0.01) V = 1.63V
+11 03 #Batery Protection Control; [4]ISOFET_OVCHG(0b0), [3]OC_DIS_HICCUP(0b0), [2]OC_CG_HICCUP(0b0), [1]EB_CHGLB(0b1), [0]EN_BATPRO(0b1)
+12 F0 #Battery Protection UnderVoltage Setting; [7:4]UV_DISCH(0b1111), [3:2]HYS_UV_DISCH(0b00), [1:0]DGT_UV_DISCH(0b00)
+13 E2 #Battery Protection Overcharge Setting; [7:5]OC_DISCH(0b100), [3:1]DGT_OC_DISCH(0b001)
+14 88 #Battery Protection Overvoltage Setting; [7:3]OV_CHG(0100001), [2:1]HYS_OV_CHG(0b00), [0]DGT_OV_CHG(0b0)
+15 88 #Battery Protection Charge OverCharge Setting; [7:5]OC_CHG(0b100), [4:3]DGT_OC_CHG(0b01)
+16 3E #V_SOC_0; Batt Voltage(V) = (2.5 + V_SOC_0 x 0.008) = 3V
+17 85 #V_SOC_5; Batt Voltage(V) = (2.5 + V_SOC_5 x 0.008) = 3.565V
+18 8E #V_SOC_11; Batt Voltage(V) = (2.5 + V_SOC_11 x 0.008) = 3.637V
+19 93 #V_SOC_19; Batt Voltage(V) = (2.5 + V_SOC_19 x 0.008) = 3.682V
+1A 98 #V_SOC_28; Batt Voltage(V) = (2.5 + V_SOC_28 x 0.008) = 3.717V
+1B 9D #V_SOC_41; Batt Voltage(V) = (2.5 + V_SOC_41 x 0.008) = 3.763V
+1C A6 #V_SOC_55; Batt Voltage(V) = (2.5 + V_SOC_55 x 0.008) = 3.835V
+1D B3 #V_SOC_69; Batt Voltage(V) = (2.5 + V_SOC_69 x 0.008) = 3.936V
+1E C8 #V_SOC_84; Batt Voltage(V) = (2.5 + V_SOC_84 x 0.008) = 4.100V
+1F E1 #V_SOC_100; Batt Voltage(V) = (2.5 + V_SOC_100 x 0.008) = 4.306V
+20 64 #BAT_CAP; [7:0]BAT_CAP, Battery Capacity = (BAT_CAP x 2) mAh = 200mAh
+22 41 #BAT_SOCACM_CTL; [7:6]BAT_CAP_AGE(0b01), [5:4]BAT_CAP_TEMP(0b00). [1]EN_BATCAP_TEMP(0b0), [0]EN_BATCAP_AGE(0b1)
+27 03 #Fuel Gauge Mode; [7:6]SOC_LOW_TH(0b00), [5:4]SLP_CURR(0b00), [3:2]SLP_TIME(0b00), [1]FG_MODE(0b1), [0]EN_FG(0b1)
+28 00 #SOC Reset; [7]SOC_RESET(0b0) ## Not using this register for R/W in the FW ##
+29 31 #Buck Configuration; [7:6]BUCK_SS(0b00), [5:4]BUCK_ILIM(0b11), [3]BUCK_MODE(0b0), [2]STP_BUCK(0b0), [1]DISCHG_BUCK(0b0), [0]EN_BUCK(0b1)
+2A 1E #Buck Output Voltage; [7:6]BUCK_DLY(0b00), [5:0]VOLT_BUCK(0b011110) -> 2.1V
+2B 21 #Buck Boost Configuration; [7:6]BUCKBST_SS(0b00), [5:3]BUCKBST_ILIM(0b100), [2]STP_BUCKBST(0b0), [1]DISCHG_BUCKBST(0b0), [0]EN_BUCKBST(0b1)
+2C 2B #Buck Boost Output Voltage; [7:6]BUCKBST_DLY(0b00), [5:0]VOLT_BUCKBST(0b101011) -> 4.5V
+2D 89 #Supervisory Setting; [7]VOUT1_RST(0b1), [6]VOUT2_RST(0b0), [5]RESET_TIME(0b0), [4:3]WD_TIME(0b01), [2]EN_WD(0b0), [1]EN_MR_SD(0b0), [0]RESET_WD(0b1) -> this bit gets reset to 0 automatically after reset by writing to this register
+2E 00 #Fault; [7]BAT_UV(0b0), [6]BAT_OC(0b0), [5]BAT_CHGOC(0b0), [4]BAT_CHGOV(0b0), [2]WD_TIMEOUT(0b0), [0]TSD110(0b0); ## Not using this register for R/W in the FW ##
+30 88 #PGOOD1 Mask; [7]PG1_REV(0b1), [4]CHGCMPLT_MASK1(0b0), [3]VBUSOK_MASK1(0b1), [2]BATOK_MASK1(0b0), [1]VOUT2OK_MASK1(0b0), [0]VOUT1OK_MASK1(0b0)
+31 00 #PGOOD2 Mask; [7]PG2_REV(0b0), [4]CHGCMPLT_MASK2(0b0), [3]VBUSOK_MASK2(0b0), [2]BATOK_MASK2(0b0), [1]VOUT2OK_MASK2(0b0), [0]VOUT1OK_MASK2(0b0)
+32 98 #Interrupt Enable1; [7]EN_SOCLOW_INT(0b1), [6]EN_SOCACM_INT(0b0), [5]EN_ADPICHG_INT(0b0), [4]EN_BATPRO_INT(0b1), [3]EN_THR_INT(0b1), [2]EN_BAT_INT(0b0), [1]EN_CHG_INT(0b0), [0]EN_VBUS_INT(0b0)
+33 00 #Interrupt Enable2; [7]EN_MR_INT(0b0), [6]EN_WD_INT(0b0), [5]EN_BUCKPG_INT(0b0), [4]EN_BUCKBSTPG_INT(0b0)
+36 00 #Shipment Mode; [0]EN_SHIPMODE(0b0)

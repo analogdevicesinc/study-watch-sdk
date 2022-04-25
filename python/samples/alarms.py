@@ -36,68 +36,22 @@
 # POSSIBILITY OF SUCH DAMAGE.
 # ******************************************************************************
 
-import math
 import time
 
 from adi_study_watch import SDK
 
 
-def callback_data(data):
-    for value in data["payload"]["stream_data"]:
-        eda_real = value["real"]
-        eda_imaginary = value["imaginary"]
-        if eda_real == 0:
-            eda_real = 1
-        impedance_img = eda_imaginary * 1000.0
-        impedance_real = eda_real * 1000.0
-        real_and_img = float(impedance_real * impedance_real + impedance_img * impedance_img)
-        impedance_module = math.sqrt(real_and_img)
-        impedance_phase = math.atan2(impedance_img, impedance_real)
-        print(value["timestamp"], data["payload"]["sequence_number"], impedance_module, impedance_phase)
+def alarms(data):
+    print(data)
 
 
 if __name__ == "__main__":
-    sdk = SDK("COM4")
-    application = sdk.get_eda_application()
-    application.set_callback(callback_data)
+    # sdk = SDK("COM4")
+    sdk = SDK("COM6", mac_address="D5-67-F1-CA-05-C5")
 
-    # quickstart EDA stream
-    application.write_library_configuration([[0x0, 0x4], [0x02, 0x02]])
-    application.start_sensor()
-    application.enable_csv_logging("eda.csv")
-    application.subscribe_stream()
+    sdk.set_alarms_callback(alarms)
+
+    pm = sdk.get_pm_application()
+    test_app = sdk.get_test_application()
+    test_app.set_battery_threshold(30, 10)
     time.sleep(10)
-    application.unsubscribe_stream()
-    application.disable_csv_logging()
-    application.stop_sensor()
-
-    # changing ODR 8Hz
-    application.write_library_configuration([[0x0, 0x8], [0x02, 0x02]])
-
-    # changing ODR greater than 16
-    application.write_library_configuration([[0x0, 0x30], [0x02, 0x01]])
-
-    # get decimation factor
-    packet = application.get_decimation_factor()
-    print(packet)
-
-    # get sensor status
-    packet = application.get_sensor_status()
-    print(packet)
-
-    # write dcb
-    packet = application.write_device_configuration_block_from_file("dcb_cfg/eda_dcb.lcfg", application.EDA_LCFG_BLOCK)
-    print(packet)
-
-    # read dcb
-    packet = application.read_device_configuration_block(application.EDA_LCFG_BLOCK)
-    print(packet)
-
-    packet = application.delete_device_configuration_block(application.EDA_LCFG_BLOCK)
-    print(packet)
-
-    packet = application.set_baseline_impedance(25000.5, 25000.5, 25000.5, 25000.5, 19900)
-    print(packet)
-
-    packet = application.get_baseline_impedance()
-    print(packet)
