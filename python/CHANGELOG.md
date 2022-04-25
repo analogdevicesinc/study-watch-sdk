@@ -2,7 +2,7 @@
 
 All notable changes to python SDK will be documented in this file.
 
-## [v4.2.0] - Mar 08, 2022
+## [v4.2.0] - Apr 25, 2022
 
 #### Updates:
 
@@ -35,6 +35,8 @@ All notable changes to python SDK will be documented in this file.
 
 - enable_saturation_check (Added)
 - disable_saturation_check (Added)
+- enable_slot (Removed)
+- disable_slot (Removed)
 
 #### BIA
 

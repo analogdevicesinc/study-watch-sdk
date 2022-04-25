@@ -77,7 +77,7 @@ if __name__ == "__main__":
     print(packet)
 
     # write cfg
-    pkt = application.write_config_file("gen_blk_dcb.lcfg")
+    pkt = application.write_config_file("dcb_cfg/gen_blk_dcb.lcfg")
     print(pkt)
 
     # disable config log
