@@ -103,7 +103,7 @@ public class UseCaseC extends AppCompatActivity {
             adpdApp.deleteDeviceConfigurationBlock();
             adxlApp.deleteDeviceConfigurationBlock();
             tempApp.deleteDeviceConfigurationBlock();
-            edaApp.deleteDeviceConfigurationBlock();
+            edaApp.deleteDeviceConfigurationBlock(edaApp.EDA_DCFG_BLOCK);
 
             adxlApp.setCallback(adxlDataPacket -> {
                 packetCount.put("adxl", packetCount.get("adxl") + 1);
@@ -130,10 +130,12 @@ public class UseCaseC extends AppCompatActivity {
             });
 
             tempApp.setCallback(temperatureDataPacket -> {
+                Log.d(TAG, "onCreate: " + temperatureDataPacket);
                 packetCount.put("temp", packetCount.get("temp") + 1);
             }, tempApp.STREAM_TEMPERATURE4);
 
             File dvt1DCB = new File(Environment.getExternalStorageDirectory(), "dcb_cfg/DVT1_TEMP+4LED.dcfg");
+            File csv = new File(Environment.getExternalStorageDirectory(), "dcb_cfg/temp1.csv");
             File dvt2DCB = new File(Environment.getExternalStorageDirectory(), "dcb_cfg/DVT2_TEMP+4LED.dcfg");
 
             // checking for DVT2 board
@@ -158,8 +160,8 @@ public class UseCaseC extends AppCompatActivity {
             // ADPD 100HZ
             adpdApp.writeRegister(new int[][]{{0xD, 0x2710}});
             //setting EDA ODR to 30HZ
-            edaApp.writeLibraryConfiguration(new int[][]{{0x0, 0x1E}});
-            edaApp.writeLibraryConfiguration(new int[][]{{0x2, 0x1}});
+            edaApp.writeLibraryConfiguration(new long[][]{{0x0, 0x1E}});
+            edaApp.writeLibraryConfiguration(new long[][]{{0x2, 0x1}});
 
 //             Subscribe
             adpdApp.subscribeStream(adpdApp.STREAM_ADPD6);
@@ -168,6 +170,7 @@ public class UseCaseC extends AppCompatActivity {
             adpdApp.subscribeStream(adpdApp.STREAM_ADPD9);
             edaApp.subscribeStream();
             tempApp.subscribeStream(tempApp.STREAM_TEMPERATURE4);
+            tempApp.enableCSVLogging(csv, tempApp.STREAM_TEMPERATURE4);
             adxlApp.subscribeStream();
 //
 //             start sensor
@@ -192,6 +195,7 @@ public class UseCaseC extends AppCompatActivity {
             edaApp.unsubscribeStream();
             adxlApp.unsubscribeStream();
             tempApp.unsubscribeStream(tempApp.STREAM_TEMPERATURE4);
+            tempApp.disableCSVLogging(tempApp.STREAM_TEMPERATURE4);
 
             // stop sensor
             edaApp.stopSensor();

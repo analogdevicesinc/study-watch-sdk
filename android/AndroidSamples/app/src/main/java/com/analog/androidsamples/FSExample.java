@@ -92,7 +92,7 @@ public class FSExample extends AppCompatActivity {
             // file download with callback
             File downloadFile = new File(Environment.getExternalStorageDirectory(), "dcb_cfg/B1320595.LOG");
             try {
-                fsAPP.downloadFile("B1320595.LOG ", downloadFile, (event, totalSize, currentSize) -> {
+                fsAPP.downloadFile("B1320595.LOG", downloadFile, (event, totalSize, currentSize) -> {
                     // Don't hold the process here, keep this callback lightweight
                     // Don't perform any large computation here.
                     // Just store values in some variable or queue and release the callback

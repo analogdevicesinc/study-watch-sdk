@@ -16,7 +16,7 @@ import androidx.core.content.ContextCompat;
 import com.analog.study_watch_sdk.StudyWatch;
 import com.analog.study_watch_sdk.application.ADXLApplication;
 import com.analog.study_watch_sdk.core.SDK;
-import com.analog.study_watch_sdk.core.packets.adxl.ADXLDCBPacket;
+import com.analog.study_watch_sdk.core.packets.adxl.ADXLDCBCommandPacket;
 import com.analog.study_watch_sdk.interfaces.StudyWatchCallback;
 
 import java.io.File;
@@ -99,7 +99,7 @@ public class InputFromInternalStorage extends AppCompatActivity {
             Log.d(TAG, "File Exist :: " + file.exists());
             Log.d(TAG, "File read permission :: " + file.canRead());
             try {
-                ADXLDCBPacket packet = adxl.writeDeviceConfigurationBlockFromFile(file);
+                ADXLDCBCommandPacket packet = adxl.writeDeviceConfigurationBlockFromFile(file);
                 Log.d(TAG, String.valueOf(packet));
 
             } catch (IOException e) {

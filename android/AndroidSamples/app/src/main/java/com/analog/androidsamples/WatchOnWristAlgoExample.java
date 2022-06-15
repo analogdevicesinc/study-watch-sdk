@@ -19,7 +19,7 @@ import com.analog.study_watch_sdk.core.packets.stream.EDADataPacket;
 import com.analog.study_watch_sdk.interfaces.StudyWatchCallback;
 
 /**
- * Quickstart for EDA stream.
+ * On Wrist Algorithm.
  */
 public class WatchOnWristAlgoExample extends AppCompatActivity {
 
@@ -81,7 +81,7 @@ public class WatchOnWristAlgoExample extends AppCompatActivity {
 
             });
             //config
-            edaApp.writeLibraryConfiguration(new int[][]{{0x0, 0x4}});
+            edaApp.writeLibraryConfiguration(new long[][]{{0x0, 0x4}});
             // start sensor
             edaApp.startSensor();
             edaApp.subscribeStream();

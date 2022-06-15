@@ -106,7 +106,7 @@ public class MultiStreamExample2 extends AppCompatActivity {
             tempApp.setCallback(temperatureDataPacket -> Log.d(TAG, "TEMP: " + temperatureDataPacket), tempApp.STREAM_TEMPERATURE4);
 
             //setting EDA ODR to 30HZ
-            edaApp.writeLibraryConfiguration(new int[][]{{0x0, 0x1E}});
+            edaApp.writeLibraryConfiguration(new long[][]{{0x0, 0x1E}});
 
             // adpd config
             File dvt1DCB = new File(Environment.getExternalStorageDirectory(), "dcb_cfg/DVT1_TEMP+4LED.dcfg");

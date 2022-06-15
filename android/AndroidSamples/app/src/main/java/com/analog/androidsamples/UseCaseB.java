@@ -116,8 +116,8 @@ public class UseCaseB extends AppCompatActivity {
 
             ppgApp.setLibraryConfiguration(ppgApp.LCFG_ID_ADPD4000);
             //setting EDA ODR to 30HZ
-            edaApp.writeLibraryConfiguration(new int[][]{{0x0, 0x1E}});
-            edaApp.writeLibraryConfiguration(new int[][]{{0x2, 0x1}});
+            edaApp.writeLibraryConfiguration(new long[][]{{0x0, 0x1E}});
+            edaApp.writeLibraryConfiguration(new long[][]{{0x2, 0x1}});
 
             // start sensor
             edaApp.startSensor();

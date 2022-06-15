@@ -25,6 +25,7 @@ public class LogConvertExample extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         final Button button = findViewById(R.id.button);
+        button.setEnabled(true);
         button.setOnClickListener(v -> {
             // Get applications from SDK
             File downloadFile = new File(Environment.getExternalStorageDirectory(), "dcb_cfg/C062793A.LOG");

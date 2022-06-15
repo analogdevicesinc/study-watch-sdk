@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat;
 import com.analog.study_watch_sdk.StudyWatch;
 import com.analog.study_watch_sdk.application.LTApplication;
 import com.analog.study_watch_sdk.core.SDK;
+import com.analog.study_watch_sdk.core.packets.low_touch.LTDCBCommandPacket;
 import com.analog.study_watch_sdk.core.packets.low_touch.LTDCBPacket;
 import com.analog.study_watch_sdk.interfaces.StudyWatchCallback;
 
@@ -83,10 +84,10 @@ public class LTAPPExample extends AppCompatActivity {
             LTApplication ltAPP = watchSdk.getLTApplication();
             File file = new File(Environment.getExternalStorageDirectory(), "Test/gen_blk_dcb.lcfg");
 
-            LTDCBPacket packet1 = ltAPP.deleteDeviceConfigurationBlock();
+            LTDCBCommandPacket packet1 = ltAPP.deleteDeviceConfigurationBlock();
             Log.d(TAG, "onCreate: " + packet1);
             try {
-                LTDCBPacket[] packet = ltAPP.writeDeviceConfigurationBlockFromFile(file);
+                LTDCBCommandPacket[] packet = ltAPP.writeDeviceConfigurationBlockFromFile(file);
                 Log.d(TAG, "onCreate: " + Arrays.toString(packet));
             } catch (Exception e) {
                 e.printStackTrace();

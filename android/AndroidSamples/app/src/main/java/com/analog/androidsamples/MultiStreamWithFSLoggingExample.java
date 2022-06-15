@@ -153,7 +153,7 @@ public class MultiStreamWithFSLoggingExample extends AppCompatActivity {
             tempApp.stopSensor();
 
             // logging stopped
-            fsAPP.startLogging();
+            fsAPP.stopLogging();
 
         });
 

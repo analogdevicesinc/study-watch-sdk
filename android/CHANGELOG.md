@@ -1,6 +1,10 @@
 # Changelog
 
 All notable changes to Android SDK will be documented in this file.
+## [v4.2.1] - Jun 15, 2022
+
+### New features
+
 
 ## [v4.1.0] - Dec 7, 2021
 

@@ -168,8 +168,8 @@ public class UseCaseA extends AppCompatActivity {
             adpdApp.writeRegister(new int[][]{{0xD, 0x2710}});
             ppgApp.setLibraryConfiguration(ppgApp.LCFG_ID_ADPD4000);
             //setting EDA ODR to 30HZ
-            edaApp.writeLibraryConfiguration(new int[][]{{0x0, 0x1E}});
-            edaApp.writeLibraryConfiguration(new int[][]{{0x2, 0x1}});
+            edaApp.writeLibraryConfiguration(new long[][]{{0x0, 0x1E}});
+            edaApp.writeLibraryConfiguration(new long[][]{{0x2, 0x1}});
 
             // Subscribe
             adpdApp.subscribeStream(adpdApp.STREAM_ADPD6);

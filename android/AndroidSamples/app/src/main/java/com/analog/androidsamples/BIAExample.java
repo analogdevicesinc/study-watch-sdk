@@ -5,6 +5,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.widget.Button;
 
@@ -17,6 +18,8 @@ import com.analog.study_watch_sdk.application.BIAApplication;
 import com.analog.study_watch_sdk.core.SDK;
 import com.analog.study_watch_sdk.core.packets.stream.BIADataPacket;
 import com.analog.study_watch_sdk.interfaces.StudyWatchCallback;
+
+import java.io.File;
 
 /**
  * Quickstart for BIA stream.
@@ -87,8 +90,10 @@ public class BIAExample extends AppCompatActivity {
                 }
             });
             //config
-            biaApp.writeLibraryConfiguration(new float[][]{{0x0, 0x4}, {0x1, 0x2}});
+            biaApp.writeLibraryConfiguration(new long[][]{{0x0, 0x4}, {0x1, 0x2}});
             // start sensor
+            File file = new File(Environment.getExternalStorageDirectory(), "dcb_cfg/bia.csv");
+            biaApp.enableCSVLogging(file);
             biaApp.startSensor();
             biaApp.subscribeStream();
             // sleep
@@ -100,6 +105,8 @@ public class BIAExample extends AppCompatActivity {
             // stop sensor
             biaApp.unsubscribeStream();
             biaApp.stopSensor();
+            biaApp.disableCSVLogging();
+
 
         });
 

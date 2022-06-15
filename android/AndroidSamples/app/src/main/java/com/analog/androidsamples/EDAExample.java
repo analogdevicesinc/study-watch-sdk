@@ -46,7 +46,6 @@ public class EDAExample extends AppCompatActivity {
             mBluetoothAdapter.enable();
         }
         final Button button = findViewById(R.id.button);
-        button.setEnabled(false);
         // connect to study watch with its mac address.
         StudyWatch.connectBLE("D5:67:F1:CA:05:C5", getApplicationContext(), new StudyWatchCallback() {
             @Override
@@ -85,7 +84,7 @@ public class EDAExample extends AppCompatActivity {
                 }
             });
             //config
-            edaApp.writeLibraryConfiguration(new int[][]{{0x0, 0x4}});
+            edaApp.writeLibraryConfiguration(new long[][]{{0x0, 0x4}});
             // start sensor
             edaApp.startSensor();
             edaApp.subscribeStream();
