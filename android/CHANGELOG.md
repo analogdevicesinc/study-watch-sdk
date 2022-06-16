@@ -1,9 +1,62 @@
 # Changelog
 
 All notable changes to Android SDK will be documented in this file.
+
 ## [v4.2.1] - Jun 15, 2022
 
 ### New features
+
+#### Updates:
+
+- Alarms callback API (Added).
+- freq_index column added in BIA csv logging.
+
+#### PM
+
+- loadConfiguration (Added)
+- getTopTouchStatus (Added)
+- disableTopTouch (Added)
+- enableTopTouch (Added)
+- stopSyncTimer (Added)
+- startSyncTimer (Added)
+- disableSyncTimer (Added)
+- enableSyncTimer (Added)
+- writeUICRCustomerRegisters (Added)
+- readUICRCustomerRegisters (Added)
+- deviceConfigurationBlockStatus (Updated)
+
+#### ADPD
+
+- enableSaturationCheck (Added)
+- disableSaturationCheck (Added)
+
+#### BIA
+
+- writeLibraryConfiguration (Updated)
+- writeDeviceConfigurationBlockFromFile (updated)
+- readDeviceConfigurationBlock (Updated)
+- deleteDeviceConfigurationBlock (Updated)
+- getDeviceConfiguration (Added)
+- setDeviceConfiguration (Added)
+- loadDeviceConfiguration (Added)
+
+#### EDA
+
+- writeDeviceConfigurationBlockFromFile (updated)
+- readDeviceConfigurationBlock (Updated)
+- deleteDeviceConfigurationBlock (Updated)
+- getRamRTIACalibrationTable (Added)
+- getFdsRTIACalibrationTable (Added)
+- deleteRTIACalibrationTable (Added)
+- getDeviceConfiguration (Added)
+- setDeviceConfiguration (Added)
+- loadDeviceConfiguration (Added)
+
+
+#### Packet Structure Changes
+
+- DeviceConfigurationBlock for EDA and BIA now accepts **DCBConfigBlockIndex**.
+- EDA writeLibraryConfiguration now accepts **long** instead of **int**.
 
 
 ## [v4.1.0] - Dec 7, 2021
