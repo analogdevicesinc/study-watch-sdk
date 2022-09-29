@@ -2,6 +2,58 @@
 
 All notable changes to python SDK will be documented in this file.
 
+## [v4.3.0] - Sep 29, 2022
+
+#### Updates:
+
+- convert_ticks_to_timestamp (Added).
+- New ADP5360 Application (Added).
+
+#### AD7156
+
+- AD7156DataPacket stream packet updated.
+
+#### PM
+
+- fds_erase (Added).
+- enable_hibernate_mode (Added).
+- disable_hibernate_mode (Added).
+- get_hibernate_mode (Added).
+
+#### BIA
+
+- BCM stream Added.
+
+#### ADP5360
+
+- set_battery_threshold (New).
+- get_battery_threshold (New).
+- get_battery_info (New).
+- read_register (New).
+- write_register (New).
+- delete_device_configuration_block (New).
+- read_device_configuration_block (New).
+- write_device_configuration_block (New).
+- write_device_configuration_block_from_file (New).
+- subscribe_stream (New).
+- unsubscribe_stream (New).
+- enable_csv_logging (New).
+- disable_csv_logging (New).
+
+#### PM
+
+- get_battery_info (Moved to ADP5360).
+- read_register (Moved to ADP5360).
+- write_register (Moved to ADP5360).
+- delete_device_configuration_block (Moved to ADP5360).
+- read_device_configuration_block (Moved to ADP5360).
+- write_device_configuration_block (Moved to ADP5360).
+- write_device_configuration_block_from_file (Moved to ADP5360).
+- subscribe_stream (Moved to ADP5360).
+- unsubscribe_stream (Moved to ADP5360).
+- enable_csv_logging (Moved to ADP5360).
+- disable_csv_logging (Moved to ADP5360).
+
 ## [v4.2.0] - Apr 25, 2022
 
 #### Updates:

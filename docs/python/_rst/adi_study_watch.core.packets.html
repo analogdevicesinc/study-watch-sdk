@@ -1525,6 +1525,26 @@
 </dd></dl>
 
 <dl class="py class">
+<dt id="adi_study_watch.core.packets.eda_packets.EDASleepWakeupPacket">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">adi_study_watch.core.packets.eda_packets.</span></code><code class="sig-name descname"><span class="pre">EDASleepWakeupPacket</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.core.packets.eda_packets.EDASleepWakeupPacket" title="Permalink to this definition">¶</a></dt>
+<dd><p>Packet Structure:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s1">&#39;header&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;source&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">Application</span><span class="o">.</span><span class="n">EDA</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0xC3&#39;</span><span class="p">,</span> <span class="s1">&#39;0x02&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">,</span>
+        <span class="s1">&#39;destination&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">Application</span><span class="o">.</span><span class="n">APP_USB</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0xC7&#39;</span><span class="p">,</span> <span class="s1">&#39;0x05&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">,</span>
+        <span class="s1">&#39;length&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+        <span class="s1">&#39;checksum&#39;</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;payload&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;command&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">DCBCommand</span><span class="o">.</span><span class="n">READ_CONFIG_RES</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0x98&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">,</span>
+        <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">DCBStatus</span><span class="o">.</span><span class="n">OK</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0x97&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
 <dt id="adi_study_watch.core.packets.eda_packets.ResistorTIACalibratePacket">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">adi_study_watch.core.packets.eda_packets.</span></code><code class="sig-name descname"><span class="pre">ResistorTIACalibratePacket</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.core.packets.eda_packets.ResistorTIACalibratePacket" title="Permalink to this definition">¶</a></dt>
 <dd><p>Packet Structure:</p>
@@ -1948,6 +1968,16 @@
 </dd></dl>
 
 <dl class="py class">
+<dt id="adi_study_watch.core.packets.fs_packets.SystemTestInfoRequestPacket">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">adi_study_watch.core.packets.fs_packets.</span></code><code class="sig-name descname"><span class="pre">SystemTestInfoRequestPacket</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.core.packets.fs_packets.SystemTestInfoRequestPacket" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt id="adi_study_watch.core.packets.fs_packets.SystemTestInfoResponsePacket">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">adi_study_watch.core.packets.fs_packets.</span></code><code class="sig-name descname"><span class="pre">SystemTestInfoResponsePacket</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.core.packets.fs_packets.SystemTestInfoResponsePacket" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
 <dt id="adi_study_watch.core.packets.fs_packets.VolumeInfoPacket">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">adi_study_watch.core.packets.fs_packets.</span></code><code class="sig-name descname"><span class="pre">VolumeInfoPacket</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.core.packets.fs_packets.VolumeInfoPacket" title="Permalink to this definition">¶</a></dt>
 <dd><p>Packet Structure:</p>
@@ -2003,8 +2033,8 @@
 </dd></dl>
 
 <dl class="py class">
-<dt id="adi_study_watch.core.packets.low_touch_packets.LTDCBPacket">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">adi_study_watch.core.packets.low_touch_packets.</span></code><code class="sig-name descname"><span class="pre">LTDCBPacket</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.core.packets.low_touch_packets.LTDCBPacket" title="Permalink to this definition">¶</a></dt>
+<dt id="adi_study_watch.core.packets.low_touch_packets.LTDCBGENPacket">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">adi_study_watch.core.packets.low_touch_packets.</span></code><code class="sig-name descname"><span class="pre">LTDCBGENPacket</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.core.packets.low_touch_packets.LTDCBGENPacket" title="Permalink to this definition">¶</a></dt>
 <dd><p>Packet Structure:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
     <span class="s1">&#39;header&#39;</span><span class="p">:</span> <span class="p">{</span>
@@ -2021,6 +2051,34 @@
         <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[</span> <span class="p">],</span>
         <span class="s1">&#39;start_command_count&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
         <span class="s1">&#39;stop_command_count&#39;</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt id="adi_study_watch.core.packets.low_touch_packets.LTDCBLCFGPacket">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">adi_study_watch.core.packets.low_touch_packets.</span></code><code class="sig-name descname"><span class="pre">LTDCBLCFGPacket</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.core.packets.low_touch_packets.LTDCBLCFGPacket" title="Permalink to this definition">¶</a></dt>
+<dd><p>Packet Structure:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s1">&#39;header&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;source&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">Application</span><span class="o">.</span><span class="n">PM</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0xC5&#39;</span><span class="p">,</span> <span class="s1">&#39;0x00&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">,</span>
+        <span class="s1">&#39;destination&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">Application</span><span class="o">.</span><span class="n">APP_USB</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0xC7&#39;</span><span class="p">,</span> <span class="s1">&#39;0x05&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">,</span>
+        <span class="s1">&#39;length&#39;</span><span class="p">:</span> <span class="mi">32</span><span class="p">,</span>
+        <span class="s1">&#39;checksum&#39;</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;payload&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;command&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">DCBCommand</span><span class="o">.</span><span class="n">READ_CONFIG_RES</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0x98&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">,</span>
+        <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">DCBStatus</span><span class="o">.</span><span class="n">OK</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0x97&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">,</span>
+        <span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">[</span> <span class="s1">&#39;0x0&#39;</span><span class="p">,</span> <span class="s1">&#39;0x1B58&#39;</span> <span class="p">],</span>
+            <span class="p">[</span> <span class="s1">&#39;0x1&#39;</span><span class="p">,</span> <span class="s1">&#39;0x1388&#39;</span> <span class="p">],</span>
+            <span class="p">[</span> <span class="s1">&#39;0x2&#39;</span><span class="p">,</span> <span class="s1">&#39;0x564&#39;</span> <span class="p">],</span>
+            <span class="p">[</span> <span class="s1">&#39;0x3&#39;</span><span class="p">,</span> <span class="s1">&#39;0x53C&#39;</span> <span class="p">],</span>
+            <span class="p">[</span> <span class="s1">&#39;0x4&#39;</span><span class="p">,</span> <span class="s1">&#39;0x3&#39;</span> <span class="p">]</span>
+        <span class="p">]</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -2092,50 +2150,6 @@
         <span class="s1">&#39;ad5940_isr_count&#39;</span><span class="p">:</span> <span class="mi">202</span><span class="p">,</span>
         <span class="s1">&#39;adpd_isr_count&#39;</span><span class="p">:</span> <span class="mi">3350</span><span class="p">,</span>
         <span class="s1">&#39;adxl_isr_count&#39;</span><span class="p">:</span> <span class="mi">1187</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="py class">
-<dt id="adi_study_watch.core.packets.pm_packets.BatteryInfoPacket">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">adi_study_watch.core.packets.pm_packets.</span></code><code class="sig-name descname"><span class="pre">BatteryInfoPacket</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.core.packets.pm_packets.BatteryInfoPacket" title="Permalink to this definition">¶</a></dt>
-<dd><p>Packet Structure:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="s1">&#39;header&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;source&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">Application</span><span class="o">.</span><span class="n">PM</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0xC5&#39;</span><span class="p">,</span> <span class="s1">&#39;0x00&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">,</span>
-        <span class="s1">&#39;destination&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">Application</span><span class="o">.</span><span class="n">APP_USB</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0xC7&#39;</span><span class="p">,</span> <span class="s1">&#39;0x05&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">,</span>
-        <span class="s1">&#39;length&#39;</span><span class="p">:</span> <span class="s1">&#39;0x12&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;checksum&#39;</span><span class="p">:</span> <span class="s1">&#39;0x0&#39;</span>
-    <span class="p">},</span>
-    <span class="s1">&#39;payload&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;command&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">PMCommand</span><span class="o">.</span><span class="n">GET_BAT_INFO_RES</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0x45&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">,</span>
-        <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">PMStatus</span><span class="o">.</span><span class="n">OK</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0x41&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">,</span>
-        <span class="s1">&#39;timestamp&#39;</span><span class="p">:</span> <span class="mi">668880834</span><span class="p">,</span>
-        <span class="s1">&#39;battery_status&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">BatteryStatus</span><span class="o">.</span><span class="n">COMPLETE</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0x03&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">,</span>
-        <span class="s1">&#39;battery_level&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
-        <span class="s1">&#39;battery_mv&#39;</span><span class="p">:</span> <span class="mi">4334</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="py class">
-<dt id="adi_study_watch.core.packets.pm_packets.BatteryThresholdPacket">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">adi_study_watch.core.packets.pm_packets.</span></code><code class="sig-name descname"><span class="pre">BatteryThresholdPacket</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.core.packets.pm_packets.BatteryThresholdPacket" title="Permalink to this definition">¶</a></dt>
-<dd><p>Packet Structure:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="s1">&#39;header&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;source&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">Application</span><span class="o">.</span><span class="n">PM</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0xC5&#39;</span><span class="p">,</span> <span class="s1">&#39;0x00&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">,</span>
-        <span class="s1">&#39;destination&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">Application</span><span class="o">.</span><span class="n">APP_USB</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0xC7&#39;</span><span class="p">,</span> <span class="s1">&#39;0x05&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">,</span>
-        <span class="s1">&#39;length&#39;</span><span class="p">:</span> <span class="s1">&#39;0xA&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;checksum&#39;</span><span class="p">:</span> <span class="s1">&#39;0x0&#39;</span>
-    <span class="p">},</span>
-    <span class="s1">&#39;payload&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;command&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">PMCommand</span><span class="o">.</span><span class="n">SET_BAT_THR_RES</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0x47&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">,</span>
-        <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">PMStatus</span><span class="o">.</span><span class="n">OK</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0x41&#39;</span><span class="p">]</span><span class="o">&gt;</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -2254,6 +2268,11 @@
 <dd></dd></dl>
 
 <dl class="py class">
+<dt id="adi_study_watch.core.packets.pm_packets.HibernateModePacket">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">adi_study_watch.core.packets.pm_packets.</span></code><code class="sig-name descname"><span class="pre">HibernateModePacket</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.core.packets.pm_packets.HibernateModePacket" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
 <dt id="adi_study_watch.core.packets.pm_packets.LDOControlPacket">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">adi_study_watch.core.packets.pm_packets.</span></code><code class="sig-name descname"><span class="pre">LDOControlPacket</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.core.packets.pm_packets.LDOControlPacket" title="Permalink to this definition">¶</a></dt>
 <dd><p>Packet Structure:</p>
@@ -2290,106 +2309,6 @@
         <span class="s1">&#39;command&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">PMCommand</span><span class="o">.</span><span class="n">GET_MCU_VERSION_RES</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0x59&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">,</span>
         <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">PMStatus</span><span class="o">.</span><span class="n">OK</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0x41&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">,</span>
         <span class="s1">&#39;mcu&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">MCUType</span><span class="o">.</span><span class="n">MCU_M4</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0x02&#39;</span><span class="p">]</span><span class="o">&gt;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="py class">
-<dt id="adi_study_watch.core.packets.pm_packets.PMDCBCommandPacket">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">adi_study_watch.core.packets.pm_packets.</span></code><code class="sig-name descname"><span class="pre">PMDCBCommandPacket</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.core.packets.pm_packets.PMDCBCommandPacket" title="Permalink to this definition">¶</a></dt>
-<dd><p>Packet Structure:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="s1">&#39;header&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;source&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">Application</span><span class="o">.</span><span class="n">EDA</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0xC3&#39;</span><span class="p">,</span> <span class="s1">&#39;0x02&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">,</span>
-        <span class="s1">&#39;destination&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">Application</span><span class="o">.</span><span class="n">APP_USB</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0xC7&#39;</span><span class="p">,</span> <span class="s1">&#39;0x05&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">,</span>
-        <span class="s1">&#39;length&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
-        <span class="s1">&#39;checksum&#39;</span><span class="p">:</span> <span class="mi">0</span>
-    <span class="p">},</span>
-    <span class="s1">&#39;payload&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;command&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">DCBCommand</span><span class="o">.</span><span class="n">READ_CONFIG_RES</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0x98&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">,</span>
-        <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">DCBStatus</span><span class="o">.</span><span class="n">OK</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0x97&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">,</span>
-        <span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[</span>
-            <span class="p">[</span> <span class="s1">&#39;0x0&#39;</span><span class="p">,</span> <span class="s1">&#39;0x8&#39;</span> <span class="p">]</span>
-        <span class="p">]</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="py class">
-<dt id="adi_study_watch.core.packets.pm_packets.PMDCBPacket">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">adi_study_watch.core.packets.pm_packets.</span></code><code class="sig-name descname"><span class="pre">PMDCBPacket</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.core.packets.pm_packets.PMDCBPacket" title="Permalink to this definition">¶</a></dt>
-<dd><p>Packet Structure:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="s1">&#39;header&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;source&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">Application</span><span class="o">.</span><span class="n">PM</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0xC5&#39;</span><span class="p">,</span> <span class="s1">&#39;0x00&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">,</span>
-        <span class="s1">&#39;destination&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">Application</span><span class="o">.</span><span class="n">APP_USB</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0xC7&#39;</span><span class="p">,</span> <span class="s1">&#39;0x05&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">,</span>
-        <span class="s1">&#39;length&#39;</span><span class="p">:</span> <span class="mi">32</span><span class="p">,</span>
-        <span class="s1">&#39;checksum&#39;</span><span class="p">:</span> <span class="mi">0</span>
-    <span class="p">},</span>
-    <span class="s1">&#39;payload&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;command&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">DCBCommand</span><span class="o">.</span><span class="n">READ_CONFIG_RES</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0x98&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">,</span>
-        <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">DCBStatus</span><span class="o">.</span><span class="n">OK</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0x97&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">,</span>
-        <span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
-        <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[</span>
-            <span class="p">[</span> <span class="s1">&#39;0x0&#39;</span><span class="p">,</span> <span class="s1">&#39;0x1B58&#39;</span> <span class="p">],</span>
-            <span class="p">[</span> <span class="s1">&#39;0x1&#39;</span><span class="p">,</span> <span class="s1">&#39;0x1388&#39;</span> <span class="p">],</span>
-            <span class="p">[</span> <span class="s1">&#39;0x2&#39;</span><span class="p">,</span> <span class="s1">&#39;0x564&#39;</span> <span class="p">],</span>
-            <span class="p">[</span> <span class="s1">&#39;0x3&#39;</span><span class="p">,</span> <span class="s1">&#39;0x53C&#39;</span> <span class="p">],</span>
-            <span class="p">[</span> <span class="s1">&#39;0x4&#39;</span><span class="p">,</span> <span class="s1">&#39;0x3&#39;</span> <span class="p">]</span>
-        <span class="p">]</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="py class">
-<dt id="adi_study_watch.core.packets.pm_packets.PMRegisterReadPacket">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">adi_study_watch.core.packets.pm_packets.</span></code><code class="sig-name descname"><span class="pre">PMRegisterReadPacket</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.core.packets.pm_packets.PMRegisterReadPacket" title="Permalink to this definition">¶</a></dt>
-<dd><p>Packet Structure:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="s1">&#39;header&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;source&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">Application</span><span class="o">.</span><span class="n">PM</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0xC5&#39;</span><span class="p">,</span> <span class="s1">&#39;0x00&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">,</span>
-        <span class="s1">&#39;destination&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">Application</span><span class="o">.</span><span class="n">APP_USB</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0xC7&#39;</span><span class="p">,</span> <span class="s1">&#39;0x05&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">,</span>
-        <span class="s1">&#39;length&#39;</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span>
-        <span class="s1">&#39;checksum&#39;</span><span class="p">:</span> <span class="mi">0</span>
-    <span class="p">},</span>
-    <span class="s1">&#39;payload&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;command&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">CommonCommand</span><span class="o">.</span><span class="n">REGISTER_READ_RES</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0x22&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">,</span>
-        <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">CommonStatus</span><span class="o">.</span><span class="n">OK</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0x00&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">,</span>
-        <span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[</span>
-            <span class="p">[</span> <span class="s1">&#39;0x0&#39;</span><span class="p">,</span> <span class="s1">&#39;0x10&#39;</span> <span class="p">]</span>
-        <span class="p">]</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="py class">
-<dt id="adi_study_watch.core.packets.pm_packets.PMRegisterWritePacket">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">adi_study_watch.core.packets.pm_packets.</span></code><code class="sig-name descname"><span class="pre">PMRegisterWritePacket</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.core.packets.pm_packets.PMRegisterWritePacket" title="Permalink to this definition">¶</a></dt>
-<dd><p>Packet Structure:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="s1">&#39;header&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;source&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">Application</span><span class="o">.</span><span class="n">PM</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0xC5&#39;</span><span class="p">,</span> <span class="s1">&#39;0x00&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">,</span>
-        <span class="s1">&#39;destination&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">Application</span><span class="o">.</span><span class="n">APP_USB</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0xC7&#39;</span><span class="p">,</span> <span class="s1">&#39;0x05&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">,</span>
-        <span class="s1">&#39;length&#39;</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span>
-        <span class="s1">&#39;checksum&#39;</span><span class="p">:</span> <span class="mi">0</span>
-    <span class="p">},</span>
-    <span class="s1">&#39;payload&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;command&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">CommonCommand</span><span class="o">.</span><span class="n">REGISTER_WRITE_RES</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0x24&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">,</span>
-        <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">CommonStatus</span><span class="o">.</span><span class="n">OK</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0x00&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">,</span>
-        <span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[</span>
-            <span class="p">[</span> <span class="s1">&#39;0x0&#39;</span><span class="p">,</span> <span class="s1">&#39;0x10&#39;</span> <span class="p">]</span>
-        <span class="p">]</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -2675,7 +2594,7 @@
 <dd><dl class="py method">
 <dt id="adi_study_watch.core.packets.stream_data_packets.AD7156DataPacket.get_dict">
 <code class="sig-name descname"><span class="pre">get_dict</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">last_timestamp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.core.packets.stream_data_packets.AD7156DataPacket.get_dict" title="Permalink to this definition">¶</a></dt>
-<dd><p>Postprocessing.</p>
+<dd><p>Reorganising of stream data in stream_data key.</p>
 </dd></dl>
 
 </dd></dl>
@@ -2798,6 +2717,17 @@
 <dl class="py method">
 <dt id="adi_study_watch.core.packets.stream_data_packets.AGCDataPacket.get_dict">
 <code class="sig-name descname"><span class="pre">get_dict</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">last_timestamp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.core.packets.stream_data_packets.AGCDataPacket.get_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Postprocessing.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="adi_study_watch.core.packets.stream_data_packets.BCMDataPacket">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">adi_study_watch.core.packets.stream_data_packets.</span></code><code class="sig-name descname"><span class="pre">BCMDataPacket</span></code><a class="headerlink" href="#adi_study_watch.core.packets.stream_data_packets.BCMDataPacket" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt id="adi_study_watch.core.packets.stream_data_packets.BCMDataPacket.get_dict">
+<code class="sig-name descname"><span class="pre">get_dict</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">last_timestamp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adi_study_watch.core.packets.stream_data_packets.BCMDataPacket.get_dict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Postprocessing.</p>
 </dd></dl>
 

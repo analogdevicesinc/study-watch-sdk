@@ -55,6 +55,7 @@ if __name__ == "__main__":
     application.disable_csv_logging()
     application.unsubscribe_stream()
     application.stop_sensor()
+    application.get_packet_lost_count()
 
     # reads register
     packet = application.read_register([0x10, 0x11, 0x12])

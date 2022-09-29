@@ -50,8 +50,9 @@ def stream_progress_file(event_type, total_size, progress):
 
 
 if __name__ == "__main__":
-    sdk = SDK("COM4")
+    sdk = SDK("COM4", debug=True)
     application = sdk.get_fs_application()
+    application1 = sdk.get_low_touch_application()
 
     # get supported streams
     packet = application.get_supported_streams()
@@ -63,6 +64,9 @@ if __name__ == "__main__":
     # download file with progress callback
     application.download_file("B1320595.LOG", download_to_file=True,
                               display_progress=True, progress_callback=stream_progress_file)
+
+    application.download_file("514199C5.LOG", download_to_file=True, display_progress=True,
+                              continue_download="514199C5.LOG_RAW")
 
     # convert log file to csv
     SDK.convert_log_to_csv("512190CB.LOG")

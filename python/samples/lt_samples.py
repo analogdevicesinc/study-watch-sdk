@@ -40,12 +40,25 @@
 from adi_study_watch import SDK
 
 if __name__ == '__main__':
-    sdk = SDK("COM4")
+    sdk = SDK("COM8")
     lt_app = sdk.get_low_touch_application()
 
-    lt_app.delete_device_configuration_block()
+    packet = lt_app.write_device_configuration_block_from_file("dcb_cfg/gen_blk_dcb.lcfg", lt_app.GENERAL_BLOCK)
+    print(packet)
 
-    lt_app.write_device_configuration_block_from_file("dcb_cfg/gen_blk_dcb.lcfg")
+    lt_app.write_device_configuration_block_from_file("dcb_cfg/gen_blk_dcb.lcfg", lt_app.GENERAL_BLOCK)
 
-    pkt = lt_app.read_device_configuration_block(readable_format=True)
+    pkt = lt_app.read_device_configuration_block(lt_app.GENERAL_BLOCK, readable_format=True)
     print(pkt)
+
+    packet = lt_app.delete_device_configuration_block(lt_app.GENERAL_BLOCK)
+    print(packet)
+
+    packet = lt_app.write_device_configuration_block_from_file("dcb_cfg/lt_app_dcb.lcfg", lt_app.LT_APP_LCFG_BLOCK)
+    print(packet)
+
+    pkt = lt_app.read_device_configuration_block(lt_app.LT_APP_LCFG_BLOCK)
+    print(pkt)
+
+    packet = lt_app.delete_device_configuration_block(lt_app.LT_APP_LCFG_BLOCK)
+    print(packet)

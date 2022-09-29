@@ -42,7 +42,7 @@ import time
 from adi_study_watch import SDK
 
 
-def callback_data(data):
+def callback_data_bia(data):
     for value in data["payload"]["stream_data"]:
         bcm_real = value["real"]
         bcm_imaginary = value["imaginary"]
@@ -55,22 +55,32 @@ def callback_data(data):
         real_and_img = float(impedance_real * impedance_real + impedance_img * impedance_img)
         impedance_magnitude = math.sqrt(real_and_img)
         impedance_phase = math.atan2(impedance_img, impedance_real)
-        print(value["timestamp"], data["payload"]["sequence_number"], impedance_magnitude, impedance_phase)
+        print("BIA ", value["timestamp"], data["payload"]["sequence_number"], impedance_magnitude, impedance_phase)
+
+
+def callback_data_bcm(data):
+    print("BCM ", data["payload"]["timestamp"], data["payload"]["ffm_estimated"], data["payload"]["bmi"],
+          data["payload"]["fat_percent"], data["payload"]["sequence_num"])
 
 
 if __name__ == "__main__":
-    sdk = SDK("COM4")
+    sdk = SDK("COM6", mac_address="D5-67-F1-CA-05-C5")
     application = sdk.get_bia_application()
-    application.set_callback(callback_data)
+    application.set_callback(callback_data_bia, stream=application.STREAM_BIA)
+    application.set_callback(callback_data_bcm, stream=application.STREAM_BCM)
 
     # quick start bia
-    application.write_library_configuration([[0x0, 0x4]])
+    application.write_library_configuration([[0x6, 0x1]])
     application.start_sensor()
-    application.enable_csv_logging("bia.csv")
-    application.subscribe_stream()
-    time.sleep(10)
-    application.unsubscribe_stream()
-    application.disable_csv_logging()
+    application.subscribe_stream(stream=application.STREAM_BIA)
+    application.subscribe_stream(stream=application.STREAM_BCM)
+    application.enable_csv_logging("bia.csv", stream=application.STREAM_BIA)
+    application.enable_csv_logging("bcm.csv", stream=application.STREAM_BCM)
+    time.sleep(50)
+    application.unsubscribe_stream(stream=application.STREAM_BIA)
+    application.unsubscribe_stream(stream=application.STREAM_BCM)
+    application.disable_csv_logging(stream=application.STREAM_BIA)
+    application.disable_csv_logging(stream=application.STREAM_BCM)
     application.stop_sensor()
 
     # get sensor status
