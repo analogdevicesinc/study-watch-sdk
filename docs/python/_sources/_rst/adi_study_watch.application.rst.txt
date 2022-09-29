@@ -7,6 +7,12 @@ ad7156\_application module
 .. automodule:: adi_study_watch.application.ad7156_application
    :inherited-members:
 
+adp5360\_application module
+--------------------------------------------------------
+
+.. automodule:: adi_study_watch.application.adp5360_application
+   :inherited-members:
+
 adpd\_application module
 ------------------------------------------------------
 
