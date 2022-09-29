@@ -35,81 +35,13 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 # ******************************************************************************
+
 import time
-import datetime
 
 from adi_study_watch import SDK
 
-
-def battery_callback(data):
-    print(data)
-
-
 if __name__ == "__main__":
-    sdk = SDK("COM8")
-    application = sdk.get_pm_application()
-
-    # set datetime
-    packet = application.set_datetime(datetime.datetime.now())
-    print(packet)
-
-    # get datetime
-    packet = application.get_datetime()
-    print(packet)
-
-    # system reset
-    # packet = application.system_reset()
-    # print(packet)
-
-    # hardware reset
-    # packet = application.system_hardware_reset()
-    # print(packet)
-
-    # dcb status
-    packet = application.device_configuration_block_status()
-    print(packet)
-
-    # disable touch sensor
-    packet = application.disable_touch_sensor()
-    print(packet)
-
-    # get chip id
-    packet = application.get_chip_id(application.CHIP_ADXL362)
-    print(packet)
-
-    # enter boot loader mode
-    # packet = application.enter_boot_loader_mode()
-    # print(packet)
-
-    packet = application.write_uicr_customer_registers("2022-02-15")
-    print(packet)
-
-    packet = application.read_uicr_customer_registers()
-    print(packet)
-
-    packet = application.enable_sync_timer()
-    print(packet)
-
-    packet = application.start_sync_timer()
-    print(packet)
-
-    packet = application.stop_sync_timer()
-    print(packet)
-
-    packet = application.disable_sync_timer()
-    print(packet)
-
-    packet = application.get_hibernate_mode()
-    print(packet)
-
-    packet = application.enable_hibernate_mode(100)
-    print(packet)
-
-    packet = application.get_hibernate_mode()
-    print(packet)
-
-    packet = application.disable_hibernate_mode()
-    print(packet)
-
-    packet = application.get_hibernate_mode()
+    sdk = SDK("COM4")
+    test_application = sdk.get_test_application()
+    packet = test_application.get_debug_info()
     print(packet)

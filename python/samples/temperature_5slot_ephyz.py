@@ -36,68 +36,55 @@
 # POSSIBILITY OF SUCH DAMAGE.
 # ******************************************************************************
 
+# This is a example for standalone temperature application(only temperature application is running)
+# This showcases some additional setting required to remove the inconsistencies seen in temperature slot readings.
+
 import time
 
 from adi_study_watch import SDK
 
-
-def callback_data3(data):
-    print(data)
-
-
-def callback_data4(data):
-    print(data)
-
-
-def callback_data10(data):
-    print(data)
-
-
-def callback_data11(data):
-    print(data)
-
-
-def callback_data12(data):
-    print(data)
-
-
 if __name__ == "__main__":
     sdk = SDK("COM4")
     temp_application = sdk.get_temperature_application()
-    temp_application.set_callback(callback_data3, stream=temp_application.STREAM_TEMPERATURE3)
-    temp_application.set_callback(callback_data4, stream=temp_application.STREAM_TEMPERATURE4)
-    temp_application.set_callback(callback_data10, stream=temp_application.STREAM_TEMPERATURE10)
-    temp_application.set_callback(callback_data11, stream=temp_application.STREAM_TEMPERATURE11)
-    temp_application.set_callback(callback_data12, stream=temp_application.STREAM_TEMPERATURE12)
     adpd_application = sdk.get_adpd_application()
+    test_application = sdk.get_test_application()
+    eda_application = sdk.get_eda_application()
 
+    test_application.disable_electrode_switch(test_application.SWITCH_AD8233)
+    eda_application.set_power_mode(eda_application.POWER_SLEEP)
+    temp_application.enable_csv_logging("temp3.csv", temp_application.STREAM_TEMPERATURE3)
+    temp_application.enable_csv_logging("temp4.csv", temp_application.STREAM_TEMPERATURE4)
+    temp_application.enable_csv_logging("temp10.csv", temp_application.STREAM_TEMPERATURE10)
+    temp_application.enable_csv_logging("temp11.csv", temp_application.STREAM_TEMPERATURE11)
+    temp_application.enable_csv_logging("temp12.csv", temp_application.STREAM_TEMPERATURE12)
+
+    adpd_application.write_device_configuration_block_from_file("dcb_cfg/DVT2_Temp_watch_PERSEUS-1105.dcfg")
     temp_application.write_device_configuration_block_from_file("dcb_cfg/temperature_lcfg_dcb.lcfg")
-    adpd_application.write_device_configuration_block_from_file("dcb_cfg/temperature_adpd_dcb_DVT2.dcfg")
-
-    # start and stop stream
     adpd_application.load_configuration(adpd_application.DEVICE_GREEN)
+    temp_application.write_dcb_to_lcfg()
     temp_application.start_sensor()
-    temp_application.subscribe_stream()
-
     temp_application.subscribe_stream(temp_application.STREAM_TEMPERATURE3)
     temp_application.subscribe_stream(temp_application.STREAM_TEMPERATURE4)
     temp_application.subscribe_stream(temp_application.STREAM_TEMPERATURE10)
     temp_application.subscribe_stream(temp_application.STREAM_TEMPERATURE11)
     temp_application.subscribe_stream(temp_application.STREAM_TEMPERATURE12)
-    temp_application.enable_csv_logging("temp3.csv", stream=temp_application.STREAM_TEMPERATURE3)
-    temp_application.enable_csv_logging("temp.csv", stream=temp_application.STREAM_TEMPERATURE4)
-    temp_application.enable_csv_logging("temp10.csv", stream=temp_application.STREAM_TEMPERATURE10)
-    temp_application.enable_csv_logging("temp11.csv", stream=temp_application.STREAM_TEMPERATURE11)
-    temp_application.enable_csv_logging("temp12.csv", stream=temp_application.STREAM_TEMPERATURE12)
-    time.sleep(10)
+
+    time.sleep(30)
+
     temp_application.unsubscribe_stream(temp_application.STREAM_TEMPERATURE3)
     temp_application.unsubscribe_stream(temp_application.STREAM_TEMPERATURE4)
     temp_application.unsubscribe_stream(temp_application.STREAM_TEMPERATURE10)
     temp_application.unsubscribe_stream(temp_application.STREAM_TEMPERATURE11)
     temp_application.unsubscribe_stream(temp_application.STREAM_TEMPERATURE12)
+    temp_application.stop_sensor()
+    eda_application.set_power_mode(eda_application.POWER_WAKEUP)
+
     temp_application.disable_csv_logging(temp_application.STREAM_TEMPERATURE3)
     temp_application.disable_csv_logging(temp_application.STREAM_TEMPERATURE4)
     temp_application.disable_csv_logging(temp_application.STREAM_TEMPERATURE10)
     temp_application.disable_csv_logging(temp_application.STREAM_TEMPERATURE11)
     temp_application.disable_csv_logging(temp_application.STREAM_TEMPERATURE12)
-    temp_application.stop_sensor()
+
+    test_application.disable_ldo(test_application.LDO_EPHYZ)
+    adpd_application.delete_device_configuration_block()
+    temp_application.delete_device_configuration_block()

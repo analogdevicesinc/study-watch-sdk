@@ -35,105 +35,52 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 # ******************************************************************************
-
 import time
+import datetime
 
 from adi_study_watch import SDK
 
 
-def callback_data(data):
+def battery_callback(data):
     print(data)
 
 
 if __name__ == "__main__":
-    sdk = SDK("COM8")
-    application = sdk.get_adpd_application()
-    application.set_callback(callback_data, stream=application.STREAM_ADPD6)
+    sdk = SDK("COM4")
+    application = sdk.get_adp5360_application()
 
-    # quickstart stream
-    application.load_configuration(application.DEVICE_GREEN)
-    application.calibrate_clock(application.CLOCK_1M_AND_32M)
-    application.enable_agc([application.LED_GREEN])
-    application.start_sensor()
-    application.enable_csv_logging("adpd6.csv", stream=application.STREAM_ADPD6)
-    application.subscribe_stream(application.STREAM_ADPD6)
+    # battery stream
+    application.set_callback(battery_callback, stream=application.STREAM_BATTERY)
+    application.subscribe_stream(application.STREAM_BATTERY)
+    application.enable_csv_logging("battery.csv")
     time.sleep(10)
-    application.unsubscribe_stream(application.STREAM_ADPD6)
-    application.disable_csv_logging(stream=application.STREAM_ADPD6)
-    application.stop_sensor()
-    print(application.get_packet_lost_count(application.STREAM_ADPD6))
-    # prints total packets lost during streaming for two channels [ch1, ch2]
+    application.unsubscribe_stream()
+    application.disable_csv_logging()
 
-    # set decimation factor
-    packet = application.set_decimation_factor(2, application.STREAM_ADPD6)
+    # convert ticks to timestamp example
+    packet = application.get_battery_info()
+    print(packet)
+    packet["payload"]["timestamp"] = sdk.convert_ticks_to_timestamp(packet["payload"]["timestamp"])
+    print(packet)
+    packet = application.read_register([0x3])
     print(packet)
 
-    # get decimation factor
-    packet = application.get_decimation_factor(application.STREAM_ADPD6)
-    print(packet)
-    # pause stream
-    packet = application.pause()
+    packet = application.set_battery_threshold(20, 5, 10)
     print(packet)
 
-    # resume stream
-    packet = application.resume()
+    packet = application.get_battery_threshold()
     print(packet)
 
-    # get communication mode
-    packet = application.get_communication_mode()
+    packet = application.write_device_configuration_block_from_file("dcb_cfg/ADP5360_SW_DCB.DCFG")
     print(packet)
 
-    # sensor status
-    packet = application.get_sensor_status()
-    print(packet)
-
-    # read register
-    packet = application.read_register([0x20, 0x21, 0x22])
-    print(packet)
-
-    # write register
-    packet = application.write_register([[0x20, 0x1], [0x21, 0x2]])
-    print(packet)
-
-    # sensor status
-    packet = application.get_sensor_status()
-    print(packet)
-
-    # read dcb
     packet = application.read_device_configuration_block()
     print(packet)
 
-    # write dcb from file
-    packet = application.write_device_configuration_block_from_file("dcb_cfg/adpd4000_dcb.dcfg")
-    print(packet)
-
-    # delete dcb
     packet = application.delete_device_configuration_block()
     print(packet)
 
-    # set sampling frequency
-    packet = application.set_sampling_frequency(100)
+    packet = application.write_register([[0x3, 0x5]])
     print(packet)
-
-    # write lcfg
-    packet = application.write_library_configuration([[0x00, 1]])
-    print(packet)
-
-    # read lcfg
-    packet = application.read_library_configuration([0x00])
-    print(packet)
-
-    # get supported streams
-    packet = application.get_supported_streams()
-    print(packet)
-
-    # set external stream sampling frequency
-    packet = application.set_external_stream_sampling_frequency(50)
-    print(packet)
-
-    # saturation Check
-    packet = application.enable_saturation_check([application.SLOT_F, application.SLOT_G, application.SLOT_H])
-    print(packet)
-
-    packet = application.disable_saturation_check([application.SLOT_F, application.SLOT_G, application.SLOT_H])
+    packet = application.read_register([0x3])
     print(packet)

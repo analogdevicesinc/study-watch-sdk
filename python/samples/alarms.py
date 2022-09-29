@@ -52,6 +52,6 @@ if __name__ == "__main__":
     sdk.set_alarms_callback(alarms)
 
     pm = sdk.get_pm_application()
-    test_app = sdk.get_test_application()
-    test_app.set_battery_threshold(30, 10)
+    adp5360_app = sdk.get_adp5360_application()
+    adp5360_app.set_battery_threshold(30, 10, 100)
     time.sleep(10)
