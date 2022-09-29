@@ -2,6 +2,13 @@
 
 All notable changes to python SDK will be documented in this file.
 
+## [v4.3.1,v4.3.2] - Sep 29, 2022
+
+#### Updates:
+
+- support firmware version message updated to 5.13.0
+
+
 ## [v4.3.0] - Sep 29, 2022
 
 #### Updates:
