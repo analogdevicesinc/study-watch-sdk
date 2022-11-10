@@ -18,6 +18,9 @@ import com.analog.study_watch_sdk.core.SDK;
 import com.analog.study_watch_sdk.core.packets.stream.EDADataPacket;
 import com.analog.study_watch_sdk.interfaces.StudyWatchCallback;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 /**
  * Quickstart for EDA stream.
  */
@@ -30,6 +33,17 @@ public class EDAExample extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_DENIED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, 2);
+            }
+        }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) == PackageManager.PERMISSION_DENIED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_SCAN}, 2);
+            }
+        }
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
@@ -46,8 +60,11 @@ public class EDAExample extends AppCompatActivity {
             mBluetoothAdapter.enable();
         }
         final Button button = findViewById(R.id.button);
+        final Button button3 = findViewById(R.id.button3);
+        button.setEnabled(false);
+        button3.setEnabled(false);
         // connect to study watch with its mac address.
-        StudyWatch.connectBLE("D5:67:F1:CA:05:C5", getApplicationContext(), new StudyWatchCallback() {
+        StudyWatch.connectBLE("CE:7B:4B:3D:A6:F9", getApplicationContext(), new StudyWatchCallback() {
             @Override
             public void onSuccess(SDK sdk) {
                 Log.d(TAG, "onSuccess: SDK Ready");
@@ -64,7 +81,8 @@ public class EDAExample extends AppCompatActivity {
         });
 
         button.setOnClickListener(v -> {
-            // Get applications from SDK
+            button.setEnabled(false);
+            button3.setEnabled(true);
             EDAApplication edaApp = watchSdk.getEDAApplication();
 
             edaApp.setCallback(edaDataPacket -> {
@@ -83,21 +101,27 @@ public class EDAExample extends AppCompatActivity {
                             impedanceMagnitude + " , " + impedancePhase);
                 }
             });
-            //config
-            edaApp.writeLibraryConfiguration(new long[][]{{0x0, 0x4}});
-            // start sensor
-            edaApp.startSensor();
-            edaApp.subscribeStream();
-            // sleep
-            try {
-                Thread.sleep(10000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            // stop sensor
-            edaApp.unsubscribeStream();
-            edaApp.stopSensor();
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
+            executorService.execute(() -> {
+                //config
+                edaApp.writeLibraryConfiguration(new long[][]{{0x0, 0x4}});
+                // start sensor
+                edaApp.startSensor();
+                edaApp.subscribeStream();
+            });
+        });
 
+        button3.setOnClickListener(v -> {
+            button.setEnabled(true);
+            button3.setEnabled(false);
+            EDAApplication edaApp = watchSdk.getEDAApplication();
+
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
+            executorService.execute(() -> {
+                // stop sensor
+                edaApp.unsubscribeStream();
+                edaApp.stopSensor();
+            });
         });
 
 

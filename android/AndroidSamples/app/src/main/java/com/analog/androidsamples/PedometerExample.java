@@ -18,6 +18,9 @@ import com.analog.study_watch_sdk.application.PedometerApplication;
 import com.analog.study_watch_sdk.core.SDK;
 import com.analog.study_watch_sdk.interfaces.StudyWatchCallback;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 /**
  * Quickstart for Pedometer stream.
  */
@@ -30,6 +33,17 @@ public class PedometerExample extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_DENIED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, 2);
+            }
+        }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) == PackageManager.PERMISSION_DENIED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_SCAN}, 2);
+            }
+        }
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
@@ -46,7 +60,9 @@ public class PedometerExample extends AppCompatActivity {
             mBluetoothAdapter.enable();
         }
         final Button button = findViewById(R.id.button);
+        final Button button3 = findViewById(R.id.button3);
         button.setEnabled(false);
+        button3.setEnabled(false);
         // connect to study watch with its mac address.
         StudyWatch.connectBLE("D5:67:F1:CA:05:C5", getApplicationContext(), new StudyWatchCallback() {
             @Override
@@ -65,33 +81,38 @@ public class PedometerExample extends AppCompatActivity {
         });
 
         button.setOnClickListener(v -> {
-            // Get applications from SDK
+            button.setEnabled(false);
+            button3.setEnabled(true);
             ADXLApplication adxlApp = watchSdk.getADXLApplication();
             PedometerApplication pedApp = watchSdk.getPedometerApplication();
 
             pedApp.setCallback(pedometerDataPacket -> Log.d(TAG, "PED: " + pedometerDataPacket));
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
+            executorService.execute(() -> {
+                // start sensor
+                adxlApp.startSensor();
+                pedApp.startSensor();
 
-            // start sensor
-            adxlApp.startSensor();
-            pedApp.startSensor();
+                pedApp.subscribeStream();
 
-            pedApp.subscribeStream();
-
-            // sleep
-            try {
-                Thread.sleep(10000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            pedApp.unsubscribeStream();
-
-            // stop sensor
-            adxlApp.stopSensor();
-            pedApp.stopSensor();
-
+            });
         });
 
+        button3.setOnClickListener(v -> {
+            button.setEnabled(true);
+            button3.setEnabled(false);
+            ADXLApplication adxlApp = watchSdk.getADXLApplication();
+            PedometerApplication pedApp = watchSdk.getPedometerApplication();
+
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
+            executorService.execute(() -> {
+                pedApp.unsubscribeStream();
+
+                // stop sensor
+                adxlApp.stopSensor();
+                pedApp.stopSensor();
+            });
+        });
 
     }
 

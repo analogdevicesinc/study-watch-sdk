@@ -13,12 +13,15 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.analog.study_watch_sdk.StudyWatch;
-import com.analog.study_watch_sdk.application.PMApplication;
+import com.analog.study_watch_sdk.application.ADP5360Application;
 import com.analog.study_watch_sdk.core.SDK;
 import com.analog.study_watch_sdk.interfaces.StudyWatchCallback;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 /**
- * Alarms.
+ * Quickstart for EDA stream.
  */
 public class AlarmExample extends AppCompatActivity {
 
@@ -29,6 +32,17 @@ public class AlarmExample extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_DENIED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, 2);
+            }
+        }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) == PackageManager.PERMISSION_DENIED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_SCAN}, 2);
+            }
+        }
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
@@ -45,6 +59,9 @@ public class AlarmExample extends AppCompatActivity {
             mBluetoothAdapter.enable();
         }
         final Button button = findViewById(R.id.button);
+        final Button button3 = findViewById(R.id.button3);
+        button.setEnabled(false);
+        button3.setEnabled(false);
         // connect to study watch with its mac address.
         StudyWatch.connectBLE("CE:7B:4B:3D:A6:F9", getApplicationContext(), new StudyWatchCallback() {
             @Override
@@ -52,9 +69,7 @@ public class AlarmExample extends AppCompatActivity {
                 Log.d(TAG, "onSuccess: SDK Ready");
                 // store this sdk reference to be used for creating applications
                 watchSdk = sdk;
-                watchSdk.setAlarmCallback(alarmPacket -> {
-                    Log.d(TAG, "ALARMSSS  : " + alarmPacket.toString());
-                });
+                watchSdk.setAlarmCallback(alarmPacket -> Log.d(TAG, "ALARM  :: " + alarmPacket.toString()));
                 runOnUiThread(() -> {
                     button.setEnabled(true);
                 });
@@ -67,17 +82,12 @@ public class AlarmExample extends AppCompatActivity {
         });
 
         button.setOnClickListener(v -> {
-            PMApplication pmApp = watchSdk.getPMApplication();
-            pmApp.setBatteryThreshold((short) 100, (short) 100);
-
-            // sleep
-            try {
-                Thread.sleep(10000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            ADP5360Application adp5360Application = watchSdk.getADP5360Application();
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
+            executorService.execute(() -> {
+                adp5360Application.setBatteryThreshold((short) 100, (short) 100, (short) 100);
+            });
         });
-
 
     }
 

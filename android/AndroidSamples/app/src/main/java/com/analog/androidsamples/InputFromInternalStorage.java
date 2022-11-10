@@ -21,6 +21,8 @@ import com.analog.study_watch_sdk.interfaces.StudyWatchCallback;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Example show how to take input file from internal storage and load it in DCB.
@@ -38,6 +40,17 @@ public class InputFromInternalStorage extends AppCompatActivity {
         //      <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
         //      <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
         //      tools:ignore="ScopedStorage" />
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_DENIED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, 2);
+            }
+        }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) == PackageManager.PERMISSION_DENIED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_SCAN}, 2);
+            }
+        }
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
@@ -72,7 +85,9 @@ public class InputFromInternalStorage extends AppCompatActivity {
         }
 
         final Button button = findViewById(R.id.button);
+        final Button button3 = findViewById(R.id.button3);
         button.setEnabled(false);
+        button3.setEnabled(false);
         // connect to study watch with its mac address.
         StudyWatch.connectBLE("D5:67:F1:CA:05:C5", getApplicationContext(), new StudyWatchCallback() {
             @Override
@@ -94,17 +109,21 @@ public class InputFromInternalStorage extends AppCompatActivity {
         button.setOnClickListener(v -> {
             // Get ADXL application from SDK
             ADXLApplication adxl = watchSdk.getADXLApplication();
-            // file to read.
-            File file = new File(Environment.getExternalStorageDirectory(), "Test/adxl.dcfg");
-            Log.d(TAG, "File Exist :: " + file.exists());
-            Log.d(TAG, "File read permission :: " + file.canRead());
-            try {
-                ADXLDCBCommandPacket packet = adxl.writeDeviceConfigurationBlockFromFile(file);
-                Log.d(TAG, String.valueOf(packet));
 
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
+            executorService.execute(() -> {
+                // file to read.
+                File file = new File(Environment.getExternalStorageDirectory(), "Test/adxl.dcfg");
+                Log.d(TAG, "File Exist :: " + file.exists());
+                Log.d(TAG, "File read permission :: " + file.canRead());
+                try {
+                    ADXLDCBCommandPacket packet = adxl.writeDeviceConfigurationBlockFromFile(file);
+                    Log.d(TAG, String.valueOf(packet));
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
         });
 
     }

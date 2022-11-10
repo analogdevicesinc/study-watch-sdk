@@ -21,6 +21,8 @@ import com.analog.study_watch_sdk.interfaces.StudyWatchCallback;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * FS example to download file and how to run general commands.
@@ -34,6 +36,17 @@ public class FSExample extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_DENIED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, 2);
+            }
+        }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) == PackageManager.PERMISSION_DENIED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_SCAN}, 2);
+            }
+        }
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
@@ -67,9 +80,11 @@ public class FSExample extends AppCompatActivity {
             mBluetoothAdapter.enable();
         }
         final Button button = findViewById(R.id.button);
+        final Button button3 = findViewById(R.id.button3);
         button.setEnabled(false);
+        button3.setEnabled(false);
         // connect to study watch with its mac address.
-        StudyWatch.connectBLE("D5:67:F1:CA:05:C5", getApplicationContext(), new StudyWatchCallback() {
+        StudyWatch.connectBLE("CE:7B:4B:3D:A6:F9", getApplicationContext(), new StudyWatchCallback() {
             @Override
             public void onSuccess(SDK sdk) {
                 Log.d(TAG, "onSuccess: SDK Ready");
@@ -86,52 +101,54 @@ public class FSExample extends AppCompatActivity {
         });
 
         button.setOnClickListener(v -> {
-            // Get applications from SDK
             FSApplication fsAPP = watchSdk.getFSApplication();
 
-            // file download with callback
-            File downloadFile = new File(Environment.getExternalStorageDirectory(), "dcb_cfg/B1320595.LOG");
-            try {
-                fsAPP.downloadFile("B1320595.LOG", downloadFile, (event, totalSize, currentSize) -> {
-                    // Don't hold the process here, keep this callback lightweight
-                    // Don't perform any large computation here.
-                    // Just store values in some variable or queue and release the callback
-                    // EVENTS :
-                    // fsAPP.DOWNLOAD_EVENT
-                    // fsAPP.CRC_CHECK_EVENT
-                    // fsAPP.SEQUENCE_CHECK_EVENT
-                    // fsAPP.JOIN_FILE_EVENT
-                    Log.d(TAG, "callback: " + event + ", " + totalSize + ", " + currentSize);
-                });
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
+            executorService.execute(() -> {
+                // file download with callback
+                File downloadFile = new File(Environment.getExternalStorageDirectory(), "dcb_cfg/B1320595.LOG");
+                try {
+                    fsAPP.downloadFile("B1320595.LOG", downloadFile, (event, totalSize, currentSize) -> {
+                        // Don't hold the process here, keep this callback lightweight
+                        // Don't perform any large computation here.
+                        // Just store values in some variable or queue and release the callback
+                        // EVENTS :
+                        // fsAPP.DOWNLOAD_EVENT
+                        // fsAPP.CRC_CHECK_EVENT
+                        // fsAPP.SEQUENCE_CHECK_EVENT
+                        // fsAPP.JOIN_FILE_EVENT
+                        Log.d(TAG, "callback: " + event + ", " + totalSize + ", " + currentSize);
+                    });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
-            // file download without callback
-            File downloadFile1 = new File(Environment.getExternalStorageDirectory(), "dcb_cfg/B1320595.LOG");
-            try {
-                fsAPP.downloadFile("B1320595.LOG ", downloadFile1);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+                // file download without callback
+                File downloadFile1 = new File(Environment.getExternalStorageDirectory(), "dcb_cfg/B1320595.LOG");
+                try {
+                    fsAPP.downloadFile("B1320595.LOG ", downloadFile1);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
-            // writing config File.
-            File file = new File(Environment.getExternalStorageDirectory(), "Test/gen_blk_dcb.lcfg");
-            try {
-                fsAPP.deleteConfigFile();
-                fsAPP.enableConfigLog();
-                CommandPacket[] packets = fsAPP.writeConfigFile(file);
-                Log.d(TAG, "onCreate: " + Arrays.toString(packets));
-                fsAPP.disableConfigLog();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+                // writing config File.
+                File file = new File(Environment.getExternalStorageDirectory(), "Test/gen_blk_dcb.lcfg");
+                try {
+                    fsAPP.deleteConfigFile();
+                    fsAPP.enableConfigLog();
+                    CommandPacket[] packets = fsAPP.writeConfigFile(file);
+                    Log.d(TAG, "onCreate: " + Arrays.toString(packets));
+                    fsAPP.disableConfigLog();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
-            //general commands
-            Log.d(TAG, "onCreate: " + fsAPP.stopLogging());
-            Log.d(TAG, "onCreate: " + fsAPP.enableConfigLog());
-            Log.d(TAG, "onCreate: " + fsAPP.disableConfigLog());
+                //general commands
+                Log.d(TAG, "onCreate: " + fsAPP.stopLogging());
+                Log.d(TAG, "onCreate: " + fsAPP.enableConfigLog());
+                Log.d(TAG, "onCreate: " + fsAPP.disableConfigLog());
 
+            });
         });
 
 

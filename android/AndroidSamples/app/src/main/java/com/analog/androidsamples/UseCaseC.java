@@ -26,6 +26,8 @@ import com.analog.study_watch_sdk.interfaces.StudyWatchCallback;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 /**
@@ -35,7 +37,7 @@ import java.util.HashMap;
  * ADXL@50Hz	550
  * EDA@30Hz	305
  * Temp@1Hz	  20
- * Total 6742
+ * Total 6742 / 3.8K
  **/
 public class UseCaseC extends AppCompatActivity {
 
@@ -47,6 +49,17 @@ public class UseCaseC extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_DENIED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, 2);
+            }
+        }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) == PackageManager.PERMISSION_DENIED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_SCAN}, 2);
+            }
+        }
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
@@ -64,9 +77,11 @@ public class UseCaseC extends AppCompatActivity {
         }
 
         final Button button = findViewById(R.id.button);
+        final Button button3 = findViewById(R.id.button3);
         button.setEnabled(false);
+        button3.setEnabled(false);
         // connect to study watch with its mac address.
-        StudyWatch.connectBLE("D5:67:F1:CA:05:C5", getApplicationContext(), new StudyWatchCallback() {
+        StudyWatch.connectBLE("CE:7B:4B:3D:A6:F9", getApplicationContext(), new StudyWatchCallback() {
             @Override
             public void onSuccess(SDK sdk) {
                 Log.d(TAG, "onSuccess: SDK Ready");
@@ -83,14 +98,14 @@ public class UseCaseC extends AppCompatActivity {
         });
 
         button.setOnClickListener(v -> {
+            button.setEnabled(false);
+            button3.setEnabled(true);
             // Get applications from SDK
             ADXLApplication adxlApp = watchSdk.getADXLApplication();
             ADPDApplication adpdApp = watchSdk.getADPDApplication();
             EDAApplication edaApp = watchSdk.getEDAApplication();
             TemperatureApplication tempApp = watchSdk.getTemperatureApplication();
             PMApplication pmAPP = watchSdk.getPMApplication();
-
-            Log.d(TAG, "onCreate: " + pmAPP.getVersion());
 
             packetCount.put("adxl", 0);
             packetCount.put("adpd6", 0);
@@ -99,11 +114,6 @@ public class UseCaseC extends AppCompatActivity {
             packetCount.put("adpd9", 0);
             packetCount.put("eda", 0);
             packetCount.put("temp", 0);
-
-            adpdApp.deleteDeviceConfigurationBlock();
-            adxlApp.deleteDeviceConfigurationBlock();
-            tempApp.deleteDeviceConfigurationBlock();
-            edaApp.deleteDeviceConfigurationBlock(edaApp.EDA_DCFG_BLOCK);
 
             adxlApp.setCallback(adxlDataPacket -> {
                 packetCount.put("adxl", packetCount.get("adxl") + 1);
@@ -134,84 +144,101 @@ public class UseCaseC extends AppCompatActivity {
                 packetCount.put("temp", packetCount.get("temp") + 1);
             }, tempApp.STREAM_TEMPERATURE4);
 
+
             File dvt1DCB = new File(Environment.getExternalStorageDirectory(), "dcb_cfg/DVT1_TEMP+4LED.dcfg");
             File csv = new File(Environment.getExternalStorageDirectory(), "dcb_cfg/temp1.csv");
             File dvt2DCB = new File(Environment.getExternalStorageDirectory(), "dcb_cfg/DVT2_TEMP+4LED.dcfg");
 
-            // checking for DVT2 board
-            if (pmAPP.getChipID(pmAPP.CHIP_ADPD4K).payload.getChipID() == 0xc0) {
-                try {
-                    adpdApp.writeDeviceConfigurationBlockFromFile(dvt1DCB);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                adpdApp.calibrateClock(adpdApp.CLOCK_1M_AND_32M);
-            } else {
-                try {
-                    adpdApp.writeDeviceConfigurationBlockFromFile(dvt2DCB);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                adpdApp.calibrateClock(adpdApp.CLOCK_1M);
-            }
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
+            executorService.execute(() -> {
+                Log.d(TAG, "onCreate: " + pmAPP.getVersion());
+                adpdApp.deleteDeviceConfigurationBlock();
+                adxlApp.deleteDeviceConfigurationBlock();
+                tempApp.deleteDeviceConfigurationBlock();
+                edaApp.deleteDeviceConfigurationBlock(edaApp.EDA_DCFG_BLOCK);
 
-            adpdApp.loadConfiguration(adpdApp.DEVICE_GREEN);
+                // checking for DVT2 board
+                if (pmAPP.getChipID(pmAPP.CHIP_ADPD4K).payload.getChipID() == 0xc0) {
+                    try {
+                        adpdApp.writeDeviceConfigurationBlockFromFile(dvt1DCB);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    adpdApp.calibrateClock(adpdApp.CLOCK_1M_AND_32M);
+                } else {
+                    try {
+                        adpdApp.writeDeviceConfigurationBlockFromFile(dvt2DCB);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    adpdApp.calibrateClock(adpdApp.CLOCK_1M);
+                }
 
-            // ADPD 100HZ
-            adpdApp.writeRegister(new int[][]{{0xD, 0x2710}});
-            //setting EDA ODR to 30HZ
-            edaApp.writeLibraryConfiguration(new long[][]{{0x0, 0x1E}});
-            edaApp.writeLibraryConfiguration(new long[][]{{0x2, 0x1}});
+                adpdApp.loadConfiguration(adpdApp.DEVICE_GREEN);
+
+                // ADPD 100HZ
+                adpdApp.writeRegister(new int[][]{{0xD, 0x2710}});
+                //setting EDA ODR to 30HZ
+                edaApp.writeLibraryConfiguration(new long[][]{{0x0, 0x1E}});
+                edaApp.writeLibraryConfiguration(new long[][]{{0x2, 0x1}});
 
 //             Subscribe
-            adpdApp.subscribeStream(adpdApp.STREAM_ADPD6);
-            adpdApp.subscribeStream(adpdApp.STREAM_ADPD7);
-            adpdApp.subscribeStream(adpdApp.STREAM_ADPD8);
-            adpdApp.subscribeStream(adpdApp.STREAM_ADPD9);
-            edaApp.subscribeStream();
-            tempApp.subscribeStream(tempApp.STREAM_TEMPERATURE4);
-            tempApp.enableCSVLogging(csv, tempApp.STREAM_TEMPERATURE4);
-            adxlApp.subscribeStream();
+                adpdApp.subscribeStream(adpdApp.STREAM_ADPD6);
+                adpdApp.subscribeStream(adpdApp.STREAM_ADPD7);
+                adpdApp.subscribeStream(adpdApp.STREAM_ADPD8);
+                adpdApp.subscribeStream(adpdApp.STREAM_ADPD9);
+                edaApp.subscribeStream();
+                tempApp.subscribeStream(tempApp.STREAM_TEMPERATURE4);
+                tempApp.enableCSVLogging(csv, tempApp.STREAM_TEMPERATURE4);
+                adxlApp.subscribeStream();
 //
 //             start sensor
-            edaApp.startSensor();
-            adpdApp.startSensor();
-            tempApp.startSensor();
-            adxlApp.startSensor();
-            adxlApp.writeRegister(new int[][]{{0x2c, 0x9A}}); // 50Hz
+                edaApp.startSensor();
+                adpdApp.startSensor();
+                tempApp.startSensor();
+                adxlApp.startSensor();
+                adxlApp.writeRegister(new int[][]{{0x2c, 0x9A}}); // 50Hz
+            });
+        });
 
-            // sleep
-            try {
-                Thread.sleep(1000 * 60);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        button3.setOnClickListener(v -> {
+            button.setEnabled(true);
+            button3.setEnabled(false);
+            // Get applications from SDK
+            ADXLApplication adxlApp = watchSdk.getADXLApplication();
+            ADPDApplication adpdApp = watchSdk.getADPDApplication();
+            EDAApplication edaApp = watchSdk.getEDAApplication();
+            TemperatureApplication tempApp = watchSdk.getTemperatureApplication();
+            PMApplication pmAPP = watchSdk.getPMApplication();
 
-            // unSubscribe
-            adpdApp.unsubscribeStream(adpdApp.STREAM_ADPD6);
-            adpdApp.unsubscribeStream(adpdApp.STREAM_ADPD7);
-            adpdApp.unsubscribeStream(adpdApp.STREAM_ADPD8);
-            adpdApp.unsubscribeStream(adpdApp.STREAM_ADPD9);
-            edaApp.unsubscribeStream();
-            adxlApp.unsubscribeStream();
-            tempApp.unsubscribeStream(tempApp.STREAM_TEMPERATURE4);
-            tempApp.disableCSVLogging(tempApp.STREAM_TEMPERATURE4);
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
+            executorService.execute(() -> {
+                // unSubscribe
+                adpdApp.unsubscribeStream(adpdApp.STREAM_ADPD6);
+                adpdApp.unsubscribeStream(adpdApp.STREAM_ADPD7);
+                adpdApp.unsubscribeStream(adpdApp.STREAM_ADPD8);
+                adpdApp.unsubscribeStream(adpdApp.STREAM_ADPD9);
+                edaApp.unsubscribeStream();
+                adxlApp.unsubscribeStream();
+                tempApp.unsubscribeStream(tempApp.STREAM_TEMPERATURE4);
+                tempApp.disableCSVLogging(tempApp.STREAM_TEMPERATURE4);
 
-            // stop sensor
-            edaApp.stopSensor();
-            adpdApp.stopSensor();
-            tempApp.stopSensor();
-            adxlApp.stopSensor();
+                // stop sensor
+                edaApp.stopSensor();
+                adpdApp.stopSensor();
+                tempApp.stopSensor();
+                adxlApp.stopSensor();
 
-            Log.d(TAG, "Packet Count:" + packetCount);
+                Log.d(TAG, "Packet Count:" + packetCount);
 
-            Log.d(TAG, "ADPD6 Packet Lost:" + adpdApp.getPacketLostCount(adpdApp.STREAM_ADPD6));
-            Log.d(TAG, "ADPD7 Packet Lost:" + adpdApp.getPacketLostCount(adpdApp.STREAM_ADPD7));
-            Log.d(TAG, "ADPD8 Packet Lost:" + adpdApp.getPacketLostCount(adpdApp.STREAM_ADPD8));
-            Log.d(TAG, "ADPD8 Packet Lost:" + adpdApp.getPacketLostCount(adpdApp.STREAM_ADPD9));
-            Log.d(TAG, "ADXL Packet Lost:" + adxlApp.getPacketLostCount());
-            Log.d(TAG, "EDA Packet Lost:" + edaApp.getPacketLostCount());
-            Log.d(TAG, "Temperature Packet Lost:" + tempApp.getPacketLostCount(tempApp.STREAM_TEMPERATURE4));
+                Log.d(TAG, "ADPD6 Packet Lost:" + adpdApp.getPacketLostCount(adpdApp.STREAM_ADPD6));
+                Log.d(TAG, "ADPD7 Packet Lost:" + adpdApp.getPacketLostCount(adpdApp.STREAM_ADPD7));
+                Log.d(TAG, "ADPD8 Packet Lost:" + adpdApp.getPacketLostCount(adpdApp.STREAM_ADPD8));
+                Log.d(TAG, "ADPD9 Packet Lost:" + adpdApp.getPacketLostCount(adpdApp.STREAM_ADPD9));
+                Log.d(TAG, "ADXL Packet Lost:" + adxlApp.getPacketLostCount());
+                Log.d(TAG, "EDA Packet Lost:" + edaApp.getPacketLostCount());
+                Log.d(TAG, "Temperature Packet Lost:" + tempApp.getPacketLostCount(tempApp.STREAM_TEMPERATURE4));
+            });
         });
 
 

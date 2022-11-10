@@ -2,6 +2,50 @@
 
 All notable changes to Android SDK will be documented in this file.
 
+## [v4.3.0] - Nov 10, 2022
+
+#### Updates:
+- New ADP5360 Application (Added). 
+
+#### AD7156
+- AD7156DataPacket stream packet updated.
+
+#### PM
+- fdsErase (Added).
+
+#### BIA
+- BCM stream Added.
+
+#### ADP5360
+- setBatteryThreshold (New).
+- getBatteryThreshold (New).
+- getBatteryInfo (New).
+- readRegister (New).
+- writeRegister (New).
+- deleteDeviceConfigurationBlock (New).
+- readDeviceConfigurationBlock (New).
+- writeDeviceConfigurationBlock (New).
+- writeDeviceConfigurationBlockFromFile (New).
+- subscribeStream (New).
+- unsubscribeStream (New).
+- enableCSVLogging (New).
+- disableCSVLogging (New).
+
+#### PM 
+- setBatteryThreshold (Moved to ADP5360).
+- getBatteryThreshold (Moved to ADP5360).
+- getBatteryInfo (Moved to ADP5360).
+- readRegister (Moved to ADP5360).
+- writeRegister (Moved to ADP5360).
+- deleteDeviceConfigurationBlock (Moved to ADP5360).
+- readDeviceConfigurationBlock (Moved to ADP5360).
+- writeDeviceConfigurationBlock (Moved to ADP5360).
+- writeDeviceConfigurationBlockFromFile (Moved to ADP5360).
+- subscribeStream (Moved to ADP5360).
+- unsubscribeStream (Moved to ADP5360).
+- enableCSVLogging (Moved to ADP5360).
+- disableCSVLogging (Moved to ADP5360).
+
 ## [v4.2.1] - Jun 15, 2022
 
 ### New features

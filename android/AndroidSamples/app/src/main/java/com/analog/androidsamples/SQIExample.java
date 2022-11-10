@@ -20,6 +20,9 @@ import com.analog.study_watch_sdk.core.enums.adpd.ADPDLed;
 import com.analog.study_watch_sdk.interfaces.ADPDCallback;
 import com.analog.study_watch_sdk.interfaces.StudyWatchCallback;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 /**
  * Quickstart for SQI stream.
  */
@@ -32,6 +35,17 @@ public class SQIExample extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_DENIED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, 2);
+            }
+        }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) == PackageManager.PERMISSION_DENIED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_SCAN}, 2);
+            }
+        }
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
@@ -48,7 +62,9 @@ public class SQIExample extends AppCompatActivity {
             mBluetoothAdapter.enable();
         }
         final Button button = findViewById(R.id.button);
+        final Button button3 = findViewById(R.id.button3);
         button.setEnabled(false);
+        button3.setEnabled(false);
         // connect to study watch with its mac address.
         StudyWatch.connectBLE("D5:67:F1:CA:05:C5", getApplicationContext(), new StudyWatchCallback() {
             @Override
@@ -67,39 +83,41 @@ public class SQIExample extends AppCompatActivity {
         });
 
         button.setOnClickListener(v -> {
-            // Get applications from SDK
+            button.setEnabled(false);
+            button3.setEnabled(true);
             SQIApplication sqiApp = watchSdk.getSQIApplication();
             ADPDApplication adpdApp = watchSdk.getADPDApplication();
 
             sqiApp.setCallback(sqiDataPacket -> Log.d(TAG, "SQI: " + sqiDataPacket));
             adpdApp.setCallback((ADPDCallback) adpdDataPacket -> Log.d(TAG, "ADPD6: " + adpdDataPacket), adpdApp.STREAM_ADPD6);
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
+            executorService.execute(() -> {
+                adpdApp.loadConfiguration(adpdApp.DEVICE_GREEN);
+                adpdApp.writeRegister(new int[][]{{0x0D, 0x2710}});
+                // if DVT2 watch then adpdApp.CLOCK_1M
+                adpdApp.calibrateClock(adpdApp.CLOCK_1M_AND_32M);
+                sqiApp.setSlot(sqiApp.SLOT_F);
+                sqiApp.startSensor();
+                sqiApp.subscribeStream();
+                adpdApp.enableAgc(new ADPDLed[]{adpdApp.LED_GREEN});
+                adpdApp.startSensor();
+                adpdApp.subscribeStream(adpdApp.STREAM_ADPD6);
+            });
+        });
 
-            adpdApp.loadConfiguration(adpdApp.DEVICE_GREEN);
-            adpdApp.writeRegister(new int[][]{{0x0D, 0x2710}});
-            // if DVT2 watch then adpdApp.CLOCK_1M
-            adpdApp.calibrateClock(adpdApp.CLOCK_1M_AND_32M);
-            sqiApp.setSlot(sqiApp.SLOT_F);
+        button3.setOnClickListener(v -> {
+            button.setEnabled(true);
+            button3.setEnabled(false);
+            SQIApplication sqiApp = watchSdk.getSQIApplication();
+            ADPDApplication adpdApp = watchSdk.getADPDApplication();
 
-            sqiApp.startSensor();
-            sqiApp.subscribeStream();
-
-            adpdApp.enableAgc(new ADPDLed[]{adpdApp.LED_GREEN});
-            adpdApp.startSensor();
-            adpdApp.subscribeStream(adpdApp.STREAM_ADPD6);
-
-            // sleep
-            try {
-                Thread.sleep(10000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            sqiApp.unsubscribeStream();
-            adpdApp.unsubscribeStream(adpdApp.STREAM_ADPD6);
-
-            sqiApp.stopSensor();
-            adpdApp.stopSensor();
-
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
+            executorService.execute(() -> {
+                sqiApp.unsubscribeStream();
+                adpdApp.unsubscribeStream(adpdApp.STREAM_ADPD6);
+                sqiApp.stopSensor();
+                adpdApp.stopSensor();
+            });
         });
 
 

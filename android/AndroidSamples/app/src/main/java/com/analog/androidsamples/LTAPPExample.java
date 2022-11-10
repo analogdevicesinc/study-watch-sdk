@@ -22,6 +22,8 @@ import com.analog.study_watch_sdk.interfaces.StudyWatchCallback;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * LT APP examples.
@@ -35,6 +37,17 @@ public class LTAPPExample extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_DENIED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, 2);
+            }
+        }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) == PackageManager.PERMISSION_DENIED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_SCAN}, 2);
+            }
+        }
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
@@ -61,7 +74,9 @@ public class LTAPPExample extends AppCompatActivity {
             mBluetoothAdapter.enable();
         }
         final Button button = findViewById(R.id.button);
+        final Button button3 = findViewById(R.id.button3);
         button.setEnabled(false);
+        button3.setEnabled(false);
         // connect to study watch with its mac address.
         StudyWatch.connectBLE("D5:67:F1:CA:05:C5", getApplicationContext(), new StudyWatchCallback() {
             @Override
@@ -80,27 +95,47 @@ public class LTAPPExample extends AppCompatActivity {
         });
 
         button.setOnClickListener(v -> {
+            button.setEnabled(false);
+//            button3.setEnabled(true);
             // Get applications from SDK
             LTApplication ltAPP = watchSdk.getLTApplication();
-            File file = new File(Environment.getExternalStorageDirectory(), "Test/gen_blk_dcb.lcfg");
 
-            LTDCBCommandPacket packet1 = ltAPP.deleteDeviceConfigurationBlock();
-            Log.d(TAG, "onCreate: " + packet1);
-            try {
-                LTDCBCommandPacket[] packet = ltAPP.writeDeviceConfigurationBlockFromFile(file);
-                Log.d(TAG, "onCreate: " + Arrays.toString(packet));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            File genFile = new File(Environment.getExternalStorageDirectory(), "dcb_cfg/gen_blk_dcb.lcfg");
+            File lcfgFile = new File(Environment.getExternalStorageDirectory(), "dcb_cfg/lt_app_dcb.lcfg");
 
-            LTDCBPacket[] packet2 = ltAPP.readDeviceConfigurationBlock();
-            Log.d(TAG, "onCreate: " + Arrays.toString(packet2));
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
+            executorService.execute(() -> {
+                LTDCBCommandPacket packet1 = ltAPP.deleteDeviceConfigurationBlock(ltAPP.GENERAL_BLOCK);
+                Log.d(TAG, "onCreate: " + packet1);
+                try {
+                    LTDCBCommandPacket[] packet = ltAPP.writeDeviceConfigurationBlockFromFile(genFile, ltAPP.GENERAL_BLOCK);
+                    Log.d(TAG, "onCreate: " + Arrays.toString(packet));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
-            Log.d(TAG, "onCreate: " + ltAPP.writeLibraryConfiguration(new int[][]{{0x0, 0x1}}));
-            Log.d(TAG, "onCreate: " + ltAPP.readLibraryConfiguration(new int[]{0x0}));
-            Log.d(TAG, "onCreate: " + ltAPP.readCH2Cap());
+                LTDCBPacket[] packet2 = ltAPP.readDeviceConfigurationBlock(ltAPP.GENERAL_BLOCK);
+                Log.d(TAG, "onCreate: " + Arrays.deepToString(packet2));
+                Log.d(TAG, "onCreate: " + Arrays.deepToString(packet2[0].payload.getData()));
+
+                LTDCBCommandPacket packet3 = ltAPP.deleteDeviceConfigurationBlock(ltAPP.LT_APP_LCFG_BLOCK);
+                Log.d(TAG, "onCreate: " + packet3);
+                try {
+                    LTDCBCommandPacket[] packet = ltAPP.writeDeviceConfigurationBlockFromFile(lcfgFile, ltAPP.LT_APP_LCFG_BLOCK);
+                    Log.d(TAG, "onCreate: " + Arrays.toString(packet));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                LTDCBPacket[] packet4 = ltAPP.readDeviceConfigurationBlock(ltAPP.LT_APP_LCFG_BLOCK);
+                Log.d(TAG, "onCreate: " + Arrays.deepToString(packet4));
+                Log.d(TAG, "onCreate: " + Arrays.deepToString(packet4[0].payload.getData()));
+
+                Log.d(TAG, "onCreate: " + ltAPP.writeLibraryConfiguration(new int[][]{{0x0, 0x1}}));
+                Log.d(TAG, "onCreate: " + ltAPP.readLibraryConfiguration(new int[]{0x0}));
+                Log.d(TAG, "onCreate: " + ltAPP.readCH2Cap());
+            });
         });
-
 
     }
 

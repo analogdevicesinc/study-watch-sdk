@@ -18,6 +18,9 @@ import com.analog.study_watch_sdk.application.TemperatureApplication;
 import com.analog.study_watch_sdk.core.SDK;
 import com.analog.study_watch_sdk.interfaces.StudyWatchCallback;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 /**
  * Quickstart for Temperature stream.
  */
@@ -30,6 +33,17 @@ public class TemperatureExample extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_DENIED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, 2);
+            }
+        }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) == PackageManager.PERMISSION_DENIED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_SCAN}, 2);
+            }
+        }
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
@@ -46,7 +60,9 @@ public class TemperatureExample extends AppCompatActivity {
             mBluetoothAdapter.enable();
         }
         final Button button = findViewById(R.id.button);
+        final Button button3 = findViewById(R.id.button3);
         button.setEnabled(false);
+        button3.setEnabled(false);
         // connect to study watch with its mac address.
         StudyWatch.connectBLE("D5:67:F1:CA:05:C5", getApplicationContext(), new StudyWatchCallback() {
             @Override
@@ -65,30 +81,36 @@ public class TemperatureExample extends AppCompatActivity {
         });
 
         button.setOnClickListener(v -> {
-            // Get applications from SDK
+            button.setEnabled(false);
+            button3.setEnabled(true);
             TemperatureApplication tempApp = watchSdk.getTemperatureApplication();
             ADPDApplication adpdApp = watchSdk.getADPDApplication();
-            adpdApp.deleteDeviceConfigurationBlock();
-            tempApp.deleteDeviceConfigurationBlock();
-            adpdApp.loadConfiguration(adpdApp.DEVICE_GREEN);
-            tempApp.setCallback(temperatureDataPacket -> {
-                Log.d(TAG, "TEMP: " + temperatureDataPacket);
-            }, tempApp.STREAM_TEMPERATURE4);
-            tempApp.startSensor();
-            tempApp.subscribeStream(tempApp.STREAM_TEMPERATURE4);
 
-            try {
-                Thread.sleep(10000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
+            executorService.execute(() -> {
+                adpdApp.deleteDeviceConfigurationBlock();
+                tempApp.deleteDeviceConfigurationBlock();
+                adpdApp.loadConfiguration(adpdApp.DEVICE_GREEN);
+                tempApp.setCallback(temperatureDataPacket -> {
+                    Log.d(TAG, "TEMP: " + temperatureDataPacket);
+                }, tempApp.STREAM_TEMPERATURE4);
+                tempApp.startSensor();
+                tempApp.subscribeStream(tempApp.STREAM_TEMPERATURE4);
+            });
+        });
 
-            tempApp.unsubscribeStream(tempApp.STREAM_TEMPERATURE4);
-            tempApp.stopSensor();
+        button3.setOnClickListener(v -> {
+            button.setEnabled(true);
+            button3.setEnabled(false);
+            TemperatureApplication tempApp = watchSdk.getTemperatureApplication();
 
-            Log.d(TAG, " Total Packet lost During streaming :: " +
-                    tempApp.getPacketLostCount(tempApp.STREAM_TEMPERATURE4));
-
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
+            executorService.execute(() -> {
+                tempApp.unsubscribeStream(tempApp.STREAM_TEMPERATURE4);
+                tempApp.stopSensor();
+                Log.d(TAG, " Total Packet lost During streaming :: " +
+                        tempApp.getPacketLostCount(tempApp.STREAM_TEMPERATURE4));
+            });
         });
 
 

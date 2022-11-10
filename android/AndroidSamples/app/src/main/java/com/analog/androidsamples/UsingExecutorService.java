@@ -35,6 +35,17 @@ public class UsingExecutorService extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_DENIED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, 2);
+            }
+        }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) == PackageManager.PERMISSION_DENIED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_SCAN}, 2);
+            }
+        }
+
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
         }
@@ -51,9 +62,9 @@ public class UsingExecutorService extends AppCompatActivity {
         }
 
         final Button button = findViewById(R.id.button);
+        final Button button3 = findViewById(R.id.button3);
         button.setEnabled(false);
-
-
+        button3.setEnabled(false);
         // connect to study watch with its mac address.
         StudyWatch.connectBLE("D5:67:F1:CA:05:C5", getApplicationContext(), new StudyWatchCallback() {
             @Override
@@ -73,9 +84,9 @@ public class UsingExecutorService extends AppCompatActivity {
 
         // Using button click to run adxl get sensor status in executorService.
         button.setOnClickListener(v -> {
-            // Get ADXL application from SDK
-            ADXLApplication adxl = watchSdk.getADXLApplication();
             // executor Service
+            ADXLApplication adxl = watchSdk.getADXLApplication();
+
             ExecutorService executorService = Executors.newSingleThreadExecutor();
             executorService.execute(() -> {
                 StreamStatusPacket packet = adxl.getSensorStatus();

@@ -22,6 +22,8 @@ import com.analog.study_watch_sdk.interfaces.ADPDCallback;
 import com.analog.study_watch_sdk.interfaces.StudyWatchCallback;
 
 import java.io.File;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Quickstart for ADPD stream.
@@ -35,6 +37,17 @@ public class ADPDExample extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_DENIED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, 2);
+            }
+        }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) == PackageManager.PERMISSION_DENIED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_SCAN}, 2);
+            }
+        }
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
@@ -64,9 +77,11 @@ public class ADPDExample extends AppCompatActivity {
             mBluetoothAdapter.enable();
         }
         final Button button = findViewById(R.id.button);
+        final Button button3 = findViewById(R.id.button3);
         button.setEnabled(false);
+        button3.setEnabled(false);
         // connect to study watch with its mac address.
-        StudyWatch.connectBLE("D5:67:F1:CA:05:C5", getApplicationContext(), new StudyWatchCallback() {
+        StudyWatch.connectBLE("CE:7B:4B:3D:A6:F9", getApplicationContext(), new StudyWatchCallback() {
             @Override
             public void onSuccess(SDK sdk) {
                 Log.d(TAG, "onSuccess: SDK Ready");
@@ -83,10 +98,10 @@ public class ADPDExample extends AppCompatActivity {
         });
 
         button.setOnClickListener(v -> {
-            // Get applications from SDK
+            button.setEnabled(false);
+            button3.setEnabled(true);
             ADPDApplication adpdApp = watchSdk.getADPDApplication();
             PMApplication pmAPP = watchSdk.getPMApplication();
-
             adpdApp.setCallback((ADPDCallback) adpdDataPacket -> {
                 for (long signalData : adpdDataPacket.payload.getSignalData()) {
                     Log.d(TAG, "Stream Data (Timestamp, adpdData, channel num) :: " + adpdDataPacket.payload.getTimestamp()
@@ -94,33 +109,40 @@ public class ADPDExample extends AppCompatActivity {
                 }
             }, adpdApp.STREAM_ADPD6);
 
-            // config
-            adpdApp.loadConfiguration(adpdApp.DEVICE_GREEN);
-            if (pmAPP.getChipID(pmAPP.CHIP_ADPD4K).payload.getChipID() == 0xc0)
-                adpdApp.calibrateClock(adpdApp.CLOCK_1M_AND_32M);
-            else
-                adpdApp.calibrateClock(adpdApp.CLOCK_1M);
-            adpdApp.enableAgc(new ADPDLed[]{adpdApp.LED_GREEN});
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
+            executorService.execute(() -> {
+                // config
+                adpdApp.loadConfiguration(adpdApp.DEVICE_GREEN);
+                if (pmAPP.getChipID(pmAPP.CHIP_ADPD4K).payload.getChipID() == 0xc0)
+                    adpdApp.calibrateClock(adpdApp.CLOCK_1M_AND_32M);
+                else
+                    adpdApp.calibrateClock(adpdApp.CLOCK_1M);
+                adpdApp.enableAgc(new ADPDLed[]{adpdApp.LED_GREEN});
 
-            // start sensor
-            adpdApp.startSensor();
-            File file = new File(Environment.getExternalStorageDirectory(), "Test/adpd.csv");
-            adpdApp.enableCSVLogging(file, adpdApp.STREAM_ADPD6);
-            adpdApp.subscribeStream(adpdApp.STREAM_ADPD6);
-            // sleep
-            try {
-                Thread.sleep(10000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            // stop sensor
-            adpdApp.unsubscribeStream(adpdApp.STREAM_ADPD6);
-            adpdApp.disableCSVLogging(adpdApp.STREAM_ADPD6);
-            adpdApp.stopSensor();
+                // start sensor
+                adpdApp.startSensor();
+                File file = new File(Environment.getExternalStorageDirectory(), "Test/adpd.csv");
+                adpdApp.enableCSVLogging(file, adpdApp.STREAM_ADPD6);
+                adpdApp.subscribeStream(adpdApp.STREAM_ADPD6);
+            });
+        });
 
-            Log.d(TAG, " Total Packet lost During streaming :: " +
-                    adpdApp.getPacketLostCount(adpdApp.STREAM_ADPD6));
 
+        button3.setOnClickListener(v -> {
+            button.setEnabled(true);
+            button3.setEnabled(false);
+            ADPDApplication adpdApp = watchSdk.getADPDApplication();
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
+            executorService.execute(() -> {
+                // stop sensor
+                adpdApp.unsubscribeStream(adpdApp.STREAM_ADPD6);
+                adpdApp.disableCSVLogging(adpdApp.STREAM_ADPD6);
+                adpdApp.stopSensor();
+
+                Log.d(TAG, " Total Packet lost During streaming :: " +
+                        adpdApp.getPacketLostCount(adpdApp.STREAM_ADPD6));
+
+            });
         });
 
 

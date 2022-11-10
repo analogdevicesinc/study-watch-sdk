@@ -18,6 +18,8 @@ import com.analog.study_watch_sdk.core.SDK;
 import com.analog.study_watch_sdk.interfaces.StudyWatchCallback;
 
 import java.util.Calendar;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * General example for PM.
@@ -31,6 +33,17 @@ public class PMExample extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_DENIED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, 2);
+            }
+        }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) == PackageManager.PERMISSION_DENIED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_SCAN}, 2);
+            }
+        }
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
@@ -47,7 +60,9 @@ public class PMExample extends AppCompatActivity {
             mBluetoothAdapter.enable();
         }
         final Button button = findViewById(R.id.button);
+        final Button button3 = findViewById(R.id.button3);
         button.setEnabled(false);
+        button3.setEnabled(false);
         // connect to study watch with its mac address.
         StudyWatch.connectBLE("D5:67:F1:CA:05:C5", getApplicationContext(), new StudyWatchCallback() {
             @Override
@@ -69,18 +84,16 @@ public class PMExample extends AppCompatActivity {
             // Get applications from SDK
             PMApplication pmApp = watchSdk.getPMApplication();
 
-            Log.d(TAG, "packet: " + pmApp.writeDeviceConfigurationBlock(new int[][]{{0x1, 0x1}}));
-            Log.d(TAG, "packet: " + pmApp.readDeviceConfigurationBlock());
-            Log.d(TAG, "packet: " + pmApp.getVersion());
-            Log.d(TAG, "packet: " + pmApp.getMcuVersion());
-            Log.d(TAG, "packet: " + pmApp.getSystemInfo());
-            Log.d(TAG, "packet: " + pmApp.getBatteryInfo());
-            Log.d(TAG, "packet: " + pmApp.getDatetime());
-            Calendar cal = Calendar.getInstance();
-            Log.d(TAG, "packet: " + pmApp.setDatetime(cal));
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
+            executorService.execute(() -> {
+                Log.d(TAG, "packet: " + pmApp.getVersion());
+                Log.d(TAG, "packet: " + pmApp.getMcuVersion());
+                Log.d(TAG, "packet: " + pmApp.getSystemInfo());
+                Log.d(TAG, "packet: " + pmApp.getDatetime());
+                Calendar cal = Calendar.getInstance();
+                Log.d(TAG, "packet: " + pmApp.setDatetime(cal));
 //            Log.d(TAG, "packet: "+ pmApp.systemReset());
-
-
+            });
         });
 
 

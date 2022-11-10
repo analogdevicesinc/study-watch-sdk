@@ -22,6 +22,8 @@ import com.analog.study_watch_sdk.interfaces.StudyWatchCallback;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Temperature application support 12 slot streaming, but currently only
@@ -40,6 +42,17 @@ public class MultiSlotTemperatureExample extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_DENIED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, 2);
+            }
+        }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) == PackageManager.PERMISSION_DENIED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_SCAN}, 2);
+            }
+        }
+
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
         }
@@ -55,7 +68,9 @@ public class MultiSlotTemperatureExample extends AppCompatActivity {
             mBluetoothAdapter.enable();
         }
         final Button button = findViewById(R.id.button);
+        final Button button3 = findViewById(R.id.button3);
         button.setEnabled(false);
+        button3.setEnabled(false);
         // connect to study watch with its mac address.
         StudyWatch.connectBLE("D5:67:F1:CA:05:C5", getApplicationContext(), new StudyWatchCallback() {
             @Override
@@ -74,68 +89,78 @@ public class MultiSlotTemperatureExample extends AppCompatActivity {
         });
 
         button.setOnClickListener(v -> {
-            // Get applications from SDK
+            button.setEnabled(false);
+            button3.setEnabled(true);
             TemperatureApplication tempApp = watchSdk.getTemperatureApplication();
             ADPDApplication adpd = watchSdk.getADPDApplication();
             PMApplication pmAPP = watchSdk.getPMApplication();
 
-            adpd.deleteDeviceConfigurationBlock();
-            File fileDVT1 = new File(Environment.getExternalStorageDirectory(), "dcb_cfg/temperature_adpd_dcb_DVT1.dcfg");
-            File fileDVT2 = new File(Environment.getExternalStorageDirectory(), "dcb_cfg/temperature_adpd_dcb_DVT2.dcfg");
-            adpd.deleteDeviceConfigurationBlock();
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
+            executorService.execute(() -> {
+                adpd.deleteDeviceConfigurationBlock();
+                File fileDVT1 = new File(Environment.getExternalStorageDirectory(), "dcb_cfg/temperature_adpd_dcb_DVT1.dcfg");
+                File fileDVT2 = new File(Environment.getExternalStorageDirectory(), "dcb_cfg/temperature_adpd_dcb_DVT2.dcfg");
+                adpd.deleteDeviceConfigurationBlock();
 
-            // config
-            if (pmAPP.getChipID(pmAPP.CHIP_ADPD4K).payload.getChipID() == 0xc0) {
+                // config
+                if (pmAPP.getChipID(pmAPP.CHIP_ADPD4K).payload.getChipID() == 0xc0) {
+                    try {
+                        adpd.writeDeviceConfigurationBlockFromFile(fileDVT1);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    try {
+                        adpd.writeDeviceConfigurationBlockFromFile(fileDVT2);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                adpd.loadConfiguration(adpd.DEVICE_GREEN);
+
+                File file_temp = new File(Environment.getExternalStorageDirectory(), "dcb_cfg/temperature_lcfg_dcb.lcfg");
+                tempApp.deleteDeviceConfigurationBlock();
                 try {
-                    adpd.writeDeviceConfigurationBlockFromFile(fileDVT1);
-                } catch (IOException e) {
+                    tempApp.writeDeviceConfigurationBlockFromFile(file_temp);
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
-            } else {
-                try {
-                    adpd.writeDeviceConfigurationBlockFromFile(fileDVT2);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            adpd.loadConfiguration(adpd.DEVICE_GREEN);
+                tempApp.writeDCBToLCFG();
+                tempApp.setCallback(temperatureDataPacket -> Log.d(TAG, "TEMP: " + temperatureDataPacket), tempApp.STREAM_TEMPERATURE3);
+                tempApp.setCallback(temperatureDataPacket -> Log.d(TAG, "TEMP: " + temperatureDataPacket), tempApp.STREAM_TEMPERATURE4);
+                tempApp.setCallback(temperatureDataPacket -> Log.d(TAG, "TEMP: " + temperatureDataPacket), tempApp.STREAM_TEMPERATURE10);
+                tempApp.setCallback(temperatureDataPacket -> Log.d(TAG, "TEMP: " + temperatureDataPacket), tempApp.STREAM_TEMPERATURE11);
+                tempApp.setCallback(temperatureDataPacket -> Log.d(TAG, "TEMP: " + temperatureDataPacket), tempApp.STREAM_TEMPERATURE12);
+                tempApp.startSensor();
+                tempApp.subscribeStream(tempApp.STREAM_TEMPERATURE3);
+                tempApp.subscribeStream(tempApp.STREAM_TEMPERATURE4);
+                tempApp.subscribeStream(tempApp.STREAM_TEMPERATURE10);
+                tempApp.subscribeStream(tempApp.STREAM_TEMPERATURE11);
+                tempApp.subscribeStream(tempApp.STREAM_TEMPERATURE12);
+                File file12 = new File(Environment.getExternalStorageDirectory(), "dcb_cfg/temp12.csv");
 
-            File file_temp = new File(Environment.getExternalStorageDirectory(), "dcb_cfg/temperature_lcfg_dcb.lcfg");
-            tempApp.deleteDeviceConfigurationBlock();
-            try {
-                tempApp.writeDeviceConfigurationBlockFromFile(file_temp);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            tempApp.writeDCBToLCFG();
-            tempApp.setCallback(temperatureDataPacket -> Log.d(TAG, "TEMP: " + temperatureDataPacket), tempApp.STREAM_TEMPERATURE3);
-            tempApp.setCallback(temperatureDataPacket -> Log.d(TAG, "TEMP: " + temperatureDataPacket), tempApp.STREAM_TEMPERATURE4);
-            tempApp.setCallback(temperatureDataPacket -> Log.d(TAG, "TEMP: " + temperatureDataPacket), tempApp.STREAM_TEMPERATURE10);
-            tempApp.setCallback(temperatureDataPacket -> Log.d(TAG, "TEMP: " + temperatureDataPacket), tempApp.STREAM_TEMPERATURE11);
-            tempApp.setCallback(temperatureDataPacket -> Log.d(TAG, "TEMP: " + temperatureDataPacket), tempApp.STREAM_TEMPERATURE12);
-            tempApp.startSensor();
-            tempApp.subscribeStream(tempApp.STREAM_TEMPERATURE3);
-            tempApp.subscribeStream(tempApp.STREAM_TEMPERATURE4);
-            tempApp.subscribeStream(tempApp.STREAM_TEMPERATURE10);
-            tempApp.subscribeStream(tempApp.STREAM_TEMPERATURE11);
-            tempApp.subscribeStream(tempApp.STREAM_TEMPERATURE12);
-            File file12 = new File(Environment.getExternalStorageDirectory(), "dcb_cfg/temp12.csv");
+                tempApp.enableCSVLogging(file12, tempApp.STREAM_TEMPERATURE12);
+            });
+        });
 
-            tempApp.enableCSVLogging(file12, tempApp.STREAM_TEMPERATURE12);
-            try {
-                Thread.sleep(10000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
 
-            tempApp.unsubscribeStream(tempApp.STREAM_TEMPERATURE3);
-            tempApp.unsubscribeStream(tempApp.STREAM_TEMPERATURE4);
-            tempApp.unsubscribeStream(tempApp.STREAM_TEMPERATURE10);
-            tempApp.unsubscribeStream(tempApp.STREAM_TEMPERATURE11);
-            tempApp.unsubscribeStream(tempApp.STREAM_TEMPERATURE12);
-            tempApp.stopSensor();
-            tempApp.disableCSVLogging(tempApp.STREAM_TEMPERATURE12);
+        button3.setOnClickListener(v -> {
+            button.setEnabled(true);
+            button3.setEnabled(false);
+            TemperatureApplication tempApp = watchSdk.getTemperatureApplication();
+            ADPDApplication adpd = watchSdk.getADPDApplication();
+            PMApplication pmAPP = watchSdk.getPMApplication();
 
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
+            executorService.execute(() -> {
+                tempApp.unsubscribeStream(tempApp.STREAM_TEMPERATURE3);
+                tempApp.unsubscribeStream(tempApp.STREAM_TEMPERATURE4);
+                tempApp.unsubscribeStream(tempApp.STREAM_TEMPERATURE10);
+                tempApp.unsubscribeStream(tempApp.STREAM_TEMPERATURE11);
+                tempApp.unsubscribeStream(tempApp.STREAM_TEMPERATURE12);
+                tempApp.stopSensor();
+                tempApp.disableCSVLogging(tempApp.STREAM_TEMPERATURE12);
+            });
         });
 
 

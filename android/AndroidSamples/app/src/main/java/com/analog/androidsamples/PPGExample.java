@@ -24,6 +24,9 @@ import com.analog.study_watch_sdk.interfaces.PPGCallback;
 import com.analog.study_watch_sdk.interfaces.SYNCPPGCallback;
 import com.analog.study_watch_sdk.interfaces.StudyWatchCallback;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 /**
  * Quickstart for PPG stream.
  */
@@ -36,6 +39,17 @@ public class PPGExample extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_DENIED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, 2);
+            }
+        }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) == PackageManager.PERMISSION_DENIED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_SCAN}, 2);
+            }
+        }
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
@@ -52,7 +66,9 @@ public class PPGExample extends AppCompatActivity {
             mBluetoothAdapter.enable();
         }
         final Button button = findViewById(R.id.button);
+        final Button button3 = findViewById(R.id.button3);
         button.setEnabled(false);
+        button3.setEnabled(false);
         // connect to study watch with its mac address.
         StudyWatch.connectBLE("D5:67:F1:CA:05:C5", getApplicationContext(), new StudyWatchCallback() {
             @Override
@@ -71,13 +87,12 @@ public class PPGExample extends AppCompatActivity {
         });
 
         button.setOnClickListener(v -> {
-            // Get applications from SDK
+            button.setEnabled(false);
+            button3.setEnabled(true);
             PPGApplication ppgApp = watchSdk.getPPGApplication();
             ADPDApplication adpdApp = watchSdk.getADPDApplication();
             PMApplication pmAPP = watchSdk.getPMApplication();
 
-            adpdApp.deleteDeviceConfigurationBlock();
-            ppgApp.deleteDeviceConfigurationBlock();
             ppgApp.setCallback((PPGCallback) ppgDataPacket -> {
                 float hr = (float) (ppgDataPacket.payload.getHR() / 16.0);
                 float confidence = (float) (100.0 * (ppgDataPacket.payload.getConfidence() / 1024.0));
@@ -89,35 +104,43 @@ public class PPGExample extends AppCompatActivity {
             ppgApp.setCallback((HRVCallback) hrvDataPacket -> Log.d(TAG, "HRV: " + hrvDataPacket), ppgApp.STREAM_HRV);
             ppgApp.setCallback((AGCCallback) agcDataPacket -> Log.d(TAG, "DYNAMIC_AGC: " + agcDataPacket), ppgApp.STREAM_DYNAMIC_AGC);
 
-            adpdApp.loadConfiguration(adpdApp.DEVICE_GREEN);
-            adpdApp.enableAgc(new ADPDLed[]{adpdApp.LED_GREEN});
-            // checking for DVT2 board
-            if (pmAPP.getChipID(pmAPP.CHIP_ADPD4K).payload.getChipID() == 0xc0)
-                adpdApp.calibrateClock(adpdApp.CLOCK_1M_AND_32M);
-            else
-                adpdApp.calibrateClock(adpdApp.CLOCK_1M);
-            ppgApp.setLibraryConfiguration(ppgApp.LCFG_ID_ADPD4000);
-            ppgApp.writeDeviceConfigurationBlock(new long[][]{{0x4, 0x1210}});
 
-            ppgApp.startSensor();
-            ppgApp.subscribeStream(ppgApp.STREAM_PPG);
-            ppgApp.subscribeStream(ppgApp.STREAM_SYNC_PPG);
-            ppgApp.subscribeStream(ppgApp.STREAM_HRV);
-            ppgApp.subscribeStream(ppgApp.STREAM_DYNAMIC_AGC);
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
+            executorService.execute(() -> {
+                adpdApp.deleteDeviceConfigurationBlock();
+                ppgApp.deleteDeviceConfigurationBlock();
+                adpdApp.loadConfiguration(adpdApp.DEVICE_GREEN);
+                adpdApp.enableAgc(new ADPDLed[]{adpdApp.LED_GREEN});
+                // checking for DVT2 board
+                if (pmAPP.getChipID(pmAPP.CHIP_ADPD4K).payload.getChipID() == 0xc0)
+                    adpdApp.calibrateClock(adpdApp.CLOCK_1M_AND_32M);
+                else
+                    adpdApp.calibrateClock(adpdApp.CLOCK_1M);
+                ppgApp.setLibraryConfiguration(ppgApp.LCFG_ID_ADPD4000);
+                ppgApp.writeDeviceConfigurationBlock(new long[][]{{0x4, 0x1210}});
 
-            // sleep
-            try {
-                Thread.sleep(20000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+                ppgApp.startSensor();
+                ppgApp.subscribeStream(ppgApp.STREAM_PPG);
+                ppgApp.subscribeStream(ppgApp.STREAM_SYNC_PPG);
+                ppgApp.subscribeStream(ppgApp.STREAM_HRV);
+                ppgApp.subscribeStream(ppgApp.STREAM_DYNAMIC_AGC);
+            });
+        });
 
-            ppgApp.unsubscribeStream(ppgApp.STREAM_PPG);
-            ppgApp.unsubscribeStream(ppgApp.STREAM_SYNC_PPG);
-            ppgApp.unsubscribeStream(ppgApp.STREAM_HRV);
-            ppgApp.unsubscribeStream(ppgApp.STREAM_DYNAMIC_AGC);
-            ppgApp.stopSensor();
+        button3.setOnClickListener(v -> {
+            button.setEnabled(true);
+            button3.setEnabled(false);
+            PPGApplication ppgApp = watchSdk.getPPGApplication();
 
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
+            executorService.execute(() -> {
+                ppgApp.unsubscribeStream(ppgApp.STREAM_PPG);
+                ppgApp.unsubscribeStream(ppgApp.STREAM_SYNC_PPG);
+                ppgApp.unsubscribeStream(ppgApp.STREAM_HRV);
+                ppgApp.unsubscribeStream(ppgApp.STREAM_DYNAMIC_AGC);
+                ppgApp.stopSensor();
+
+            });
         });
 
 

@@ -7,7 +7,7 @@
 Add sdk in app `build.gradle`
 
 ```java
-implementation 'com.github.analogdevicesinc:study_watch_sdk:4.2.1'
+implementation 'com.github.analogdevicesinc:study_watch_sdk:4.3.0'
 ```
 
 Permissions required to enable BLE, add the permission below in `AndroidManifest.xml`
@@ -18,6 +18,8 @@ Permissions required to enable BLE, add the permission below in `AndroidManifest
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+<uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+<uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
 ```
 
 **ACCESS_BACKGROUND_LOCATION** is required for android 11 and above.

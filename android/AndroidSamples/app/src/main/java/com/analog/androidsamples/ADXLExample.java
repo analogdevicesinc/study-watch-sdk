@@ -24,6 +24,8 @@ import com.analog.study_watch_sdk.core.packets.stream.ADXLDataPacket;
 import com.analog.study_watch_sdk.interfaces.StudyWatchCallback;
 
 import java.sql.Timestamp;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Quickstart for ADXL stream.
@@ -56,6 +58,17 @@ public class ADXLExample extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_DENIED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, 2);
+            }
+        }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) == PackageManager.PERMISSION_DENIED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_SCAN}, 2);
+            }
+        }
+
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
         }
@@ -73,7 +86,9 @@ public class ADXLExample extends AppCompatActivity {
             mBluetoothAdapter.enable();
         }
         final Button button = findViewById(R.id.button);
+        final Button button3 = findViewById(R.id.button3);
         button.setEnabled(false);
+        button3.setEnabled(false);
         // connect to study watch with its mac address.
         StudyWatch.connectBLE("D5:67:F1:CA:05:C5", getApplicationContext(), new StudyWatchCallback() {
             @Override
@@ -92,9 +107,9 @@ public class ADXLExample extends AppCompatActivity {
         });
 
         button.setOnClickListener(v -> {
-            // Get applications from SDK
+            button.setEnabled(false);
+            button3.setEnabled(true);
             ADXLApplication adxlApp = watchSdk.getADXLApplication();
-
             adxlApp.setCallback(adxlDataPacket -> {
                 for (ADXLDataPacket.Payload.StreamData streamData : adxlDataPacket.payload.streamData) {
                     Timestamp obj = new Timestamp((long) streamData.getTimestamp());
@@ -102,23 +117,27 @@ public class ADXLExample extends AppCompatActivity {
                             streamData.getX() + ", " + streamData.getY() + ", " + streamData.getZ());
                 }
             });
-            // start sensor
-            adxlApp.startSensor();
-            // 50Hz
-            adxlApp.writeRegister(new int[][]{{0x2c, 0x9A}});
-            adxlApp.subscribeStream();
-            // sleep
-            try {
-                Thread.sleep(10000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            // stop sensor
-            adxlApp.unsubscribeStream();
-            adxlApp.stopSensor();
-
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
+            executorService.execute(() -> {
+                // start sensor
+                adxlApp.startSensor();
+                // 50Hz
+                adxlApp.writeRegister(new int[][]{{0x2c, 0x9A}});
+                adxlApp.subscribeStream();
+            });
         });
 
+        button3.setOnClickListener(v -> {
+            button.setEnabled(true);
+            button3.setEnabled(false);
+            ADXLApplication adxlApp = watchSdk.getADXLApplication();
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
+            executorService.execute(() -> {
+                // stop sensor
+                adxlApp.unsubscribeStream();
+                adxlApp.stopSensor();
+            });
+        });
 
     }
 

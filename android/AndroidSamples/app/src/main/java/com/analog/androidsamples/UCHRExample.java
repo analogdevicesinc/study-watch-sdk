@@ -21,6 +21,9 @@ import com.analog.study_watch_sdk.core.SDK;
 import com.analog.study_watch_sdk.interfaces.PPGCallback;
 import com.analog.study_watch_sdk.interfaces.StudyWatchCallback;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 /**
  * Quickstart for ADPD and ADXL in SYNC with ODRs multiplier of each other.
  */
@@ -33,6 +36,17 @@ public class UCHRExample extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_DENIED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, 2);
+            }
+        }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) == PackageManager.PERMISSION_DENIED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_SCAN}, 2);
+            }
+        }
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
@@ -49,7 +63,9 @@ public class UCHRExample extends AppCompatActivity {
             mBluetoothAdapter.enable();
         }
         final Button button = findViewById(R.id.button);
+        final Button button3 = findViewById(R.id.button3);
         button.setEnabled(false);
+        button3.setEnabled(false);
         // connect to study watch with its mac address.
         StudyWatch.connectBLE("D5:67:F1:CA:05:C5", getApplicationContext(), new StudyWatchCallback() {
             @Override
@@ -68,52 +84,61 @@ public class UCHRExample extends AppCompatActivity {
         });
 
         button.setOnClickListener(v -> {
+            button.setEnabled(false);
+            button3.setEnabled(true);
             // Get applications from SDK
             PPGApplication ppgApp = watchSdk.getPPGApplication();
             ADPDApplication adpdApp = watchSdk.getADPDApplication();
             ADXLApplication adxlApp = watchSdk.getADXLApplication();
             PMApplication pmAPP = watchSdk.getPMApplication();
 
-            adpdApp.deleteDeviceConfigurationBlock();
-            ppgApp.deleteDeviceConfigurationBlock();
-            ppgApp.setCallback((PPGCallback) ppgDataPacket -> {
-                float hr = (float) (ppgDataPacket.payload.getHR() / 16.0);
-                float confidence = (float) (100.0 * (ppgDataPacket.payload.getConfidence() / 1024.0));
-                Log.d(TAG, " PPG (Timestamp, HR, Confidence, HR Type) :: " +
-                        ppgDataPacket.payload.getTimestamp() + " , " + hr + " , " + confidence +
-                        " , " + ppgDataPacket.payload.getHRType());
-            }, ppgApp.STREAM_PPG);
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
+            executorService.execute(() -> {
+                adpdApp.deleteDeviceConfigurationBlock();
+                ppgApp.deleteDeviceConfigurationBlock();
+                ppgApp.setCallback((PPGCallback) ppgDataPacket -> {
+                    float hr = (float) (ppgDataPacket.payload.getHR() / 16.0);
+                    float confidence = (float) (100.0 * (ppgDataPacket.payload.getConfidence() / 1024.0));
+                    Log.d(TAG, " PPG (Timestamp, HR, Confidence, HR Type) :: " +
+                            ppgDataPacket.payload.getTimestamp() + " , " + hr + " , " + confidence +
+                            " , " + ppgDataPacket.payload.getHRType());
+                }, ppgApp.STREAM_PPG);
 
-            adxlApp.setCallback(adxlDataPacket -> Log.d(TAG, "callback: " + adxlDataPacket));
+                adxlApp.setCallback(adxlDataPacket -> Log.d(TAG, "callback: " + adxlDataPacket));
 
-            adpdApp.enableUCHR(adpdApp.SLOT_F);
-            adpdApp.loadConfiguration(adpdApp.DEVICE_GREEN);
-            // checking for DVT2 board
-            if (pmAPP.getChipID(pmAPP.CHIP_ADPD4K).payload.getChipID() == 0xc0)
-                adpdApp.calibrateClock(adpdApp.CLOCK_1M_AND_32M);
-            else
-                adpdApp.calibrateClock(adpdApp.CLOCK_1M);
-            ppgApp.setLibraryConfiguration(ppgApp.LCFG_ID_ADPD4000);
+                adpdApp.enableUCHR(adpdApp.SLOT_F);
+                adpdApp.loadConfiguration(adpdApp.DEVICE_GREEN);
+                // checking for DVT2 board
+                if (pmAPP.getChipID(pmAPP.CHIP_ADPD4K).payload.getChipID() == 0xc0)
+                    adpdApp.calibrateClock(adpdApp.CLOCK_1M_AND_32M);
+                else
+                    adpdApp.calibrateClock(adpdApp.CLOCK_1M);
+                ppgApp.setLibraryConfiguration(ppgApp.LCFG_ID_ADPD4000);
 
-            adpdApp.startSensor();
-            adxlApp.startSensor();
-            adxlApp.subscribeStream();
-            ppgApp.subscribeStream(ppgApp.STREAM_PPG);
+                adpdApp.startSensor();
+                adxlApp.startSensor();
+                adxlApp.subscribeStream();
+                ppgApp.subscribeStream(ppgApp.STREAM_PPG);
 
-            // sleep
-            try {
-                Thread.sleep(20000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            });
+        });
 
-            adpdApp.stopSensor();
-            adxlApp.stopSensor();
+        button3.setOnClickListener(v -> {
+            button.setEnabled(true);
+            button3.setEnabled(false);
+            // Get applications from SDK
+            PPGApplication ppgApp = watchSdk.getPPGApplication();
+            ADPDApplication adpdApp = watchSdk.getADPDApplication();
+            ADXLApplication adxlApp = watchSdk.getADXLApplication();
 
-            ppgApp.unsubscribeStream(ppgApp.STREAM_PPG);
-            adxlApp.unsubscribeStream();
-            adpdApp.disableUCHR(adpdApp.SLOT_F);
-
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
+            executorService.execute(() -> {
+                adpdApp.stopSensor();
+                adxlApp.stopSensor();
+                ppgApp.unsubscribeStream(ppgApp.STREAM_PPG);
+                adxlApp.unsubscribeStream();
+                adpdApp.disableUCHR(adpdApp.SLOT_F);
+            });
         });
 
 

@@ -4,10 +4,6 @@
 
 The adi-study-watch provides SDK interface for interacting with ADI's VSM study watch platform.
 
-## Firmware ZIP
-
-https://github.com/analogdevicesinc/study-watch-sdk/blob/main/firmware/ADI_project.zip
-
 ## Python SDK
 
 https://github.com/analogdevicesinc/study-watch-sdk/blob/main/python
