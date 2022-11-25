@@ -53,5 +53,5 @@ if __name__ == "__main__":
 
     pm = sdk.get_pm_application()
     adp5360_app = sdk.get_adp5360_application()
-    adp5360_app.set_battery_threshold(30, 10, 100)
+    adp5360_app.set_battery_threshold(15, 10, 20, 3365, 3187, 3793)
     time.sleep(10)

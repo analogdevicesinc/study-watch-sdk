@@ -1,6 +1,21 @@
 # Changelog
 
 All notable changes to python SDK will be documented in this file.
+
+## [v4.5.0] - Nov 25, 2022
+
+- Support added for 5.15.0 firmware.
+- SDK now restricts multiple tool connection.
+- New alarms Enum added for ADPD.
+
+#### AD5360
+
+- set_battery_threshold API updated.
+
+### PM
+
+- get_existing_connection API Added.
+
 ## [v4.4.0] - Nov 3, 2022
 
 - Support added for 5.14.0 firmware.
@@ -10,7 +25,6 @@ All notable changes to python SDK will be documented in this file.
 #### Updates:
 
 - support firmware version message updated to 5.13.0
-
 
 ## [v4.3.0] - Sep 29, 2022
 
@@ -76,7 +90,8 @@ All notable changes to python SDK will be documented in this file.
 - file_download algo optimized.
 - file_download V2 added (for system with low ram/resources).
 - Built-in BLE connection retry added during SDK connect.
-- In log conversion CSV file renamed from temp.csv to temperature1.csv, temperature2.csv ... etc (now temperature supports 12 slots)
+- In log conversion CSV file renamed from temp.csv to temperature1.csv, temperature2.csv ... etc (now temperature
+  supports 12 slots)
 - freq_index column added in BIA csv logging.
 - packet_loss count API added for all Applications.
 
@@ -128,10 +143,9 @@ All notable changes to python SDK will be documented in this file.
 - start_sensor (Added)
 - subscribe_stream (Added)
 - enable_csv_logging (Added)
-- disable_csv_logging (Added) 
+- disable_csv_logging (Added)
 - unsubscribe_stream (Added)
 - stop_sensor (Added)
-
 
 #### FS
 
@@ -146,8 +160,6 @@ All notable changes to python SDK will be documented in this file.
 - unsubscribe_stream (new accepts stream)
 - disable_csv_logging (new accepts stream)
 
-
-
 #### Packet Structure Changes
 
 - ConfigFilePacket:
@@ -160,7 +172,6 @@ All notable changes to python SDK will be documented in this file.
     - eda_dcfg_block (new key)
 - General change in DCB packets for all Application:
     - DCB response packet now have dcb_block_index key (new key)
-
 
 ## [v4.1.0] - Nov 10, 2021
 

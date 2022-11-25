@@ -113,3 +113,6 @@ if __name__ == "__main__":
 
     packet = application.get_hibernate_mode()
     print(packet)
+
+    packet = application.get_existing_connection()
+    print(packet)

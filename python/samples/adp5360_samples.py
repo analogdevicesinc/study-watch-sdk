@@ -65,7 +65,7 @@ if __name__ == "__main__":
     packet = application.read_register([0x3])
     print(packet)
 
-    packet = application.set_battery_threshold(20, 5, 10)
+    packet = application.set_battery_threshold(15, 10, 20, 3365, 3187, 3793)
     print(packet)
 
     packet = application.get_battery_threshold()
