@@ -2,11 +2,13 @@
 
 All notable changes to python SDK will be documented in this file.
 
-## [v4.5.0] - Nov 25, 2022
+## [v5.15.0] - Dec 07, 2022
 
+- SDK version changed to match the firmware version.
 - Support added for 5.15.0 firmware.
 - SDK now restricts multiple tool connection.
-- New alarms Enum added for ADPD.
+- New alarms Enum added for ADPD and PM.
+- Alarms removed for LT and USER0
 
 #### AD5360
 
