@@ -2,6 +2,10 @@
 
 All notable changes to python SDK will be documented in this file.
 
+## [v5.16.0] - Jan 20, 2023
+
+- Support added for 5.16.0 firmware.
+
 ## [v5.15.0] - Dec 07, 2022
 
 - SDK version changed to match the firmware version.
