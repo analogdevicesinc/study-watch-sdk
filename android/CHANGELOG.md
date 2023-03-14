@@ -4,6 +4,7 @@ All notable changes to Android SDK will be documented in this file.
 
 ## [v5.17.0] - Mar 14, 2023
 
+- Fixed issue related to BLE permission for Android 11 and below.
 - systemHardwareReset API temporary disabled.
 - Support added for 5.17.0 firmware.
 - SDK version changed to match the firmware version.
