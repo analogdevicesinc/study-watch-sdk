@@ -2,6 +2,14 @@
 
 All notable changes to Android SDK will be documented in this file.
 
+## [v5.17.0] - Mar 14, 2023
+
+- systemHardwareReset API temporary disabled.
+- Support added for 5.17.0 firmware.
+- SDK version changed to match the firmware version.
+- New alarms Enum added for ADPD and PM.
+- Alarms removed for LT and USER0
+
 ## [v4.3.0] - Nov 10, 2022
 
 #### Updates:
