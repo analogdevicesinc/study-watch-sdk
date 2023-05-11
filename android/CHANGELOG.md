@@ -2,6 +2,12 @@
 
 All notable changes to Android SDK will be documented in this file.
 
+## [v5.19.0] - May 10, 2023
+
+- BatteryInfoPacket structure modified.
+- systemHardwareReset api enabled.
+- CSV logging issue resolved for ADP5360 app.
+
 ## [v5.17.0] - Mar 14, 2023
 
 - Fixed issue related to BLE permission for Android 11 and below.
