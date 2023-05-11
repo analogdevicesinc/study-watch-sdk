@@ -25,6 +25,7 @@ com.analog.study_watch_sdk.core.packets.ad7156
 com.analog.study_watch_sdk.core.packets.adp5360
 com.analog.study_watch_sdk.core.packets.adpd
 com.analog.study_watch_sdk.core.packets.adxl
+com.analog.study_watch_sdk.core.packets.beacon
 com.analog.study_watch_sdk.core.packets.bia
 com.analog.study_watch_sdk.core.packets.common
 com.analog.study_watch_sdk.core.packets.display
