@@ -2,6 +2,10 @@
 
 All notable changes to Android SDK will be documented in this file.
 
+## [v5.19.1] - May 18, 2023
+
+- Timestamp issue resolved for csv and filesystem logging.
+
 ## [v5.19.0] - May 10, 2023
 
 - BatteryInfoPacket structure modified.
