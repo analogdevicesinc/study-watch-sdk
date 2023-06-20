@@ -2,6 +2,11 @@
 
 All notable changes to Android SDK will be documented in this file.
 
+## [v5.20.0] - Jun 20, 2023
+
+- Support added for firmware 5.20.0
+
+
 ## [v5.19.1] - May 18, 2023
 
 - Timestamp issue resolved for csv and filesystem logging.

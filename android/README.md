@@ -7,7 +7,7 @@
 Add sdk in app `build.gradle`
 
 ```java
-implementation 'com.github.analogdevicesinc:study_watch_sdk:4.3.0'
+implementation 'com.github.analogdevicesinc:study_watch_sdk:5.20.0'
 ```
 
 Permissions required to enable BLE, add the permission below in `AndroidManifest.xml`
