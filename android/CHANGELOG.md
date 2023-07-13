@@ -2,6 +2,10 @@
 
 All notable changes to Android SDK will be documented in this file.
 
+## [v5.21.0] - Jul 13, 2023
+
+- Support added for 5.21.0 firmware.
+
 ## [v5.20.0] - Jun 20, 2023
 
 - Support added for firmware 5.20.0
