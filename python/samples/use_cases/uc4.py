@@ -83,8 +83,8 @@ if __name__ == "__main__":
 
     temp_app.set_callback(temp_callback)
     ecg_app.set_callback(ecg_callback)
-    ppg_app.set_ppg_callback(ppg_callback)
-    ppg_app.set_syncppg_callback(sync_ppg_callback)
+    ppg_app.set_callback(ppg_callback, stream=ppg_app.STREAM_PPG)
+    ppg_app.set_callback(sync_ppg_callback, stream=ppg_app.STREAM_SYNC_PPG)
 
     adpd_app.delete_device_configuration_block()
     # loading dcb

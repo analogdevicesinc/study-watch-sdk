@@ -94,7 +94,7 @@ if __name__ == "__main__":
     adxl_app.delete_device_configuration_block()
     adxl_app.write_device_configuration_block_from_file(adxl_dcfg)
 
-    eda_app.delete_device_configuration_block()
+    eda_app.delete_device_configuration_block(eda_app.EDA_DCFG_BLOCK)
     eda_app.write_library_configuration([[0x0, 0x1E]])  # 30 ODR
 
     # starting sensors
