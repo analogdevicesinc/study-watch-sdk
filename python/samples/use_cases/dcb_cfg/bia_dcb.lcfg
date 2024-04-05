@@ -1,0 +1,36 @@
+#BIA_DCB_LCFG
+00 0000001E	# for checking DCB, ODR here is 30 Hz to differentiate DCB value from f/w value . Default f/w BIA ODR = 20 Hz
+01 00000000 # ADC PGA gain is default, options are 0 for ADC gain 1,1 for ADC gain 1.5,2 for ADC gain 2,3 for ADC gain 4,4 for ADC gain 9
+02 00000000 # power modulation, 0 or 1, 0 for low power , 1 for high power
+03 0000C350 # Sine frequency 50,000
+04 0000000B # DFTNUM_8192 = 11 is default
+05 00000014 # Output data rate of FFM output, Default f/w BCM FFM data rate parameter for algorithm = 20
+06 00000001 # BCM Algorithm enable = 1, which enables BCM Algorithm
+07 000000A0 # Height here is 160 Cms, Default f/w BCM Height parameter for algorithm = 160 Cms
+08 0000003C # Weight here is 60Kgs, Default f/w BCM Weight parameter for algorithm = 60 Kgs
+09 0000001E # Age here is 30 years, Default f/w BCM age parameter for algorithm = 30 Years
+0A 3EC12B80 # Coefficient zero = 0.377285, Default f/w BCM coeff zero of algorithm = 0.377285;
+0B BDE631F9 # Coefficient one = -0.1124, Default f/w BCM coeff one of algorithm = -0.1124;
+0C 3F050FA6 # Coefficient two = 0.51977, Default f/w BCM coeff two of algorithm = 0.51977;
+0D BD3FF045 # Coefficient three = -0.04686, Default f/w BCM coeff three of algorithm = -0.04686;
+0E 39A73F75 # Coefficient four = 0.000319, Default f/w BCM coeff four of algorithm = 0.000319;
+0F 3CB1465F # Coefficient five = 0.02164, Default f/w BCM coeff five of algorithm = 0.02164;
+10 B8D1B717 # Coefficient six = -0.0001, Default f/w BCM coeff six of algorithm = -0.0001;
+11 C22BF8D5 # Coefficient seven = -42.9923, Default f/w BCM coeff seven of algorithm = -42.9923;
+12 00000000 # Enable range sweep enable
+13 00000000 # Disable fixed freq sweep enable
+14 000003E8 # Sweep start frequency
+15 0000C350 # Sweep stop frequency
+16 00000064 # Sweep points 
+17 00000001 # Sweep log
+18 00000001 # Sweep index
+19 000186A0 # Fixed sweep frequency
+1A 00000320	# Fixed sweep voltage
+
+
+
+#link to use above conversion of float to hexadecimal is found in link:
+#https://babbage.cs.qc.cuny.edu/IEEE-754.old/Decimal.html
+#please find the information about IEEE 754 Single Precision floating format
+#https://en.wikipedia.org/wiki/IEEE_754
+#IEEE conversion is valid from indices 0x0A to 0x11
