@@ -2,7 +2,7 @@
 
 [![PyPI version fury.io](https://badge.fury.io/py/adi-study-watch.svg)](https://pypi.python.org/pypi/adi-study-watch/)  [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.analogdevicesinc/study_watch_sdk/badge.svg)](https://search.maven.org/artifact/com.github.analogdevicesinc/study_watch_sdk/4.2.1/aar)
 
-The adi-study-watch provides SDK interface for interacting with ADI's VSM study watch platform.
+The adi-study-watch provides SDK interface for interacting with ADI's VSM study watch 4.0 platform.
 
 ## Python SDK
 
